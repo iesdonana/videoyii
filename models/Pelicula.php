@@ -46,8 +46,8 @@ class Pelicula extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'codigo' => 'Codigo',
-            'titulo' => 'Titulo',
+            'codigo' => 'Código',
+            'titulo' => 'Título',
             'precio' => 'Precio',
             'borrado' => 'Borrado',
         ];
@@ -58,6 +58,11 @@ class Pelicula extends \yii\db\ActiveRecord
      */
     public function getAlquileres()
     {
-        return $this->hasMany(Alquileres::className(), ['pelicula_id' => 'id'])->inverseOf('pelicula');
+        return $this->hasMany(Alquiler::className(), ['pelicula_id' => 'id'])->inverseOf('pelicula');
+    }
+
+    public function getSocios()
+    {
+        return $this->hasMany(Socio::className(), ['id' => 'socio_id'])->via('alquileres');
     }
 }
