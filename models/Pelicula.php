@@ -34,6 +34,7 @@ class Pelicula extends \yii\db\ActiveRecord
             [['codigo', 'titulo', 'precio'], 'required'],
             [['codigo', 'precio'], 'number'],
             [['borrado'], 'boolean'],
+            [['codigo'], 'string', 'max' => 4],
             [['titulo'], 'string', 'max' => 255],
             [['codigo'], 'unique'],
         ];
