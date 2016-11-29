@@ -33,12 +33,12 @@ class Alquiler extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['socio_id', 'pelicula_id', 'precio_alq'], 'required'],
+            [['socio_id', 'pelicula_id', 'precio_alq','alquilado'], 'required'],
             [['socio_id', 'pelicula_id'], 'integer'],
             [['precio_alq'], 'number'],
-            [['alquilado', 'devuelto'], 'safe'],
-            [['pelicula_id'], 'exist', 'skipOnError' => true, 'targetClass' => Peliculas::className(), 'targetAttribute' => ['pelicula_id' => 'id']],
-            [['socio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Socios::className(), 'targetAttribute' => ['socio_id' => 'id']],
+            [ 'devuelto', 'safe'],
+            [['pelicula_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pelicula::className(), 'targetAttribute' => ['pelicula_id' => 'id']],
+            [['socio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Socio::className(), 'targetAttribute' => ['socio_id' => 'id']],
         ];
     }
 
@@ -62,7 +62,7 @@ class Alquiler extends \yii\db\ActiveRecord
      */
     public function getPelicula()
     {
-        return $this->hasOne(Peliculas::className(), ['id' => 'pelicula_id'])->inverseOf('alquilers');
+        return $this->hasOne(Pelicula::className(), ['id' => 'pelicula_id'])->inverseOf('alquileres');
     }
 
     /**
@@ -70,6 +70,6 @@ class Alquiler extends \yii\db\ActiveRecord
      */
     public function getSocio()
     {
-        return $this->hasOne(Socios::className(), ['id' => 'socio_id'])->inverseOf('alquilers');
+        return $this->hasOne(Socio::className(), ['id' => 'socio_id'])->inverseOf('alquileres');
     }
 }
