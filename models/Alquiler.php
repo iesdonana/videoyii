@@ -62,7 +62,7 @@ class Alquiler extends \yii\db\ActiveRecord
      */
     public function getPelicula()
     {
-        return $this->hasOne(Peliculas::className(), ['id' => 'pelicula_id'])->inverseOf('alquilers');
+        return $this->hasOne(Pelicula::className(), ['id' => 'pelicula_id'])->inverseOf('alquileres');
     }
 
     /**
@@ -70,6 +70,6 @@ class Alquiler extends \yii\db\ActiveRecord
      */
     public function getSocio()
     {
-        return $this->hasOne(Socios::className(), ['id' => 'socio_id'])->inverseOf('alquilers');
+        return $this->hasOne(Socio::className(), ['id' => 'socio_id'])->inverseOf('alquileres');
     }
 }
