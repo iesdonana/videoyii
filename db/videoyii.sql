@@ -33,15 +33,3 @@ create table alquileres (
     alquilado   timestamptz  not null default current_timestamp,
     devuelto    timestamptz
 );
-
-insert into socios (numero, nombre, direccion, telefono) values
-    (100304, 'Antonio Ruiz Marin', 'Calle falsa 123', 637485869),
-    (100305, 'Maria Antonieta Lopez Pol', 'Camino verdadero 13', 956367882),
-    (100308, 'Ana Benq Heisenberg', 'Edificio loco 85 2º5', 637485869);
-
-
-insert into peliculas (codigo, titulo, precio) values
-    (1001, 'La Amenaza Fantasma', 1.80),
-    (1015, 'Terminator 2', 1.20),
-    (1004, 'Alien El Octavo Pasajero', 0.80),
-    (1008, 'Pulp Fiction', 2.10);
