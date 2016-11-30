@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'nombre',
             'direccion',
             'telefono',
-            // 'borrado:boolean',
+            'borrado:boolean',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
