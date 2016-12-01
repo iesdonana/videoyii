@@ -21,6 +21,7 @@ class PeliculaSearch extends Pelicula
             [['id'], 'integer'],
             [['codigo', 'precio'], 'number'],
             [['titulo'], 'safe'],
+            [['portada'], 'safe'],
             [['borrado'], 'boolean'],
         ];
     }
@@ -64,6 +65,7 @@ class PeliculaSearch extends Pelicula
             'id' => $this->id,
             'codigo' => $this->codigo,
             'precio' => $this->precio,
+            'portada' => $this->portada,
             'borrado' => $this->borrado,
         ]);
 

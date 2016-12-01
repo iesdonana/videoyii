@@ -11,6 +11,7 @@ use Yii;
  * @property string $codigo
  * @property string $titulo
  * @property string $precio
+ * @property string $portada
  * @property boolean $borrado
  *
  * @property Alquileres[] $alquileres
@@ -31,11 +32,12 @@ class Pelicula extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['codigo', 'titulo', 'precio'], 'required'],
+            [['codigo', 'titulo', 'precio', 'portada'], 'required'],
             [['codigo', 'precio'], 'number'],
             [['borrado'], 'boolean'],
             [['codigo'], 'string', 'max' => 4],
             [['titulo'], 'string', 'max' => 255],
+            [['portada'], 'string', 'max' => 255],
             [['codigo'], 'unique'],
         ];
     }
@@ -51,6 +53,7 @@ class Pelicula extends \yii\db\ActiveRecord
             'titulo' => 'Titulo',
             'precio' => 'Precio',
             'borrado' => 'Borrado',
+            'portada' => 'Portada',
         ];
     }
 

@@ -23,6 +23,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'precio') ?>
 
+    <?= $form->field($model, 'portada') ?>
+
     <?= $form->field($model, 'borrado')->checkbox() ?>
 
     <div class="form-group">
