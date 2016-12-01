@@ -43,14 +43,14 @@ AppAsset::register($this);
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                .Html::beginForm(['/site/logout'], 'post')
+                .Html::submitButton(
+                    'Logout ('.Yii::$app->user->identity->username.')',
                     ['class' => 'btn btn-link logout']
                 )
-                . Html::endForm()
-                . '</li>'
-            )
+                .Html::endForm()
+                .'</li>'
+            ),
         ],
     ]);
     NavBar::end();
@@ -60,6 +60,23 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
+        <?php if (Yii::$app->session->hasFlash('exito')) {
+            ?>
+                <div class="alert alert-success" role="alert">
+                    <?= Yii::$app->session->getFlash('exito'); ?>
+                </div>
+        <?php
+
+        } ?>
+        <?php if (Yii::$app->session->hasFlash('fracaso')) {
+            ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= Yii::$app->session->getFlash('fracaso'); ?>
+                </div>
+        <?php
+
+        } ?>
+
         <?= $content ?>
     </div>
 </div>
