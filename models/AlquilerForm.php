@@ -28,7 +28,7 @@ class AlquilerForm extends Model
                 $pelicula = Pelicula::find()
                     ->where(['codigo' => $this->$attribute])
                     ->one();
-                if ($pelicula !== null || $pelicula->estaAlquilada) {
+                if ($pelicula === null || $pelicula->estaAlquilada) {
                     $this->addError($attribute, 'La película ya está alquilada.');
                 }
             }],
