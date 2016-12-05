@@ -43,4 +43,26 @@ class AlquileresController extends \yii\web\Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+
+    public function actionNumeroAjax()
+    {
+        $numero = Yii::$app->request->post('numero');
+        $socio = Socio::find()->where(['numero' => $numero])->one();
+        if ($socio === null) {
+            return 'No existe ese socio';
+        } else {
+            return $socio->nombre;
+        }
+    }
+
+    public function actionCodigoAjax()
+    {
+        $codigo = Yii::$app->request->post('codigo');
+        $pelicula = Pelicula::find()->where(['codigo' => $codigo])->one();
+        if ($pelicula === null) {
+            return 'No existe esa película';
+        } else {
+            return $pelicula->titulo;
+        }
+    }
 }
