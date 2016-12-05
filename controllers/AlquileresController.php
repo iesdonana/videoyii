@@ -9,6 +9,8 @@ use app\models\AlquilerSearch;
 use app\models\Socio;
 use app\models\Pelicula;
 use yii\helpers\Url;
+use yii\db\Expression;
+use yii\web\Response;
 
 class AlquileresController extends \yii\web\Controller
 {
@@ -25,8 +27,15 @@ class AlquileresController extends \yii\web\Controller
             }
         }
 
+        $nombre = empty($model->numero) ? '' :
+                      Socio::find()
+                      ->select('nombre')
+                      ->where(['numero' => $model->numero])
+                      ->scalar();
+
         return $this->render('alquilar', [
             'model' => $model,
+            'nombre' => $nombre,
         ]);
     }
 
@@ -49,28 +58,31 @@ class AlquileresController extends \yii\web\Controller
         ]);
     }
 
-    public function actionNumeroAjax()
+    public function actionListaSocios($q = null, $id = null)
     {
-        $numero = Yii::$app->request->post('numero');
-        if (is_numeric($numero)) {
-            $socio = Socio::find()->where(['numero' => $numero])->one();
-            if ($socio !== null) {
-                return $socio->nombre;
-            }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $out = [
+            'results' => [
+                'id' => '',
+                'text' => '',
+            ],
+        ];
+        if (!is_null($q)) {
+            $out['results'] = Socio::find()
+                ->select(new Expression("numero as id, numero || ' ' || nombre as text"))
+                ->where(['ilike', 'nombre', $q])
+                ->limit(20)
+                ->asArray()
+                ->all();
+        } elseif (!is_null($numero)) {
+            $out['results'] = [
+                'id' => $numero,
+                'text' => Socio::find()
+                    ->select(new Expression("numero || ' ' || nombre"))
+                    ->where(['numero' => $id])
+                    ->scalar(),
+            ];
         }
-        return 'No existe ese socio';
-    }
-
-    public function actionCodigoAjax()
-    {
-        $codigo = Yii::$app->request->post('codigo');
-        if (is_numeric($codigo)) {
-            $pelicula = Pelicula::find()->where(['codigo' => $codigo])->one();
-            if ($pelicula !== null) {
-                return $pelicula->titulo;
-            }
-        }
-
-        return 'No existe esa pelicula';
+        return $out;
     }
 }
