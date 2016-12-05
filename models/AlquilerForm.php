@@ -35,7 +35,7 @@ class AlquilerForm extends Model
         ];
     }
 
-    public function attributeLables()
+    public function attributeLabels()
     {
         return [
             'numero' => 'Número de socio',

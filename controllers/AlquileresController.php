@@ -8,6 +8,7 @@ use app\models\AlquilerSearch;
 use app\models\Socio;
 use app\models\Pelicula;
 use yii\helpers\Url;
+use yii\db\Expression;
 
 class AlquileresController extends \yii\web\Controller
 {
@@ -18,12 +19,24 @@ class AlquileresController extends \yii\web\Controller
             if ($model->validate()) {
                 $alquiler = new Alquiler;
                 if ($alquiler->alquilar($model->numero, $model->codigo)) {
-                    return $this->redirect(Url::to(['alquileres/alquilar']));
+                    return $this->redirect(Url::to(['alquileres/index']));
                 }
             }
         }
+
+        $socios = Socio::find()
+            ->select(new Expression("numero || ' ' || nombre as nombre, numero"))
+            ->indexBy('numero')
+            ->column();
+        $peliculas = Pelicula::find()
+            ->select(new Expression("codigo || ' ' || titulo as titulo, codigo"))
+            ->indexBy('codigo')
+            ->column();
+
         return $this->render('alquilar', [
             'model' => $model,
+            'socios' => $socios,
+            'peliculas' => $peliculas,
         ]);
     }
     public function actionDevolver()
