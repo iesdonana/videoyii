@@ -5,7 +5,6 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 // use yii\web\JsExpression;
 use kartik\select2\Select2;
-use app\models\Socio;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */

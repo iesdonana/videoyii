@@ -70,7 +70,9 @@ class AlquileresController extends \yii\web\Controller
         if (!is_null($q)) {
             $out['results'] = Socio::find()
                 ->select(new Expression("numero as id, numero || ' ' || nombre as text"))
-                ->where(['ilike', 'nombre', $q])
+                // Si la Expression contiene paréntesis, el WHERE no le pondrá comillas
+                // https://github.com/yiisoft/yii2/blob/master/framework/db/QueryBuilder.php#L1340
+                ->where(['ilike', new Expression("(numero || ' ' || nombre)"), $q])
                 ->limit(20)
                 ->asArray()
                 ->all();
