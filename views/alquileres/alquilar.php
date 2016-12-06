@@ -11,10 +11,19 @@ use app\models\Socio;
 /* @var $model app\models\AlquilerForm */
 /* @var $form ActiveForm */
 
+$js = <<<'JS'
+$('#alquilerform-numero').select2(select2_c773edfa).data('select2').listeners['*'].push(function(name, target) {
+    if(name == 'focus') {
+        $(this.$element).select2("open");
+    }
+});
+JS;
+$this->registerJs($js, \yii\web\View::POS_LOAD);
 $url = Url::to(['alquileres/lista-socios']);
 ?>
 <div class="alquileres-alquilar">
     <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model, 'codigo') ?>
         <?= $form->field($model, 'numero')->widget(Select2::classname(), [
             'initValueText' => $nombre, // set the initial display text
             'language' => 'es',
@@ -35,7 +44,6 @@ $url = Url::to(['alquileres/lista-socios']);
                 // 'templateSelection' => new JsExpression('function (socio) { return socio.text; }'),
             ],
         ]); ?>
-        <?= $form->field($model, 'codigo') ?>
         <div class="form-group">
             <?= Html::submitButton('Alquilar', ['class' => 'btn btn-primary']) ?>
         </div>
