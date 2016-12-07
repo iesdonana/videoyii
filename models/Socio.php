@@ -46,11 +46,11 @@ class Socio extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            // 'id' => 'ID',
-            'numero' => 'Número',
+            'id' => 'ID',
+            'numero' => 'Numero',
             'nombre' => 'Nombre',
-            'direccion' => 'Dirección',
-            'telefono' => 'Teléfono',
+            'direccion' => 'Direccion',
+            'telefono' => 'Telefono',
             'borrado' => 'Borrado',
         ];
     }

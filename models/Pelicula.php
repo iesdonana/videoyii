@@ -17,6 +17,7 @@ use Yii;
  */
 class Pelicula extends \yii\db\ActiveRecord
 {
+    private $_estaAlquilada;
     /**
      * @inheritdoc
      */
@@ -45,14 +46,19 @@ class Pelicula extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            // 'id' => 'ID',
-            'codigo' => 'Código',
-            'titulo' => 'Título',
+            'id' => 'ID',
+            'codigo' => 'Codigo',
+            'titulo' => 'Titulo',
             'precio' => 'Precio',
             'borrado' => 'Borrado',
         ];
     }
 
+    public function getEstaAlquilada()
+    {
+        return $this->getAlquileres()->where(['devuelto' => null])->one() !== null;
+    }
+    
     /**
      * @return \yii\db\ActiveQuery
      */
