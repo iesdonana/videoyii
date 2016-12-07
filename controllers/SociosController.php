@@ -51,8 +51,13 @@ class SociosController extends Controller
      */
     public function actionView($id)
     {
+        $ultimas = Socio::findOne($id)
+            ->getAlquileres()
+            ->orderBy('alquilado')
+            ->limit(10);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'ultimas' => $ultimas,
         ]);
     }
 

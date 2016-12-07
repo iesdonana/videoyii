@@ -6,6 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
 /* @var $form ActiveForm */
+/* @var $alquileres Alquiler[] */
 
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
@@ -21,7 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     <?php ActiveForm::end(); ?>
 </div><!-- alquileres-alquilar -->
-<?php if (!empty($alquileres)) { ?>
+<?php if (!empty($alquileres)) {
+        ?>
     <table class="table table-striped">
         <thead>
             <th>Código</th>
@@ -30,8 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <th>Devolver</th>
         </thead>
         <tbody>
-            <?php foreach ($alquileres as $alquiler) { ?>
-                <tr>
+            <?php foreach ($alquileres as $alquiler) {
+            ?>
+                <tr <?= $alquiler->atrasado ? 'style="color: red"' : '' ?>>
                     <td><?= Html::encode($alquiler->pelicula->codigo) ?></td>
                     <td><?= Html::encode($alquiler->pelicula->titulo) ?></td>
                     <td><?= Html::encode(Yii::$app->formatter->asDatetime($alquiler->alquilado)) ?></td>
@@ -49,15 +52,22 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]) ?>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php
+
+        } ?>
         </tbody>
     </table>
-<?php } ?>
-<?php if ($model->esValido) { ?>
+<?php
+
+    } ?>
+<?php if ($model->esValido) {
+        ?>
     <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model2, 'codigo') ?>
         <div class="form-group">
             <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
-<?php } ?>
+<?php
+
+    } ?>

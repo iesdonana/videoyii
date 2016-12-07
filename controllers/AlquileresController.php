@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Pelicula;
+use app\models\TotalForm;
 use app\models\PeliculaForm;
 use app\models\AlquilerForm;
 use app\models\DevolverForm;
@@ -12,7 +13,6 @@ use app\models\GestionarForm;
 use app\models\AlquilerSearch;
 use app\models\Socio;
 use yii\data\ActiveDataProvider;
-use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -33,6 +33,34 @@ class AlquileresController extends \yii\web\Controller
         ];
     }
 
+    public function actionTotal($fecha = null)
+    {
+        $model = new TotalForm;
+        $fechas = Alquiler::find()
+            ->select('(alquilado::date) as alquiladodate')
+            ->orderBy('alquilado desc')
+            ->indexBy(function ($row) {
+                return $row['alquiladodate'];
+            })
+            ->column();
+        $total = null;
+
+        if ($fecha !== null) {
+            $model->fecha = $fecha;
+            if ($model->validate()) {
+                $total = Alquiler::find()
+                    ->where(['(alquilado)::date' => $fecha])
+                    ->sum('precio_alq');
+            }
+        }
+
+        return $this->render('total', [
+            'model' => $model,
+            'fechas' => $fechas,
+            'total' => $total,
+        ]);
+    }
+
     public function actionAlquilar()
     {
         $model = new AlquilerForm;
@@ -41,7 +69,7 @@ class AlquileresController extends \yii\web\Controller
             if ($model->validate()) {
                 $alquiler = new Alquiler;
                 if ($alquiler->alquilar($model->numero, $model->codigo)) {
-                    return $this->redirect(Url::to(['alquileres/alquilar']));
+                    return $this->redirect(['alquileres/alquilar']);
                 }
             }
         }
@@ -76,14 +104,15 @@ class AlquileresController extends \yii\web\Controller
         ]);
     }
 
-    public function actionDevolver()
+    public function actionDevolver($numero = null)
     {
         $model = new DevolverForm();
         $dataProvider = null;
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($numero !== null) {
+            $model->numero = $numero;
             if ($model->validate()) {
-                $socio = Socio::find()->where(['numero' => $model->numero])->one();
+                $socio = Socio::find()->where(['numero' => $numero])->one();
                 $alquileres = $socio->getAlquileres()->where(['devuelto' => null])->orderBy('alquilado desc');
                 $dataProvider = new ActiveDataProvider([
                     'query' => $alquileres,

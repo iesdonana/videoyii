@@ -25,4 +25,9 @@ class DevolverForm extends \yii\base\Model
             'numero' => 'Número',
         ];
     }
+
+    public function formName()
+    {
+        return '';
+    }
 }

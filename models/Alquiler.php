@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use DateTime;
 
 /**
  * This is the model class for table "alquileres".
@@ -83,6 +84,13 @@ class Alquiler extends \yii\db\ActiveRecord
             Yii::$app->session->setFlash('exito', 'Alquiler realizado correctamente.');
             return true;
         }
+    }
+
+    public function getAtrasado()
+    {
+        $alquilado = new DateTime($this->alquilado);
+        $diferencia = $alquilado->diff(new DateTime());
+        return $diferencia->days > 1;
     }
 
     /**
