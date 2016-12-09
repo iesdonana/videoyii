@@ -17,11 +17,7 @@ use Yii;
  */
 class Pelicula extends \yii\db\ActiveRecord
 {
-<<<<<<< HEAD
-=======
     private $_estaAlquilada;
-
->>>>>>> master
     /**
      * @inheritdoc
      */
@@ -29,7 +25,6 @@ class Pelicula extends \yii\db\ActiveRecord
     {
         return 'peliculas';
     }
-
     /**
      * @inheritdoc
      */
@@ -43,7 +38,6 @@ class Pelicula extends \yii\db\ActiveRecord
             [['codigo'], 'unique'],
         ];
     }
-
     /**
      * @inheritdoc
      */
@@ -57,15 +51,10 @@ class Pelicula extends \yii\db\ActiveRecord
             'borrado' => 'Borrado',
         ];
     }
-
-<<<<<<< HEAD
-=======
     public function getEstaAlquilada()
     {
         return $this->getAlquileres()->where(['devuelto' => null])->one() !== null;
     }
-
->>>>>>> master
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -73,7 +62,6 @@ class Pelicula extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Alquiler::className(), ['pelicula_id' => 'id'])->inverseOf('pelicula');
     }
-
     public function getSocios()
     {
         return $this->hasMany(Socio::className(), ['id' => 'socio_id'])->via('alquileres');

@@ -35,11 +35,7 @@ class PeliculasController extends Controller
      */
     public function actionIndex()
     {
-<<<<<<< HEAD
-        $searchModel = new PeliculasSearch();
-=======
         $searchModel = new PeliculaSearch();
->>>>>>> master
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
