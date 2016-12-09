@@ -58,8 +58,6 @@ class Alquiler extends \yii\db\ActiveRecord
     }
 
     /**
-<<<<<<< HEAD
-=======
      * Crea un nuevo alquiler.
      * @param  string $numero El número del socio.
      * @param  string $codigo El código de la película.
@@ -88,7 +86,6 @@ class Alquiler extends \yii\db\ActiveRecord
     }
 
     /**
->>>>>>> master
      * @return \yii\db\ActiveQuery
      */
     public function getPelicula()

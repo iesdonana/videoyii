@@ -61,22 +61,26 @@ class AlquileresController extends \yii\web\Controller
     public function actionDevolver()
     {
         $model = new DevolverForm();
-        $dataProvider = null;
+        $alquileres = null;
+        /*$dataProvider = null;*/
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 $socio = Socio::find()->where(['numero' => $model->numero])->one();
+                $alquileres = $socio->getAlquileres()->where(['devuelto' => null])->orderBy('alquilado desc')->all();
+                /*$socio = Socio::find()->where(['numero' => $model->numero])->one();
                 $alquileres = $socio->getAlquileres()->where(['devuelto' => null])->orderBy('alquilado desc');
                 $dataProvider = new ActiveDataProvider([
                     'query' => $alquileres,
                     'sort' => false,
-                ]);
+                ]);*/
             }
         }
 
         return $this->render('devolver', [
              'model' => $model,
-             'dataProvider' => $dataProvider,
+             'alquileres' => $alquileres,
+             /*'dataProvider' => $dataProvider,*/
         ]);
     }
 

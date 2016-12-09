@@ -19,21 +19,37 @@ use yii\grid\GridView;
         </div>
     <?php ActiveForm::end(); ?>
 
-    <?php if ($dataProvider !== null) {
+    <?php if ($alquileres !== null) {
     ?>
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'columns' => [
-                'pelicula.codigo',
-                'pelicula.titulo',
-                'alquilado',
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'template' => '{delete}',
-                ],
-            ],
-        ]) ?>
-    <?php
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Título</th>
+                    <th>Alquilado</th>
+                    <th>Devolver</th>
+                </tr>
+            </thead>
+            <tbody><?php foreach ($alquileres as $k) {
+        ?>
+                    <tr>
+                        <td><?= $k->pelicula->codigo ?></td>
+                        <td><?= $k->pelicula->titulo ?></td>
+                        <td><?= $k->alquilado ?></td>
+                        <td>
+                            <?= Html::a('Devolver', ['delete', 'id' => $k->id], [
+                                'class' => 'btn btn-danger',
+                                'data' => [
+                                    'confirm' => '¿Desea devolver la película?',
+                                    'method' => 'post',
+                                ],
+                            ]) ?>
+                        </td>
+                    </tr><?php
+
+    } ?>
+            </tbody>
+        </table><?php
 
 } ?>
 
