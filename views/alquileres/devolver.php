@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
+use app\models\Pelicula;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\DevolverForm */
@@ -18,22 +19,41 @@ use yii\grid\GridView;
         </div>
     <?php ActiveForm::end(); ?>
 
-    <?php if ($dataProvider !== null) {
+    <?php if ($alquileres !== null && $socio !== null) {
     ?>
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'columns' => [
-                'pelicula.codigo',
-                'pelicula.titulo',
-                'alquilado',
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'template' => '{delete}',
-                ],
-            ],
-        ]) ?>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading"><?= $socio->id ?> - <?= $socio->nombre ?></div>
+
+    <table class="table table-striped">
+      <thead>
+          <th>Nº Película</th>
+          <th>Título</th>
+          <th>Fecha Alquiler</th>
+          <th>Acción</th>
+      </thead>
+      <tbody><?php
+        foreach ($alquileres as $fila) {
+            ?>
+            <tr>
+              <td><?= Html::encode($fila['pelicula']->codigo) ?></td>
+              <td><?= Html::encode($fila['pelicula']->titulo) ?></td>
+              <td><?= Html::encode($fila['alquilado']) ?></td>
+              <td>
+                  <?= Html::a('Delete', ['delete', 'id' => $fila->id], [
+                      'class' => 'btn btn-danger btn-xs',
+                      'data' => [
+                          'confirm' => '¿Desea devolver la película?',
+                          'method' => 'post',
+                      ],
+                  ]) ?>
+              </td>
+            </tr><?php
+
+        } ?>
+      </tbody>
+    </table>
     <?php
 
 } ?>
-
 </div><!-- alquileres-devolver -->
