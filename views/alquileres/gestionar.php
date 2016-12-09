@@ -7,6 +7,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\GestionarForm */
 /* @var $form ActiveForm */
+$this->title = 'Gestionar';
 ?>
 <div class="alquileres-gestionar">
 
@@ -18,7 +19,8 @@ use yii\grid\GridView;
         <?= $form->field($devolver, 'numero') ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Mostrar', ['class' => 'btn btn-primary']) ?>
+            <?= Html::encode($socio !== null ? 'Socio: ' . $socio->nombre : '') ?>
         </div>
     <?php ActiveForm::end(); ?>
 
@@ -48,7 +50,7 @@ use yii\grid\GridView;
         <?= $form->field($alquiler, 'codigo') ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Alquilar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

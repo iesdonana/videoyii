@@ -9,6 +9,7 @@ class DevolverForm extends \yii\base\Model
     public function rules()
     {
         return [
+            [['numero'], 'required'],
             [['numero'], 'number'],
             [['numero'], 'exist',
                 'skipOnError' => true,

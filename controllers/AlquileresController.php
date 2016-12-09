@@ -75,10 +75,11 @@ class AlquileresController extends \yii\web\Controller
     public function actionDelete($id)
     {
         $alquiler = Alquiler::findOne($id);
+        $numero = $alquiler->socio->numero;
         if ($alquiler !== null) {
             $alquiler->devuelto = new \yii\db\Expression('current_timestamp');
             $alquiler->save();
-            $this->redirect(Url::to(['alquileres/devolver']));
+            $this->redirect(Url::to(['alquileres/gestionar', 'DevolverForm[numero]' => $numero]));
         } else {
             throw new NotFoundHttpException('Socio no encontrado.');
         }
@@ -103,6 +104,7 @@ class AlquileresController extends \yii\web\Controller
         $devolverForm = new DevolverForm();
         $alquilerForm = new AlquilerForm();
         $dataProvider = null;
+        $socio = null;
 
         if ($devolverForm->load(Yii::$app->request->get())) {
             if ($devolverForm->validate()) {
@@ -126,6 +128,7 @@ class AlquileresController extends \yii\web\Controller
         }
 
         return $this->render('gestionar', [
+             'socio' => $socio,
              'devolver' => $devolverForm,
              'alquiler' => $alquilerForm,
              'dataProvider' => $dataProvider,
