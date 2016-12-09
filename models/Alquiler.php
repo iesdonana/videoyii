@@ -33,10 +33,17 @@ class Alquiler extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+<<<<<<< HEAD
             [['socio_id', 'pelicula_id', 'precio_alq','alquilado'], 'required'],
             [['socio_id', 'pelicula_id'], 'integer'],
             [['precio_alq'], 'number'],
             [ 'devuelto', 'safe'],
+=======
+            [['socio_id', 'pelicula_id', 'precio_alq'], 'required'],
+            [['socio_id', 'pelicula_id'], 'integer'],
+            [['precio_alq'], 'number'],
+            [['alquilado', 'devuelto'], 'safe'],
+>>>>>>> master
             [['pelicula_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pelicula::className(), 'targetAttribute' => ['pelicula_id' => 'id']],
             [['socio_id'], 'exist', 'skipOnError' => true, 'targetClass' => Socio::className(), 'targetAttribute' => ['socio_id' => 'id']],
         ];
@@ -58,6 +65,37 @@ class Alquiler extends \yii\db\ActiveRecord
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Crea un nuevo alquiler.
+     * @param  string $numero El número del socio.
+     * @param  string $codigo El código de la película.
+     * @return bool           true si se ha creado correctamente.
+     */
+    public function alquilar($numero, $codigo)
+    {
+        $this->socio_id = Socio::find()
+            ->select('id')
+            ->where(['numero' => $numero])
+            ->scalar();
+        $pelicula = Pelicula::find()
+            ->select('id, precio')
+            ->where(['codigo' => $codigo])
+            ->one();
+        $this->pelicula_id = $pelicula->id;
+        $this->precio_alq = $pelicula->precio;
+        if ($pelicula->estaAlquilada) {
+            Yii::$app->session->setFlash('fracaso', 'La película ya está alquilada.');
+            return false;
+        } else {
+            $this->save();
+            Yii::$app->session->setFlash('exito', 'Alquiler realizado correctamente.');
+            return true;
+        }
+    }
+
+    /**
+>>>>>>> master
      * @return \yii\db\ActiveQuery
      */
     public function getPelicula()

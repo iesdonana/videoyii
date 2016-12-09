@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -23,3 +24,13 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div><!-- alquileres-devolver -->
+=======
+/* @var $this yii\web\View */
+?>
+<h1>alquileres/devolver</h1>
+
+<p>
+    You may change the content of this page by modifying
+    the file <code><?= __FILE__; ?></code>.
+</p>
+>>>>>>> master

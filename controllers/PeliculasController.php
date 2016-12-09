@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Pelicula;
-use app\models\PeliculasSearch;
+use app\models\PeliculaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,7 +35,11 @@ class PeliculasController extends Controller
      */
     public function actionIndex()
     {
+<<<<<<< HEAD
         $searchModel = new PeliculasSearch();
+=======
+        $searchModel = new PeliculaSearch();
+>>>>>>> master
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

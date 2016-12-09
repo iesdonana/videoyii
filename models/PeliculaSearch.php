@@ -8,9 +8,9 @@ use yii\data\ActiveDataProvider;
 use app\models\Pelicula;
 
 /**
- * PeliculasSearch represents the model behind the search form about `app\models\Pelicula`.
+ * PeliculaSearch represents the model behind the search form about `app\models\Pelicula`.
  */
-class PeliculasSearch extends Pelicula
+class PeliculaSearch extends Pelicula
 {
     /**
      * @inheritdoc

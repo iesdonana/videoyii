@@ -4,15 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-<<<<<<< HEAD
-/* @var $model app\models\PeliculasSearch */
-=======
-/* @var $model app\models\PeliculaSearch */
->>>>>>> master
+/* @var $model app\models\AlquilerSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="pelicula-search">
+<div class="alquiler-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -21,13 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'codigo') ?>
+    <?= $form->field($model, 'socio_id') ?>
 
-    <?= $form->field($model, 'titulo') ?>
+    <?= $form->field($model, 'pelicula_id') ?>
 
-    <?= $form->field($model, 'precio') ?>
+    <?= $form->field($model, 'precio_alq') ?>
 
-    <?= $form->field($model, 'borrado')->checkbox() ?>
+    <?= $form->field($model, 'alquilado') ?>
+
+    <?php // echo $form->field($model, 'devuelto') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
