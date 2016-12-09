@@ -65,7 +65,6 @@ class Socio extends \yii\db\ActiveRecord
 
     public function getPeliculas()
     {
-        return $this->hasMany(Pelicula::className(), ['id' => 'pelicula_id'])
-                    ->via('alquileres');
+        return $this->hasMany(Pelicula::className(), ['id' => 'pelicula_id'])->via('alquileres');
     }
 }

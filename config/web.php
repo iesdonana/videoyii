@@ -7,6 +7,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'formatter' => [
+            'thousandSeparator' => ' ',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'jMCaid1aETBL5zh4Ty0Q0hemNla8u4-V',
@@ -47,8 +50,8 @@ $config = [
         ],
         */
     ],
-    //'language' => 'es_ES',
     'params' => $params,
+    'language' => 'es_ES',
 ];
 
 if (YII_ENV_DEV) {

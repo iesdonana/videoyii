@@ -16,7 +16,6 @@ create table peliculas (
     codigo  numeric(4)   not null constraint uq_peliculas_codigo unique,
     titulo  varchar(255) not null,
     precio  numeric(5,2) not null,
-    portada varchar(255) not null,
     borrado bool         default false
 );
 

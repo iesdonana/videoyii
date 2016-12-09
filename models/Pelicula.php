@@ -11,13 +11,14 @@ use Yii;
  * @property string $codigo
  * @property string $titulo
  * @property string $precio
- * @property string $portada
  * @property boolean $borrado
  *
  * @property Alquileres[] $alquileres
  */
 class Pelicula extends \yii\db\ActiveRecord
 {
+    private $_estaAlquilada;
+
     /**
      * @inheritdoc
      */
@@ -32,12 +33,10 @@ class Pelicula extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['codigo', 'titulo', 'precio', 'portada'], 'required'],
+            [['codigo', 'titulo', 'precio'], 'required'],
             [['codigo', 'precio'], 'number'],
             [['borrado'], 'boolean'],
-            [['codigo'], 'string', 'max' => 4],
             [['titulo'], 'string', 'max' => 255],
-            [['portada'], 'string', 'max' => 255],
             [['codigo'], 'unique'],
         ];
     }
@@ -53,8 +52,12 @@ class Pelicula extends \yii\db\ActiveRecord
             'titulo' => 'Titulo',
             'precio' => 'Precio',
             'borrado' => 'Borrado',
-            'portada' => 'Portada',
         ];
+    }
+
+    public function getEstaAlquilada()
+    {
+        return $this->getAlquileres()->where(['devuelto' => null])->one() !== null;
     }
 
     /**
@@ -67,7 +70,6 @@ class Pelicula extends \yii\db\ActiveRecord
 
     public function getSocios()
     {
-        return $this->hasMany(Socio::className(), ['id' => 'socio_id'])
-                    ->via('alquileres');
+        return $this->hasMany(Socio::className(), ['id' => 'socio_id'])->via('alquileres');
     }
 }

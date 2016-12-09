@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Pelicula;
+use app\models\Alquiler;
 
 /**
- * PeliculaSearch represents the model behind the search form about `app\models\Pelicula`.
+ * AlquilerSearch represents the model behind the search form about `app\models\Alquiler`.
  */
-class PeliculaSearch extends Pelicula
+class AlquilerSearch extends Alquiler
 {
     /**
      * @inheritdoc
@@ -18,10 +18,9 @@ class PeliculaSearch extends Pelicula
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['codigo', 'precio'], 'number'],
-            [['titulo'], 'safe'],
-            [['borrado'], 'boolean'],
+            [['id', 'socio_id', 'pelicula_id'], 'integer'],
+            [['precio_alq'], 'number'],
+            [['alquilado', 'devuelto'], 'safe'],
         ];
     }
 
@@ -43,7 +42,7 @@ class PeliculaSearch extends Pelicula
      */
     public function search($params)
     {
-        $query = Pelicula::find();
+        $query = Alquiler::find();
 
         // add conditions that should always apply here
 
@@ -62,12 +61,12 @@ class PeliculaSearch extends Pelicula
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'codigo' => $this->codigo,
-            'precio' => $this->precio,
-            'borrado' => $this->borrado,
+            'socio_id' => $this->socio_id,
+            'pelicula_id' => $this->pelicula_id,
+            'precio_alq' => $this->precio_alq,
+            'alquilado' => $this->alquilado,
+            'devuelto' => $this->devuelto,
         ]);
-
-        $query->andFilterWhere(['like', 'titulo', $this->titulo]);
 
         return $dataProvider;
     }

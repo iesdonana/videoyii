@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'codigo',
             'titulo',
             'precio',
-            'portada',
             'borrado:boolean',
         ],
     ]) ?>
