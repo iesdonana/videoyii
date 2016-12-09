@@ -63,10 +63,6 @@ class Socio extends \yii\db\ActiveRecord
         return $this->hasMany(Alquiler::className(), ['socio_id' => 'id'])->inverseOf('socio');
     }
 
-    /**
-     * Relación de socios con peliculas usando la relación alquileres
-     * @return \yii\db\ActiveQuery
-     */
     public function getPeliculas()
     {
         return $this->hasMany(Pelicula::className(), ['id' => 'pelicula_id'])->via('alquileres');

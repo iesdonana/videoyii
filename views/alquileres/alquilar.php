@@ -8,15 +8,11 @@ use yii\widgets\ActiveForm;
 /* @var $form ActiveForm */
 ?>
 <div class="alquileres-alquilar">
-
     <?php $form = ActiveForm::begin(); ?>
-
         <?= $form->field($model, 'numero') ?>
         <?= $form->field($model, 'codigo') ?>
-    
         <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Alquilar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
-
 </div><!-- alquileres-alquilar -->
