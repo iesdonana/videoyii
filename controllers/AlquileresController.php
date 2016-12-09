@@ -9,6 +9,7 @@ use app\models\Alquiler;
 use app\models\AlquilerSearch;
 use app\models\Socio;
 use app\models\Pelicula;
+use app\models\GestionarForm;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
@@ -94,6 +95,40 @@ class AlquileresController extends \yii\web\Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionGestionar()
+    {
+        $devolverForm = new DevolverForm();
+        $alquilerForm = new AlquilerForm();
+        $dataProvider = null;
+
+        if ($devolverForm->load(Yii::$app->request->get())) {
+            if ($devolverForm->validate()) {
+                $alquilerForm->numero = $devolverForm->numero;
+                $socio = Socio::find()->where(['numero' => $devolverForm->numero])->one();
+                $alquileres = $socio->getAlquileres()->where(['devuelto' => null])->orderBy('alquilado desc');
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $alquileres,
+                    'sort' => false,
+                ]);
+            }
+        }
+
+        if ($alquilerForm->load(Yii::$app->request->post())) {
+            if ($alquilerForm->validate()) {
+                $alquiler = new Alquiler;
+                if ($alquiler->alquilar($alquilerForm->numero, $alquilerForm->codigo)) {
+                    return $this->redirect(Url::to(['alquileres/gestionar', 'DevolverForm[numero]' => $alquilerForm->numero]));
+                }
+            }
+        }
+
+        return $this->render('gestionar', [
+             'devolver' => $devolverForm,
+             'alquiler' => $alquilerForm,
+             'dataProvider' => $dataProvider,
         ]);
     }
 }

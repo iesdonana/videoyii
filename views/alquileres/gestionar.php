@@ -5,14 +5,17 @@ use yii\widgets\ActiveForm;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\DevolverForm */
+/* @var $model app\models\GestionarForm */
 /* @var $form ActiveForm */
 ?>
-<div class="alquileres-devolver">
+<div class="alquileres-gestionar">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'method' => 'get',
+        'action' => ['alquileres/gestionar'],
+    ]); ?>
 
-        <?= $form->field($model, 'numero') ?>
+        <?= $form->field($devolver, 'numero') ?>
 
         <div class="form-group">
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
@@ -20,7 +23,7 @@ use yii\grid\GridView;
     <?php ActiveForm::end(); ?>
 
     <?php if ($dataProvider !== null) {
-    ?>
+        ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => [
@@ -32,8 +35,21 @@ use yii\grid\GridView;
                     'template' => '{delete}',
                 ],
             ],
-        ]) ?>
-    <?php
+        ]);
+    } ?>
 
-} ?>
+
 </div><!-- alquileres-devolver -->
+
+<div class="alquileres-gestionar">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+        <?= $form->field($alquiler, 'codigo') ?>
+
+        <div class="form-group">
+            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+        </div>
+    <?php ActiveForm::end(); ?>
+
+</div><!-- alquileres-alquilar -->
