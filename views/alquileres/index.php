@@ -16,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
     <p>
-        <?= Html::a('Create Alquiler', ['alquilar'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Alquiler', ['alquilar'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Devolución', ['devolver'], ['class' => 'btn btn-warning']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'pelicula_id',
             'precio_alq',
             'alquilado',
-            // 'devuelto',
+            'devuelto',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

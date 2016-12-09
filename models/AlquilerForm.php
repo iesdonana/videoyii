@@ -1,15 +1,10 @@
 <?php
-
 namespace app\models;
 
-use yii\base\Model;
-use app\models\Pelicula;
-
-class AlquilerForm extends Model
+class AlquilerForm extends \yii\base\Model
 {
     public $numero;
     public $codigo;
-
     public function rules()
     {
         return [
@@ -18,23 +13,15 @@ class AlquilerForm extends Model
             [['numero'], 'exist',
                 'skipOnError' => true,
                 'targetClass' => Socio::className(),
-                'targetAttribute' => ['numero' => 'numero']],
+                'targetAttribute' => ['numero' => 'numero'],
+            ],
             [['codigo'], 'exist',
                 'skipOnError' => true,
                 'targetClass' => Pelicula::className(),
                 'targetAttribute' => ['codigo' => 'codigo'],
             ],
-            [['codigo'], function ($attribute, $params) {
-                $pelicula = Pelicula::find()
-                    ->where(['codigo' => $this->$attribute])
-                    ->one();
-                if ($pelicula === null || $pelicula->estaAlquilada) {
-                    $this->addError($attribute, 'La película ya está alquilada.');
-                }
-            }],
         ];
     }
-
     public function attributeLabels()
     {
         return [
