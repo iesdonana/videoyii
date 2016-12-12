@@ -1,4 +1,5 @@
 <?php
+use Yii;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
@@ -36,9 +37,9 @@ use app\models\Pelicula;
         foreach ($alquileres as $fila) {
             ?>
             <tr>
-              <td><?= Html::encode($fila['pelicula']->codigo) ?></td>
-              <td><?= Html::encode($fila['pelicula']->titulo) ?></td>
-              <td><?= Html::encode($fila['alquilado']) ?></td>
+              <td><?= Html::encode($fila->pelicula->codigo) ?></td>
+              <td><?= Html::encode($fila->pelicula->titulo) ?></td>
+              <td><?= Yii::$app->formatter->asDatetime(Html::encode($fila->alquilado)) ?></td>
               <td>
                   <?= Html::a('Delete', ['delete', 'id' => $fila->id], [
                       'class' => 'btn btn-danger btn-xs',
