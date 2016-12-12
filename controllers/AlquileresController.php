@@ -71,6 +71,39 @@ class AlquileresController extends \yii\web\Controller
         ]);
     }
 
+    public function actionGestionar()
+    {
+        $alquilar = new AlquilerForm;
+        $devolver = new DevolverForm;
+        $dataProvider = null;
+
+        if ($devolver->load(Yii::$app->request->get())) {
+            if ($devolver->validate()) {
+                $socio = Socio::find()->where(['numero' => $devolver->numero])->one();
+                $alquileres = $socio->getAlquileres()->where(['devuelto' => null])->orderBy('alquilado desc');
+                $dataProvider = new ActiveDataProvider([
+                    'query' => $alquileres,
+                    'sort' => false,
+                ]);
+            }
+        }
+
+        if ($alquilar->load(Yii::$app->request->post())) {
+            if ($alquilar->validate()) {
+                $alquiler = new Alquiler;
+                if ($alquiler->alquilar($devolver->numero, $alquilar->codigo)) {
+                    return $this->redirect(Url::to(['alquileres/gestionar']));
+                }
+            }
+        }
+
+        return $this->render('gestionar', [
+            'alquilar' => $alquilar,
+            'devolver' => $devolver,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionDelete($id)
     {
         $alquiler = Alquiler::findOne($id);

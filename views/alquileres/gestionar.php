@@ -10,9 +10,12 @@ use yii\grid\GridView;
 ?>
 <div class="alquileres-gestionar">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'method' => 'get',
+        'action' => ['alquileres/gestionar'],
+    ]); ?>
 
-        <?= $form->field($model, 'numero') ?>
+        <?= $form->field($devolver, 'numero') ?>
 
         <div class="form-group">
             <?= Html::submitButton('Buscar alquileres', ['class' => 'btn btn-primary']) ?>
@@ -20,7 +23,7 @@ use yii\grid\GridView;
     <?php ActiveForm::end(); ?>
 
     <?php if ($dataProvider !== null) {
-    ?>
+        ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => [
@@ -35,10 +38,10 @@ use yii\grid\GridView;
         ]) ?>
     <?php
 
-} ?>
+    } ?>
 
 <?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($model, 'codigo') ?>
+    <?= $form->field($alquilar, 'codigo') ?>
     <div class="form-group">
         <?= Html::submitButton('Alquilar', ['class' => 'btn btn-primary']) ?>
     </div>
