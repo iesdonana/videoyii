@@ -6,6 +6,10 @@ class DevolverForm extends \yii\base\Model
 {
     public $numero;
 
+    public function formName()
+    {
+        return '';
+    }
     public function rules()
     {
         return [

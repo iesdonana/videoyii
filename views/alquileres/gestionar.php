@@ -31,7 +31,10 @@ $this->title = 'Gestionar';
             'columns' => [
                 'pelicula.codigo',
                 'pelicula.titulo',
-                'alquilado',
+                [
+                    'attribute' => 'alquilado',
+                    'format' => ['dateTime'],
+                ],
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{delete}',

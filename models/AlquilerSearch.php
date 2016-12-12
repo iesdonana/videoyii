@@ -44,6 +44,7 @@ class AlquilerSearch extends Alquiler
     {
         $query = Alquiler::find();
 
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -57,6 +58,7 @@ class AlquilerSearch extends Alquiler
             // $query->where('0=1');
             return $dataProvider;
         }
+
 
         // grid filtering conditions
         $query->andFilterWhere([

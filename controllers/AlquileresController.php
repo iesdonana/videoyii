@@ -8,8 +8,6 @@ use app\models\DevolverForm;
 use app\models\Alquiler;
 use app\models\AlquilerSearch;
 use app\models\Socio;
-use app\models\Pelicula;
-use app\models\GestionarForm;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
@@ -57,8 +55,12 @@ class AlquileresController extends \yii\web\Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
-                $socio = Socio::find()->where(['numero' => $model->numero])->one();
-                $alquileres = $socio->getAlquileres()->where(['devuelto' => null])->orderBy('alquilado desc');
+                $socio = Socio::find()->where([
+                    'numero' => $model->numero,
+                    ])->one();
+                $alquileres = $socio->getAlquileres()->where([
+                    'devuelto' => null,
+                    ])->orderBy('alquilado desc');
                 $dataProvider = new ActiveDataProvider([
                     'query' => $alquileres,
                     'sort' => false,
@@ -79,7 +81,10 @@ class AlquileresController extends \yii\web\Controller
         if ($alquiler !== null) {
             $alquiler->devuelto = new \yii\db\Expression('current_timestamp');
             $alquiler->save();
-            $this->redirect(Url::to(['alquileres/gestionar', 'DevolverForm[numero]' => $numero]));
+            $this->redirect(Url::to([
+                'alquileres/gestionar',
+                'numero' => $numero,
+            ]));
         } else {
             throw new NotFoundHttpException('Socio no encontrado.');
         }
@@ -99,18 +104,21 @@ class AlquileresController extends \yii\web\Controller
         ]);
     }
 
-    public function actionGestionar()
+    public function actionGestionar($numero = null)
     {
         $devolverForm = new DevolverForm();
         $alquilerForm = new AlquilerForm();
         $dataProvider = null;
         $socio = null;
 
-        if ($devolverForm->load(Yii::$app->request->get())) {
+        if ($numero !== null) {
+            $devolverForm->numero = $numero;
             if ($devolverForm->validate()) {
                 $alquilerForm->numero = $devolverForm->numero;
-                $socio = Socio::find()->where(['numero' => $devolverForm->numero])->one();
-                $alquileres = $socio->getAlquileres()->where(['devuelto' => null])->orderBy('alquilado desc');
+                $socio = Socio::findOne(['numero' => $devolverForm->numero, ]);
+                $alquileres = $socio->getAlquileres()->where([
+                    'devuelto' => null,
+                    ])->orderBy('alquilado desc');
                 $dataProvider = new ActiveDataProvider([
                     'query' => $alquileres,
                     'sort' => false,
@@ -122,7 +130,10 @@ class AlquileresController extends \yii\web\Controller
             if ($alquilerForm->validate()) {
                 $alquiler = new Alquiler;
                 if ($alquiler->alquilar($alquilerForm->numero, $alquilerForm->codigo)) {
-                    return $this->redirect(Url::to(['alquileres/gestionar', 'DevolverForm[numero]' => $alquilerForm->numero]));
+                    return $this->redirect(Url::to([
+                        'alquileres/gestionar',
+                        'numero' => $alquilerForm->numero,
+                    ]));
                 }
             }
         }
