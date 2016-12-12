@@ -30,27 +30,24 @@ use yii\grid\GridView;
                     <th>Devolver</th>
                 </tr>
             </thead>
-            <tbody><?php foreach ($alquileres as $k) {
-        ?>
+            <tbody><?php foreach ($alquileres as $k) { ?>
                     <tr>
                         <td><?= $k->pelicula->codigo ?></td>
                         <td><?= $k->pelicula->titulo ?></td>
-                        <td><?= $k->alquilado ?></td>
+                        <td><?= Yii::$app->formatter->asDatetime($k->alquilado) ?></td>
                         <td>
                             <?= Html::a('Devolver', ['delete', 'id' => $k->id], [
-                                'class' => 'btn btn-danger',
+                                'class' => 'btn btn-danger btn-xs',
                                 'data' => [
                                     'confirm' => '¿Desea devolver la película?',
                                     'method' => 'post',
                                 ],
                             ]) ?>
                         </td>
-                    </tr><?php
-
-    } ?>
+                    </tr>
+            <?php } ?>
             </tbody>
-        </table><?php
-
-} ?>
+        </table>
+    <?php } ?>
 
 </div><!-- alquileres-devolver -->
