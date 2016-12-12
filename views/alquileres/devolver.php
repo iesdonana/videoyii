@@ -41,7 +41,7 @@ use app\models\Pelicula;
               <td><?= Html::encode($fila->pelicula->titulo) ?></td>
               <td><?= Yii::$app->formatter->asDatetime(Html::encode($fila->alquilado)) ?></td>
               <td>
-                  <?= Html::a('Delete', ['delete', 'id' => $fila->id], [
+                  <?= Html::a('Devolver', ['delete', 'id' => $fila->id], [
                       'class' => 'btn btn-danger btn-xs',
                       'data' => [
                           'confirm' => '¿Desea devolver la película?',
