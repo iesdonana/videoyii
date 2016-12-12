@@ -54,7 +54,6 @@ class AlquileresController extends \yii\web\Controller
                 $socio = Socio::find()->where(['numero' => $model->numero])->one();
                 $alquileres = $socio
                     ->getAlquileres()
-                    ->joinWith('pelicula')
                     ->where(['devuelto' => null])
                     ->orderBy('alquilado desc')
                     ->all();
