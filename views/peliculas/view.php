@@ -33,7 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'titulo',
             'precio',
             'borrado:boolean',
+            'alquilada',
         ],
     ]) ?>
-
+    <h1><?= Html::encode($model->suma) ?></h1>
 </div>

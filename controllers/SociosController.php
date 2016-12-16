@@ -45,9 +45,9 @@ class SociosController extends Controller
     }
 
     /**
-     * Displays a single Socio model.
-     * @param integer $id
-     * @return mixed
+     * [actionView description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
      */
     public function actionView($id)
     {

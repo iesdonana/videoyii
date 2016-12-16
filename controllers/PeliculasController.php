@@ -41,16 +41,19 @@ class PeliculasController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            //'alquilada' => $this->$model->getEstaAlquilada(),
         ]);
     }
 
     /**
-     * Displays a single Pelicula model.
-     * @param integer $id
-     * @return mixed
+     * [actionView description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
      */
     public function actionView($id)
     {
+        $model = new Pelicula();
+
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -75,10 +78,9 @@ class PeliculasController extends Controller
     }
 
     /**
-     * Updates an existing Pelicula model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
+     * [actionUpdate description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
      */
     public function actionUpdate($id)
     {
@@ -94,10 +96,9 @@ class PeliculasController extends Controller
     }
 
     /**
-     * Deletes an existing Pelicula model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
+     * [actionDelete description]
+     * @param  [type] $id [description]
+     * @return [type]     [description]
      */
     public function actionDelete($id)
     {
@@ -105,14 +106,11 @@ class PeliculasController extends Controller
 
         return $this->redirect(['index']);
     }
-
-    /**
-     * Finds the Pelicula model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Pelicula the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+/**
+ * [findModel description]
+ * @param  [type] $id [description]
+ * @return [type]     [description]
+ */
     protected function findModel($id)
     {
         if (($model = Pelicula::findOne($id)) !== null) {

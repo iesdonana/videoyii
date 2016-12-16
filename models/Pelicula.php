@@ -49,8 +49,14 @@ class Pelicula extends \yii\db\ActiveRecord
             'titulo' => 'Titulo',
             'precio' => 'Precio',
             'borrado' => 'Borrado',
+            'alquilada'=> 'Alquilada',
         ];
     }
+
+    /**
+     * [getEstaAlquilada description]
+     * @return [type] [description]
+     */
     public function getEstaAlquilada()
     {
         return $this->getAlquileres()->where(['devuelto' => null])->one() !== null;

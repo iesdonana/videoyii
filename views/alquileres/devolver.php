@@ -15,7 +15,7 @@ use yii\grid\GridView;
     <?= $form->field($model, 'numero') ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 
@@ -31,9 +31,9 @@ use yii\grid\GridView;
         <?php foreach ($alquileres as $k) { ?>
 
         <tr>
-            <td><?= $k->pelicula->codigo ?></td>
-            <td><?= $k->pelicula->titulo ?></td>
-            <td><?= $k->alquilado ?></td>
+            <td><?= Html::encode($k->pelicula->codigo) ?></td>
+            <td><?= Html::encode($k->pelicula->titulo) ?></td>
+            <td><?= Html::encode(Yii::$app->formatter->asDatetime($k->alquilado)) ?></td>
             <td><?= Html::a('Delete', ['delete', 'id' => $k->id], [
                 'class' => 'btn btn-danger',
                 'data' => [
