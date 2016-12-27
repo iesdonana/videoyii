@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Best Practices - Bảo mật (Security) - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w11338" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w11338-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w11338-collapse" class="collapse navbar-collapse"><ul id="w11339" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-11322" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-11322" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-11323" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-11323" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-11324" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-11324" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-11325" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-11325" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-11326" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-11326" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-11327" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-11327" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-11328" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-11328" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-11329" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-11329" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item active" href="#navigation-11330" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-11330" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item active" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-11331" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-11331" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-11332" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-11332" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-11333" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-11333" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-11334" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-11334" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-11335" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-11335" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-11336" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-11336" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-11337" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-11337" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>セキュリティのベストプラクティス <span id="sekyuritinobesutopurakutisu"></span><a href="#sekyuritinobesutopurakutisu" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#ji-ben-dena-zhi-zhen">基本的な指針</a></li>
+<li><a href="#sql-injekushonwo-hui-bisuru">SQL インジェクションを回避する</a></li>
+<li><a href="#xss-wo-hui-bisuru">XSS を回避する</a></li>
+<li><a href="#csrf-wo-hui-bisuru">CSRF を回避する</a></li>
+<li><a href="#fairuno-pu-luwo-hui-bisuru">ファイルの曝露を回避する</a></li>
+<li><a href="#ben-fan-huan-jingdehadebaggu-qing-baotodebaggutsuruwo-wu-xiaonisuru">本番環境ではデバッグ情報とデバッグツールを無効にする</a></li>
+<li><a href="#tls-niyorusekyuana-jie-xuwo-shiu">TLS によるセキュアな接続を使う</a></li></ol></div>
+<p>下記において、一般的なセキュリティの指針を復習し、Yii を使ってアプリケーションを開発するときに脅威を回避する方法を説明します。</p>
+<h2>基本的な指針 <span id="ji-ben-dena-zhi-zhen"></span><a href="#ji-ben-dena-zhi-zhen" class="hashlink">&para;</a></h2><p>どのようなアプリケーションが開発されているかに関わらず、セキュリティに関しては二つの大きな指針が存在します。</p>
+<ol>
+<li>入力をフィルタする。</li>
+<li>出力をエスケープする。</li>
+</ol>
+<h3>入力をフィルタする <span id="ru-liwofirutasuru"></span><a href="#ru-liwofirutasuru" class="hashlink">&para;</a></h3><p>入力をフィルタするとは、入力値は決して安全なものであると見なさず、取得した値が実際に許可さていれる値に含まれるか否かを常にチェックしなければならない、ということを意味します。
+例えば、並べ替えが三つのフィールド <code>title</code>、<code>created_at</code> および <code>status</code> によって実行され、フィールドの名前がユーザの入力によって提供されるものであることを知っている場合、取得した値を受信するその場でチェックする方が良い、ということです。
+基本的な PHP の形式では、次のようなコードになります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$sortBy</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">'sort'</span>];
+<span class="hljs-keyword">if</span> (!in_array(<span class="hljs-variable">$sortBy</span>, [<span class="hljs-string">'title'</span>, <span class="hljs-string">'created_at'</span>, <span class="hljs-string">'status'</span>])) {
+	<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">Exception</span>(<span class="hljs-string">'sort の値が不正です。'</span>);
+}
+</code></pre>
+<p>Yii においては、たいていの場合、同様のチェックを行うために <a href="guide-input-validation.html">フォームのバリデーション</a> を使うことになるでしょう。</p>
+<h3>出力をエスケープする <span id="chu-liwoesukepusuru"></span><a href="#chu-liwoesukepusuru" class="hashlink">&para;</a></h3><p>データを使用するコンテキストに応じて、出力をエスケープしなければなりません。
+つまり、HTML のコンテキストでは、<code>&lt;</code> や <code>&gt;</code> などの特殊な文字をエスケープしなければなりません。
+JavaScript や SQL のコンテキストでは、対象となる文字は別のセットになります。
+全てを手動でエスケープするのは間違いを生じやすいことですから、Yii は異なるコンテキストに応じたエスケープを実行するためのさまざまなツールを提供しています。</p>
+<h2>SQL インジェクションを回避する <span id="sql-injekushonwo-hui-bisuru"></span><a href="#sql-injekushonwo-hui-bisuru" class="hashlink">&para;</a></h2><p>SQL インジェクションは、次のように、エスケープされていない文字列を連結してクエリテキストを構築する場合に発生します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$username</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">'username'</span>];
+<span class="hljs-variable">$sql</span> = <span class="hljs-string">"SELECT * FROM user WHERE username = '$username'"</span>;
+</code></pre>
+<p>正しいユーザ名を提供する代りに、攻撃者は <code>'; DROP TABLE user; --</code> のような文字列をあなたのアプリケーションに与えることが出来ます。
+結果として構築される SQL は次のようになります。</p>
+<pre><code class="hljs sql language-sql"><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">WHERE</span> username = <span class="hljs-string">''</span>;</span> <span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">user</span>;</span> <span class="hljs-comment">--'</span>
+</code></pre>
+<p>これは有効なクエリで、空のユーザ名を持つユーザを探してから、<code>user</code> テーブルを削除します。
+おそらく、ウェブサイトは破壊されて、データは失われることになります (定期的なバックアップは設定済みですよね、ね? )。</p>
+<p>Yii においては、ほとんどのデータベースクエリは、PDO のプリペアドステートメントを適切に使用する <a href="guide-db-active-record.html">アクティブレコード</a> を経由して実行されます。
+プリペアドステートメントの場合は、上で説明したようなクエリの改竄は不可能です。</p>
+<p>それでも、<a href="guide-db-dao.html">生のクエリ</a> や <a href="guide-db-query-builder.html">クエリビルダ</a> を必要とする場合はあります。
+その場合には、データを渡すための安全な方法を使わなければなりません。
+データをカラムの値として使う場合は、プリペアドステートメントを使うことが望まれます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// query builder</span>
+<span class="hljs-variable">$userIDs</span> = (<span class="hljs-keyword">new</span> Query())
+    -&gt;select(<span class="hljs-string">'id'</span>)
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;where(<span class="hljs-string">'status=:status'</span>, [<span class="hljs-string">':status'</span> =&gt; <span class="hljs-variable">$status</span>])
+    -&gt;all();
+
+<span class="hljs-comment">// DAO</span>
+<span class="hljs-variable">$userIDs</span> = <span class="hljs-variable">$connection</span>
+    -&gt;createCommand(<span class="hljs-string">'SELECT id FROM user where status=:status'</span>)
+    -&gt;bindValues([<span class="hljs-string">':status'</span> =&gt; <span class="hljs-variable">$status</span>])
+    -&gt;queryColumn();
+</code></pre>
+<p>データがカラム名やテーブル名を指定するために使われる場合は、事前定義された一連の値だけを許可するのが最善の方法です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionList</span><span class="hljs-params">(<span class="hljs-variable">$orderBy</span> = null)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (!in_array(<span class="hljs-variable">$orderBy</span>, [<span class="hljs-string">'name'</span>, <span class="hljs-string">'status'</span>])) {
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> BadRequestHttpException(<span class="hljs-string">'name と status だけを並べ替えに使うことが出来ます。'</span>)
+    }
+    
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>それが不可能な場合は、テーブル名とカラム名をエスケープしなければなりません。
+Yii はそういうエスケープのための特別な文法を持っており、それを使うと、サポートされている全てのデータベースに対して同じ方法でエスケープすることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$sql</span> = <span class="hljs-string">"SELECT COUNT([[$column]]) FROM {{table}}"</span>;
+<span class="hljs-variable">$rowCount</span> = <span class="hljs-variable">$connection</span>-&gt;createCommand(<span class="hljs-variable">$sql</span>)-&gt;queryScalar();
+</code></pre>
+<p>この文法の詳細は、<a href="guide-db-dao.html#quoting-table-and-column-names">テーブルとカラムの名前を引用符で囲む</a> で読むことが出来ます。</p>
+<h2>XSS を回避する <span id="xss-wo-hui-bisuru"></span><a href="#xss-wo-hui-bisuru" class="hashlink">&para;</a></h2><p>XSS すなわちクロスサイトスクリプティングは、ブラウザに HTML を出力する際に、出力が適切にエスケープされていないと発生します。
+例えば、ユーザ名を入力できるフォームで <code>Alexander</code> の代りに <code>&lt;script&gt;alert('Hello!');&lt;/script&gt;</code> と入力した場合、ユーザ名をエスケープせずに出力している全てのページでは、JavaScript <code>alert('Hello!');</code> が実行されて、ブラウザにアラートボックスがポップアップ表示されます。
+ウェブサイト次第では、そのようなスクリプトを使って、無害なアラートではなく、あなたの名前を使ってメッセージを送信したり、さらには銀行取引を実行したりすることが可能です。</p>
+<p>XSS の回避は、Yii においてはとても簡単です。一般に、二つのケースがあります。</p>
+<ol>
+<li>データを平文テキストとして出力したい。</li>
+<li>データを HTML として出力したい。</li>
+</ol>
+<p>平文テキストしか必要でない場合は、エスケープは次のようにとても簡単です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?</span>= \yii\helpers\Html::encode(<span class="hljs-variable">$username</span>) <span class="hljs-preprocessor">?&gt;</span>
+</code></pre>
+<p>HTML である場合は、HtmlPurifier から助けを得ることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?</span>= \yii\helpers\HtmlPurifier::process(<span class="hljs-variable">$description</span>) <span class="hljs-preprocessor">?&gt;</span>
+</code></pre>
+<p>HtmlPurifier の処理は非常に重いので、キャッシュを追加することを検討してください。</p>
+<h2>CSRF を回避する <span id="csrf-wo-hui-bisuru"></span><a href="#csrf-wo-hui-bisuru" class="hashlink">&para;</a></h2><p>CSRF は、クロスサイトリクエストフォージェリ (cross-site request forgery) の略称です。
+多くのアプリケーションは、ユーザのブラウザから来るリクエストはユーザ自身によって発せられたものだと仮定しているけれども、その仮定は間違っているかもしれない ... というのが CSRF の考え方です。</p>
+<p>例えば、<code>an.example.com</code> というウェブサイトが <code>/logout</code> という URL を持っており、この URL を単純な GET でアクセスするとユーザをログアウトさせるようになっているとします。
+ユーザ自身によってこの URL がリクエストされる限りは何も問題はありませんが、ある日、悪い奴が、ユーザが頻繁に訪れるフォーラムに <code>&lt;img src="http://an.example.com/logout"&gt;</code> というリンクを含むコンテントを何とかして投稿することに成功します。
+ブラウザは画像のリクエストとページのリクエストの間に何ら区別を付けませんので、ユーザがそのような <code>img</code> タグを含むページを開くとブラウザはその URL に対して GET リクエストを送信します。
+そして、ユーザが <code>an.example.com</code> からログアウトされてしまうことになる訳です。</p>
+<p>これは基本的な考え方です。ユーザがログアウトされるぐらいは大したことではない、と言うことも出来るでしょう。
+しかし、悪い奴は、この考え方を使って、もっとひどいことをすることも出来ます。
+例えば、<code>http://an.example.com/purse/transfer?to=anotherUser&amp;amount=2000</code> という URL を持つウェブサイトがあると考えて見てください。
+この URL に GET リクエストを使ってアクセスすると、権限を持つユーザアカウントから <code>anotherUser</code> に $2000 が送金されるのです。
+私たちは、ブラウザは画像をロードするのに常に GET リクエストを使う、ということを知っていますから、この URL が POST リクエストだけを受け入れるようにコードを修正することは出来ます。
+しかし残念なことに、それで問題が解決する訳ではありません。
+攻撃者は <code>&lt;img&gt;</code> タグの代りに何らかの JavaScript コードを書いて、その URL に対する POST リクエストの送信を可能にすることが出来ます。</p>
+<p>CSRF を回避するためには、常に次のことを守らなければなりません。</p>
+<ol>
+<li>HTTP の規格、すなわち、GET はアプリケーションの状態を変更すべきではない、という規則に従うこと。</li>
+<li>Yii の CSRF 保護を有効にしておくこと。</li>
+</ol>
+<p>場合によっては、コントローラやアクションの単位で CSRF 検証を無効化する必要があることがあるでしょう。
+これは、そのプロパティを設定することによって達成することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Controller</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SiteController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$enableCsrfValidation</span> = <span class="hljs-keyword">false</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionIndex</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// CSRF 検証はこのアクションおよびその他のアクションに対して適用されない</span>
+    }
+
+}
+</code></pre>
+<p>特定のアクションに対して CSRF 検証を無効化したいときは、次のようにすることが出来ます。
+<code>`</code>php
+namespace app\controllers;</p>
+<p>use yii\web\Controller;</p>
+<p>class SiteController extends Controller
+{</p>
+<pre><code class="hljs php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beforeAction</span><span class="hljs-params">(<span class="hljs-variable">$action</span>)</span>
+</span>{
+    <span class="hljs-comment">// ... ここで何らかの条件に従って `$this-&gt;enableCsrfValidation` を設定する ...</span>
+    <span class="hljs-comment">// 親のメソッドを呼ぶ。プロパティが true であれば、その中で CSRF がチェックされる。</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">parent</span>::beforeAction(<span class="hljs-variable">$action</span>);
+}
+</code></pre>
+<p>}
+<code>`</code></p>
+<h2>ファイルの曝露を回避する <span id="fairuno-pu-luwo-hui-bisuru"></span><a href="#fairuno-pu-luwo-hui-bisuru" class="hashlink">&para;</a></h2><p>デフォルトでは、サーバのウェブルートは、<code>index.php</code> がある <code>web</code> ディレクトリを指すように意図されています。
+共有ホスティング環境の場合、それをすることが出来ずに、全てのコード、構成情報、ログをサーバのウェブルートの下に置かなくてはならないことがあり得ます。</p>
+<p>そういう場合には、<code>web</code> 以外の全てに対してアクセスを拒否することを忘れないでください。
+それも出来ない場合は、アプリケーションを別の場所でホストすることを検討してください。</p>
+<h2>本番環境ではデバッグ情報とデバッグツールを無効にする <span id="ben-fan-huan-jingdehadebaggu-qing-baotodebaggutsuruwo-wu-xiaonisuru"></span><a href="#ben-fan-huan-jingdehadebaggu-qing-baotodebaggutsuruwo-wu-xiaonisuru" class="hashlink">&para;</a></h2><p>デバッグモードでは、Yii は極めて多くのエラー情報を出力します。これは確かに開発には役立つものです。
+しかし、実際の所、これらの饒舌なエラー情報は、攻撃者にとっても、データベース構造、構成情報の値、コードの断片などを曝露してくれる重宝なものです。
+本番でのアプリケーションにおいては、決して <code>index.php</code> の <code>YII_DEBUG</code> を <code>true</code> にして走らせてはいけません。</p>
+<p>本番環境では Gii を決して有効にしてはいけません。
+Gii を使うと、データベース構造とコードに関する情報を得ることが出来るだけでなく、コードを Gii によって生成したもので書き換えることすら出来てしまいます。</p>
+<p>デバッグツールバーは本当に必要でない限り本番環境では使用を避けるべきです。
+これはアプリケーションと構成情報の全ての詳細を曝露することが出来ます。
+どうしても必要な場合は、あなたの IP だけに適切にアクセス制限されていることを再度チェックしてください。</p>
+<h2>TLS によるセキュアな接続を使う <span id="tls-niyorusekyuana-jie-xuwo-shiu"></span><a href="#tls-niyorusekyuana-jie-xuwo-shiu" class="hashlink">&para;</a></h2><p>Yii が提供する機能には、クッキーや PHP セッションに依存するものがあります。
+これらのものは、接続が侵害された場合には、脆弱性となり得ます。
+アプリケーションが TLS によるセキュアな接続を使用している場合は、この危険性を減少させることが出来ます。</p>
+<p>その設定の仕方については、あなたのウェブサーバのドキュメントの指示を参照してください。
+H5BP プロジェクトが提供する構成例を参考にすることも出来ます。</p>
+<ul>
+<li><a href="https://github.com/h5bp/server-configs-nginx">Nginx</a></li>
+<li><a href="https://github.com/h5bp/server-configs-apache">Apache</a>.</li>
+<li><a href="https://github.com/h5bp/server-configs-iis">IIS</a>.</li>
+<li><a href="https://github.com/h5bp/server-configs-lighttpd">Lighttpd</a>.</li>
+</ul>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:42 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

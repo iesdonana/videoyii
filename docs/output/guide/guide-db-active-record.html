@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Active Record - Làm việc với Databases - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w12454" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w12454-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w12454-collapse" class="collapse navbar-collapse"><ul id="w12455" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-12438" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-12438" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-12439" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-12439" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-12440" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-12440" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-12441" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-12441" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-12442" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-12442" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item active" href="#navigation-12443" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-12443" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item active" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-12444" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-12444" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-12445" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-12445" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-12446" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-12446" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-12447" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-12447" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-12448" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-12448" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-12449" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-12449" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-12450" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-12450" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-12451" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-12451" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-12452" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-12452" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-12453" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-12453" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>アクティブレコード <span id="akutiburekodo"></span><a href="#akutiburekodo" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#declaring-ar-classes">アクティブレコードクラスを宣言する</a></li>
+<li><a href="#db-connection">データベースに接続する</a></li>
+<li><a href="#querying-data">データをクエリする</a></li>
+<li><a href="#accessing-data">データにアクセスする</a></li>
+<li><a href="#inserting-updating-data">データを保存する</a></li>
+<li><a href="#deleting-data">データを削除する</a></li>
+<li><a href="#ar-life-cycles">アクティブレコードのライフサイクル</a></li>
+<li><a href="#transactional-operations">トランザクションを扱う</a></li>
+<li><a href="#optimistic-locks">楽観的ロック</a></li>
+<li><a href="#relational-data">リレーショナルデータを扱う</a></li>
+<li><a href="#saving-relations">リレーションを保存する</a></li>
+<li><a href="#cross-database-relations">DBMS 間のリレーション</a></li>
+<li><a href="#customizing-query-classes">クエリクラスをカスタマイズする</a></li>
+<li><a href="#zhui-jianofirudowo-xuan-zesuru">追加のフィールドを選択する</a></li></ol></div>
+<p><a href="http://ja.wikipedia.org/wiki/Active_Record">アクティブレコード</a> は、データベースに保存されているデータにアクセスするために、オブジェクト指向のインタフェイスを提供するものです。
+アクティブレコードクラスはデータベーステーブルと関連付けられます。
+アクティブレコードのインスタンスはそのテーブルの行に対応し、アクティブレコードのインスタンスの <em>属性</em> がその行にある特定のカラムの値を表現します。
+生の SQL 文を書く代りに、アクティブレコードの属性にアクセスしたり、アクティブレコードのメソッドを呼んだりして、データベーステーブルに保存さているデータにアクセスしたり、データを操作したりします。</p>
+<p>例えば、<code>Customer</code> が <code>customer</code> テーブルに関連付けられたアクティブレコードクラスであり、<code>name</code> が <code>customer</code> テーブルのカラムであると仮定しましょう。
+<code>customer</code> テーブルに新しい行を挿入するために次のコードを書くことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = <span class="hljs-keyword">new</span> Customer();
+<span class="hljs-variable">$customer</span>-&gt;name = <span class="hljs-string">'Qiang'</span>;
+<span class="hljs-variable">$customer</span>-&gt;save();
+</code></pre>
+<p>上記のコードは、MySQL では、次のような生の SQL 文を使うのと等価なものです。
+しかし、生の SQL 文の方は、直感的でなく、間違いも生じやすく、また、別の種類のデータベースを使う場合には、互換性の問題も生じ得ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$db</span>-&gt;createCommand(<span class="hljs-string">'INSERT INTO `customer` (`name`) VALUES (:name)'</span>, [
+    <span class="hljs-string">':name'</span> =&gt; <span class="hljs-string">'Qiang'</span>,
+])-&gt;execute();
+</code></pre>
+<p>Yii は次のリレーショナルデータベースに対して、アクティブレコードのサポートを提供しています。</p>
+<ul>
+<li>MySQL 4.1 以降: <span class="broken-link">yii\db\ActiveRecord</span> による。</li>
+<li>PostgreSQL 7.3 以降: <span class="broken-link">yii\db\ActiveRecord</span> による。</li>
+<li>SQLite 2 および 3: <span class="broken-link">yii\db\ActiveRecord</span> による。</li>
+<li>Microsoft SQL Server 2008 以降: <span class="broken-link">yii\db\ActiveRecord</span> による。</li>
+<li>Oracle: <span class="broken-link">yii\db\ActiveRecord</span> による。</li>
+<li>CUBRID 9.3 以降: <span class="broken-link">yii\db\ActiveRecord</span> による。(cubrid PDO 拡張の <a href="http://jira.cubrid.org/browse/APIS-658">バグ</a>
+のために、値を引用符で囲む機能が動作しません。そのため、サーバだけでなくクライアントも CUBRID 9.3 が必要になります)</li>
+<li>Sphinx: <span class="broken-link">yii\sphinx\ActiveRecord</span> による。<code>yii2-sphinx</code> エクステンションが必要。</li>
+<li>ElasticSearch: <span class="broken-link">yii\elasticsearch\ActiveRecord</span> による。<code>yii2-elasticsearch</code> エクステンションが必要。</li>
+</ul>
+<p>これらに加えて、Yii は次の NoSQL データベースに対しても、アクティブレコードの使用をサポートしています。</p>
+<ul>
+<li>Redis 2.6.12 以降: <span class="broken-link">yii\redis\ActiveRecord</span> による。<code>yii2-redis</code> エクステンションが必要。</li>
+<li>MongoDB 1.3.0 以降: <span class="broken-link">yii\mongodb\ActiveRecord</span> による。<code>yii2-mongodb</code> エクステンションが必要。</li>
+</ul>
+<p>このチュートリアルでは、主としてリレーショナルデータベースのためのアクティブレコードの使用方法を説明します。
+しかし、ここで説明するほとんどの内容は NoSQL データベースのためのアクティブレコードにも適用することが出来るものです。</p>
+<h2>アクティブレコードクラスを宣言する  <span id="declaring-ar-classes"></span><a href="#declaring-ar-classes" class="hashlink">&para;</a></h2><p>まずは、<span class="broken-link">yii\db\ActiveRecord</span> を拡張してアクティブレコードクラスを宣言するところから始めましょう。
+すべてのアクティブレコードクラスはデータベーステーブルと関連付けられますので、このクラスの中で <span class="broken-link">yii\db\ActiveRecord::tableName()</span> メソッドをオーバーライドして、どのテーブルにこのクラスが関連付けられるかを指定しなければなりません。</p>
+<p>次の例では、<code>customer</code> というデータベーステーブルのための <code>Customer</code> という名前のアクティブレコードクラスを宣言しています。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">const</span> STATUS_INACTIVE = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> STATUS_ACTIVE = <span class="hljs-number">1</span>;
+    
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@return</span> string このアクティブレコードクラスと関連付けられるテーブルの名前
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tableName</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'customer'</span>;
+    }
+}
+</code></pre>
+<p>アクティブレコードのインスタンスは <a href="guide-structure-models.html">モデル</a> であると見なされます。
+この理由により、私たちは通常 <code>app\models</code> 名前空間 (あるいはモデルクラスを保管するための他の名前空間) の下にアクティブレコードクラスを置きます。</p>
+<p><span class="broken-link">yii\db\ActiveRecord</span> は <span class="broken-link">yii\base\Model</span> から拡張していますので、属性、検証規則、データのシリアル化など、<a href="guide-structure-models.html">モデル</a> が持つ <em>全ての</em> 機能を継承しています。</p>
+<h2>データベースに接続する  <span id="db-connection"></span><a href="#db-connection" class="hashlink">&para;</a></h2><p>デフォルトでは、アクティブレコードは、<code>db</code> <a href="guide-structure-application-components.html">アプリケーションコンポーネント</a> を <span class="broken-link">yii\db\Connection</span> として使用して、データベースのデータにアクセスしたり操作したりします。
+<a href="guide-db-dao.html">データベースアクセスオブジェクト</a> で説明したように、次のようにして、アプリケーションの構成情報ファイルの中で <code>db</code> コンポーネントを構成することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">return</span> [
+    <span class="hljs-string">'components'</span> =&gt; [
+        <span class="hljs-string">'db'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\db\Connection'</span>,
+            <span class="hljs-string">'dsn'</span> =&gt; <span class="hljs-string">'mysql:host=localhost;dbname=testdb'</span>,
+            <span class="hljs-string">'username'</span> =&gt; <span class="hljs-string">'demo'</span>,
+            <span class="hljs-string">'password'</span> =&gt; <span class="hljs-string">'demo'</span>,
+        ],
+    ],
+];
+</code></pre>
+<p><code>db</code> コンポーネントとは異なるデータベース接続を使いたい場合は、<span class="broken-link">yii\db\ActiveRecord::getDb()</span> メソッドをオーバーライドしなければなりません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getDb</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// "db2" アプリケーションコンポーネントを使用</span>
+        <span class="hljs-keyword">return</span> \Yii::<span class="hljs-variable">$app</span>-&gt;db2;
+    }
+}
+</code></pre>
+<h2>データをクエリする  <span id="querying-data"></span><a href="#querying-data" class="hashlink">&para;</a></h2><p>アクティブレコードクラスを宣言した後、それを使って対応するデータベーステーブルからデータをクエリすることが出来ます。
+このプロセスは通常次の三つのステップを踏みます。</p>
+<ol>
+<li><span class="broken-link">yii\db\ActiveRecord::find()</span> メソッドを呼んで、新しいクエリオブジェクトを作成する。</li>
+<li><a href="guide-db-query-builder.html#building-queries">クエリ構築メソッド</a> を呼んで、クエリオブジェクトを構築する。</li>
+<li><a href="guide-db-query-builder.html#query-methods">クエリメソッド</a> を呼んで、アクティブレコードのインスタンスの形でデータを取得する。</li>
+</ol>
+<p>ご覧のように、このプロセスは <a href="guide-db-query-builder.html">クエリビルダ</a> による手続きと非常によく似ています。
+唯一の違いは、<code>new</code> 演算子を使ってクエリオブジェクトを生成する代りに、<span class="broken-link">yii\db\ActiveQuery</span> クラスであるクエリオブジェクトを返す <span class="broken-link">yii\db\ActiveRecord::find()</span> を呼ぶ、という点です。</p>
+<p>以下の例は、アクティブクエリを使ってデータをクエリする方法を示すものです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ID が 123 である一人の顧客を返す</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::find()
+    -&gt;where([<span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">123</span>])
+    -&gt;one();
+
+<span class="hljs-comment">// アクティブな全ての顧客を返して、ID によって並べる</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `status` = 1 ORDER BY `id`</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;where([<span class="hljs-string">'status'</span> =&gt; Customer::STATUS_ACTIVE])
+    -&gt;orderBy(<span class="hljs-string">'id'</span>)
+    -&gt;all();
+
+<span class="hljs-comment">// アクティブな顧客の数を返す</span>
+<span class="hljs-comment">// SELECT COUNT(*) FROM `customer` WHERE `status` = 1</span>
+<span class="hljs-variable">$count</span> = Customer::find()
+    -&gt;where([<span class="hljs-string">'status'</span> =&gt; Customer::STATUS_ACTIVE])
+    -&gt;count();
+
+<span class="hljs-comment">// 全ての顧客を顧客IDによってインデックスされた配列として返す</span>
+<span class="hljs-comment">// SELECT * FROM `customer`</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;indexBy(<span class="hljs-string">'id'</span>)
+    -&gt;all();
+</code></pre>
+<p>上記において、<code>$customer</code> は <code>Customer</code> オブジェクトであり、<code>$customers</code> は <code>Customer</code> オブジェクトの配列です。
+全てこれらには <code>customer</code> テーブルから取得されたデータが投入されます。</p>
+<blockquote class="info"><p><strong>Info: </strong><span class="broken-link">yii\db\ActiveQuery</span> は <span class="broken-link">yii\db\Query</span> から拡張しているため、<a href="guide-db-query-builder.html">クエリビルダ</a> の節で説明されたクエリ構築メソッドとクエリメソッドの <em>全て</em> を使うことが出来ます。</p>
+</blockquote>
+<p>プライマリキーの値や一群のカラムの値でクエリをすることはよく行われる仕事ですので、Yii はこの目的のために、二つのショートカットメソッドを提供しています。</p>
+<ul>
+<li></li>
+<li><span class="broken-link">yii\db\ActiveRecord::findAll()</span>: <em>全ての</em> クエリ結果をアクティブレコードインスタンスの配列に投入して返す。</li>
+</ul>
+<p>どちらのメソッドも、次のパラメータ形式のどれかを取ることが出来ます。</p>
+<ul>
+<li>スカラ値: 値は検索時に求められるプライマリキーの値として扱われます。
+Yii は、データベースのスキーマ情報を読んで、どのカラムがプライマリキーのカラムであるかを自動的に判断します。</li>
+<li>スカラ値の配列: 配列は検索時に求められるプライマリキーの値の配列として扱われます。</li>
+<li>連想配列: キーはカラム名であり、値は検索時に求められる対応するカラムの値です。
+詳細については、<a href="guide-db-query-builder.html#hash-format">ハッシュ形式</a> を参照してください。</li>
+</ul>
+<p>次のコードは、これらのメソッドの使用方法を示すものです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ID が 123 である一人の顧客を返す</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// ID が 100, 101, 123, 124 のどれかである顧客を全て返す</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` IN (100, 101, 123, 124)</span>
+<span class="hljs-variable">$customers</span> = Customer::findAll([<span class="hljs-number">100</span>, <span class="hljs-number">101</span>, <span class="hljs-number">123</span>, <span class="hljs-number">124</span>]);
+
+<span class="hljs-comment">// ID が 123 であるアクティブな顧客を返す</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123 AND `status` = 1</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne([
+    <span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">123</span>,
+    <span class="hljs-string">'status'</span> =&gt; Customer::STATUS_ACTIVE,
+]);
+
+<span class="hljs-comment">// アクティブでない全ての顧客を返す</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `status` = 0</span>
+<span class="hljs-variable">$customers</span> = Customer::findAll([
+    <span class="hljs-string">'status'</span> =&gt; Customer::STATUS_INACTIVE,
+]);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong><span class="broken-link">yii\db\ActiveRecord::findOne()</span> も <span class="broken-link">yii\db\ActiveQuery::one()</span> も、生成される SQL 文に <code>LIMIT 1</code> を追加しません。
+  あなたのクエリが多数のデータ行を返すかもしれない場合は、パフォーマンスを向上させるために、<code>limit(1)</code> を明示的に呼ぶべきです。
+  例えば <code>Customer::find()-&gt;limit(1)-&gt;one()</code> のように。</p>
+</blockquote>
+<p>クエリ構築メソッドを使う以外に、生の SQL を書いてデータをクエリして結果をアクティブレコードオブジェクトに投入することも出来ます。
+そうするためには <span class="broken-link">yii\db\ActiveRecord::findBySql()</span> メソッドを呼ぶことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// アクティブでない全ての顧客を返す</span>
+<span class="hljs-variable">$sql</span> = <span class="hljs-string">'SELECT * FROM customer WHERE status=:status'</span>;
+<span class="hljs-variable">$customers</span> = Customer::findBySql(<span class="hljs-variable">$sql</span>, [<span class="hljs-string">':status'</span> =&gt; Customer::STATUS_INACTIVE])-&gt;all();
+</code></pre>
+<p><span class="broken-link">yii\db\ActiveRecord::findBySql()</span> を呼んだ後は、追加でクエリ構築メソッドを呼び出してはいけません。呼んでも無視されます。</p>
+<h2>データにアクセスする  <span id="accessing-data"></span><a href="#accessing-data" class="hashlink">&para;</a></h2><p>既に述べたように、データベースから取得されたデータはアクティブレコードのインスタンスに投入されます。
+そして、クエリ結果の各行がアクティブレコードの一つのインスタンスに対応します。
+アクティブレコードインスタンスの属性にアクセスすることによって、カラムの値にアクセスすることが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// "id" と "email" は "customer" テーブルのカラム名</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$id</span> = <span class="hljs-variable">$customer</span>-&gt;id;
+<span class="hljs-variable">$email</span> = <span class="hljs-variable">$customer</span>-&gt;email;
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>アクティブレコードの属性の名前は、関連付けられたテーブルのカラムの名前に従って、大文字と小文字を区別して名付けられます。
+  Yii は、関連付けられたテーブルの全てのカラムに対して、アクティブレコードの属性を自動的に定義します。
+  これらの属性は、すべて、再宣言してはいけません。</p>
+</blockquote>
+<p>アクティブレコードの属性はテーブルのカラムに従って命名されるため、テーブルのカラム名がアンダースコアで単語を分ける方法で命名されている場合は、<code>$customer-&gt;first_name</code> のような属性名を使って PHP コードを書くことになります。
+コードスタイルの一貫性が気になるのであれば、テーブルのカラム名を (例えば camelCase を使う名前に) 変更しなければなりません。</p>
+<h3>データ変換  <span id="data-transformation"></span><a href="#data-transformation" class="hashlink">&para;</a></h3><p>入力または表示されるデータの形式が、データベースにデータを保存するときに使われるものと異なる場合がよくあります。
+例えば、データベースでは顧客の誕生日を UNIX タイムスタンプで保存している (まあ、あまり良い設計ではありませんが) けれども、ほとんどの場合において誕生日を <code>'YYYY/MM/DD'</code> という形式の文字列として操作したい、というような場合です。
+この目的を達するために、次のように、<code>Customer</code> アクティブレコードクラスにおいて <em>データ変換</em> メソッドを定義することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getBirthdayText</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> date(<span class="hljs-string">'Y/m/d'</span>, <span class="hljs-variable">$this</span>-&gt;birthday);
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setBirthdayText</span><span class="hljs-params">(<span class="hljs-variable">$value</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;birthday = strtotime(<span class="hljs-variable">$value</span>);
+    }
+}
+</code></pre>
+<p>このようにすれば、PHP コードにおいて、<code>$customer-&gt;birthday</code> にアクセスする代りに、<code>$customer-&gt;birthdayText</code> にアクセスすれば、顧客の誕生日を <code>'YYYY/MM/DD'</code> の形式で入力および表示することが出来ます。</p>
+<blockquote class="tip"><p><strong>Tip: </strong>上記は、一般にデータの変換を達成するための簡単な方法を示すためのものです。
+日付の値については、Yii は、<a href="guide-tutorial-core-validators.html#date">DateValidator</a> と DatePicker ウィジェットを使用するという、より良い方法を提供しています。
+DatePicker については、<a href="widget-jui#datepicker-date-input">JUI ウィジェットの節</a> で説明されています。</p>
+</blockquote>
+<h3>データを配列に取得する  <span id="data-in-arrays"></span><a href="#data-in-arrays" class="hashlink">&para;</a></h3><p>データをアクティブレコードオブジェクトの形で取得するのは便利であり柔軟ですが、大きなメモリ使用量を要するために、大量のデータを取得しなければならない場合は、必ずしも望ましい方法ではありません。
+そういう場合は、クエリメソッドを実行する前に <span class="broken-link">yii\db\ActiveQuery::asArray()</span> を呼ぶことによって、PHP 配列を使ってデータを取得することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// すべての顧客を返す</span>
+<span class="hljs-comment">// 各顧客は連想配列として返される</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;asArray()
+    -&gt;all();
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>このメソッドはメモリを節約してパフォーマンスを向上させますが、低レベルの DB 抽象レイヤに近いものであり、あなたはアクティブレコードの機能のほとんどを失うことになります。
+  非常に重要な違いが、カラムの値のデータタイプに現れます。
+  アクティブレコードインスタンスとしてデータを返す場合、カラムの値は実際のカラムの型に従って自動的に型キャストされます。
+  一方、配列としてデータを返す場合は、実際のカラムの型に関係なく、カラムの値は文字列になります。
+  なぜなら、何も処理をしない場合の PDO の結果は文字列だからです。</p>
+</blockquote>
+<h3>データをバッチモードで取得する  <span id="data-in-batches"></span><a href="#data-in-batches" class="hashlink">&para;</a></h3><p><a href="guide-db-query-builder.html">クエリビルダ</a> において、大量のデータをデータベースから検索する場合に、メモリ使用量を最小化するために <em>バッチクエリ</em> を使うことが出来るということを説明しました。
+おなじテクニックをアクティブレコードでも使うことが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 一度に 10 人の顧客を読み出す</span>
+<span class="hljs-keyword">foreach</span> (Customer::find()-&gt;batch(<span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$customers</span>) {
+    <span class="hljs-comment">// $customers は 10 以下の Customer オブジェクトの配列</span>
+}
+<span class="hljs-comment">// 一度に 10 人の顧客を読み出して、一人ずつ反復する</span>
+<span class="hljs-keyword">foreach</span> (Customer::find()-&gt;each(<span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-comment">// $customer は Customer オブジェクト</span>
+}
+<span class="hljs-comment">// イーガーローディングをするバッチクエリ</span>
+<span class="hljs-keyword">foreach</span> (Customer::find()-&gt;with(<span class="hljs-string">'orders'</span>)-&gt;each() <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-comment">// $customer は 'orders' リレーションを投入された Customer オブジェクト</span>
+}
+</code></pre>
+<h2>データを保存する  <span id="inserting-updating-data"></span><a href="#inserting-updating-data" class="hashlink">&para;</a></h2><p>アクティブレコードを使えば、次のステップを踏んで簡単にデータをデータベースに保存することが出来ます。</p>
+<ol>
+<li>アクティブレコードのインスタンスを準備する</li>
+<li>アクティブレコードの属性に新しい値を割り当てる</li>
+<li><span class="broken-link">yii\db\ActiveRecord::save()</span> を呼んでデータをデータベースに保存する</li>
+</ol>
+<p>例えば、</p>
+<p>// 新しいデータ行を挿入する
+$customer = new Customer();
+$customer-&gt;name = 'James';
+$customer-&gt;email = 'james@example.com';
+$customer-&gt;save();</p>
+<p>// 既存のデータ行を更新する
+$customer = Customer::findOne(123);
+$customer-&gt;email = 'james@newexample.com';
+$customer-&gt;save();
+<code>`</code></p>
+<p><span class="broken-link">yii\db\ActiveRecord::save()</span> メソッドは、アクティブレコードインスタンスの状態に従って、データ行を挿入するか、または、更新することが出来ます。
+インスタンスが <code>new</code> 演算子によって新しく作成されたものである場合は、<span class="broken-link">yii\db\ActiveRecord::save()</span> を呼び出すと、新しい行が挿入されます。
+インスタンスがクエリメソッドの結果である場合は、<span class="broken-link">yii\db\ActiveRecord::save()</span> を呼び出すと、そのインスタンスと関連付けられた行が更新されます。</p>
+<p>アクティブレコードインスタンスの二つの状態は、その <span class="broken-link">yii\db\ActiveRecord::isNewRecord</span> プロパティの値をチェックすることによって区別することが出来ます。
+下記のように、このプロパティは <span class="broken-link">yii\db\ActiveRecord::save()</span> によっても内部的に使用されています。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">save</span><span class="hljs-params">(<span class="hljs-variable">$runValidation</span> = true, <span class="hljs-variable">$attributeNames</span> = null)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;getIsNewRecord()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;insert(<span class="hljs-variable">$runValidation</span>, <span class="hljs-variable">$attributeNames</span>);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;update(<span class="hljs-variable">$runValidation</span>, <span class="hljs-variable">$attributeNames</span>) !== <span class="hljs-keyword">false</span>;
+    }
+}
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong><span class="broken-link">yii\db\ActiveRecord::insert()</span> または <span class="broken-link">yii\db\ActiveRecord::update()</span> を直接に呼んで、行を挿入または更新することも出来ます。</p>
+</blockquote>
+<h3>データの検証  <span id="data-validation"></span><a href="#data-validation" class="hashlink">&para;</a></h3><p><span class="broken-link">yii\db\ActiveRecord</span> は <span class="broken-link">yii\base\Model</span> を拡張したものですので、同じ <a href="guide-input-validation.html">データ検証</a> 機能を共有しています。
+<span class="broken-link">yii\db\ActiveRecord::rules()</span> メソッドをオーバーライドすることによって検証規則を宣言し、<span class="broken-link">yii\db\ActiveRecord::validate()</span> メソッドを呼ぶことによってテータの検証を実行することが出来ます。</p>
+<p><span class="broken-link">yii\db\ActiveRecord::save()</span> を呼ぶと、デフォルトでは <span class="broken-link">yii\db\ActiveRecord::validate()</span> が自動的に呼ばれます。
+検証が通った時だけ、実際にデータが保存されます。
+検証が通らなかった時は単に <code>false</code> が返され、<span class="broken-link">yii\db\ActiveRecord::errors</span> プロパティをチェックして検証エラーメッセージを取得することが出来ます。</p>
+<blockquote class="tip"><p><strong>Tip: </strong>データが検証を必要としないことが確実である場合 (例えば、データが信頼できるソースに由来するものである場合) は、検証をスキップするために <code>save(false)</code> を呼ぶことが出来ます。</p>
+</blockquote>
+<h3>一括代入  <span id="massive-assignment"></span><a href="#massive-assignment" class="hashlink">&para;</a></h3><p>通常の <a href="guide-structure-models.html">モデル</a> と同じように、アクティブレコードのインスタンスも  <a href="guide-structure-models.html#massive-assignment">一括代入機能</a> を享受することが出来ます。
+この機能を使うと、下記で示されているように、一つの PHP 文で、アクティブレコードインスタンスの複数の属性に値を割り当てることが出来ます。
+ただし、<a href="guide-structure-models.html#safe-attributes">安全な属性</a> だけが一括代入が可能であることを記憶しておいてください。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$values</span> = [
+    <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'James'</span>,
+    <span class="hljs-string">'email'</span> =&gt; <span class="hljs-string">'james@example.com'</span>,
+];
+
+<span class="hljs-variable">$customer</span> = <span class="hljs-keyword">new</span> Customer();
+
+<span class="hljs-variable">$customer</span>-&gt;attributes = <span class="hljs-variable">$values</span>;
+<span class="hljs-variable">$customer</span>-&gt;save();
+</code></pre>
+<h3>カウンタを更新する  <span id="updating-counters"></span><a href="#updating-counters" class="hashlink">&para;</a></h3><p>データベーステーブルのあるカラムの値を増加・減少させるのは、よくある仕事です。
+私たちはそのようなカラムをカウンタカラムと呼んでいます。
+<span class="broken-link">yii\db\ActiveRecord::updateCounters()</span> を使って一つまたは複数のカウンタカラムを更新することが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$post</span> = Post::findOne(<span class="hljs-number">100</span>);
+
+<span class="hljs-comment">// UPDATE `post` SET `view_count` = `view_count` + 1 WHERE `id` = 100</span>
+<span class="hljs-variable">$post</span>-&gt;updateCounters([<span class="hljs-string">'view_count'</span> =&gt; <span class="hljs-number">1</span>]);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>カウンタカラムを更新するのに <span class="broken-link">yii\db\ActiveRecord::save()</span> を使うと、不正確な結果になってしまう場合があります。
+  というのは、同じカウンタの値を読み書きする複数のリクエストによって、同一のカウンタが保存される可能性があるからです。</p>
+</blockquote>
+<h3>ダーティな属性  <span id="dirty-attributes"></span><a href="#dirty-attributes" class="hashlink">&para;</a></h3><p><span class="broken-link">yii\db\ActiveRecord::save()</span> を呼んでアクティブレコードインスタンスを保存すると、<em>ダーティな属性</em> だけが保存されます。
+属性は、DB からロードされた後、または、最後に保存された後にその値が変更されると、<em>ダーティ</em> であると見なされます。
+ただし、データ検証は、アクティブレコードインスタンスがダーティな属性を持っているかどうかに関係なく実施されることに注意してください。</p>
+<p>アクティブレコードはダーティな属性のリストを自動的に保守します。
+そうするために、一つ前のバージョンの属性値を保持して、最新のバージョンと比較します。
+<span class="broken-link">yii\db\ActiveRecord::getDirtyAttributes()</span> を呼ぶと、現在ダーティである属性を取得することが出来ます。
+また、<span class="broken-link">yii\db\ActiveRecord::markAttributeDirty()</span> を呼んで、ある属性をダーティであると明示的にマークすることも出来ます。</p>
+<p>最新の修正を受ける前の属性値を知りたい場合は、<span class="broken-link">yii\db\ActiveRecord::getOldAttributes()</span> または <span class="broken-link">yii\db\ActiveRecord::getOldAttribute()</span> を呼ぶことが出来ます。</p>
+<blockquote class="note"><p><strong>Note: </strong>新旧の値は <code>===</code> 演算子を使って比較されるため、同じ値を持っていても型が違うとダーティであると見なされます。
+このことは、モデルが HTML フォームからユーザの入力を受け取るときにしばしば生じます。
+HTML フォームでは全ての値が文字列として表現されるからです。
+入力値が正しい型、例えば整数値となることを保証するために、<code>['attributeName', 'filter', 'filter' =&gt; 'intval']</code> のように <a href="guide-input-validation.html#data-filtering">検証フィルタ</a> を適用することが出来ます。
+このフィルタは、<a href="http://php.net/manual/ja/function.intval.php">intval()</a>, <a href="http://php.net/manual/ja/function.floatval.php">floatval()</a>,
+<a href="http://php.net/manual/ja/function.boolval.php">boolval</a> など、PHP の全てのタイプキャスト関数で動作します。</p>
+</blockquote>
+<h3>デフォルト属性値  <span id="default-attribute-values"></span><a href="#default-attribute-values" class="hashlink">&para;</a></h3><p>あなたのテーブルのカラムの中には、データベースでデフォルト値が定義されているものがあるかも知れません。
+そして、場合によっては、アクティブレコードインスタンスのウェブフォームに、そういうデフォルト値をあらかじめ投入したいことがあるでしょう。
+同じデフォルト値を繰り返して書くことを避けるために、<span class="broken-link">yii\db\ActiveRecord::loadDefaultValues()</span> を呼んで、DB で定義されたデフォルト値を対応するアクティブレコードの属性に投入することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = <span class="hljs-keyword">new</span> Customer();
+<span class="hljs-variable">$customer</span>-&gt;loadDefaultValues();
+<span class="hljs-comment">// $customer-&gt;xyz には、"xyz" カラムを定義するときに宣言されたデフォルト値が割り当てられる</span>
+</code></pre>
+<h3>複数の行を更新する  <span id="updating-multiple-rows"></span><a href="#updating-multiple-rows" class="hashlink">&para;</a></h3><p>上述のメソッドは、すべて、個別のアクティブレコードインスタンスに対して作用し、個別のテーブル行を挿入したり更新したりするものです。
+複数の行を同時に更新するためには、代りに、スタティックなメソッドである <span class="broken-link">yii\db\ActiveRecord::updateAll()</span> を呼ばなければなりません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// UPDATE `customer` SET `status` = 1 WHERE `email` LIKE `%@example.com`</span>
+Customer::updateAll([<span class="hljs-string">'status'</span> =&gt; Customer::STATUS_ACTIVE], [<span class="hljs-string">'like'</span>, <span class="hljs-string">'email'</span>, <span class="hljs-string">'@example.com'</span>]);
+</code></pre>
+<p>同様に、<span class="broken-link">yii\db\ActiveRecord::updateAllCounters()</span> を呼んで、複数の行のカウンタカラムを同時に更新することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// UPDATE `customer` SET `age` = `age` + 1</span>
+Customer::updateAllCounters([<span class="hljs-string">'age'</span> =&gt; <span class="hljs-number">1</span>]);
+</code></pre>
+<h2>データを削除する  <span id="deleting-data"></span><a href="#deleting-data" class="hashlink">&para;</a></h2><p>一行のデータを削除するためには、最初にその行に対応するアクティブレコードインスタンスを取得して、次に <span class="broken-link">yii\db\ActiveRecord::delete()</span> メソッドを呼びます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$customer</span>-&gt;delete();
+</code></pre>
+<p><span class="broken-link">yii\db\ActiveRecord::deleteAll()</span> を呼んで、複数またはすべてのデータ行を削除することが出来ます。例えば、</p>
+<pre><code class="hljs php language-php">Customer::deleteAll([<span class="hljs-string">'status'</span> =&gt; Customer::STATUS_INACTIVE]);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong><span class="broken-link">yii\db\ActiveRecord::deleteAll()</span> を呼ぶときは、十分に注意深くしてください。
+  なぜなら、条件の指定を間違うと、あなたのテーブルからすべてのデータを完全に消し去ってしまうことになるからです。</p>
+</blockquote>
+<h2>アクティブレコードのライフサイクル  <span id="ar-life-cycles"></span><a href="#ar-life-cycles" class="hashlink">&para;</a></h2><p>アクティブレコードがさまざまな目的で使用される場合のそれぞれのライフサイクルを理解しておくことは重要なことです。
+それぞれのライフサイクルにおいては、特定の一続きのメソッドが呼び出されます。
+そして、これらのメソッドをオーバーライドして、ライフサイクルをカスタマイズするチャンスを得ることが出来ます。
+また、ライフサイクルの中でトリガされる特定のアクティブレコードイベントに反応して、あなたのカスタムコードを挿入することも出来ます。
+これらのイベントが特に役に立つのは、アクティブレコードのライフサイクルをカスタマイズする必要のあるアクティブレコード <a href="guide-concept-behaviors.html">ビヘイビア</a> を開発する際です。</p>
+<p>次に、さまざまなアクティブレコードのライフサイクルと、そのライフサイクルに含まれるメソッドやイベントを要約します。</p>
+<h3>新しいインスタンスのライフサイクル  <span id="new-instance-life-cycle"></span><a href="#new-instance-life-cycle" class="hashlink">&para;</a></h3><p><code>new</code> 演算子によって新しいアクティブレコードインスタンスを作成する場合は、次のライフサイクルを経ます。</p>
+<ol>
+<li>クラスのコンストラクタ。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::init()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_INIT</span> イベントをトリガ。</li>
+</ol>
+<h3>データをクエリする際のライフサイクル  <span id="querying-data-life-cycle"></span><a href="#querying-data-life-cycle" class="hashlink">&para;</a></h3><p><a href="#querying-data">クエリメソッド</a> のどれか一つによってデータをクエリする場合は、新しくデータを投入されるアクティブレコードは次のライフサイクルを経ます。</p>
+<ol>
+<li>クラスのコンストラクタ。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::init()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_INIT</span> イベントをトリガ。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::afterFind()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_FIND</span> イベントをトリガ。</li>
+</ol>
+<h3>データを保存する際のライフサイクル  <span id="saving-data-life-cycle"></span><a href="#saving-data-life-cycle" class="hashlink">&para;</a></h3><p><span class="broken-link">yii\db\ActiveRecord::save()</span> を呼んでアクティブレコードインスタンスを挿入または更新する場合は、次のライフサイクルを経ます。</p>
+<ol>
+<li><span class="broken-link">yii\db\ActiveRecord::beforeValidate()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_VALIDATE</span> イベントをトリガ。
+このメソッドが <code>false</code> を返すか、<span class="broken-link">yii\base\ModelEvent::isValid</span> が <code>false</code> であった場合、残りのステップはスキップされる。</li>
+<li>データ検証を実行。データ検証が失敗した場合、3 より後のステップはスキップされる。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::afterValidate()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_VALIDATE</span> イベントをトリガ。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::beforeSave()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_INSERT</span> または <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_UPDATE</span> イベントをトリガ。
+このメソッドが <code>false</code> を返すか、<span class="broken-link">yii\base\ModelEvent::isValid</span> が <code>false</code> であった場合、残りのステップはスキップされる。</li>
+<li>実際のデータの挿入または更新を実行。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::afterSave()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_INSERT</span> または <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_UPDATE</span> イベントをトリガ。</li>
+</ol>
+<h3>データを削除する際のライフサイクル  <span id="deleting-data-life-cycle"></span><a href="#deleting-data-life-cycle" class="hashlink">&para;</a></h3><p><span class="broken-link">yii\db\ActiveRecord::delete()</span> を呼んでアクティブレコードインスタンスを削除する際は、次のライフサイクルを経ます。</p>
+<ol>
+<li><span class="broken-link">yii\db\ActiveRecord::beforeDelete()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_DELETE</span> イベントをトリガ。
+このメソッドが <code>false</code> を返すか、<span class="broken-link">yii\base\ModelEvent::isValid</span> が <code>false</code> であった場合は、残りのステップはスキップされる。</li>
+<li>実際のデータの削除を実行。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::afterDelete()</span>: <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_DELETE</span> イベントをトリガ。</li>
+</ol>
+<blockquote class="note"><p><strong>Note: </strong>次のメソッドを呼んだ場合は、いずれの場合も、上記のライフサイクルのどれかを開始させることはありません。
+これらのメソッドは、レコード単位ではなく、データベース上で直接に動作するためです。</p>
+<ul>
+<li><span class="broken-link">yii\db\ActiveRecord::updateAll()</span> </li>
+<li><span class="broken-link">yii\db\ActiveRecord::deleteAll()</span></li>
+<li><span class="broken-link">yii\db\ActiveRecord::updateCounters()</span> </li>
+<li><span class="broken-link">yii\db\ActiveRecord::updateAllCounters()</span> </li>
+</ul>
+</blockquote>
+<h3>データをリフレッシュする際のライフサイクル  <span id="refreshing-data-life-cycle"></span><a href="#refreshing-data-life-cycle" class="hashlink">&para;</a></h3><p><span class="broken-link">yii\db\ActiveRecord::refresh()</span> を呼んでアクティブレコードインスタンスをリフレッシュする際は、リフレッシュが成功してメソッドが <code>true</code> を返すと
+<span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_REFRESH</span> イベントがトリガされます。</p>
+<h2>トランザクションを扱う  <span id="transactional-operations"></span><a href="#transactional-operations" class="hashlink">&para;</a></h2><p>アクティブレコードを扱う際には、二つの方法で <a href="guide-db-dao.html#performing-transactions">トランザクション</a> を処理することができます。</p>
+<p>最初の方法は、次に示すように、アクティブレコードのメソッドの呼び出しを明示的にトランザクションのブロックで囲む方法です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+Customer::getDb()-&gt;transaction(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$db</span>)</span> <span class="hljs-title">use</span> <span class="hljs-params">(<span class="hljs-variable">$customer</span>)</span> </span>{
+    <span class="hljs-variable">$customer</span>-&gt;id = <span class="hljs-number">200</span>;
+    <span class="hljs-variable">$customer</span>-&gt;save();
+    <span class="hljs-comment">// ... 他の DB 操作 ...</span>
+});
+
+<span class="hljs-comment">// あるいは、別の方法</span>
+
+<span class="hljs-variable">$transaction</span> = Customer::getDb()-&gt;beginTransaction();
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-variable">$customer</span>-&gt;id = <span class="hljs-number">200</span>;
+    <span class="hljs-variable">$customer</span>-&gt;save();
+    <span class="hljs-comment">// ... 他の DB 操作 ...</span>
+    <span class="hljs-variable">$transaction</span>-&gt;commit();
+} <span class="hljs-keyword">catch</span>(\<span class="hljs-keyword">Exception</span> <span class="hljs-variable">$e</span>) {
+    <span class="hljs-variable">$transaction</span>-&gt;rollBack();
+    <span class="hljs-keyword">throw</span> <span class="hljs-variable">$e</span>;
+}
+</code></pre>
+<p>第二の方法は、トランザクションのサポートが必要な DB 操作を <span class="broken-link">yii\db\ActiveRecord::transactions()</span> メソッドに列挙するという方法です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transactions</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-string">'admin'</span> =&gt; <span class="hljs-keyword">self</span>::OP_INSERT,
+            <span class="hljs-string">'api'</span> =&gt; <span class="hljs-keyword">self</span>::OP_INSERT | <span class="hljs-keyword">self</span>::OP_UPDATE | <span class="hljs-keyword">self</span>::OP_DELETE,
+            <span class="hljs-comment">// 上は次と等価</span>
+            <span class="hljs-comment">// 'api' =&gt; self::OP_ALL,</span>
+        ];
+    }
+}
+</code></pre>
+<p><span class="broken-link">yii\db\ActiveRecord::transactions()</span> メソッドが返す配列では、キーは <a href="guide-structure-models.html#scenarios">シナリオ</a> の名前であり、値はトランザクションで囲まれるべき操作でなくてはなりません。
+いろいろな DB 操作を参照するのには、次の定数を使わなければなりません。</p>
+<ul>
+<li><span class="broken-link">yii\db\ActiveRecord::OP_INSERT</span>: <span class="broken-link">yii\db\ActiveRecord::insert()</span> によって実行される挿入の操作。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::OP_UPDATE</span>: <span class="broken-link">yii\db\ActiveRecord::update()</span> によって実行される更新の操作。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::OP_DELETE</span>: <span class="broken-link">yii\db\ActiveRecord::delete()</span> によって実行される削除の操作。</li>
+</ul>
+<p>複数の操作を示すためには、<code>|</code> を使って上記の定数を連結してください。
+ショートカット定数 <span class="broken-link">yii\db\ActiveRecord::OP_ALL</span> を使って、上記の三つの操作すべてを示すことも出来ます。</p>
+<p>このメソッドを使って生成されたトランザクションは、<span class="broken-link">yii\db\ActiveRecord::beforeSave()</span> を呼ぶ前に開始され、
+<span class="broken-link">yii\db\ActiveRecord::afterSave()</span> を実行した後にコミットされます。</p>
+<h2>楽観的ロック  <span id="optimistic-locks"></span><a href="#optimistic-locks" class="hashlink">&para;</a></h2><p>楽観的ロックは、一つのデータ行が複数のユーザによって更新されるときに発生しうる衝突を回避するための方法です。
+例えば、ユーザ A と ユーザ B が 同時に同じ wiki 記事を編集しており、ユーザ A が自分の編集結果を保存した後に、ユーザ B も自分の編集結果を保存しようとして「保存」ボタンをクリックする場合を考えてください。
+ユーザ B は、実際には古くなったバージョンの記事に対する操作をしようとしていますので、彼が記事を保存するのを防止し、彼に何らかのヒントメッセージを表示する方法があることが望まれます。</p>
+<p>楽観的ロックは、あるカラムを使って各行のバージョン番号を記録するという方法によって、上記の問題を解決します。
+古くなったバージョン番号とともに行を保存しようとすると、<span class="broken-link">yii\db\StaleObjectException</span> 例外が投げられて、行が保存されるのが防止されます。
+楽観的ロックは、 <span class="broken-link">yii\db\ActiveRecord::update()</span> または <span class="broken-link">yii\db\ActiveRecord::delete()</span> メソッドを使って既存の行を更新または削除しようとする場合にだけサポートされます。</p>
+<p>楽観的ロックを使用するためには、次のようにします。</p>
+<ol>
+<li>アクティブレコードクラスと関連付けられている DB テーブルに、各行のバージョン番号を保存するカラムを作成します。
+カラムは長倍精度整数 (big integer) タイプでなければなりません (MySQL では <code>BIGINT DEFAULT 0</code> です)。</li>
+<li><span class="broken-link">yii\db\ActiveRecord::optimisticLock()</span> メソッドをオーバーライドして、このカラムの名前を返すようにします。</li>
+<li>ユーザ入力を収集するウェブフォームに、更新されるレコードの現在のバージョン番号を保持する隠しフィールドを追加します。
+バージョン属性が入力の検証規則を持っており、検証が成功することを確かめてください。</li>
+<li>アクティブレコードを使って行の更新を行うコントローラアクションにおいて、<span class="broken-link">\yii\db\StaleObjectException</span> 例外を捕捉して、衝突を解決するために必要なビジネスロジック (例えば、変更をマージしたり、データの陳腐化を知らせたり) を実装します。</li>
+</ol>
+<p>例えば、バージョン番号のカラムが <code>version</code> と名付けられているとすると、次のようなコードによって楽観的ロックを実装することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ------ ビューのコード -------</span>
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">Html</span>;
+
+<span class="hljs-comment">// ... 他の入力フィールド</span>
+<span class="hljs-keyword">echo</span> Html::activeHiddenInput(<span class="hljs-variable">$model</span>, <span class="hljs-string">'version'</span>);
+
+
+<span class="hljs-comment">// ------ コントローラのコード -------</span>
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">StaleObjectException</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionUpdate</span><span class="hljs-params">(<span class="hljs-variable">$id</span>)</span>
+</span>{
+    <span class="hljs-variable">$model</span> = <span class="hljs-variable">$this</span>-&gt;findModel(<span class="hljs-variable">$id</span>);
+
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$model</span>-&gt;load(Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;post()) &amp;&amp; <span class="hljs-variable">$model</span>-&gt;save()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;redirect([<span class="hljs-string">'view'</span>, <span class="hljs-string">'id'</span> =&gt; <span class="hljs-variable">$model</span>-&gt;id]);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'update'</span>, [
+                <span class="hljs-string">'model'</span> =&gt; <span class="hljs-variable">$model</span>,
+            ]);
+        }
+    } <span class="hljs-keyword">catch</span> (StaleObjectException <span class="hljs-variable">$e</span>) {
+        <span class="hljs-comment">// 衝突を解決するロジック</span>
+    }
+}
+</code></pre>
+<h2>リレーショナルデータを扱う  <span id="relational-data"></span><a href="#relational-data" class="hashlink">&para;</a></h2><p>個々のデータベーステーブルを扱うだけでなく、アクティブレコードは関連したテーブルのデータも一緒に読み出して、主たるデータを通して簡単にアクセス出来るようにすることが出来ます。
+例えば、一人の顧客は一つまたは複数の注文を発することがあり得ますので、顧客のデータは注文のデータと関連を持っていることになります。
+このリレーションが適切に宣言されていれば、<code>$customer-&gt;orders</code> という式を使って顧客の注文情報にアクセスすることが出来ます。
+<code>$customer-&gt;orders</code> は、顧客の注文情報を <code>Order</code> アクティブレコードインスタンスの配列として返してくれます。</p>
+<h3>リレーションを宣言する  <span id="declaring-relations"></span><a href="#declaring-relations" class="hashlink">&para;</a></h3><p>アクティブレコードを使ってリレーショナルデータを扱うためには、最初に、アクティブレコードクラスの中でリレーションを宣言する必要があります。
+これは、以下のように、関心のあるそれぞれのリレーションについて <em>リレーションメソッド</em> を宣言するだけの簡単な作業です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCustomer</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasOne(Customer::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'customer_id'</span>]);
+    }
+}
+</code></pre>
+<p>上記のコードでは、<code>Customer</code> クラスのために <code>orders</code> リレーションを宣言し、<code>Order</code> クラスのために <code>customer</code> リレーションを宣言しています。</p>
+<p>各リレーションメソッドは <code>getXyz</code> という名前にしなければなりません。
+ここで <code>xyz</code> (最初の文字は小文字です) が <em>リレーション名</em> と呼ばれます。
+リレーション名は <em>大文字と小文字を区別する</em> ことに注意してください。</p>
+<p>リレーションを宣言する際には、次の情報を指定しなければなりません。</p>
+<ul>
+<li>リレーションの多重性: <span class="broken-link">yii\db\ActiveRecord::hasMany()</span> または <span class="broken-link">yii\db\ActiveRecord::hasOne()</span> のどちらかを呼ぶことによって指定されます。
+上記の例では、リレーションの宣言において、顧客は複数の注文を持ち得るが、一方、注文は一人の顧客しか持たない、ということが容易に読み取れます。</li>
+<li>関連するアクティブレコードクラスの名前: <span class="broken-link">yii\db\ActiveRecord::hasMany()</span> または <span class="broken-link">yii\db\ActiveRecord::hasOne()</span> の最初のパラメータとして指定されます。
+クラス名を取得するのに <code>Xyz::className()</code> を呼ぶのが推奨されるプラクティスです。
+そうすれば、IDE の自動補完のサポートを得ることことが出来るだけでなく、コンパイル段階でエラーを検出することが出来ます。</li>
+<li>二つのデータタイプ間のリンク: 二つのデータタイプの関連付けに用いられるカラムを指定します。
+配列の値は主たるデータ (リレーションを宣言しているアクティブレコードクラスによって表されるデータ) のカラムであり、配列のキーは関連するデータのカラムです。</li>
+</ul>
+<h3>リレーショナルデータにアクセスする  <span id="accessing-relational-data"></span><a href="#accessing-relational-data" class="hashlink">&para;</a></h3><p>リレーションを宣言した後は、リレーション名を通じてリレーショナルデータにアクセスすることが出来ます。
+これは、リレーションメソッドによって定義されるオブジェクト <a href="guide-concept-properties.html">プロパティ</a> にアクセスするのと同様です。
+このため、これを <em>リレーションプロパティ</em> と呼びます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123</span>
+<span class="hljs-comment">// $orders is an array of Order objects</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong><code>xyz</code> という名前のリレーションを getter メソッド <code>getXyz()</code> によって宣言すると、<code>xyz</code> を <a href="guide-concept-properties.html">オブジェクトプロパティ</a> のようにアクセスすることが出来るようになります。
+  名前は大文字と小文字を区別することに注意してください。</p>
+</blockquote>
+<p>リレーションが <span class="broken-link">yii\db\ActiveRecord::hasMany()</span> によって宣言されている場合は、このリレーションプロパティにアクセスすると、関連付けられたアクティブレコードインスタンスの配列が返されます。
+リレーションが <span class="broken-link">yii\db\ActiveRecord::hasOne()</span> によって宣言されている場合は、このリレーションプロパティにアクセスすると、関連付けられたアクティブレコードインスタンスか、関連付けられたデータが見つからないときは <code>null</code> が返されます。</p>
+<p>リレーションプロパティに最初にアクセスしたときは、上記の例で示されているように、SQL 文が実行されます。
+その同じプロパティに再びアクセスしたときは、SQL 文を再実行することなく、以前の結果が返されます。
+SQL 文の再実行を強制するためには、まず、リレーションプロパティの割り当てを解除 (unset) しなければなりません : <code>unset($customer-&gt;orders)</code>。</p>
+<blockquote class="note"><p><strong>Note: </strong>リレーションプロパティの概念は <a href="guide-concept-properties.html">オブジェクトプロパティ</a> の機能と同一であるように見えますが、一つ、重要な相違点があります。
+通常のオブジェクトプロパティでは、プロパティの値はそれを定義する getter メソッドと同じ型を持ちます。
+しかし、リレーションプロパティにアクセスすると <span class="broken-link">yii\db\ActiveRecord</span> のインスタンスまたはその配列が返されるのに対して、リレーションメソッドは <span class="broken-link">yii\db\ActiveQuery</span> のインスタンスを返します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span>-&gt;orders; <span class="hljs-comment">// `Order` オブジェクトの配列</span>
+<span class="hljs-variable">$customer</span>-&gt;getOrders(); <span class="hljs-comment">// ActiveQuery のインスタンス</span>
+</code></pre>
+<p>このことは、次の項で説明するように、カスタマイズしたクエリを作成するのに役に立ちます。</p>
+</blockquote>
+<h3>動的なリレーショナルクエリ  <span id="dynamic-relational-query"></span><a href="#dynamic-relational-query" class="hashlink">&para;</a></h3><p>リレーションメソッドは <span class="broken-link">yii\db\ActiveQuery</span> のインスタンスを返すため、DB クエリを実行する前に、クエリ構築メソッドを使ってこのクエリを更に修正することが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123 AND `subtotal` &gt; 200 ORDER BY `id`</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;getOrders()
+    -&gt;where([<span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'subtotal'</span>, <span class="hljs-number">200</span>])
+    -&gt;orderBy(<span class="hljs-string">'id'</span>)
+    -&gt;all();
+</code></pre>
+<p>リレーションプロパティにアクセスする場合と違って、リレーションメソッドによって動的なリレーショナルクエリを実行する場合は、同じ動的なリレーショナルクエリが以前に実行されたことがあっても、毎回、SQL 文が実行されます。</p>
+<p>さらに進んで、もっと簡単に動的なリレーショナルクエリを実行できるように、リレーションの宣言をパラメータ化したい場合もあるでしょう。
+例えば、<code>bigOrders</code> リレーションを下記のように宣言することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getBigOrders</span><span class="hljs-params">(<span class="hljs-variable">$threshold</span> = <span class="hljs-number">100</span>)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>])
+            -&gt;where(<span class="hljs-string">'subtotal &gt; :threshold'</span>, [<span class="hljs-string">':threshold'</span> =&gt; <span class="hljs-variable">$threshold</span>])
+            -&gt;orderBy(<span class="hljs-string">'id'</span>);
+    }
+}
+</code></pre>
+<p>これによって、次のようなリレーショナルクエリを実行することが出来るようになります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123 AND `subtotal` &gt; 200 ORDER BY `id`</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;getBigOrders(<span class="hljs-number">200</span>)-&gt;all();
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123 AND `subtotal` &gt; 100 ORDER BY `id`</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;bigOrders;
+</code></pre>
+<h3>中間テーブルによるリレーション  <span id="junction-table"></span><a href="#junction-table" class="hashlink">&para;</a></h3><p>データベースの設計において、二つの関連するテーブル間の多重性が多対多である場合は、通常、<a href="https://en.wikipedia.org/wiki/Junction_table">中間テーブル</a> が導入されます。
+例えば、<code>order</code> テーブルと <code>item</code> テーブルは、<code>order_item</code> と言う名前の中間テーブルによって関連付けることが出来ます。
+このようにすれば、一つの注文を複数の商品に対応させ、また、一つの商品を複数の注文に対応させることが出来ます。</p>
+<p>このようなリレーションを宣言するときは、<span class="broken-link">yii\db\ActiveQuery::via()</span> または <span class="broken-link">yii\db\ActiveQuery::viaTable()</span> のどちらかを呼んで中間テーブルを指定します。
+<span class="broken-link">yii\db\ActiveQuery::via()</span> と <span class="broken-link">yii\db\ActiveQuery::viaTable()</span> の違いは、前者が既存のリレーション名の形式で中間テーブルを指定するのに対して、後者は中間テーブルを直接に指定する、という点です。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getItems</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Item::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'item_id'</span>])
+            -&gt;viaTable(<span class="hljs-string">'order_item'</span>, [<span class="hljs-string">'order_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+</code></pre>
+<p>あるいは、また、</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrderItems</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(OrderItem::className(), [<span class="hljs-string">'order_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getItems</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Item::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'item_id'</span>])
+            -&gt;via(<span class="hljs-string">'orderItems'</span>);
+    }
+}
+</code></pre>
+<p>中間テーブルを使って宣言されたリレーションの使い方は、通常のリレーションと同じです。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `order` WHERE `id` = 100</span>
+<span class="hljs-variable">$order</span> = Order::findOne(<span class="hljs-number">100</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order_item` WHERE `order_id` = 100</span>
+<span class="hljs-comment">// SELECT * FROM `item` WHERE `item_id` IN (...)</span>
+<span class="hljs-comment">// 商品オブジェクトの配列を返す</span>
+<span class="hljs-variable">$items</span> = <span class="hljs-variable">$order</span>-&gt;items;
+</code></pre>
+<h3>レイジーローディングとイーガーローディング  <span id="lazy-eager-loading"></span><a href="#lazy-eager-loading" class="hashlink">&para;</a></h3><p><a href="#accessing-relational-data">リレーショナルデータにアクセスする</a> において、通常のオブジェクトプロパティにアクセスするのと同じようにして、アクティブレコードインスタンスのリレーションプロパティにアクセスすることが出来ることを説明しました。
+SQL 文は、リレーションプロパティに最初にアクセスするときにだけ実行されます。
+このようなリレーショナルデータのアクセス方法を <em>レイジーローディング</em> と呼びます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+
+<span class="hljs-comment">// SQL は実行されない</span>
+<span class="hljs-variable">$orders2</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+</code></pre>
+<p>レイジーローディングは非常に使い勝手が良いものです。
+しかし、複数のアクティブレコードインスタンスの同じリレーションプロパティにアクセスする必要がある場合は、パフォーマンスの問題を生じ得ます。
+次のコードサンプルを考えて見てください。実行される SQL 文の数はいくらになるでしょう?</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` LIMIT 100</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;limit(<span class="hljs-number">100</span>)-&gt;all();
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$customers</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = ...</span>
+    <span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+}
+</code></pre>
+<p>上のコードのコメントから判るように、実行される SQL 文は 101 にもなります。
+これは、for ループの中で、異なる <code>Customer</code> オブジェクトの <code>orders</code> リレーションにアクセスするたびに、SQL 文が一つ実行されることになるからです。</p>
+<p>このパフォーマンスの問題を解決するために、次に示すように、いわゆる <em>イーガーローディング</em> の手法を使うことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` LIMIT 100;</span>
+<span class="hljs-comment">// SELECT * FROM `orders` WHERE `customer_id` IN (...)</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;with(<span class="hljs-string">'orders'</span>)
+    -&gt;limit(<span class="hljs-number">100</span>)
+    -&gt;all();
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$customers</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-comment">// SQL は実行されない</span>
+    <span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+}
+</code></pre>
+<p><span class="broken-link">yii\db\ActiveQuery::with()</span> を呼ぶことによって、最初の 100 人の顧客の注文をたった一つの SQL 文で返すように、アクティブレコードに指示をしています。
+結果として、実行される SQL 文の数は 101 から 2 に減ります。</p>
+<p>イーガーローディングは、一つだけでなく、複数のリレーションに対しても使うことが出来ます。
+さらには、<em>ネストされたリレーション</em> でさえ、イーガーロードすることが出来ます。
+ネストされたリレーションというのは、関連するアクティブレコードの中で宣言されているリレーションです。
+例えば、<code>Cutomer</code> が <code>orders</code> リレーションによって <code>Order</code> と関連しており、<code>Order</code> が <code>items</code> リレーションによって <code>Item</code> と関連している場合です。
+<code>Customer</code> に対するクエリを実行するときに、ネストされたリレーションの記法である <code>orders.items</code> を使って、<code>items</code> をイーガーロードすることが出来ます。</p>
+<p>次のコードは、<span class="broken-link">yii\db\ActiveQuery::with()</span> のさまざまな使い方を示すものです。
+ここでは、<code>Customer</code> クラスは <code>orders</code> と <code>country</code> という二つのリレーションを持っており、また、<code>Order</code> クラスは <code>items</code> という一つのリレーションを持っていると仮定しています。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// "orders" と "country" の両方をイーガーロードする</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with(<span class="hljs-string">'orders'</span>, <span class="hljs-string">'country'</span>)-&gt;all();
+<span class="hljs-comment">// これは下の配列記法と等価</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with([<span class="hljs-string">'orders'</span>, <span class="hljs-string">'country'</span>])-&gt;all();
+<span class="hljs-comment">// SQL は実行されない</span>
+<span class="hljs-variable">$orders</span>= <span class="hljs-variable">$customers</span>[<span class="hljs-number">0</span>]-&gt;orders;
+<span class="hljs-comment">// SQL は実行されない</span>
+<span class="hljs-variable">$country</span> = <span class="hljs-variable">$customers</span>[<span class="hljs-number">0</span>]-&gt;country;
+
+<span class="hljs-comment">// "orders" リレーションと、ネストされた "orders.items" をイーガーロード</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with(<span class="hljs-string">'orders.items'</span>)-&gt;all();
+<span class="hljs-comment">// 最初の顧客の、最初の注文の品目にアクセスする</span>
+<span class="hljs-comment">// SQL は実行されない</span>
+<span class="hljs-variable">$items</span> = <span class="hljs-variable">$customers</span>[<span class="hljs-number">0</span>]-&gt;orders[<span class="hljs-number">0</span>]-&gt;items;
+</code></pre>
+<p>深くネストされたリレーション、たとえば <code>a.b.c.c</code> をイーガーロードすることも出来ます。
+このとき、すべての親リレーションもイーガーロードされます。
+つまり、<code>a.b.c.d</code> を使って <span class="broken-link">yii\db\ActiveQuery::with()</span> を呼ぶと、<code>a</code>、<code>a.b</code>、<code>a.b.c</code> そして <code>a.b.c.d</code> をイーガーロードすることになります。</p>
+<blockquote class="info"><p><strong>Info: </strong>一般化して言うと、<code>N</code> 個のリレーションのうち <code>M</code> 個のリレーションが <a href="#junction-table">中間テーブル</a> によって定義されている場合、この <code>N</code> 個のリレーションをイーガーロードしようとすると、合計で <code>1+M+N</code> 個の SQL クエリが実行されます。
+  ネストされたリレーション <code>a.b.c.d</code> は 4 個のリレーションとして数えられることに注意してください。</p>
+</blockquote>
+<p>リレーションをイーガーロードするときに、対応するリレーショナルクエリを無名関数を使ってカスタマイズすることが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 顧客を検索し、その国とアクティブな注文を同時に返す</span>
+<span class="hljs-comment">// SELECT * FROM `customer`</span>
+<span class="hljs-comment">// SELECT * FROM `country` WHERE `id` IN (...)</span>
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` IN (...) AND `status` = 1</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with([
+    <span class="hljs-string">'country'</span>,
+    <span class="hljs-string">'orders'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$query</span>)</span> </span>{
+        <span class="hljs-variable">$query</span>-&gt;andWhere([<span class="hljs-string">'status'</span> =&gt; Order::STATUS_ACTIVE]);
+    },
+])-&gt;all();
+</code></pre>
+<p>リレーションのためのリレーショナルクエリをカスタマイズするときは、リレーション名を配列のキーとし、対応する値に無名関数を使わなければなりません。
+無名関数が受け取る <code>$query</code> パラメータは、リレーションのためのリレーショナルクエリを実行するのに使用される <span class="broken-link">yii\db\ActiveQuery</span> オブジェクトを表します。
+上のコード例では、注文の状態に関する条件を追加して、リレーショナルクエリを修正しています。</p>
+<blockquote class="note"><p><strong>Note: </strong>リレーションをイーガーロードするときに <span class="broken-link">yii\db\Query::select()</span> を呼ぶ場合は、リレーションの宣言で参照されているカラムが選択されるように注意しなければなりません。
+そうしないと、リレーションのモデルが正しくロードされないことがあります。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$orders</span> = Order::find()-&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'amount'</span>])-&gt;with(<span class="hljs-string">'customer'</span>)-&gt;all();
+<span class="hljs-comment">// この場合、$orders[0]-&gt;customer は常に null になります。</span>
+<span class="hljs-comment">// 問題を修正するためには、次のようにしなければなりません。</span>
+<span class="hljs-variable">$orders</span> = Order::find()-&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'amount'</span>, <span class="hljs-string">'customer_id'</span>])-&gt;with(<span class="hljs-string">'customer'</span>)-&gt;all();
+</code></pre>
+</blockquote>
+<h3>リレーションを使ってテーブルを結合する <a name="joining-with-relations"> <span id="rireshonwo-shitteteburuwo-jie-hesuru"></span><a href="#rireshonwo-shitteteburuwo-jie-hesuru" class="hashlink">&para;</a></h3><blockquote class="note"><p><strong>Note: </strong>この項で説明されていることは、MySQL、PostgreSQL など、リレーショナルデータベースに対してのみ適用されます。</p>
+</blockquote>
+<p>ここまで説明してきたリレーショナルクエリは、主たるデータを検索する際に主テーブルのカラムだけを参照するものでした。
+現実には、関連するテーブルのカラムを参照しなければならない場合がよくあります。
+例えば、少なくとも一つのアクティブな注文を持つ顧客を取得したい、というような場合です。
+この問題を解決するためには、以下のようにして、テーブルを結合するクエリを構築することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT `customer`.* FROM `customer`</span>
+<span class="hljs-comment">// LEFT JOIN `order` ON `order`.`customer_id` = `customer`.`id`</span>
+<span class="hljs-comment">// WHERE `order`.`status` = 1</span>
+<span class="hljs-comment">// </span>
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` IN (...)</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;select(<span class="hljs-string">'customer.*'</span>)
+    -&gt;leftJoin(<span class="hljs-string">'order'</span>, <span class="hljs-string">'`order`.`customer_id` = `customer`.`id`'</span>)
+    -&gt;where([<span class="hljs-string">'order.status'</span> =&gt; Order::STATUS_ACTIVE])
+    -&gt;with(<span class="hljs-string">'orders'</span>)
+    -&gt;all();
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>JOIN SQL 文を含むリレーショナルクエリを構築する場合は、カラム名の曖昧さを解消することが重要です。
+  カラム名に対応するテーブル名をプレフィクスするのが慣例です。</p>
+</blockquote>
+<p>しかしながら、もっと良いのは、<span class="broken-link">yii\db\ActiveQuery::joinWith()</span> を呼んで、既にあるリレーションの宣言を利用するという手法です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;joinWith(<span class="hljs-string">'orders'</span>)
+    -&gt;where([<span class="hljs-string">'order.status'</span> =&gt; Order::STATUS_ACTIVE])
+    -&gt;all();
+</code></pre>
+<p>どちらの方法でも、実行される SQL 文のセットは同じです。
+けれども、後者の方がはるかに明快で簡潔です。</p>
+<p>デフォルトでは、<span class="broken-link">yii\db\ActiveQuery::joinWith()</span> は <code>LEFT JOIN</code> を使って、関連するテーブルを主テーブルに結合します。
+第三のパラメータ <code>$joinType</code> によって異なる結合タイプ (例えば <code>RIGHT JOIN</code>) を指定することが出来ます。
+指定したい結合タイプが <code>INNER JOIN</code> である場合は、代りに、<span class="broken-link">yii\db\ActiveQuery::innerJoinWith()</span> を呼ぶだけで済ませることが出来ます。</p>
+<p>デフォルトでは、<span class="broken-link">yii\db\ActiveQuery::joinWith()</span> を呼ぶと、リレーションのデータが <a href="#lazy-eager-loading">イーガーロード</a> されます。
+リレーションのデータを読み取りたくない場合は、第二のパラメータ <code>$eagerLoading</code> を <code>false</code> に指定することが出来ます。</p>
+<p><span class="broken-link">yii\db\ActiveQuery::with()</span> と同じように、一つまたは複数のリレーションを結合したり、リレーションクエリをその場でカスタマイズしたり、ネストされたリレーションを結合したりすることが出来ます。
+また、<span class="broken-link">yii\db\ActiveQuery::with()</span> と <span class="broken-link">yii\db\ActiveQuery::joinWith()</span> を混ぜて使用することも出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customers</span> = Customer::find()-&gt;joinWith([
+    <span class="hljs-string">'orders'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$query</span>)</span> </span>{
+        <span class="hljs-variable">$query</span>-&gt;andWhere([<span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'subtotal'</span>, <span class="hljs-number">100</span>]);
+    },
+])-&gt;with(<span class="hljs-string">'country'</span>)
+    -&gt;all();
+</code></pre>
+<p>二つのテーブルを結合するときに、結合クエリの <code>ON</code> の部分に追加の条件を指定する必要がある場合があるでしょう。
+これは、次のように、<span class="broken-link">yii\db\ActiveQuery::onCondition()</span> メソッドを呼ぶことによって実現できます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT `customer`.* FROM `customer`</span>
+<span class="hljs-comment">// LEFT JOIN `order` ON `order`.`customer_id` = `customer`.`id` AND `order`.`status` = 1 </span>
+<span class="hljs-comment">// </span>
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` IN (...)</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;joinWith([
+    <span class="hljs-string">'orders'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$query</span>)</span> </span>{
+        <span class="hljs-variable">$query</span>-&gt;onCondition([<span class="hljs-string">'order.status'</span> =&gt; Order::STATUS_ACTIVE]);
+    },
+])-&gt;all();
+</code></pre>
+<p>上記のクエリは <em>全ての</em> 顧客を返し、各顧客について全てのアクティブな注文を返します。
+これは、少なくとも一つのアクティブな注文を持つ顧客を全て返す、という以前の例とは異なっていることに注意してください。</p>
+<blockquote class="info"><p><strong>Info: </strong><span class="broken-link">yii\db\ActiveQuery</span> が <span class="broken-link">yii\db\ActiveQuery::onCondition()</span> によって条件を指定された場合、クエリが JOIN 句を含む場合は、条件は <code>ON</code> の部分に置かれます。
+  クエリが JOIN 句を含まない場合は、条件は自動的に <code>WHERE</code> の部分に追加されます。
+  このようにして、リレーションのテーブルのカラムを含む条件だけが <code>ON</code> の部分に置かれます。</p>
+</blockquote>
+<h4>リレーションのテーブルのエイリアス  <span id="relation-table-aliases"></span><a href="#relation-table-aliases" class="hashlink">&para;</a></h4><p>前に注意したように、クエリに JOIN を使うときは、カラム名の曖昧さを解消する必要があります。
+そのために、テーブルにエイリアスを定義することがよくあります。
+リレーションのテーブルのためにエイリアスを設定することは、リレーショナルクエリを次のようにカスタマイズすることによっても可能です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;joinWith([
+    <span class="hljs-string">'orders'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$q</span>)</span> </span>{
+        <span class="hljs-variable">$q</span>-&gt;from([<span class="hljs-string">'o'</span> =&gt; Order::tableName()]);
+    },
+])
+</code></pre>
+<p>しかし、これでは非常に複雑ですし、リレーションオブジェクトのテーブル名をハードコーディングしたり、<code>Order::tableName()</code> を呼んだりしなければなりません。
+バージョン 2.0.7 以降、Yii はこれに対するショートカットを提供しています。
+今では、次のようにしてリレーションのテーブルのエイリアスを定義して使うことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// orders リレーションを JOIN し、結果を orders.id でソートする</span>
+<span class="hljs-variable">$query</span>-&gt;joinWith([<span class="hljs-string">'orders o'</span>])-&gt;orderBy(<span class="hljs-string">'o.id'</span>);
+</code></pre>
+<h3>逆リレーション  <span id="inverse-relations"></span><a href="#inverse-relations" class="hashlink">&para;</a></h3><p>リレーションの宣言は、たいていの場合、二つのアクティブレコードクラスの間で相互的なものになります。
+例えば、<code>Customer</code> は <code>orders</code> リレーションによって <code>Order</code> に関連付けられ、逆に、<code>Order</code> は<code>customer</code> リレーションによって <code>Customer</code> に関連付けられる、という具合です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCustomer</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasOne(Customer::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'customer_id'</span>]);
+    }
+}
+</code></pre>
+<p>ここで、次のコード断片について考えて見てください。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123</span>
+<span class="hljs-variable">$order</span> = <span class="hljs-variable">$customer</span>-&gt;orders[<span class="hljs-number">0</span>];
+
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer2</span> = <span class="hljs-variable">$order</span>-&gt;customer;
+
+<span class="hljs-comment">// "異なる" が表示される</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$customer2</span> === <span class="hljs-variable">$customer</span> ? <span class="hljs-string">'同じ'</span> : <span class="hljs-string">'異なる'</span>;
+</code></pre>
+<p>私たちは <code>$customer</code> と <code>$customer2</code> が同じであると期待しますが、そうではありません。
+実際、二つは同じ顧客データを含んでいますが、オブジェクトとしては異なります。
+<code>$order-&gt;customer</code> にアクセスするときに追加の SQL 文が実行されて、新しいオブジェクトである <code>$customer2</code> にデータが投入されます。</p>
+<p>上記の例において、冗長な最後の SQL 文の実行を避けるためには、下に示すように、<span class="broken-link">yii\db\ActiveQuery::inverseOf()</span> メソッドを呼ぶことによって、<code>customer</code> が <code>orders</code> の <em>逆リレーション</em> であることを Yii に教えておかなければなりません。</p>
+<p>このようにリレーションの宣言を修正すると、次の結果を得ることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123</span>
+<span class="hljs-variable">$order</span> = <span class="hljs-variable">$customer</span>-&gt;orders[<span class="hljs-number">0</span>];
+
+<span class="hljs-comment">// No SQL will be executed</span>
+<span class="hljs-variable">$customer2</span> = <span class="hljs-variable">$order</span>-&gt;customer;
+
+<span class="hljs-comment">// "同じ" が表示される</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$customer2</span> === <span class="hljs-variable">$customer</span> ? <span class="hljs-string">'同じ'</span> : <span class="hljs-string">'異なる'</span>;
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>逆リレーションは <a href="#junction-table">中間テーブル</a> を含むリレーションについては宣言することが出来ません。
+  つまり、リレーションが <span class="broken-link">yii\db\ActiveQuery::via()</span> または <span class="broken-link">yii\db\ActiveQuery::viaTable()</span> によって定義されている場合は、<span class="broken-link">yii\db\ActiveQuery::inverseOf()</span> を追加で呼んではいけません。</p>
+</blockquote>
+<h2>リレーションを保存する  <span id="saving-relations"></span><a href="#saving-relations" class="hashlink">&para;</a></h2><p>リレーショナルデータを扱う時には、たいてい、さまざまなデータ間にリレーションを確立したり、既存のリレーションを破棄したりする必要があります。
+そのためには、リレーションを定義するカラムの値を適切に設定することが必要です。
+アクティブレコードを使う場合は、結局の所、次のようなコードを書くことになるでしょう。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$order</span> = <span class="hljs-keyword">new</span> Order();
+<span class="hljs-variable">$order</span>-&gt;subtotal = <span class="hljs-number">100</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// Order において "customer" リレーションを定義する属性の値を設定する</span>
+<span class="hljs-variable">$order</span>-&gt;customer_id = <span class="hljs-variable">$customer</span>-&gt;id;
+<span class="hljs-variable">$order</span>-&gt;save();
+</code></pre>
+<p>アクティブレコードは、この仕事をもっと楽に達成することが出来るように、<span class="broken-link">yii\db\ActiveRecord::link()</span> メソッドを提供しています。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$order</span> = <span class="hljs-keyword">new</span> Order();
+<span class="hljs-variable">$order</span>-&gt;subtotal = <span class="hljs-number">100</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-variable">$order</span>-&gt;link(<span class="hljs-string">'customer'</span>, <span class="hljs-variable">$customer</span>);
+</code></pre>
+<p><span class="broken-link">yii\db\ActiveRecord::link()</span> メソッドは、リレーション名と、リレーションを確立する対象のアクティブレコードインスタンスを指定することを要求します。
+このメソッドは、二つのアクティブレコードインスタンスをリンクする属性の値を修正して、それをデータベースに書き込みます。
+上記の例では、<code>Order</code> インスタンスの <code>customer_id</code> 属性を <code>Customer</code> インスタンスの <code>id</code> 属性の値になるようにセットして、それをデータベースに保存します。</p>
+<blockquote class="note"><p><strong>Note: </strong>二つの新規作成されたアクティブレコードインスタンスをリンクすることは出来ません。</p>
+</blockquote>
+<p><span class="broken-link">yii\db\ActiveRecord::link()</span> を使用することの利点は、リレーションが <a href="#junction-table">中間テーブル</a> によって定義されている場合に、さらに明白になります。
+例えば、一つの <code>Order</code> インスタンスと一つの<code>Item</code> インスタンスをリンクするのに、次のコードを使うことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$order</span>-&gt;link(<span class="hljs-string">'items'</span>, <span class="hljs-variable">$item</span>);
+</code></pre>
+<p>上記のコードによって、<code>order_item</code> 中間テーブルに、注文と商品を関連付けるための行が自動的に挿入されます。</p>
+<blockquote class="info"><p><strong>Info: </strong><span class="broken-link">yii\db\ActiveRecord::link()</span> メソッドは、影響を受けるアクティブレコードインスタンスを保存する際に、データ検証を実行しません。
+  このメソッドを呼ぶ前にすべての入力値を検証することはあなたの責任です。</p>
+</blockquote>
+<p><span class="broken-link">yii\db\ActiveRecord::link()</span> の逆の操作が <span class="broken-link">yii\db\ActiveRecord::unlink()</span> です。
+これは、既存の二つのアクティブレコードインスタンスのリレーションを破棄します。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::find()-&gt;with(<span class="hljs-string">'orders'</span>)-&gt;where([<span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">123</span>])-&gt;one();
+<span class="hljs-variable">$customer</span>-&gt;unlink(<span class="hljs-string">'orders'</span>, <span class="hljs-variable">$customer</span>-&gt;orders[<span class="hljs-number">0</span>]);
+</code></pre>
+<p>デフォルトでは、<span class="broken-link">yii\db\ActiveRecord::unlink()</span> メソッドは、既存のリレーションを指定している外部キーの値を <code>null</code> に設定します。
+ただし、<code>$delete</code> パラメータを <code>true</code> にしてメソッドに渡して、その外部キーを含むテーブル行を削除するという方法を選ぶことも出来ます。</p>
+<p>リレーションに中間テーブルが含まれている場合は、<span class="broken-link">yii\db\ActiveRecord::unlink()</span> を呼ぶと、中間テーブルにある外部キーがクリアされるか、または、<code>$delete</code> が <code>true</code> であるときは、中間テーブルにある対応する行が削除されるかします。</p>
+<h2>DBMS 間のリレーション  <span id="cross-database-relations"></span><a href="#cross-database-relations" class="hashlink">&para;</a></h2><p>アクティブレコードは、異なるデータベースをバックエンドに持つアクティブレコードの間でリレーションを宣言することを可能にしています。
+データベースは異なるタイプ (例えば、MySQL と PostgreSQL、または、MS SQL と MongoDB) であってもよく、別のサーバで動作していても構いません。
+同じ構文を使ってリレーショナルクエリを実行することが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// Customer はリレーショナルデータベース (例えば MySQL) の "customer" テーブルと関連付けられている</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tableName</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'customer'</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getComments</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// Customer は多くの Comment を持つ</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Comment::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+
+<span class="hljs-comment">// Comment は MongoDb データベースの "comment" コレクションと関連付けられている</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">mongodb</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">collectionName</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'comment'</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCustomer</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// Comment は 一つの Customer を持つ</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasOne(Customer::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'customer_id'</span>]);
+    }
+}
+
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with(<span class="hljs-string">'comments'</span>)-&gt;all();
+</code></pre>
+<p>この節で説明されたリレーショナルクエリ機能のほとんどを使用することが出来ます。</p>
+<blockquote class="note"><p><strong>Note: </strong><span class="broken-link">yii\db\ActiveQuery::joinWith()</span> の使用は、データベース間の JOIN クエリをサポートしているデータベースに限定されます。
+  この理由により、上記の例では <code>joinWith</code> メソッドは使用することが出来ません。
+  MongoDB は JOIN をサポートしていないからです。</p>
+</blockquote>
+<h2>クエリクラスをカスタマイズする  <span id="customizing-query-classes"></span><a href="#customizing-query-classes" class="hashlink">&para;</a></h2><p>デフォルトでは、全てのアクティブレコードのクエリは <span class="broken-link">yii\db\ActiveQuery</span> によってサポートされます。
+カスタマイズされたクエリクラスをアクティブレコードで使用するためには、<span class="broken-link">yii\db\ActiveRecord::find()</span> メソッドをオーバーライドして、カスタマイズされたクエリクラスのインスタンスを返すようにしなければなりません。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveQuery</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">find</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CommentQuery(get_called_class());
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CommentQuery</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveQuery</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>このようにすると、<code>Comment</code> のクエリを実行したり (例えば <code>find()</code> や <code>findOne()</code> を呼んだり) リレーションを定義したり (例えば <code>hasOne()</code> を定義したり) する際には、いつでも、<code>AcctiveQuery</code> の代りに <code>CommentQuery</code> のインスタンスを使用することになります。</p>
+<blockquote class="tip"><p><strong>Tip: </strong>大きなプロジェクトでは、アクティブレコードクラスをクリーンに保つことが出来るように、クエリ関連のコードのほとんどをカスタマイズされたクエリクラスに保持することが推奨されます。</p>
+</blockquote>
+<p>クエリクラスは、さまざまのクリエイティブな方法によってカスタマイズして、あなたのクエリ構築の体験を向上させることが出来ます。
+例えば、カスタマイズされたクエリクラスにおいて、新しいクエリ構築メソッドを定義することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CommentQuery</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveQuery</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">active</span><span class="hljs-params">(<span class="hljs-variable">$state</span> = true)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;andWhere([<span class="hljs-string">'active'</span> =&gt; <span class="hljs-variable">$state</span>]);
+    }
+}
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>新しいクエリ構築メソッドを定義する場合は、通常は、既存の条件が上書きされないように、<span class="broken-link">yii\db\ActiveQuery::where()</span> ではなく、<span class="broken-link">yii\db\ActiveQuery::andWhere()</span> または <span class="broken-link">yii\db\ActiveQuery::orWhere()</span> を呼んで条件を追加しなければなりません。</p>
+</blockquote>
+<p>このようにすると、次のようにクエリ構築のコードを書くことが出来るようになります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$comments</span> = Comment::find()-&gt;active()-&gt;all();
+<span class="hljs-variable">$inactiveComments</span> = Comment::find()-&gt;active(<span class="hljs-keyword">false</span>)-&gt;all();
+</code></pre>
+<p>この新しいクエリ構築メソッドは、<code>Comment</code> に関するリレーションを定義するときや、リレーショナルクエリを実行するときにも使用することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getActiveComments</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Comment::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>])-&gt;active();
+    }
+}
+
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with(<span class="hljs-string">'activeComments'</span>)-&gt;all();
+
+<span class="hljs-comment">// あるいは、また</span>
+ 
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with([
+    <span class="hljs-string">'comments'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$q</span>)</span> </span>{
+        <span class="hljs-variable">$q</span>-&gt;active();
+    }
+])-&gt;all();
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>Yii 1.1 には、<em>スコープ</em> と呼ばれる概念がありました。
+  Yii 2.0 では、スコープはもはや直接にはサポートされません。
+  同じ目的を達するためには、カスタマイズされたクエリクラスとクエリメソッドを使わなければなりません。</p>
+</blockquote>
+<h2>追加のフィールドを選択する <span id="zhui-jianofirudowo-xuan-zesuru"></span><a href="#zhui-jianofirudowo-xuan-zesuru" class="hashlink">&para;</a></h2><p>アクティブレコードのインスタンスにクエリ結果からデータが投入されるときは、受け取ったデータセットのカラムの値が対応する属性に入れられます。</p>
+<p>クエリ結果から追加のカラムや値を取得して、アクティブレコードの内部に格納することが出来ます。
+例えば、ホテルの客室の情報を含む <code>room</code> という名前のテーブルがあるとしましょう。
+そして、全ての客室のデータは <code>length</code> (長さ)、<code>width</code> (幅)、<code>height</code> (高さ) というフィールドを使って、部屋の幾何学的なサイズに関する情報を格納しているとします。
+空いている全ての部屋の一覧を容積の降順で取得する必要がある場合を考えて見てください。
+レコードをその値で並べ替える必要があるので、PHP を使って容積を計算することは出来ません。
+しかし、同時に、一覧には <code>volume</code> (容積) も表示したいでしょう。
+目的を達するためには、<code>Room</code> アクティブレコードクラスにおいて追加のフィールドを宣言し、<code>volume</code> の値を格納する必要があります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Room</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$volume</span>;
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>そして、部屋の容積を計算して並べ替えを実行するクエリを構築しなければなりません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$rooms</span> = Room::find()
+    -&gt;select([
+        <span class="hljs-string">'{{room}}.*'</span>, <span class="hljs-comment">// 全てのカラムを選択</span>
+        <span class="hljs-string">'([[length]] * [[width]] * [[height]]) AS volume'</span>, <span class="hljs-comment">// 容積を計算</span>
+    ])
+    -&gt;orderBy(<span class="hljs-string">'volume DESC'</span>) <span class="hljs-comment">// 並べ替えを適用</span>
+    -&gt;all();
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$rooms</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$room</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$room</span>-&gt;volume; <span class="hljs-comment">// SQL によって計算された値を含んでいる</span>
+}
+</code></pre>
+<p>追加のフィールドが選択できることは、集計クエリに対して特に有効に機能します。
+注文の数とともに顧客の一覧を表示する必要がある場合を想定してください。
+まず初めに、<code>Customer</code> クラスの中で、<code>orders</code> リレーションと、注文数を格納するための追加のフィールドを宣言しなければなりません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$ordersCount</span>;
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+</code></pre>
+<p>そして、order を結合して注文数を計算するクエリを構築することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;select([
+        <span class="hljs-string">'{{customer}}.*'</span>, <span class="hljs-comment">// 顧客の全てのフィールドを選択</span>
+        <span class="hljs-string">'COUNT({{order}}.id) AS ordersCount'</span> <span class="hljs-comment">// 注文数を計算</span>
+    ])
+    -&gt;joinWith(<span class="hljs-string">'orders'</span>) <span class="hljs-comment">// テーブルの結合を保証する</span>
+    -&gt;groupBy(<span class="hljs-string">'{{customer}}.id'</span>) <span class="hljs-comment">// 結果をグループ化して、集計関数の動作を保証する</span>
+    -&gt;all();
+</code></pre>
+<p>この方法を使うことの短所の一つは、情報が SQL クエリでロードされていない場合には、それを別途計算しなければならない、ということです。
+このことは、また、新しく保存したレコードも追加のフィールドについては情報を持っていないことになることを意味します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$room</span> = <span class="hljs-keyword">new</span> Room();
+<span class="hljs-variable">$room</span>-&gt;length = <span class="hljs-number">100</span>;
+<span class="hljs-variable">$room</span>-&gt;width = <span class="hljs-number">50</span>;
+<span class="hljs-variable">$room</span>-&gt;height = <span class="hljs-number">2</span>;
+
+<span class="hljs-variable">$room</span>-&gt;volume; <span class="hljs-comment">// まだ指定されていないため、この値は null になります。</span>
+</code></pre>
+<p><span class="broken-link">yii\db\BaseActiveRecord::__get()</span> と <span class="broken-link">yii\db\BaseActiveRecord::__set()</span> のマジックメソッドを使用すれば、プロパティの動作をエミュレートすることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Room</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$_volume</span>;
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setVolume</span><span class="hljs-params">(<span class="hljs-variable">$volume</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;_volume = (float) <span class="hljs-variable">$volume</span>;
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getVolume</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>(<span class="hljs-variable">$this</span>-&gt;length) || <span class="hljs-keyword">empty</span>(<span class="hljs-variable">$this</span>-&gt;width) || <span class="hljs-keyword">empty</span>(<span class="hljs-variable">$this</span>-&gt;height)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;_volume === <span class="hljs-keyword">null</span>) {
+            <span class="hljs-variable">$this</span>-&gt;setVolume(
+                <span class="hljs-variable">$this</span>-&gt;length * <span class="hljs-variable">$this</span>-&gt;width * <span class="hljs-variable">$this</span>-&gt;height
+            );
+        }
+        
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;_volume;
+    }
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>このようにすると、SELECT クエリによって容積が提供されていない場合に、モデルの他の属性を使って容積を自動的に計算することが出来ます。</p>
+<p>この手法は、リレーショナルデータに依存する追加のフィールドに対しても、同じように使用する事が出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$_ordersCount</span>;
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setOrdersCount</span><span class="hljs-params">(<span class="hljs-variable">$count</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;_ordersCount = (int) <span class="hljs-variable">$count</span>;
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrdersCount</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;isNewRecord) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>; <span class="hljs-comment">// プライマリキーが null の場合のリレーショナルクエリを防止</span>
+        }
+        
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;_ordersCount === <span class="hljs-keyword">null</span>) {
+            <span class="hljs-variable">$this</span>-&gt;setOrdersCount(count(<span class="hljs-variable">$this</span>-&gt;orders));
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;_ordersCount;
+    }
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+</code></pre>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:43 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

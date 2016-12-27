@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Responses - Yêu cầu xử lý (Handling Requests) - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w12400" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w12400-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w12400-collapse" class="collapse navbar-collapse"><ul id="w12401" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-12384" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-12384" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-12385" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-12385" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-12386" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-12386" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item active" href="#navigation-12387" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-12387" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item active" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-12388" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-12388" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-12389" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-12389" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-12390" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-12390" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-12391" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-12391" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-12392" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-12392" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-12393" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-12393" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-12394" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-12394" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-12395" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-12395" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-12396" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-12396" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-12397" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-12397" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-12398" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-12398" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-12399" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-12399" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>レスポンス <span id="resuponsu"></span><a href="#resuponsu" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#status-code">ステータスコード</a></li>
+<li><a href="#http-headers">HTTP ヘッダ</a></li>
+<li><a href="#response-body">レスポンスボディ</a></li>
+<li><a href="#browser-redirection">ブラウザのリダイレクト</a></li>
+<li><a href="#sending-files">ファイルを送信する</a></li>
+<li><a href="#sending-response">レスポンスを送信する</a></li></ol></div>
+<p>アプリケーションは <a href="guide-runtime-requests.html">リクエスト</a> の処理を完了すると、<span class="broken-link">yii\web\Response</span> オブジェクトを生成して、エンドユーザに送信します。
+レスポンスオブジェクトは、HTTP ステータスコード、HTTP ヘッダ、HTTP ボディなどの情報を含みます。
+ウェブアプリケーション開発の最終的な目的は、本質的には、さまざまなリクエストに対してそのようなレスポンスオブジェクトを作成することにあります。</p>
+<p>ほとんどの場合は、主として、デフォルトでは <span class="broken-link">yii\web\Response</span> のインスタンスである <code>response</code> <a href="guide-structure-application-components.html">アプリケーションコンポーネント</a> を使用すべきです。
+しかしながら、Yii は、以下で説明するように、あなた自身のレスポンスオブジェクトを作成してエンドユーザに送信することも許容しています。</p>
+<p>この節では、レスポンスを構成してエンドユーザに送信する方法を説明します。</p>
+<h2>ステータスコード  <span id="status-code"></span><a href="#status-code" class="hashlink">&para;</a></h2><p>レスポンスを作成するときに最初にすることの一つは、リクエストが成功裡に処理されたかどうかを記述することです。
+そのためには、<span class="broken-link">yii\web\Response::statusCode</span> プロパティに有効な <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">HTTP ステータスコード</a> の一つを設定します。
+例えば、下記のように、リクエストの処理が成功したことを示すために、ステータスコードを 200 に設定します。</p>
+<pre><code class="hljs php language-php">Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;statusCode = <span class="hljs-number">200</span>;
+</code></pre>
+<p>ただし、たいていの場合、ステータスコードを明示的に設定する必要はありません。
+これは、<span class="broken-link">yii\web\Response::statusCode</span> のデフォルト値が 200 であるからです。
+そして、リクエストが失敗したことを示したいときは、下記のように、適切な HTTP 例外を投げることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> \yii\web\NotFoundHttpException;
+</code></pre>
+<p><a href="guide-runtime-handling-errors.html">エラーハンドラ</a> は、例外をキャッチすると、例外からステータスコードを抽出してレスポンスに割り当てます。
+上記の <span class="broken-link">yii\web\NotFoundHttpException</span> の場合は、HTTP ステータス 404 と関連付けられています。
+次の HTTP 例外が Yii によって事前定義されています。</p>
+<ul>
+<li><span class="broken-link">yii\web\BadRequestHttpException</span>: ステータスコード 400</li>
+<li><span class="broken-link">yii\web\ConflictHttpException</span>: ステータスコード 409</li>
+<li><span class="broken-link">yii\web\ForbiddenHttpException</span>: ステータスコード 403</li>
+<li><span class="broken-link">yii\web\GoneHttpException</span>: ステータスコード 410</li>
+<li><span class="broken-link">yii\web\MethodNotAllowedHttpException</span>: ステータスコード 405</li>
+<li><span class="broken-link">yii\web\NotAcceptableHttpException</span>: ステータスコード 406 </li>
+<li><span class="broken-link">yii\web\NotFoundHttpException</span>: ステータスコード 404</li>
+<li><span class="broken-link">yii\web\ServerErrorHttpException</span>: ステータスコード 500</li>
+<li><span class="broken-link">yii\web\TooManyRequestsHttpException</span>: ステータスコード 429</li>
+<li><span class="broken-link">yii\web\UnauthorizedHttpException</span>: ステータスコード 401</li>
+<li><span class="broken-link">yii\web\UnsupportedMediaTypeHttpException</span>: ステータスコード 415</li>
+</ul>
+<p>投げたい例外が上記のリストに無い場合は、<span class="broken-link">yii\web\HttpException</span> から拡張したものを作成することが出来ます。
+あるいは、ステータスコードを指定して <span class="broken-link">yii\web\HttpException</span> を直接に投げることも出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> \yii\web\HttpException(<span class="hljs-number">402</span>);
+</code></pre>
+<h2>HTTP ヘッダ  <span id="http-headers"></span><a href="#http-headers" class="hashlink">&para;</a></h2><p><code>response</code> コンポーネントの <span class="broken-link">yii\web\Response::headers</span> を操作することによって、HTTP ヘッダを送信することが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$headers</span> = Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;headers;
+
+<span class="hljs-comment">// Pragma ヘッダを追加する。既存の Pragma ヘッダは上書きされない。</span>
+<span class="hljs-variable">$headers</span>-&gt;add(<span class="hljs-string">'Pragma'</span>, <span class="hljs-string">'no-cache'</span>);
+
+<span class="hljs-comment">// Pragma ヘッダを設定する。既存の Pragma ヘッダは全て破棄される。</span>
+<span class="hljs-variable">$headers</span>-&gt;set(<span class="hljs-string">'Pragma'</span>, <span class="hljs-string">'no-cache'</span>);
+
+<span class="hljs-comment">// Pragma ヘッダを削除して、削除された Pragma ヘッダの値を配列に返す。</span>
+<span class="hljs-variable">$values</span> = <span class="hljs-variable">$headers</span>-&gt;remove(<span class="hljs-string">'Pragma'</span>);
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>ヘッダ名は大文字小文字を区別しません。
+  そして、新しく登録されたヘッダは、<span class="broken-link">yii\web\Response::send()</span> メソッドが呼ばれるまで送信されません。</p>
+</blockquote>
+<h2>レスポンスボディ  <span id="response-body"></span><a href="#response-body" class="hashlink">&para;</a></h2><p>ほとんどのレスポンスは、エンドユーザに対して表示したい内容を示すボディを持っていなければなりません。</p>
+<p>既にフォーマットされたボディの文字列を持っている場合は、それをレスポンスの <span class="broken-link">yii\web\Response::content</span> プロパティに割り付けることが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php">Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;content = <span class="hljs-string">'hello world!'</span>;
+</code></pre>
+<p>データをエンドユーザに送信する前にフォーマットする必要がある場合は、<span class="broken-link">yii\web\Response::format</span> と <span class="broken-link">yii\web\Response::data</span> の両方のプロパティをセットしなければなりません。
+<span class="broken-link">yii\web\Response::format</span> プロパティは <span class="broken-link">yii\web\Response::data</span> がどの形式でフォーマットされるべきかを指定するものです。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$response</span> = Yii::<span class="hljs-variable">$app</span>-&gt;response;
+<span class="hljs-variable">$response</span>-&gt;format = \yii\web\Response::FORMAT_JSON;
+<span class="hljs-variable">$response</span>-&gt;data = [<span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'hello world'</span>];
+</code></pre>
+<p>Yii は下記の形式を初めからサポートしています。
+それぞれ、<span class="broken-link">yii\web\ResponseFormatterInterface</span> クラスとして実装されています。
+<span class="broken-link">yii\web\Response::formatters</span> プロパティを構成することで、これらのフォーマッタをカスタマイズしたり、新しいフォーマッタを追加したりすることが出来ます。</p>
+<ul>
+<li><span class="broken-link">yii\web\Response::FORMAT_HTML</span>: <span class="broken-link">yii\web\HtmlResponseFormatter</span> によって実装</li>
+<li><span class="broken-link">yii\web\Response::FORMAT_XML</span>: <span class="broken-link">yii\web\XmlResponseFormatter</span> によって実装</li>
+<li><span class="broken-link">yii\web\Response::FORMAT_JSON</span>: <span class="broken-link">yii\web\JsonResponseFormatter</span> によって実装</li>
+<li><span class="broken-link">yii\web\Response::FORMAT_JSONP</span>: <span class="broken-link">yii\web\JsonResponseFormatter</span> によって実装</li>
+<li></li>
+</ul>
+<p>レスポンスボディは、上記のように、明示的に設定することも出来ますが、たいていの場合は、<a href="guide-structure-controllers.html">アクション</a> メソッドの返り値によって暗黙のうちに設定することが出来ます。
+よくあるユースケースは下記のようなものになります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionIndex</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'index'</span>);
+}
+</code></pre>
+<p>上記の <code>index</code> アクションは、<code>index</code> ビューのレンダリング結果を返しています。
+返された値は <code>response</code> コンポーネントによって受け取られ、フォーマットされてエンドユーザに送信されます。</p>
+<p>デフォルトのレスポンス形式が <span class="broken-link">yii\web\Response::FORMAT_HTML</span> であるため、アクションメソッドの中では文字列を返すだけにすべきです。
+別のレスポンス形式を使いたい場合は、データを返す前にレスポンス形式を設定しなければなりません。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionInfo</span><span class="hljs-params">()</span>
+</span>{
+    \Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;format = \yii\web\Response::FORMAT_JSON;
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'hello world'</span>,
+        <span class="hljs-string">'code'</span> =&gt; <span class="hljs-number">100</span>,
+    ];
+}
+</code></pre>
+<p>既に述べたように、デフォルトの <code>response</code> アプリケーションコンポーネントを使う代りに、自分自身のレスポンスオブジェクトを作成してエンドユーザに送信することも出来ます。
+そうするためには、次のように、アクションメソッドの中でそのようなオブジェクトを返します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionInfo</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> \Yii::createObject([
+        <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\web\Response'</span>,
+        <span class="hljs-string">'format'</span> =&gt; \yii\web\Response::FORMAT_JSON,
+        <span class="hljs-string">'data'</span> =&gt; [
+            <span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'hello world'</span>,
+            <span class="hljs-string">'code'</span> =&gt; <span class="hljs-number">100</span>,
+        ],
+    ]);
+}
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>自分自身のレスポンスオブジェクトを作成しようとする場合は、アプリケーションの構成情報で <code>response</code> コンポーネントのために設定した構成情報を利用することは出来ません。
+  しかし、 <a href="guide-concept-di-container.html">依存の注入</a> を使えば、 共通の構成情報をあなたの新しいレスポンスオブジェクトに適用することが出来ます。</p>
+</blockquote>
+<h2>ブラウザのリダイレクト  <span id="browser-redirection"></span><a href="#browser-redirection" class="hashlink">&para;</a></h2><p>ブラウザのリダイレクトは <code>Location</code> HTTP ヘッダの送信に依存しています。
+この機能は通常よく使われるものであるため、Yii はこれについて特別のサポートを提供しています。</p>
+<p><span class="broken-link">yii\web\Response::redirect()</span> メソッドを呼ぶことによって、ユーザのブラウザをある URL にリダイレクトすることが出来ます。
+このメソッドは与えられた URL を持つ適切な <code>Location</code> ヘッダを設定して、レスポンスオブジェクトそのものを返します。
+アクションメソッドの中では、そのショートカット版である <span class="broken-link">yii\web\Controller::redirect()</span> を呼ぶことが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionOld</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;redirect(<span class="hljs-string">'http://example.com/new'</span>, <span class="hljs-number">301</span>);
+}
+</code></pre>
+<p>上記のコードでは、アクションメソッドが <code>redirect()</code> メソッドの結果を返しています。
+前に説明したように、アクションメソッドによって返されるレスポンスオブジェクトが、エンドユーザに送信されるレスポンスとして使用されることになります。</p>
+<p>アクションメソッド以外の場所では、<span class="broken-link">yii\web\Response::redirect()</span> を直接に呼び出し、メソッドチェーンで <span class="broken-link">yii\web\Response::send()</span> メソッドを呼んで、レスポンスに余計なコンテントが追加されないことを保証しなければなりません。</p>
+<pre><code class="hljs php language-php">\Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;redirect(<span class="hljs-string">'http://example.com/new'</span>, <span class="hljs-number">301</span>)-&gt;send();
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>デフォルトでは、<span class="broken-link">yii\web\Response::redirect()</span> メソッドはレスポンスのステータスコードを 302 にセットします。
+これはブラウザに対して、リクエストされているリソースが <em>一時的に</em> 異なる URI に配置されていることを示すものです。
+ブラウザに対してリソースが <em>恒久的に</em> 配置替えされたことを教えるためには、ステータスコード 301 を渡すことが出来ます。</p>
+</blockquote>
+<p>現在のリクエストが AJAX リクエストである場合は、<code>Location</code> ヘッダを送っても自動的にブラウザをリダイレクトすることにはなりません。
+この問題を解決するために、<span class="broken-link">yii\web\Response::redirect()</span> メソッドは <code>X-Redirect</code> ヘッダにリダイレクト先 URL を値としてセットします。
+そして、クライアントサイドで、このヘッダの値を読み、それに応じてブラウザをリダイレクトする JavaScript を書くことが出来ます。</p>
+<blockquote class="info"><p><strong>Info: </strong>Yii には <code>yii.js</code> という JavaScript ファイルが付属しています。
+これは、よく使われる一連の JavaScript 機能を提供するもので、その中には <code>X-Redirect</code> ヘッダに基づくブラウザのリダイレクトも含まれています。
+従って、あなたが (<span class="broken-link">yii\web\YiiAsset</span> アセットバンドルを登録して) この JavaScript ファイルを使うつもりなら、AJAX のリダイレクトをサポートするためには、何も書く必要がなくなります。</p>
+</blockquote>
+<h2>ファイルを送信する  <span id="sending-files"></span><a href="#sending-files" class="hashlink">&para;</a></h2><p>ブラウザのリダイレクトと同じように、ファイルの送信という機能も特定の HTTP ヘッダに依存しています。
+Yii はさまざまなファイル送信の必要をサポートするための一連のメソッドを提供しています。それらはすべて、HTTP range ヘッダに対するサポートを内蔵しています。</p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<p>これらのメソッドは同じメソッドシグニチャを持ち、返り値としてレスポンスオブジェクトを返します。
+送信しようとしているファイルが非常に大きなものである場合は、メモリ効率の良い <span class="broken-link">yii\web\Response::sendStreamAsFile()</span> の使用を検討すべきです。
+次の例は、コントローラアクションでファイルを送信する方法を示すものです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionDownload</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> \Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;sendFile(<span class="hljs-string">'path/to/file.txt'</span>);
+}
+</code></pre>
+<p>ファイル送信メソッドをアクションメソッド以外の場所で呼ぶ場合は、その後で <span class="broken-link">yii\web\Response::send()</span> メソッドも呼んで、レスポンスに余計なコンテントが追加されないことを保証しなければなりません。</p>
+<pre><code class="hljs php language-php">\Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;sendFile(<span class="hljs-string">'path/to/file.txt'</span>)-&gt;send();
+</code></pre>
+<p>ウェブサーバには、<em>X-Sendfile</em> と呼ばれる特別なファイル送信をサポートするものがあります。
+アイデアとしては、ファイルに対するリクエストをウェブサーバにリダイレクトして、ウェブサーバに直接にファイルを送信させる、というものです。
+その結果として、ウェブサーバがファイルを送信している間でも、ウェブアプリケーションは早期に終了することが出来るようになります。
+この機能を使うために、<span class="broken-link">yii\web\Response::xSendFile()</span> を呼ぶことが出来ます。
+次のリストは、よく使われるいくつかのウェブサーバにおいて <code>X-Sendfile</code> 機能を有効にする方法を要約するものです。</p>
+<ul>
+<li>Apache: <a href="http://tn123.org/mod_xsendfile">X-Sendfile</a></li>
+<li>Lighttpd v1.4: <a href="http://redmine.lighttpd.net/projects/lighttpd/wiki/X-LIGHTTPD-send-file">X-LIGHTTPD-send-file</a></li>
+<li>Lighttpd v1.5: <a href="http://redmine.lighttpd.net/projects/lighttpd/wiki/X-LIGHTTPD-send-file">X-Sendfile</a></li>
+<li>Nginx: <a href="http://wiki.nginx.org/XSendfile">X-Accel-Redirect</a></li>
+<li>Cherokee: <a href="http://www.cherokee-project.com/doc/other_goodies.html#x-sendfile">X-Sendfile and X-Accel-Redirect</a></li>
+</ul>
+<h2>レスポンスを送信する  <span id="sending-response"></span><a href="#sending-response" class="hashlink">&para;</a></h2><p>レスポンスの中のコンテントは、<span class="broken-link">yii\web\Response::send()</span> メソッドが呼ばれるまでは、エンドユーザに向けて送信されません。
+デフォルトでは、このメソッドは <span class="broken-link">yii\base\Application::run()</span> の最後で自動的に呼ばれます。
+しかし、このメソッドを明示的に呼んで、強制的にレスポンスを即座に送信することも可能です。</p>
+<p><span class="broken-link">yii\web\Response::send()</span> メソッドは次のステップを踏んでレスポンスを送出します。</p>
+<ol>
+<li><span class="broken-link">yii\web\Response::EVENT_BEFORE_SEND</span> イベントをトリガする。</li>
+<li><span class="broken-link">yii\web\Response::prepare()</span> を呼んで <span class="broken-link">yii\web\Response::data</span> を
+<span class="broken-link">yii\web\Response::content</span> としてフォーマットする。</li>
+<li><span class="broken-link">yii\web\Response::EVENT_AFTER_PREPARE</span> イベントをトリガする。</li>
+<li><span class="broken-link">yii\web\Response::sendHeaders()</span> を呼んで、登録された HTTP ヘッダを送出する。</li>
+<li><span class="broken-link">yii\web\Response::sendContent()</span> を呼んで、レスポンスのボディコンテントを送出する。</li>
+<li><span class="broken-link">yii\web\Response::EVENT_AFTER_SEND</span> イベントをトリガする。</li>
+</ol>
+<p><span class="broken-link">yii\web\Response::send()</span> メソッドが一度呼び出された後では、このメソッドに対する更なる呼び出しは無視されます。
+このことは、いったんレスポンスが送出された後では、それにコンテントを追加することは出来なくなる、ということを意味します。</p>
+<p>ごらんのように、<span class="broken-link">yii\web\Response::send()</span> メソッドはいくつかの有用なイベントをトリガします。
+これらのイベントに反応することによって、レスポンスを調整したり修飾したりすることが出来ます。</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:43 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

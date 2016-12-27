@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Phân trang (Pagination) - Hiển thị dữ liệu - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w11662" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w11662-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w11662-collapse" class="collapse navbar-collapse"><ul id="w11663" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-11646" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-11646" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-11647" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-11647" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-11648" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-11648" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-11649" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-11649" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-11650" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-11650" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-11651" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-11651" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-11652" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-11652" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item active" href="#navigation-11653" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-11653" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item active" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-11654" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-11654" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-11655" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-11655" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-11656" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-11656" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-11657" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-11657" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-11658" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-11658" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-11659" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-11659" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-11660" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-11660" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-11661" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-11661" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>ページネーション <span id="pejineshon"></span><a href="#pejineshon" class="hashlink">&para;</a></h1><p>一つのページに表示するにはデータの数が多すぎるという場合に、データを複数のページに分割して、それぞれのページでは一部分だけを表示する、という戦略がよく使われます。
+この戦略が <em>ページネーション</em> として知られるものです。</p>
+<p>Yii は <span class="broken-link">yii\data\Pagination</span> オブジェクトを使って、ページネーションのスキームに関する情報を表します。
+具体的に言えば、</p>
+<ul>
+<li><span class="broken-link">yii\data\Pagination::$totalCount</span> データアイテムの総数を指定します。
+通常、データアイテムの総数は、一つのページを表示するのに必要なデータアイテムの数より、ずっと大きなものになることに注意してください。</li>
+<li><span class="broken-link">yii\data\Pagination::$pageSize</span> 各ページが含むアイテムの数を指定します。
+デフォルト値は 20 です。</li>
+<li><span class="broken-link">yii\data\Pagination::$page</span> 現在のページ番号 (0 から始まる) を示します。
+デフォルト値は 0 であり、最初のページを意味します。</li>
+</ul>
+<p>これらの情報を全て定義した <span class="broken-link">yii\data\Pagination</span> オブジェクトを使って、データの一部分を取得して表示することが出来ます。
+例えば、データプロバイダからデータを取得する場合であれば、ページネーションによって提供される値によって、それに対応する <code>OFFSET</code> と <code>LIMIT</code> の句を DB クエリに指定することが出来ます。
+下記に例を挙げます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">data</span>\<span class="hljs-title">Pagination</span>;
+
+<span class="hljs-comment">// status = 1 である全ての記事を取得する DB クエリを構築する</span>
+<span class="hljs-variable">$query</span> = Article::find()-&gt;where([<span class="hljs-string">'status'</span> =&gt; <span class="hljs-number">1</span>]);
+
+<span class="hljs-comment">// 記事の総数を取得する (ただし、記事のデータはまだ取得しない)</span>
+<span class="hljs-variable">$count</span> = <span class="hljs-variable">$query</span>-&gt;count();
+
+<span class="hljs-comment">// 記事の総数を使ってページネーションオブジェクトを作成する</span>
+<span class="hljs-variable">$pagination</span> = <span class="hljs-keyword">new</span> Pagination([<span class="hljs-string">'totalCount'</span> =&gt; <span class="hljs-variable">$count</span>]);
+
+<span class="hljs-comment">// ページネーションを使ってクエリの OFFSET と LIMIT を修正して記事を取得する</span>
+<span class="hljs-variable">$articles</span> = <span class="hljs-variable">$query</span>-&gt;offset(<span class="hljs-variable">$pagination</span>-&gt;offset)
+    -&gt;limit(<span class="hljs-variable">$pagination</span>-&gt;limit)
+    -&gt;all();
+</code></pre>
+<p>上記の例で返される記事のページ番号はどうなるでしょう?
+それは <code>page</code> という名前のクエリパラメータがリクエストに含まれるかどうかによって決ります。
+デフォルトでは、ページネーションオブジェクトは <span class="broken-link">yii\data\Pagination::$page</span> に <code>page</code> パラメータの値をセットしようと試みます。
+そして、このパラメータが提供されていない場合には、デフォルト値である 0 が使用されます。</p>
+<p>ページネーションをサポートする UI 要素の構築を容易にするために、Yii はページボタンのリストを表示する <span class="broken-link">yii\widgets\LinkPager</span> ウィジェットを提供しています。
+これは、ユーザがページボタンをクリックして、どのページを表示すべきかを指示することが出来るものです。
+このウィジェットは、ページネーションオブジェクトを受け取って、現在のページ番号が何であるかを知り、何個のページボタンを表示すべきかを知ります。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">widgets</span>\<span class="hljs-title">LinkPager</span>;
+
+<span class="hljs-keyword">echo</span> LinkPager::widget([
+    <span class="hljs-string">'pagination'</span> =&gt; <span class="hljs-variable">$pagination</span>,
+]);
+</code></pre>
+<p>UI 要素を手動で構築したい場合は、<span class="broken-link">yii\data\Pagination::createUrl()</span> を使って、いろんなページに跳ぶ URL を作成することが出来ます。
+このメソッドは page パラメータを要求し、その page パラメータを含む正しくフォーマットされた URL を作成します。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 作成される URL が使用すべきルートを指定する</span>
+<span class="hljs-comment">// 指定しない場合は、現在リクエストされているルートが使用される</span>
+<span class="hljs-variable">$pagination</span>-&gt;route = <span class="hljs-string">'article/index'</span>;
+
+<span class="hljs-comment">// /index.php?r=article%2Findex&amp;page=100 を表示</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$pagination</span>-&gt;createUrl(<span class="hljs-number">100</span>);
+
+<span class="hljs-comment">// /index.php?r=article%2Findex&amp;page=101 を表示</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$pagination</span>-&gt;createUrl(<span class="hljs-number">101</span>);
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong><code>page</code> クエリパラメータの名前をカスタマイズするためには、ページネーションオブジェクトを作成する際に <span class="broken-link">yii\data\Pagination::pageParam</span> プロパティを構成します。</p>
+</blockquote>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:43 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

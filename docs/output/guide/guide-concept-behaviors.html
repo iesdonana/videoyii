@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Hành vi (Behaviors) - Các khái niệm chính - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w11068" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w11068-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w11068-collapse" class="collapse navbar-collapse"><ul id="w11069" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-11052" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-11052" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-11053" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-11053" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-11054" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-11054" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-11055" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-11055" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item active" href="#navigation-11056" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-11056" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item active" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-11057" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-11057" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-11058" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-11058" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-11059" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-11059" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-11060" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-11060" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-11061" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-11061" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-11062" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-11062" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-11063" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-11063" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-11064" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-11064" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-11065" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-11065" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-11066" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-11066" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-11067" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-11067" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>ビヘイビア <span id="biheibia"></span><a href="#biheibia" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#defining-behaviors">ビヘイビアの定義</a></li>
+<li><a href="#konponentoibentonohandoringu">コンポーネントイベントのハンドリング</a></li>
+<li><a href="#attaching-behaviors">ビヘイビアのアタッチ</a></li>
+<li><a href="#using-behaviors">ビヘイビアの使用</a></li>
+<li><a href="#detaching-behaviors">ビヘイビアのデタッチ</a></li>
+<li><a href="#using-timestamp-behavior">TimestampBehavior の利用</a></li>
+<li><a href="#sono-tanobiheibia">その他のビヘイビア</a></li>
+<li><a href="#comparison-with-traits">ビヘイビアとトレイトの比較</a></li></ol></div>
+<p>ビヘイビアは <span class="broken-link">yii\base\Behavior</span> 、あるいはその子クラスのインスタンスです。ビヘイビアは
+<a href="http://en.wikipedia.org/wiki/Mixin">ミックスイン</a> としても知られ、既存の <span class="broken-link">yii\base\Component</span> クラスの
+機能を、クラスの継承を変更せずに拡張することができます。コンポーネントにビヘイビアをアタッチすると、その
+コンポーネントにはビヘイビアのメソッドとプロパティが "注入" され、それらのメソッドとプロパティは、
+コンポーネントクラス自体に定義されているかのようにアクセスできるようになります。また、ビヘイビアは、
+コンポーネントによってトリガされた <a href="guide-concept-events.html">イベント</a> に応答することができるので、
+ビヘイビアでコンポーネントの通常のコード実行をカスタマイズすることができます。</p>
+<h2>ビヘイビアの定義  <span id="defining-behaviors"></span><a href="#defining-behaviors" class="hashlink">&para;</a></h2><p>ビヘイビアを定義するには、 <span class="broken-link">yii\base\Behavior</span> あるいは子クラスを継承するクラスを作成します。たとえば:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Behavior</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBehavior</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Behavior</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$prop1</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$_prop2</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getProp2</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;_prop2;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setProp2</span><span class="hljs-params">(<span class="hljs-variable">$value</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;_prop2 = <span class="hljs-variable">$value</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// ...</span>
+    }
+}
+</code></pre>
+<p>上のコードは、 <code>app\components\MyBehavior</code> という、2つのプロパティ -- <code>prop1</code> と <code>prop2</code> -- と
+<code>foo()</code> メソッドを持つビヘイビアクラスを定義します。<code>prop2</code> プロパティは、 <code>getProp2()</code> getter メソッドと <code>setProp2()</code> setter メソッドで定義されることに着目してください。
+<span class="broken-link">yii\base\Behavior</span> は <span class="broken-link">yii\base\Object</span> を継承しているので、getter と​​ setter による <a href="guide-concept-properties.html">プロパティ</a> 定義をサポートします。</p>
+<p>このクラスはビヘイビアなので、コンポーネントにアタッチされると、そのコンポーネントは <code>prop1</code> と <code>prop2</code> プロパティ、それと <code>foo()</code> メソッドを持つようになります。</p>
+<blockquote class="tip"><p><strong>Tip: </strong>ビヘイビア内から、<span class="broken-link">yii\base\Behavior::owner</span> プロパティを介して、ビヘイビアをアタッチしたコンポーネントにアクセスすることができます。</p>
+</blockquote>
+<blockquote class="note"><p><strong>Note: </strong>ビヘイビアの <span class="broken-link">yii\base\Behavior::__get()</span> および/または <span class="broken-link">yii\base\Behavior::__set()</span> メソッドをオーバーライドする場合は、同時に <span class="broken-link">yii\base\Behavior::canGetProperty()</span> および/または <span class="broken-link">yii\base\Behavior::canSetProperty()</span> もオーバーライドする必要があります。</p>
+</blockquote>
+<h2>コンポーネントイベントのハンドリング <span id="konponentoibentonohandoringu"></span><a href="#konponentoibentonohandoringu" class="hashlink">&para;</a></h2><p>ビヘイビアが、アタッチされたコンポーネントがトリガするイベントに応答する必要がある場合は、
+<span class="broken-link">yii\base\Behavior::events()</span> メソッドをオーバーライドしましょう。たとえば:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Behavior</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBehavior</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Behavior</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">events</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            ActiveRecord::EVENT_BEFORE_VALIDATE =&gt; <span class="hljs-string">'beforeValidate'</span>,
+        ];
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beforeValidate</span><span class="hljs-params">(<span class="hljs-variable">$event</span>)</span>
+    </span>{
+        <span class="hljs-comment">// ...</span>
+    }
+}
+</code></pre>
+<p><span class="broken-link">yii\base\Behavior::events()</span> メソッドは、イベントとそれに対応するハンドラのリストを返します。
+上の例では <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_VALIDATE</span> イベントがあること、
+そのハンドラ定義である <code>beforeValidate()</code> を宣言しています。イベントハンドラを指定するときは、以下の表記方法が使えます:</p>
+<ul>
+<li>ビヘイビアクラスのメソッド名を参照する文字列 (上の例など)</li>
+<li>オブジェクトまたはクラス名と文字列のメソッド名 (括弧なし) 例 <code>[$object, 'methodName']</code></li>
+<li>無名関数</li>
+</ul>
+<p>イベントハンドラのシグネチャは次のようにしてください。<code>$event</code> はイベントのパラメータを参照します。イベントの詳細については
+<a href="guide-concept-events.html">イベント</a> セクションを参照してください。</p>
+<pre><code class="hljs php language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$event</span>)</span> </span>{
+}
+</code></pre>
+<h2>ビヘイビアのアタッチ  <span id="attaching-behaviors"></span><a href="#attaching-behaviors" class="hashlink">&para;</a></h2><p><span class="broken-link">yii\base\Component</span> へのビヘイビアのアタッチは、静的にも動的にも可能です。実際は、前者のほうがより一般的ですが。</p>
+<p>ビヘイビアを静的にアタッチするには、ビヘイビアをアタッチしたいコンポーネントクラスの <span class="broken-link">yii\base\Component::behaviors()</span> メソッドをオーバーライドします。
+<span class="broken-link">yii\base\Component::behaviors()</span> メソッドは、ビヘイビアの <a href="guide-concept-configurations.html">構成</a> のリストを返さなければなりません。
+各ビヘイビアの構成内容は、ビヘイビアのクラス名でも、構成情報配列でもかまいません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>\<span class="hljs-title">MyBehavior</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-comment">// 無名ビヘイビア ビヘイビアクラス名のみ</span>
+            MyBehavior::className(),
+
+            <span class="hljs-comment">// 名前付きビヘイビア ビヘイビアクラス名のみ</span>
+            <span class="hljs-string">'myBehavior2'</span> =&gt; MyBehavior::className(),
+
+            <span class="hljs-comment">// 無名ビヘイビア 構成情報配列</span>
+            [
+                <span class="hljs-string">'class'</span> =&gt; MyBehavior::className(),
+                <span class="hljs-string">'prop1'</span> =&gt; <span class="hljs-string">'value1'</span>,
+                <span class="hljs-string">'prop2'</span> =&gt; <span class="hljs-string">'value2'</span>,
+            ],
+
+            <span class="hljs-comment">// 名前付きビヘイビア 構成情報配列</span>
+            <span class="hljs-string">'myBehavior4'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; MyBehavior::className(),
+                <span class="hljs-string">'prop1'</span> =&gt; <span class="hljs-string">'value1'</span>,
+                <span class="hljs-string">'prop2'</span> =&gt; <span class="hljs-string">'value2'</span>,
+            ]
+        ];
+    }
+}
+</code></pre>
+<p>ビヘイビア構成に対応する配列のキーを指定することによって、ビヘイビアに名前を関連付けることができます。この場合、ビヘイビアは <em>名前付きビヘイビア</em> と呼ばれます。上の例では、2つの名前付きビヘイビア​​
+<code>myBehavior2</code> と <code>myBehavior4</code> があります。ビヘイビアが名前と関連付けられていない場合は、 <em>無名ビヘイビア</em> と呼ばれます。</p>
+<p>ビヘイビアを動的にアタッチするには、ビヘイビアをアタッチしようとしているコンポーネントの <span class="broken-link">yii\base\Component::attachBehavior()</span> メソッドを呼びます:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>\<span class="hljs-title">MyBehavior</span>;
+
+<span class="hljs-comment">// ビヘイビアオブジェクトをアタッチ</span>
+<span class="hljs-variable">$component</span>-&gt;attachBehavior(<span class="hljs-string">'myBehavior1'</span>, <span class="hljs-keyword">new</span> MyBehavior);
+
+<span class="hljs-comment">// ビヘイビアクラスをアタッチ</span>
+<span class="hljs-variable">$component</span>-&gt;attachBehavior(<span class="hljs-string">'myBehavior2'</span>, MyBehavior::className());
+
+<span class="hljs-comment">// 構成情報配列をアタッチ</span>
+<span class="hljs-variable">$component</span>-&gt;attachBehavior(<span class="hljs-string">'myBehavior3'</span>, [
+    <span class="hljs-string">'class'</span> =&gt; MyBehavior::className(),
+    <span class="hljs-string">'prop1'</span> =&gt; <span class="hljs-string">'value1'</span>,
+    <span class="hljs-string">'prop2'</span> =&gt; <span class="hljs-string">'value2'</span>,
+]);
+</code></pre>
+<p><span class="broken-link">yii\base\Component::attachBehaviors()</span> メソッドを使うと、いちどに複数のビヘイビアをアタッチできます:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$component</span>-&gt;attachBehaviors([
+    <span class="hljs-string">'myBehavior1'</span> =&gt; <span class="hljs-keyword">new</span> MyBehavior,  <span class="hljs-comment">// 名前付きビヘイビア</span>
+    MyBehavior::className(),          <span class="hljs-comment">// 無名ビヘイビア</span>
+]);
+</code></pre>
+<p>次のように、 <a href="guide-concept-configurations.html">構成情報</a> を通じてビヘイビアをアタッチすることもできます:</p>
+<pre><code class="hljs php language-php">[
+    <span class="hljs-string">'as myBehavior2'</span> =&gt; MyBehavior::className(),
+
+    <span class="hljs-string">'as myBehavior3'</span> =&gt; [
+        <span class="hljs-string">'class'</span> =&gt; MyBehavior::className(),
+        <span class="hljs-string">'prop1'</span> =&gt; <span class="hljs-string">'value1'</span>,
+        <span class="hljs-string">'prop2'</span> =&gt; <span class="hljs-string">'value2'</span>,
+    ],
+]
+</code></pre>
+<p>詳しくは <a href="guide-concept-configurations.html#configuration-format">構成情報</a> セクションを参照してください。</p>
+<h2>ビヘイビアの使用  <span id="using-behaviors"></span><a href="#using-behaviors" class="hashlink">&para;</a></h2><p>ビヘイビアを使用するには、まず上記の方法に従って <span class="broken-link">yii\base\Component</span> にアタッチします。ビヘイビアがコンポーネントにアタッチされれば、その使用方法はシンプルです。</p>
+<p>あなたは、アタッチされているコンポーネントを介して、ビヘイビアの <em>パブリック</em> メンバ変数、または getter や setter によって定義されたプロパティにアクセスすることができます:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// "prop1" はビヘイビアクラス内で定義されたプロパティ</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$component</span>-&gt;prop1;
+<span class="hljs-variable">$component</span>-&gt;prop1 = <span class="hljs-variable">$value</span>;
+</code></pre>
+<p>また同様に、ビヘイビアの <em>パブリック</em> メソッドも呼ぶことができます:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// foo() はビヘイビアクラス内で定義されたパブリックメソッド</span>
+<span class="hljs-variable">$component</span>-&gt;foo();
+</code></pre>
+<p>ご覧のように、 <code>$component</code> は <code>prop1</code> と <code>foo()</code> を定義していないにもかかわらず、
+アタッチされたビヘイビアによって、それらをコンポーネント定義の一部であるかのように使うことができるのです。</p>
+<p>もし2つのビヘイビアが同じプロパティやメソッドを定義し、かつ両方とも同じコンポーネントにアタッチされている場合は、
+プロパティやメソッドのアクセス時に、<em>最初に</em> コンポーネントにアタッチされたビヘイビアが優先されます。</p>
+<p>ビヘイビアはコンポーネントにアタッチされるとき、名前と関連付けられているかもしれません。その場合、
+その名前を使用してビヘイビアオブジェクトにアクセスすることができます:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$behavior</span> = <span class="hljs-variable">$component</span>-&gt;getBehavior(<span class="hljs-string">'myBehavior'</span>);
+</code></pre>
+<p>また、コンポーネントにアタッチされた全てのビヘイビアを取得することもできます:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$behaviors</span> = <span class="hljs-variable">$component</span>-&gt;getBehaviors();
+</code></pre>
+<h2>ビヘイビアのデタッチ  <span id="detaching-behaviors"></span><a href="#detaching-behaviors" class="hashlink">&para;</a></h2><p>ビヘイビアをデタッチするには、ビヘイビアに付けられた名前とともに <span class="broken-link">yii\base\Component::detachBehavior()</span> を呼び出します:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$component</span>-&gt;detachBehavior(<span class="hljs-string">'myBehavior1'</span>);
+</code></pre>
+<p><em>全ての</em> ビヘイビアをデタッチすることもできます:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$component</span>-&gt;detachBehaviors();
+</code></pre>
+<h2><code>TimestampBehavior</code> の利用  <span id="using-timestamp-behavior"></span><a href="#using-timestamp-behavior" class="hashlink">&para;</a></h2><p>しめくくりに、<span class="broken-link">yii\behaviors\TimestampBehavior</span> を見てみましょう。このビヘイビアは、
+<code>insert()</code>、<code>update()</code> または <code>save()</code> のメソッドを通じて <span class="broken-link">yii\db\ActiveRecord</span> モデルが保存されるときに、
+タイムスタンプ属性の自動的な更新をサポートします。</p>
+<p>まず、使用しようと考えている <span class="broken-link">yii\db\ActiveRecord</span> クラスに、このビヘイビアをアタッチします:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">User</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">behaviors</span>\<span class="hljs-title">TimestampBehavior</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            [
+                <span class="hljs-string">'class'</span> =&gt; TimestampBehavior::className(),
+                <span class="hljs-string">'attributes'</span> =&gt; [
+                    ActiveRecord::EVENT_BEFORE_INSERT =&gt; [<span class="hljs-string">'created_at'</span>, <span class="hljs-string">'updated_at'</span>],
+                    ActiveRecord::EVENT_BEFORE_UPDATE =&gt; [<span class="hljs-string">'updated_at'</span>],
+                ],
+                <span class="hljs-comment">// UNIX タイムスタンプではなく datetime を使う場合は</span>
+                <span class="hljs-comment">// 'value' =&gt; new Expression('NOW()'),</span>
+            ],
+        ];
+    }
+}
+</code></pre>
+<p>上のビヘイビア構成は、レコードが:</p>
+<ul>
+<li>挿入されるとき、ビヘイビアは現在の UNIX タイムスタンプを <code>created_at</code> と <code>updated_at</code> 属性に割り当てます</li>
+<li>更新されるとき、ビヘイビアは現在の UNIX タイムスタンプを <code>updated_at</code> 属性に割り当てます</li>
+</ul>
+<blockquote class="note"><p><strong>Note: </strong>上記の実装が MySQL データベースで動作するようにするためには、<code>created_at</code> と <code>updated_at</code> のカラムを UNIX タイムスタンプ になるように int(11) として宣言してください。</p>
+</blockquote>
+<p>このコードが所定の位置にあれば、例えば <code>User</code> オブジェクトがあって、それを保存しようとしたら、そこで、
+<code>created_at</code> と <code>updated_at</code> が自動的に現在の UNIX タイムスタンプで埋められます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$user</span> = <span class="hljs-keyword">new</span> User;
+<span class="hljs-variable">$user</span>-&gt;email = <span class="hljs-string">'test@example.com'</span>;
+<span class="hljs-variable">$user</span>-&gt;save();
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$user</span>-&gt;created_at;  <span class="hljs-comment">// 現在のタイムスタンプが表示される</span>
+</code></pre>
+<p><span class="broken-link">yii\behaviors\TimestampBehavior</span> は、また、指定された属性に現在のタイムスタンプを割り当てて
+それをデータベースに保存する、便利なメソッド <span class="broken-link">yii\behaviors\TimestampBehavior::touch()</span> を提供しています。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$user</span>-&gt;touch(<span class="hljs-string">'login_time'</span>);
+</code></pre>
+<h2>その他のビヘイビア <span id="sono-tanobiheibia"></span><a href="#sono-tanobiheibia" class="hashlink">&para;</a></h2><p>その他にも、内蔵または外部ライブラリによって利用できるビヘイビアがいくつかあります。</p>
+<ul>
+<li><span class="broken-link">yii\behaviors\BlameableBehavior</span> - 指定された属性に現在のユーザ ID を自動的に設定します。</li>
+<li><span class="broken-link">yii\behaviors\SluggableBehavior</span> - 指定された属性に、URL のスラグとして使用できる値を自動的に設定します。</li>
+<li><span class="broken-link">yii\behaviors\AttributeBehavior</span> - 特定のイベントが発生したときに、ActiveRecord オブジェクトの一つまたは複数の属性に、指定された値を自動的に設定します。</li>
+<li><a href="https://github.com/yii2tech/ar-softdelete">yii2tech\ar\softdelete\SoftDeleteBehavior</a> - ActiveRecord をソフト・デリートおよびソフト・リストアする、すなわち、レコードの削除を示すフラグまたはステータスを設定するメソッドを提供します。</li>
+<li><a href="https://github.com/yii2tech/ar-position">yii2tech\ar\position\PositionBehavior</a> - レコードの順序を整数のフィールドによって管理することが出来るように、順序変更メソッドを提供します。</li>
+</ul>
+<h2>ビヘイビアとトレイトの比較  <span id="comparison-with-traits"></span><a href="#comparison-with-traits" class="hashlink">&para;</a></h2><p>ビヘイビアは、主となるクラスにそのプロパティやメソッドを「注入する」という点で <a href="http://www.php.net/traits">トレイト</a>
+に似ていますが、これらは多くの面で異なります。以下に説明するように、それらは互いに長所と短所を持っています。
+それらは代替手段というよりも、むしろ相互補完関係のようなものです。</p>
+<h3>ビヘイビアを使う理由  <span id="pros-for-behaviors"></span><a href="#pros-for-behaviors" class="hashlink">&para;</a></h3><p>ビヘイビアは通常のクラスのように、継承をサポートしています。いっぽうトレイトは、
+言語サポートされたコピー&amp;ペーストとみなすことができます。トレイトは継承をサポートしません。</p>
+<p>ビヘイビアは、コンポーネントクラスの変更を必要とせず、コンポーネントに動的にアタッチまたはデタッチすることが可能です。トレイトを使用するには、トレイトを使ってクラスのコードを書き換える必要があります。</p>
+<p>ビヘイビアは構成可能ですがトレイトは不可能です。</p>
+<p>ビヘイビアは、イベントに応答することで、コンポーネントのコード実行をカスタマイズできます。</p>
+<p>同じコンポーネントにアタッチされた異なるビヘイビア間で名前の競合がある場合、その競合は自動的に、
+先にコンポーネントにアタッチされたものを優先することで解消されます。
+別のトレイトが起こした名前競合の場合、影響を受けるプロパティやメソッドの名前変更による、手動での解決が必要です。</p>
+<h3>トレイトを使う理由  <span id="pros-for-traits"></span><a href="#pros-for-traits" class="hashlink">&para;</a></h3><p>ビヘイビアは時間もメモリも食うオブジェクトなので、トレイトはビヘイビアよりはるかに効率的です。</p>
+<p>トレイトは言語構造であるため、IDE との相性に優れています。</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:42 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Sessions và Cookies - Yêu cầu xử lý (Handling Requests) - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w12346" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w12346-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w12346-collapse" class="collapse navbar-collapse"><ul id="w12347" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-12330" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-12330" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-12331" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-12331" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-12332" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-12332" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item active" href="#navigation-12333" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-12333" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item active" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-12334" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-12334" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-12335" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-12335" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-12336" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-12336" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-12337" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-12337" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-12338" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-12338" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-12339" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-12339" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-12340" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-12340" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-12341" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-12341" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-12342" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-12342" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-12343" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-12343" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-12344" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-12344" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-12345" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-12345" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>セッションとクッキー <span id="sesshontokukki"></span><a href="#sesshontokukki" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#sessions">セッション</a></li>
+<li><a href="#cookies">クッキー</a></li></ol></div>
+<p>セッションとクッキーは、データが複数回のユーザリクエストにまたがって持続することを可能にします。
+素の PHP では、それぞれ、グローバル変数 <code>$_SESSION</code> と <code>$_COOKIE</code> によってアクセスすることが出来ます。
+Yii はセッションとクッキーをオブジェクトとしてカプセル化し、オブジェクト指向の流儀でアクセスできるようにするとともに、有用な機能強化を追加しています。</p>
+<h2>セッション  <span id="sessions"></span><a href="#sessions" class="hashlink">&para;</a></h2><p><a href="guide-runtime-requests.html">リクエスト</a> や <a href="guide-runtime-responses.html">レスポンス</a> と同じように、デフォルトでは <span class="broken-link">yii\web\Session</span> のインスタンスである <code>session</code> [アプリケーションコンポーネント] によって、セッションにアクセスすることが出来ます。</p>
+<h3>セッションのオープンとクローズ  <span id="opening-closing-sessions"></span><a href="#opening-closing-sessions" class="hashlink">&para;</a></h3><p>セッションのオープンとクローズは、次のようにして出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$session</span> = Yii::<span class="hljs-variable">$app</span>-&gt;session;
+
+<span class="hljs-comment">// セッションが既に開かれているかチェックする</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$session</span>-&gt;isActive) ...
+
+<span class="hljs-comment">// セッションを開く</span>
+<span class="hljs-variable">$session</span>-&gt;open();
+
+<span class="hljs-comment">// セッションを閉じる</span>
+<span class="hljs-variable">$session</span>-&gt;close();
+
+<span class="hljs-comment">// セッションに登録されている全てのデータを破壊する</span>
+<span class="hljs-variable">$session</span>-&gt;destroy();
+</code></pre>
+<p>エラーを発生させずに <span class="broken-link">yii\web\Session::open()</span> と <span class="broken-link">yii\web\Session::close()</span> を複数回呼び出すことが出来ます。
+内部的には、これらのメソッドは、セッションが既に開かれているかどうかを最初にチェックします。</p>
+<h3>セッションデータにアクセスする  <span id="access-session-data"></span><a href="#access-session-data" class="hashlink">&para;</a></h3><p>セッションに保存されているデータにアクセスするためには、次のようにすることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$session</span> = Yii::<span class="hljs-variable">$app</span>-&gt;session;
+
+<span class="hljs-comment">// セッション変数を取得する。次の三つの用法は等価。</span>
+<span class="hljs-variable">$language</span> = <span class="hljs-variable">$session</span>-&gt;get(<span class="hljs-string">'language'</span>);
+<span class="hljs-variable">$language</span> = <span class="hljs-variable">$session</span>[<span class="hljs-string">'language'</span>];
+<span class="hljs-variable">$language</span> = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'language'</span>]) ? <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'language'</span>] : <span class="hljs-keyword">null</span>;
+
+<span class="hljs-comment">// セッション変数を設定する。次の三つの用法は等価。</span>
+<span class="hljs-variable">$session</span>-&gt;set(<span class="hljs-string">'language'</span>, <span class="hljs-string">'en-US'</span>);
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'language'</span>] = <span class="hljs-string">'en-US'</span>;
+<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'language'</span>] = <span class="hljs-string">'en-US'</span>;
+
+<span class="hljs-comment">// セッション変数を削除する。次の三つの用法は等価。</span>
+<span class="hljs-variable">$session</span>-&gt;remove(<span class="hljs-string">'language'</span>);
+<span class="hljs-keyword">unset</span>(<span class="hljs-variable">$session</span>[<span class="hljs-string">'language'</span>]);
+<span class="hljs-keyword">unset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'language'</span>]);
+
+<span class="hljs-comment">// セッション変数が存在するかどうかをチェックする。次の三つの用法は等価。</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$session</span>-&gt;has(<span class="hljs-string">'language'</span>)) ...
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$session</span>[<span class="hljs-string">'language'</span>])) ...
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'language'</span>])) ...
+
+<span class="hljs-comment">// 全てのセッション変数をたどる。次の二つの用法は等価。</span>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$session</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$name</span> =&gt; <span class="hljs-variable">$value</span>) ...
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$_SESSION</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$name</span> =&gt; <span class="hljs-variable">$value</span>) ...
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>セッションデータに <code>session</code> コンポーネントによってアクセスする場合は、まだ開かれていないときは、自動的にセッションが開かれます。
+  これに対して <code>$_SESSION</code> によってセッションデータにアクセスする場合は、<code>session_start()</code> を明示的に呼び出すことが必要になります。</p>
+</blockquote>
+<p>配列であるセッションデータを扱う場合、<code>session</code> コンポーネントには、配列の要素を直接修正することができない、という制約があります。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$session</span> = Yii::<span class="hljs-variable">$app</span>-&gt;session;
+
+<span class="hljs-comment">// 次のコードは動かない</span>
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>][<span class="hljs-string">'number'</span>] = <span class="hljs-number">5</span>;
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>][<span class="hljs-string">'lifetime'</span>] = <span class="hljs-number">3600</span>;
+
+<span class="hljs-comment">// 次のコードは動く</span>
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>] = [
+    <span class="hljs-string">'number'</span> =&gt; <span class="hljs-number">5</span>,
+    <span class="hljs-string">'lifetime'</span> =&gt; <span class="hljs-number">3600</span>,
+];
+
+<span class="hljs-comment">// 次のコードも動く</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>][<span class="hljs-string">'lifetime'</span>];
+</code></pre>
+<p>次の回避策のどれかを使ってこの問題を解決することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$session</span> = Yii::<span class="hljs-variable">$app</span>-&gt;session;
+
+<span class="hljs-comment">// $_SESSION を直接使う (既に Yii::$app-&gt;session-&gt;open() が呼び出されていることを確認)</span>
+<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'captcha'</span>][<span class="hljs-string">'number'</span>] = <span class="hljs-number">5</span>;
+<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">'captcha'</span>][<span class="hljs-string">'lifetime'</span>] = <span class="hljs-number">3600</span>;
+
+<span class="hljs-comment">// 配列全体を取得し、修正して、保存しなおす</span>
+<span class="hljs-variable">$captcha</span> = <span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>];
+<span class="hljs-variable">$captcha</span>[<span class="hljs-string">'number'</span>] = <span class="hljs-number">5</span>;
+<span class="hljs-variable">$captcha</span>[<span class="hljs-string">'lifetime'</span>] = <span class="hljs-number">3600</span>;
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>] = <span class="hljs-variable">$captcha</span>;
+
+<span class="hljs-comment">// 配列の代わりに ArrayObject を使う</span>
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>] = <span class="hljs-keyword">new</span> \ArrayObject;
+...
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>][<span class="hljs-string">'number'</span>] = <span class="hljs-number">5</span>;
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha'</span>][<span class="hljs-string">'lifetime'</span>] = <span class="hljs-number">3600</span>;
+
+<span class="hljs-comment">// 共通の接頭辞を持つキーを使って配列データを保存する</span>
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha.number'</span>] = <span class="hljs-number">5</span>;
+<span class="hljs-variable">$session</span>[<span class="hljs-string">'captcha.lifetime'</span>] = <span class="hljs-number">3600</span>;
+</code></pre>
+<p>パフォーマンスとコードの可読性を高めるためには、最後の回避策を推奨します。
+すなわち、配列を一つのセッション変数として保存する代りに、配列の個々の要素を他の要素と同じキー接頭辞を共有する一個ずつのセッション変数として保存することです。</p>
+<h3>カスタムセッションストレージ  <span id="custom-session-storage"></span><a href="#custom-session-storage" class="hashlink">&para;</a></h3><p>デフォルトの <span class="broken-link">yii\web\Session</span> クラスはセッションデータをサーバ上のファイルとして保存します。
+Yii は、また、さまざまなセッションストレージを実装する下記のクラスをも提供しています。</p>
+<ul>
+<li></li>
+<li><span class="broken-link">yii\web\CacheSession</span>: セッションデータを、構成された <a href="guide-caching-data.html#cache-components">キャッシュコンポーネント</a> の力を借りて、キャッシュを使って保存する。</li>
+<li><span class="broken-link">yii\redis\Session</span>: セッションデータを <a href="http://redis.io/">redis</a> をストレージ媒体として使って保存する。</li>
+<li><span class="broken-link">yii\mongodb\Session</span>: セッションデータを <a href="http://www.mongodb.org/">MongoDB</a> に保存する。</li>
+</ul>
+<p>これらのセッションクラスは全て一連の同じ API メソッドをサポートします。
+その結果として、セッションを使用するアプリケーションコードを修正することなしに、セッションストレージクラスを切り替えることが出来ます。</p>
+<blockquote class="note"><p><strong>Note: </strong>カスタムセッションストレージを使っているときに <code>$_SESSION</code> を通じてセッションデータにアクセスしたい場合は、セッションが <span class="broken-link">yii\web\Session::open()</span> によって既に開始されていることを確認しなければなりません。
+  これは、カスタムセッションストレージのハンドラは、この <code>open()</code> メソッドの中で登録されるからです。</p>
+</blockquote>
+<p>これらのコンポーネントクラスの構成方法と使用方法については、それらの API ドキュメントを参照してください。
+下記の例は、アプリケーションの構成情報において、データベーステーブルをセッションストレージとして使うために <span class="broken-link">yii\web\DbSession</span> を構成する方法を示すものです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">return</span> [
+    <span class="hljs-string">'components'</span> =&gt; [
+        <span class="hljs-string">'session'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\web\DbSession'</span>,
+            <span class="hljs-comment">// 'db' =&gt; 'mydb',  // DB 接続のアプリケーションコンポーネント ID。デフォルトは 'db'。</span>
+            <span class="hljs-comment">// 'sessionTable' =&gt; 'my_session', // セッションテーブル名。デフォルトは 'session'。</span>
+        ],
+    ],
+];
+</code></pre>
+<p>セッションデータを保存するために、次のようなデータベーステーブルを作成することも必要です。</p>
+<pre><code class="hljs sql language-sql"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">session</span>
+(
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">40</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+    <span class="hljs-keyword">expire</span> <span class="hljs-built_in">INTEGER</span>,
+    <span class="hljs-keyword">data</span> <span class="hljs-built_in">BLOB</span>
+)
+</span></code></pre>
+<p>ここで 'BLOB' はあなたが選んだ DBMS の BLOB 型を指します。下記は人気のあるいくつかの DBMS で使用できる BLOB 型です。</p>
+<ul>
+<li>MySQL: LONGBLOB</li>
+<li>PostgreSQL: BYTEA</li>
+<li>MSSQL: BLOB</li>
+</ul>
+<blockquote class="note"><p><strong>Note: </strong>php.ini の <code>session.hash_function</code> の設定によっては、<code>id</code> カラムの長さを修正する必要があるかも知れません。
+  例えば、<code>session.hash_function=sha256</code> である場合は、40 の代りに 64 の長さを使わなければなりません。</p>
+</blockquote>
+<h3>フラッシュデータ  <span id="flash-data"></span><a href="#flash-data" class="hashlink">&para;</a></h3><p>フラッシュデータは特殊な種類のセッションデータで、あるリクエストの中で設定されると、次のリクエストの間においてのみ読み出すことが出来て、その後は自動的に削除されるものです。
+フラッシュデータが最もよく使われるのは、エンドユーザに一度だけ表示されるべきメッセージ、例えば、ユーザのフォーム送信が成功した後に表示される確認メッセージなどを実装するときです。</p>
+<p><code>session</code> アプリケーションコンポーネントによって、フラッシュデータを設定し、アクセスすることが出来ます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$session</span> = Yii::<span class="hljs-variable">$app</span>-&gt;session;
+
+<span class="hljs-comment">// リクエスト #1</span>
+<span class="hljs-comment">// "postDeleted" という名前のフラッシュメッセージを設定する</span>
+<span class="hljs-variable">$session</span>-&gt;setFlash(<span class="hljs-string">'postDeleted'</span>, <span class="hljs-string">'投稿の削除に成功しました。'</span>);
+
+<span class="hljs-comment">// リクエスト #2</span>
+<span class="hljs-comment">// "postDeleted" という名前のフラッシュメッセージを表示する</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$session</span>-&gt;getFlash(<span class="hljs-string">'postDeleted'</span>);
+
+<span class="hljs-comment">// リクエスト #3</span>
+<span class="hljs-comment">// フラッシュメッセージは自動的に削除されるので、$result は false になる</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-variable">$session</span>-&gt;hasFlash(<span class="hljs-string">'postDeleted'</span>);
+</code></pre>
+<p>通常のセッションデータと同様に、任意のデータをフラッシュデータとして保存することが出来ます。</p>
+<p><span class="broken-link">yii\web\Session::setFlash()</span> を呼び出すと、同じ名前の既存のフラッシュデータは上書きされます。
+同じ名前の既存のメッセージに新しいフラッシュデータを追加するためには、代りに <span class="broken-link">yii\web\Session::addFlash()</span> を使うことが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$session</span> = Yii::<span class="hljs-variable">$app</span>-&gt;session;
+
+<span class="hljs-comment">// リクエスト #1</span>
+<span class="hljs-comment">// "alerts" という名前の下にフラッシュメッセージを追加する</span>
+<span class="hljs-variable">$session</span>-&gt;addFlash(<span class="hljs-string">'alerts'</span>, <span class="hljs-string">'投稿の削除に成功しました。'</span>);
+<span class="hljs-variable">$session</span>-&gt;addFlash(<span class="hljs-string">'alerts'</span>, <span class="hljs-string">'友達の追加に成功しました。'</span>);
+<span class="hljs-variable">$session</span>-&gt;addFlash(<span class="hljs-string">'alerts'</span>, <span class="hljs-string">'あなたのレベルが上りました。'</span>);
+
+<span class="hljs-comment">// リクエスト #2</span>
+<span class="hljs-comment">// $alerts は "alerts" という名前の下にあるフラッシュメッセージの配列となる</span>
+<span class="hljs-variable">$alerts</span> = <span class="hljs-variable">$session</span>-&gt;getFlash(<span class="hljs-string">'alerts'</span>);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>同じ名前のフラッシュデータに対して、<span class="broken-link">yii\web\Session::setFlash()</span> と <span class="broken-link">yii\web\Session::addFlash()</span> を一緒に使わないようにしてください。
+  これは、後者のメソッドが、同じ名前のフラッシュデータを追加できるように、フラッシュデータを自動的に配列に変換するからです。
+  その結果、<span class="broken-link">yii\web\Session::getFlash()</span> を呼び出したとき、この二つのメソッドの呼び出し順によって、あるときは配列を受け取り、あるときは文字列を受け取るということになってしまいます。</p>
+</blockquote>
+<blockquote class="tip"><p><strong>Tip: </strong>フラッシュメッセージを表示するためには、<span class="broken-link">yii\bootstrap\Alert</span> ウィジェットを次のように使用することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> Alert::widget([
+   <span class="hljs-string">'options'</span> =&gt; [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'alert-info'</span>],
+   <span class="hljs-string">'body'</span> =&gt; Yii::<span class="hljs-variable">$app</span>-&gt;session-&gt;getFlash(<span class="hljs-string">'postDeleted'</span>),
+]);
+</code></pre>
+</blockquote>
+<h2>クッキー  <span id="cookies"></span><a href="#cookies" class="hashlink">&para;</a></h2><p>Yii は個々のクッキーを <span class="broken-link">yii\web\Cookie</span> のオブジェクトとして表します。
+<span class="broken-link">yii\web\Request</span> と <span class="broken-link">yii\web\Response</span> は、ともに、<code>cookies</code> という名前のプロパティによって、クッキーのコレクションを保持します。
+後者のクッキーコレクションはリクエストの中で送信されてきたクッキーを表し、一方、後者のクッキーコレクションは、これからユーザに送信されるクッキーを表します。</p>
+<p>アプリケーションで、リクエストとレスポンスを直接に操作する部分は、コントローラです。
+従って、クッキーの読み出しと送信はコントローラで実行されるべきです。</p>
+<h3>クッキーを読み出す  <span id="reading-cookies"></span><a href="#reading-cookies" class="hashlink">&para;</a></h3><p>現在のリクエストに含まれるクッキーは、下記のコードを使って取得することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// "request" コンポーネントからクッキーコレクション (yii\web\CookieCollection) を取得する。</span>
+<span class="hljs-variable">$cookies</span> = Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;cookies;
+
+<span class="hljs-comment">// "language" というクッキーの値を取得する。クッキーが存在しない場合は、デフォルト値として "en" を返す。</span>
+<span class="hljs-variable">$language</span> = <span class="hljs-variable">$cookies</span>-&gt;getValue(<span class="hljs-string">'language'</span>, <span class="hljs-string">'en'</span>);
+
+<span class="hljs-comment">// "language" というクッキーの値を取得する別の方法。</span>
+<span class="hljs-keyword">if</span> ((<span class="hljs-variable">$cookie</span> = <span class="hljs-variable">$cookies</span>-&gt;get(<span class="hljs-string">'language'</span>)) !== <span class="hljs-keyword">null</span>) {
+    <span class="hljs-variable">$language</span> = <span class="hljs-variable">$cookie</span>-&gt;value;
+}
+
+<span class="hljs-comment">// $cookies を配列のように使うことも出来る。</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$cookies</span>[<span class="hljs-string">'language'</span>])) {
+    <span class="hljs-variable">$language</span> = <span class="hljs-variable">$cookies</span>[<span class="hljs-string">'language'</span>]-&gt;value;
+}
+
+<span class="hljs-comment">// "language" というクッキーが在るかどうかチェックする。</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$cookies</span>-&gt;has(<span class="hljs-string">'language'</span>)) ...
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$cookies</span>[<span class="hljs-string">'language'</span>])) ...
+</code></pre>
+<h3>クッキーを送信する  <span id="sending-cookies"></span><a href="#sending-cookies" class="hashlink">&para;</a></h3><p>下記のコードを使って、クッキーをエンドユーザに送信することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// "response" コンポーネントからクッキーコレクション (yii\web\CookieCollection) を取得する。</span>
+<span class="hljs-variable">$cookies</span> = Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;cookies;
+
+<span class="hljs-comment">// 送信されるレスポンスに新しいクッキーを追加する。</span>
+<span class="hljs-variable">$cookies</span>-&gt;add(<span class="hljs-keyword">new</span> \yii\web\Cookie([
+    <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'language'</span>,
+    <span class="hljs-string">'value'</span> =&gt; <span class="hljs-string">'zh-CN'</span>,
+]));
+
+<span class="hljs-comment">// クッキーを削除する。</span>
+<span class="hljs-variable">$cookies</span>-&gt;remove(<span class="hljs-string">'language'</span>);
+<span class="hljs-comment">// 次のようにしても同じ。</span>
+<span class="hljs-keyword">unset</span>(<span class="hljs-variable">$cookies</span>[<span class="hljs-string">'language'</span>]);
+</code></pre>
+<p><span class="broken-link">yii\web\Cookie</span> クラスは、上記の例で示されている <span class="broken-link">yii\web\Cookie::name</span> と <span class="broken-link">yii\web\Cookie::value</span> のプロパティ以外にも、<span class="broken-link">yii\web\Cookie::domain</span>
+や <span class="broken-link">yii\web\Cookie::expire</span> など、他のプロパティを定義して、利用可能なクッキー情報の全てを完全に表しています。
+クッキーを準備するときに必要に応じてこれらのプロパティを構成してから、レスポンスのクッキーコレクションに追加することが出来ます。</p>
+<blockquote class="note"><p><strong>Note: </strong>セキュリティを向上させるために、<span class="broken-link">yii\web\Cookie::httpOnly</span> のデフォルト値は true に設定されています。
+これは、クライアントサイドスクリプトが保護されたクッキーにアクセスする危険を軽減するものです (ブラウザがサポートしていれば)。
+詳細については、<a href="https://www.owasp.org/index.php/HttpOnly">httpOnly wiki article</a> を読んでください。</p>
+</blockquote>
+<h3>クッキー検証  <span id="cookie-validation"></span><a href="#cookie-validation" class="hashlink">&para;</a></h3><p>最後の二つの項で示されているように、<code>request</code> と <code>response</code> のコンポーネントを通じてクッキーを読んだり送信したりする場合には、クッキーがクライアントサイドで修正されるのを防止するクッキー検証という追加のセキュリティを享受することが出来ます。
+これは、個々のクッキーにハッシュ文字列をサインとして追加することによって達成されます。
+アプリケーションは、サインを見て、クッキーがクライアントサイドで修正されたかどうかを知ることが出来ます。
+もし、修正されていれば、そのクッキーは <code>request</code> コンポーネントの <span class="broken-link">yii\web\Request::cookies</span> からはアクセスすることが出来なくなります。</p>
+<blockquote class="note"><p><strong>Note: </strong>クッキー検証は値が修正されたクッキーの読み込みを防止するだけです。
+  検証に失敗した場合でも、<code>$_COOKIE</code> を通じてそのクッキーにアクセスすることは引き続いて可能です。
+  これは、サードパーティのライブラリが、クッキー検証を含まない独自の方法でクッキーを操作することが出来るようにするするためです。</p>
+</blockquote>
+<p>クッキー検証はデフォルトで有効になっています。
+<span class="broken-link">yii\web\Request::enableCookieValidation</span> プロパティを false に設定することによって無効にすることが出来ますが、無効にしないことを強く推奨します。</p>
+<blockquote class="note"><p><strong>Note: </strong><code>$_COOKIE</code> と <code>setcookie()</code> によって直接に 読み出し/送信 されるクッキーは検証されません。</p>
+</blockquote>
+<p>クッキー検証を使用する場合は、前述のハッシュ文字列を生成するために使用される <span class="broken-link">yii\web\Request::cookieValidationKey</span> を指定しなければなりません。
+アプリケーションの構成情報で <code>request</code> コンポーネントを構成することによって、そうすることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">return</span> [
+    <span class="hljs-string">'components'</span> =&gt; [
+        <span class="hljs-string">'request'</span> =&gt; [
+            <span class="hljs-string">'cookieValidationKey'</span> =&gt; <span class="hljs-string">'ここに秘密のキーを書く'</span>,
+        ],
+    ],
+];
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong><span class="broken-link">yii\web\Request::cookieValidationKey</span> は、あなたのアプリケーションにとって、決定的に重要なものです。
+  これは信頼する人にだけ教えるべきものです。バージョンコントロールシステムに保存してはいけません。</p>
+</blockquote>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:43 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

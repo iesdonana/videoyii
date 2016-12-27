@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Dữ liệu Widgets - Hiển thị dữ liệu - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w11860" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w11860-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w11860-collapse" class="collapse navbar-collapse"><ul id="w11861" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-11844" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-11844" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-11845" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-11845" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-11846" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-11846" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-11847" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-11847" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-11848" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-11848" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-11849" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-11849" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-11850" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-11850" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item active" href="#navigation-11851" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-11851" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item active" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-11852" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-11852" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-11853" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-11853" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-11854" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-11854" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-11855" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-11855" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-11856" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-11856" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-11857" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-11857" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-11858" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-11858" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-11859" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-11859" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>データウィジェット <span id="detauijetto"></span><a href="#detauijetto" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#detailview">DetailView</a></li>
+<li><a href="#listview">ListView</a></li>
+<li><a href="#gridview">GridView </a></li>
+<li><a href="#sarani-dumubeki-wen-shu">さらに読むべき文書</a></li></ol></div>
+<p>Yii はデータを表示するために使うことが出来る一連の <a href="guide-structure-widgets.html">ウィジェット</a> を提供しています。
+<a href="#detail-view">DetailView</a> は、単一のレコードのデータを表示するのに使うことが出来ます。
+それに対して、<a href="#list-view">ListView</a> と <a href="#grid-view">GridView</a> は、複数のデータレコードをリストまたはテーブルで表示することが出来るもので、ページネーション、並べ替え、フィルタリングなどの機能を提供するものです。</p>
+<h2>DetailView <span id="detailview"></span><a href="#detailview" class="hashlink">&para;</a></h2><p>DetailView は単一のデータ <span class="broken-link">yii\widgets\DetailView::$model</span> の詳細を表示します。</p>
+<p>モデルを標準的な書式で表示する場合 (例えば、全てのモデル属性をそれぞれテーブルの一行として表示する場合) に最も適しています。
+モデルは <span class="broken-link">\yii\base\Model</span> またはそのサブクラス、例えば <a href="guide-db-active-record.html">アクティブレコード</a> のインスタンスか、連想配列かのどちらかにすることが出来ます。</p>
+<p>DetailView は <span class="broken-link">yii\widgets\DetailView::$attributes</span> プロパティを使って、モデルのどの属性が表示されるべきか、また、どういうフォーマットで表示されるべきかを決定します。
+利用できるフォーマットのオプションについては、<a href="guide-output-formatting.html">フォーマッタの節</a> を参照してください。</p>
+<p>次に DetailView の典型的な用例を示します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> DetailView::widget([
+    <span class="hljs-string">'model'</span> =&gt; <span class="hljs-variable">$model</span>,
+    <span class="hljs-string">'attributes'</span> =&gt; [
+        <span class="hljs-string">'title'</span>,               <span class="hljs-comment">// title 属性 (平文テキストで)</span>
+        <span class="hljs-string">'description:html'</span>,    <span class="hljs-comment">// description 属性は HTML としてフォーマットされる</span>
+        [                      <span class="hljs-comment">// モデルの所有者の名前</span>
+            <span class="hljs-string">'label'</span> =&gt; <span class="hljs-string">'所有者'</span>,
+            <span class="hljs-string">'value'</span> =&gt; <span class="hljs-variable">$model</span>-&gt;owner-&gt;name,
+        ],
+        <span class="hljs-string">'created_at:datetime'</span>, <span class="hljs-comment">// 作成日は datetime としてフォーマットされる</span>
+    ],
+]);
+</code></pre>
+<h2>ListView <span id="listview"></span><a href="#listview" class="hashlink">&para;</a></h2><p><span class="broken-link">yii\widgets\ListView</span> ウィジェットは、<a href="guide-output-data-providers.html">データプロバイダ</a> からのデータを表示するのに使用されます。
+各データモデルは指定された <span class="broken-link">yii\widgets\ListView::$itemView</span> を使って表示されます。
+ListView は、特に何もしなくても、ページネーション、並べ替え、フィルタリングなどの機能を提供してくれますので、エンドユーザに情報を表示するためにも、データ管理 UI を作成するためにも、非常に便利なウィジェットです。</p>
+<p>典型的な使用方法は以下の通りです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">widgets</span>\<span class="hljs-title">ListView</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">data</span>\<span class="hljs-title">ActiveDataProvider</span>;
+
+<span class="hljs-variable">$dataProvider</span> = <span class="hljs-keyword">new</span> ActiveDataProvider([
+    <span class="hljs-string">'query'</span> =&gt; Post::find(),
+    <span class="hljs-string">'pagination'</span> =&gt; [
+        <span class="hljs-string">'pageSize'</span> =&gt; <span class="hljs-number">20</span>,
+    ],
+]);
+<span class="hljs-keyword">echo</span> ListView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'itemView'</span> =&gt; <span class="hljs-string">'_post'</span>,
+]);
+</code></pre>
+<p><code>_post</code> ビューは次のような内容を含むことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">Html</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">HtmlPurifier</span>;
+<span class="hljs-preprocessor">?&gt;</span>
+&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">post</span>"&gt;
+    &lt;<span class="hljs-title">h2</span>&gt;&lt;?= <span class="hljs-title">Html</span>::<span class="hljs-title">encode</span>($<span class="hljs-title">model</span>-&gt;<span class="hljs-title">title</span>) ?&gt;&lt;/<span class="hljs-title">h2</span>&gt;
+
+    &lt;?= <span class="hljs-title">HtmlPurifier</span>::<span class="hljs-title">process</span>($<span class="hljs-title">model</span>-&gt;<span class="hljs-title">text</span>) ?&gt;    
+&lt;/<span class="hljs-title">div</span>&gt;
+</span></code></pre>
+<p>上記のビューファイルでは、現在のデータモデルを <code>$model</code> としてアクセスすることが出来ます。
+追加で次のものを利用することも出来ます。</p>
+<ul>
+<li><code>$key</code>: mixed - データアイテムと関連付けられたキーの値。</li>
+<li><code>$index</code>: integer - データプロバイダによって返されるアイテムの配列の 0 から始まるインデックス。</li>
+<li><code>$widget</code>: ListView - ウィジェットのインスタンス。</li>
+</ul>
+<p>追加のデータを各ビューに渡す必要がある場合は、次のように、<span class="broken-link">yii\widgets\ListView::$viewParams</span> を使って「キー - 値」のペアを渡すことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> ListView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'itemView'</span> =&gt; <span class="hljs-string">'_post'</span>,
+    <span class="hljs-string">'viewParams'</span> =&gt; [
+        <span class="hljs-string">'fullView'</span> =&gt; <span class="hljs-keyword">true</span>,
+        <span class="hljs-string">'context'</span> =&gt; <span class="hljs-string">'main-page'</span>,
+        <span class="hljs-comment">// ...</span>
+    ],
+]);
+</code></pre>
+<p>このようにすると、これらをビューで変数として利用できるようになります。</p>
+<h2>GridView <a name="grid-view"></a> <span id="gridview"></span><a href="#gridview" class="hashlink">&para;</a></h2><p>データグリッドすなわち <span class="broken-link">yii\grid\GridView</span> は Yii の最も強力なウィジェットの一つです。
+これは、システムの管理セクションを素速く作らねばならない時に、この上なく便利なものです。
+このウィジェットは <a href="guide-output-data-providers.html">データプロバイダ</a> からデータを受けて、テーブルの形式で、行ごとに一組の <span class="broken-link">yii\grid\GridView::columns</span> を使ってデータを表示します。</p>
+<p>テーブルの各行が一つのデータアイテムを表します。そして、一つのカラムは通常はアイテムの一属性を表します
+(カラムの中に、複数の属性を組み合わせた複雑な式に対応するものや、静的なテキストを表すものを含めることも出来ます)。</p>
+<p>GridView を使うために必要な最小限のコードは次のようなものです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">grid</span>\<span class="hljs-title">GridView</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">data</span>\<span class="hljs-title">ActiveDataProvider</span>;
+
+<span class="hljs-variable">$dataProvider</span> = <span class="hljs-keyword">new</span> ActiveDataProvider([
+    <span class="hljs-string">'query'</span> =&gt; Post::find(),
+    <span class="hljs-string">'pagination'</span> =&gt; [
+        <span class="hljs-string">'pageSize'</span> =&gt; <span class="hljs-number">20</span>,
+    ],
+]);
+<span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+]);
+</code></pre>
+<p>上記のコードは、最初にデータプロバイダを作成し、次に GridView を使って、データプロバイダから受け取る全ての行の全ての属性を表示するものです。
+表示されるテーブルには、特に何も設定しなくても、並べ替えとページネーションの機能が装備されます。</p>
+<h3>グリッドのカラム <span id="guriddonokaramu"></span><a href="#guriddonokaramu" class="hashlink">&para;</a></h3><p>グリッドのテーブルのカラムは <span class="broken-link">yii\grid\Column</span> クラスとして表現され、GridView の構成情報の <span class="broken-link">yii\grid\GridView::columns</span> プロパティで構成されます。
+カラムは、タイプや設定の違いに応じて、データをさまざまな形で表現することが出来ます。
+デフォルトのクラスは <span class="broken-link">yii\grid\DataColumn</span> です。これは、モデルの一つの属性を表現し、その属性による並べ替えとフィルタリングを可能にするものです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'columns'</span> =&gt; [
+        [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\grid\SerialColumn'</span>],
+        <span class="hljs-comment">// $dataProvider に含まれるデータによって定義される単純なカラム</span>
+        <span class="hljs-comment">// モデルのカラムのデータが使われる</span>
+        <span class="hljs-string">'id'</span>,
+        <span class="hljs-string">'username'</span>,
+        <span class="hljs-comment">// 複雑なカラム定義</span>
+        [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\grid\DataColumn'</span>, <span class="hljs-comment">// 省略可。これがデフォルト値。</span>
+            <span class="hljs-string">'value'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$data</span>)</span> </span>{
+                <span class="hljs-keyword">return</span> <span class="hljs-variable">$data</span>-&gt;name; <span class="hljs-comment">// 配列データの場合は $data['name']。例えば、SqlDataProvider を使う場合。</span>
+            },
+        ],
+    ],
+]);
+</code></pre>
+<p>構成情報の <span class="broken-link">yii\grid\GridView::columns</span> の部分が指定されない場合は、Yii は、データプロバイダのモデルの表示可能な全てのカラムを表示しようとすることに注意してください。</p>
+<h3>カラムクラス <span id="karamukurasu"></span><a href="#karamukurasu" class="hashlink">&para;</a></h3><p>グリッドのカラムは、いろいろなカラムクラスを使うことでカスタマイズすることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'columns'</span> =&gt; [
+        [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\grid\SerialColumn'</span>, <span class="hljs-comment">// &lt;-- ここ</span>
+            <span class="hljs-comment">// ここで追加のプロパティを構成することが出来ます</span>
+        ],
+</code></pre>
+<p>Yii によって提供されるカラムクラスを以下で見ていきますが、それらに加えて、あなた自身のカラムクラスを作成することも出来ます。</p>
+<p>全てのカラムクラスは <span class="broken-link">yii\grid\Column</span> を拡張するものですので、グリッドのカラムを構成するときに設定できる共通のオプションがいくつかあります。</p>
+<ul>
+<li><span class="broken-link">yii\grid\Column::header</span> によって、ヘッダ行のコンテントを設定することが出来ます。</li>
+<li><span class="broken-link">yii\grid\Column::footer</span> によって、フッタ行のコンテントを設定することが出来ます。</li>
+<li><span class="broken-link">yii\grid\Column::visible</span> はカラムの可視性を定義します。</li>
+<li><p><span class="broken-link">yii\grid\Column::content</span> によって、行のデータを返す有効な PHP コールバックを渡すことが出来ます。書式は以下の通りです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$model</span>, <span class="hljs-variable">$key</span>, <span class="hljs-variable">$index</span>, <span class="hljs-variable">$column</span>)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'文字列'</span>;
+}
+</code></pre>
+</li>
+</ul>
+<p>下記のオプションに配列を渡して、コンテナ要素のさまざまな HTML オプションを指定することが出来ます。</p>
+<ul>
+<li><span class="broken-link">yii\grid\Column::headerOptions</span></li>
+<li><span class="broken-link">yii\grid\Column::footerOptions</span></li>
+<li><span class="broken-link">yii\grid\Column::filterOptions</span></li>
+<li><span class="broken-link">yii\grid\Column::contentOptions</span></li>
+</ul>
+<h4>データカラム  <span id="data-column"></span><a href="#data-column" class="hashlink">&para;</a></h4><p><span class="broken-link">yii\grid\DataColumn</span> は、データの表示と並べ替えに使用されます。
+これがデフォルトのカラムタイプですので、これを使用するときはクラスの指定を省略することが出来ます。</p>
+<p>データカラムの主要な設定項目は、その <span class="broken-link">yii\grid\DataColumn::format</span> プロパティです。
+その値が、デフォルトでは <span class="broken-link">\yii\i18n\Formatter</span> である <code>formatter</code> <a href="guide-structure-application-components.html">アプリケーションコンポーネント</a> のメソッドに対応します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'columns'</span> =&gt; [
+        [
+            <span class="hljs-string">'attribute'</span> =&gt; <span class="hljs-string">'name'</span>,
+            <span class="hljs-string">'format'</span> =&gt; <span class="hljs-string">'text'</span>
+        ],
+        [
+            <span class="hljs-string">'attribute'</span> =&gt; <span class="hljs-string">'birthday'</span>,
+            <span class="hljs-string">'format'</span> =&gt; [<span class="hljs-string">'date'</span>, <span class="hljs-string">'php:Y-m-d'</span>]
+        ],
+    ],
+]);
+</code></pre>
+<p>上記において、<code>text</code> は <span class="broken-link">\yii\i18n\Formatter::asText()</span> に対応し、カラムの値が最初の引数として渡されます。
+二番目のカラムの定義では、<code>date</code> が <span class="broken-link">\yii\i18n\Formatter::asDate()</span> に対応します。
+カラムの値が、ここでも、最初の引数として渡され、'php:Y-m-d' が二番目の引数の値として渡されます。</p>
+<p>利用できるフォーマッタの一覧については、<a href="guide-output-formatting.html">データのフォーマット</a> の節を参照してください。</p>
+<p>データカラムを構成するためには、ショートカット形式を使うことも出来ます。
+それについては、<span class="broken-link">yii\grid\GridView::columns</span> の API ドキュメントで説明されています。</p>
+<h4>アクションカラム <span id="akushonkaramu"></span><a href="#akushonkaramu" class="hashlink">&para;</a></h4><p><span class="broken-link">yii\grid\ActionColumn</span> は、各行について、更新や削除などのアクションボタンを表示します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'columns'</span> =&gt; [
+        [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\grid\ActionColumn'</span>,
+            <span class="hljs-comment">// ここで追加のプロパティを構成することが出来ます</span>
+        ],
+</code></pre>
+<p>構成が可能なプロパティは、以下の通りです。</p>
+<ul>
+<li><span class="broken-link">yii\grid\ActionColumn::controller</span> は、アクションを処理すべきコントローラの ID です。
+設定されていない場合は、現在アクティブなコントローラが使われます。</li>
+<li><span class="broken-link">yii\grid\ActionColumn::template</span> は、アクションカラムの各セルを構成するのに使用されるテンプレートを定義します。
+波括弧に囲まれたトークンは、コントローラのアクション ID として扱われます (アクションカラムのコンテキストでは <em>ボタンの名前</em> とも呼ばれます)。
+これらは、<span class="broken-link">yii\grid\ActionColumn::$buttons</span> によって定義される、対応するボタン表示コールバックによって置き換えられます。
+例えば、<code>{view}</code> というトークンは、<code>buttons['view']</code> のコールバックの結果によって置き換えられます。
+コールバックが見つからない場合は、トークンは空文字列によって置き換えられます。
+デフォルトのテンプレートは <code>{view} {update} {delete}</code> です。</li>
+<li><p><span class="broken-link">yii\grid\ActionColumn::buttons</span> はボタン表示コールバックの配列です。
+配列のキーはボタンの名前 (波括弧を除く) であり、値は対応するボタン表示コールバックです。
+コールバックは下記のシグニチャを使わなければなりません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$url</span>, <span class="hljs-variable">$model</span>, <span class="hljs-variable">$key</span>)</span> </span>{
+    <span class="hljs-comment">// ボタンの HTML コードを返す</span>
+}
+</code></pre>
+<p>上記のコードで、<code>$url</code> はカラムがボタンのために生成する URL、<code>$model</code> は現在の行に表示されるモデルオブジェクト、そして <code>$key</code> はデータプロバイダの配列の中にあるモデルのキーです。</p>
+</li>
+<li><span class="broken-link">yii\grid\ActionColumn::urlCreator</span> は、指定されたモデルの情報を使って、ボタンの URL を生成するコールバックです。
+コールバックのシグニチャは <span class="broken-link">yii\grid\ActionColumn::createUrl()</span> のそれと同じでなければなりません。
+このプロパティが設定されていないときは、ボタンの URL は <span class="broken-link">yii\grid\ActionColumn::createUrl()</span> を使って生成されます。</li>
+<li><p><span class="broken-link">yii\grid\ActionColumn::visibleButtons</span> は、各ボタンの可視性の条件を定義する配列です。
+配列のキーはボタンの名前 (波括弧を除く) であり、値は真偽値 true/false または無名関数です。
+ボタンの名前がこの配列の中で指定されていない場合は、デフォルトで、ボタンが表示されます。
+コールバックは次のシグニチャを使わなければなりません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$model</span>, <span class="hljs-variable">$key</span>, <span class="hljs-variable">$index</span>)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$model</span>-&gt;status === <span class="hljs-string">'editable'</span>;
+}
+</code></pre>
+<p>または、真偽値を渡すことも出来ます。</p>
+<pre><code class="hljs php language-php">[
+    <span class="hljs-string">'update'</span> =&gt; \Yii::<span class="hljs-variable">$app</span>-&gt;user-&gt;can(<span class="hljs-string">'update'</span>)
+]
+</code></pre>
+</li>
+</ul>
+<h4>チェックボックスカラム <span id="chekkubokkusukaramu"></span><a href="#chekkubokkusukaramu" class="hashlink">&para;</a></h4><p><span class="broken-link">yii\grid\CheckboxColumn</span> はチェックボックスのカラムを表示します。</p>
+<p>GridView に CheckboxColumn を追加するためには、以下のようにして、<span class="broken-link">yii\grid\GridView::$columns</span> 構成情報にカラムを追加します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'columns'</span> =&gt; [
+        <span class="hljs-comment">// ...</span>
+        [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\grid\CheckboxColumn'</span>,
+            <span class="hljs-comment">// ここで追加のプロパティを構成することが出来ます</span>
+        ],
+    ],
+</code></pre>
+<p>ユーザはチェックボックスをクリックして、グリッドの行を選択することが出来ます。
+選択された行は、次の JavaScript コードを呼んで取得することが出来ます。</p>
+<pre><code class="hljs javascript language-javascript"><span class="hljs-keyword">var</span> keys = $(<span class="hljs-string">'#grid'</span>).yiiGridView(<span class="hljs-string">'getSelectedRows'</span>);
+<span class="hljs-comment">// keys は選択された行と関連付けられたキーの配列</span>
+</code></pre>
+<h4>シリアルカラム <span id="shiriarukaramu"></span><a href="#shiriarukaramu" class="hashlink">&para;</a></h4><p><span class="broken-link">yii\grid\SerialColumn</span> は、<code>1</code> から始まる行番号を表示します。</p>
+<p>使い方は、次のように、とても簡単です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'columns'</span> =&gt; [
+        [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\grid\SerialColumn'</span>], <span class="hljs-comment">// &lt;-- ここ</span>
+        <span class="hljs-comment">// ...</span>
+</code></pre>
+<h3>データを並べ替える <span id="detawo-bingbe-tieru"></span><a href="#detawo-bingbe-tieru" class="hashlink">&para;</a></h3><blockquote class="note"><p><strong>Note: </strong>このセクションはまだ執筆中です。</p>
+<ul>
+<li><a href="https://github.com/yiisoft/yii2/issues/1576">https://github.com/yiisoft/yii2/issues/1576</a></li>
+</ul>
+</blockquote>
+<h3>データをフィルタリングする <span id="detawofirutaringusuru"></span><a href="#detawofirutaringusuru" class="hashlink">&para;</a></h3><p>データをフィルタリングするためには、GridView は検索基準を表す <a href="guide-structure-models.html">モデル</a> を必要とします。
+検索基準は、通常は、グリッドビューのテーブルのフィルタのフィールドから取得されます。
+<a href="guide-db-active-record.html">アクティブレコード</a> を使用している場合は、必要な機能を提供する検索用のモデルクラスを作成するのが一般的なプラクティスです (あなたに代って <a href="guide-start-gii.html">Gii</a> が生成してくれます)。
+このクラスは、検索のためのバリデーション規則を定義し、検索基準に従って修正されたクエリを持つデータプロバイダを返す <code>search()</code> メソッドを提供するものです。</p>
+<p><code>Post</code> モデルに対して検索機能を追加するために、次の例のようにして、<code>PostSearch</code> モデルを作成することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Model</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">data</span>\<span class="hljs-title">ActiveDataProvider</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostSearch</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Post</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// rules() にあるフィールドだけが検索可能</span>
+        <span class="hljs-keyword">return</span> [
+            [[<span class="hljs-string">'id'</span>], <span class="hljs-string">'integer'</span>],
+            [[<span class="hljs-string">'title'</span>, <span class="hljs-string">'creation_date'</span>], <span class="hljs-string">'safe'</span>],
+        ];
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scenarios</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// 親クラスの scenarios() の実装をバイパスする</span>
+        <span class="hljs-keyword">return</span> Model::scenarios();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">search</span><span class="hljs-params">(<span class="hljs-variable">$params</span>)</span>
+    </span>{
+        <span class="hljs-variable">$query</span> = Post::find();
+
+        <span class="hljs-variable">$dataProvider</span> = <span class="hljs-keyword">new</span> ActiveDataProvider([
+            <span class="hljs-string">'query'</span> =&gt; <span class="hljs-variable">$query</span>,
+        ]);
+
+        <span class="hljs-comment">// 検索フォームのデータをロードして検証する</span>
+        <span class="hljs-keyword">if</span> (!(<span class="hljs-variable">$this</span>-&gt;load(<span class="hljs-variable">$params</span>) &amp;&amp; <span class="hljs-variable">$this</span>-&gt;validate())) {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable">$dataProvider</span>;
+        }
+
+        <span class="hljs-comment">// フィルタを追加してクエリを修正する</span>
+        <span class="hljs-variable">$query</span>-&gt;andFilterWhere([<span class="hljs-string">'id'</span> =&gt; <span class="hljs-variable">$this</span>-&gt;id]);
+        <span class="hljs-variable">$query</span>-&gt;andFilterWhere([<span class="hljs-string">'like'</span>, <span class="hljs-string">'title'</span>, <span class="hljs-variable">$this</span>-&gt;title])
+              -&gt;andFilterWhere([<span class="hljs-string">'like'</span>, <span class="hljs-string">'creation_date'</span>, <span class="hljs-variable">$this</span>-&gt;creation_date]);
+
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$dataProvider</span>;
+    }
+}
+
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong>フィルタのクエリを構築する方法を学ぶためには、<a href="guide-db-query-builder.html">クエリビルダ</a>、
+中でも特に <a href="guide-db-query-builder.html#filter-conditions">フィルタ条件</a> を参照してください。</p>
+</blockquote>
+<p>この <code>search()</code> メソッドをコントローラで使用して、GridView のためのデータプロバイダを取得することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$searchModel</span> = <span class="hljs-keyword">new</span> PostSearch();
+<span class="hljs-variable">$dataProvider</span> = <span class="hljs-variable">$searchModel</span>-&gt;search(Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;get());
+
+<span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'myview'</span>, [
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'searchModel'</span> =&gt; <span class="hljs-variable">$searchModel</span>,
+]);
+</code></pre>
+<p>そしてビューでは、<code>$dataProvider</code> と <code>$searchModel</code> を GridView に与えます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$dataProvider</span>,
+    <span class="hljs-string">'filterModel'</span> =&gt; <span class="hljs-variable">$searchModel</span>,
+    <span class="hljs-string">'columns'</span> =&gt; [
+        <span class="hljs-comment">// ...</span>
+    ],
+]);
+</code></pre>
+<h3>独立したフィルタ・フォーム <span id="du-lishitafirutafomu"></span><a href="#du-lishitafirutafomu" class="hashlink">&para;</a></h3><p>たいていの場合はグリッドビューのヘッダのフィルタで十分でしょう。
+しかし、独立したフィルタのフォームが必要な場合でも、簡単に追加することができます。
+まず、以下の内容を持つパーシャル・ビュー <code>_search.php</code> を作成します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">Html</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">widgets</span>\<span class="hljs-title">ActiveForm</span>;
+
+<span class="hljs-comment">/* <span class="hljs-doctag">@var</span> $this yii\web\View */</span>
+<span class="hljs-comment">/* <span class="hljs-doctag">@var</span> $model app\models\PostSearch */</span>
+<span class="hljs-comment">/* <span class="hljs-doctag">@var</span> $form yii\widgets\ActiveForm */</span>
+<span class="hljs-preprocessor">?&gt;</span>
+
+&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>="<span class="hljs-title">post</span>-<span class="hljs-title">search</span>"&gt;
+    &lt;?<span class="hljs-title">php</span> $<span class="hljs-title">form</span> = <span class="hljs-title">ActiveForm</span>::<span class="hljs-title">begin</span>([
+        '<span class="hljs-title">action</span>' =&gt; ['<span class="hljs-title">index</span>'],
+        '<span class="hljs-title">method</span>' =&gt; '<span class="hljs-title">get</span>',
+    ]); ?&gt;
+
+    &lt;?= $<span class="hljs-title">form</span>-&gt;<span class="hljs-title">field</span>($<span class="hljs-title">model</span>, '<span class="hljs-title">title</span>') ?&gt;
+
+    &lt;?= $<span class="hljs-title">form</span>-&gt;<span class="hljs-title">field</span>($<span class="hljs-title">model</span>, '<span class="hljs-title">creation_date</span>') ?&gt;
+
+    &lt;<span class="hljs-title">div</span> <span class="hljs-title">class</span>="<span class="hljs-title">form</span>-<span class="hljs-title">group</span>"&gt;
+        &lt;?= <span class="hljs-title">Html</span>::<span class="hljs-title">submitButton</span>('<span class="hljs-title">Search</span>', ['<span class="hljs-title">class</span>' =&gt; '<span class="hljs-title">btn</span> <span class="hljs-title">btn</span>-<span class="hljs-title">primary</span>']) ?&gt;
+        &lt;?= <span class="hljs-title">Html</span>::<span class="hljs-title">submitButton</span>('<span class="hljs-title">Reset</span>', ['<span class="hljs-title">class</span>' =&gt; '<span class="hljs-title">btn</span> <span class="hljs-title">btn</span>-<span class="hljs-title">default</span>']) ?&gt;
+    &lt;/<span class="hljs-title">div</span>&gt;
+
+    &lt;?<span class="hljs-title">php</span> <span class="hljs-title">ActiveForm</span>::<span class="hljs-title">end</span>(); ?&gt;
+&lt;/<span class="hljs-title">div</span>&gt;
+</span></code></pre>
+<p>そして、これを以下のように <code>index.php</code> ビューにインクルードします。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'_search'</span>, [<span class="hljs-string">'model'</span> =&gt; <span class="hljs-variable">$searchModel</span>]) <span class="hljs-preprocessor">?&gt;</span>
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>Gii を使って CRUD コードを生成する場合、デフォルトで、独立したフィルタ・フォーム (<code>_search.php</code>) が生成されます。
+  ただし、<code>index.php</code> ビューの中ではコメントアウトされています。
+  コメントを外せば、すぐに使うことが出来ます。</p>
+</blockquote>
+<p>独立したフィルタ・フォームは、グリッドビューに表示されないフィールドによってフィルタをかけたり、
+または日付の範囲のような特殊なフィルタ条件を使う必要があったりする場合に便利です。
+日付の範囲によってフィルタする場合は、DB には存在しない <code>createdFrom</code> と <code>createdTo</code> という属性を検索用のモデルに追加すること良いでしょう。</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostSearch</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Post</span>
+</span>{
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@var</span> string
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$createdFrom</span>;
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@var</span> string
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$createdTo</span>;
+}
+</code></pre>
+<p>そして、<code>search()</code> メソッドでクエリの条件を次のように拡張します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;andFilterWhere([<span class="hljs-string">'&gt;='</span>, <span class="hljs-string">'creation_date'</span>, <span class="hljs-variable">$this</span>-&gt;createdFrom])
+      -&gt;andFilterWhere([<span class="hljs-string">'&lt;='</span>, <span class="hljs-string">'creation_date'</span>, <span class="hljs-variable">$this</span>-&gt;createdTo]);
+</code></pre>
+<p>そして、フィルタ・フォームに、日付の範囲を示すフィールドを追加します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$form</span>-&gt;field(<span class="hljs-variable">$model</span>, <span class="hljs-string">'creationFrom'</span>) <span class="hljs-preprocessor">?&gt;</span>
+
+<span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$form</span>-&gt;field(<span class="hljs-variable">$model</span>, <span class="hljs-string">'creationTo'</span>) <span class="hljs-preprocessor">?&gt;</span>
+</code></pre>
+<h3>モデルのリレーションを扱う <span id="moderunorireshonwo-xiu"></span><a href="#moderunorireshonwo-xiu" class="hashlink">&para;</a></h3><p>GridView でアクティブレコードを表示するときに、リレーションのカラムの値、例えば、単に投稿者の <code>id</code> というのではなく、投稿者の名前を表示するという場合に遭遇するかも知れません。
+<code>Post</code> モデルが <code>author</code> という名前のリレーションを持っていて、その投稿者のモデルが <code>name</code> という属性を持っているなら、<span class="broken-link">yii\grid\GridView::$columns</span> の属性名を <code>author.name</code> と定義します。
+そうすれば、GridView が投稿者の名前を表示するようになります。
+ただし、並べ替えとフィルタリングは、デフォルトでは有効になりません。
+これらの機能を追加するためには、前の項で導入した <code>PostSearch</code> モデルを修正しなければなりません。</p>
+<p>リレーションのカラムによる並べ替えを有効にするためには、リレーションのテーブルを結合し、データプロバイダの Sort コンポーネントに並べ替えの規則を追加します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span> = Post::find();
+<span class="hljs-variable">$dataProvider</span> = <span class="hljs-keyword">new</span> ActiveDataProvider([
+    <span class="hljs-string">'query'</span> =&gt; <span class="hljs-variable">$query</span>,
+]);
+
+<span class="hljs-comment">// リレーション `author` を結合します。これはテーブル `users` に対するリレーションであり、</span>
+<span class="hljs-comment">// テーブルエイリアスを `author` とします。</span>
+<span class="hljs-variable">$query</span>-&gt;joinWith([<span class="hljs-string">'author'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$query</span>)</span> </span>{ <span class="hljs-variable">$query</span>-&gt;from([<span class="hljs-string">'author'</span> =&gt; <span class="hljs-string">'users'</span>]); }]);
+<span class="hljs-comment">// バージョン 2.0.7 以降では、上の行は $query-&gt;joinWith('author AS author'); として単純化することが出来ます。</span>
+<span class="hljs-comment">// リレーションのカラムによる並べ替えを有効にします。</span>
+<span class="hljs-variable">$dataProvider</span>-&gt;sort-&gt;attributes[<span class="hljs-string">'author.name'</span>] = [
+    <span class="hljs-string">'asc'</span> =&gt; [<span class="hljs-string">'author.name'</span> =&gt; SORT_ASC],
+    <span class="hljs-string">'desc'</span> =&gt; [<span class="hljs-string">'author.name'</span> =&gt; SORT_DESC],
+];
+
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>フィルタリングも上記と同じ joinWith の呼び出しを必要とします。また、次のように、<code>attributes</code> と <code>rules</code> の中で、検索可能なカラムを追加で定義する必要があります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attributes</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-comment">// 検索可能な属性にリレーションのフィールドを追加する</span>
+    <span class="hljs-keyword">return</span> array_merge(<span class="hljs-keyword">parent</span>::attributes(), [<span class="hljs-string">'author.name'</span>]);
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        [[<span class="hljs-string">'id'</span>], <span class="hljs-string">'integer'</span>],
+        [[<span class="hljs-string">'title'</span>, <span class="hljs-string">'creation_date'</span>, <span class="hljs-string">'author.name'</span>], <span class="hljs-string">'safe'</span>],
+    ];
+}
+</code></pre>
+<p><code>search()</code> メソッドでは、次のように、もう一つのフィルタ条件を追加するだけです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;andFilterWhere([<span class="hljs-string">'LIKE'</span>, <span class="hljs-string">'author.name'</span>, <span class="hljs-variable">$this</span>-&gt;getAttribute(<span class="hljs-string">'author.name'</span>)]);
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>上の例では、リレーション名とテーブルエイリアスに同じ文字列を使用しています。
+しかし、エイリアスとリレーション名が異なる場合は、どこでエイリアスを使い、どこでリレーション名を使うかに注意を払わなければなりません。
+これに関する簡単な規則は、データベースクエリを構築するために使われる全ての場所でエイリアスを使い、<code>attributes()</code> や <code>rules()</code> など、その他の全ての定義においてリレーション名を使う、というものです。</p>
+<p>例えば、投稿者のリレーションテーブルに <code>au</code> というエイリアスを使う場合は、joinWith の文は以下のようになります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;joinWith([<span class="hljs-string">'author au'</span>]);
+</code></pre>
+<p>リレーションの定義においてエイリアスが定義されている場合は、単に <code>$query-&gt;joinWith(['author']);</code> として呼び出すことも可能です。</p>
+<p>フィルタ条件においてはエイリアスが使われなければなりませんが、属性の名前はリレーション名のままで変りません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;andFilterWhere([<span class="hljs-string">'LIKE'</span>, <span class="hljs-string">'au.name'</span>, <span class="hljs-variable">$this</span>-&gt;getAttribute(<span class="hljs-string">'author.name'</span>)]);
+</code></pre>
+<p>並べ替えの定義についても同じことです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$dataProvider</span>-&gt;sort-&gt;attributes[<span class="hljs-string">'author.name'</span>] = [
+     <span class="hljs-string">'asc'</span> =&gt; [<span class="hljs-string">'au.name'</span> =&gt; SORT_ASC],
+     <span class="hljs-string">'desc'</span> =&gt; [<span class="hljs-string">'au.name'</span> =&gt; SORT_DESC],
+];
+</code></pre>
+<p>さらに、並べ替えの <span class="broken-link">yii\data\Sort::defaultOrder</span> を指定するときも、エイリアスではなくリレーション名を使う必要があります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$dataProvider</span>-&gt;sort-&gt;defaultOrder = [<span class="hljs-string">'author.name'</span> =&gt; SORT_ASC];
+</code></pre>
+</blockquote>
+<blockquote class="info"><p><strong>Info: </strong><code>joinWith</code> およびバックグラウンドで実行されるクエリの詳細については、<a href="guide-db-active-record.html#joining-with-relations">アクティブレコード - リレーションを使ってテーブルを結合する</a> を参照してください。</p>
+</blockquote>
+<h4>SQL ビューを使って、データのフィルタリング・並べ替え・表示をする <span id="sql-byuwo-shittedetanofirutaringubingbe-tiebiao-shiwosuru"></span><a href="#sql-byuwo-shittedetanofirutaringubingbe-tiebiao-shiwosuru" class="hashlink">&para;</a></h4><p>もう一つ別に、もっと高速で便利な手法があります。SQL ビューです。
+例えば、ユーザとユーザのプロファイルを一緒にグリッドビューに表示する必要がある場合、次のような SQL ビューを作成することが出来ます。</p>
+<pre><code class="hljs sql language-sql"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">VIEW</span> vw_user_info <span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">user</span>.*, user_profile.lastname, user_profile.firstname
+    <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span>, user_profile
+    <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">user</span>.<span class="hljs-keyword">id</span> = user_profile.user_id
+</span></code></pre>
+<p>そして、このビューを表す ActiveRecord を作成します。</p>
+<pre><code class="hljs php language-php">
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">views</span>\<span class="hljs-title">grid</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserView</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@inheritdoc</span>
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tableName</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'vw_user_info'</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">primaryKey</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [<span class="hljs-string">'id'</span>];
+    }
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@inheritdoc</span>
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-comment">// ここで規則を定義</span>
+        ];
+    }
+
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@inheritdoc</span>
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attributeLabels</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-comment">// ここで属性のラベルを定義</span>
+        ];
+    }
+
+
+}
+</code></pre>
+<p>このようにした後は、この UserView アクティブレコードを検索用のモデルとともに使うことが出来ます。
+並べ替えやフィルタリングの属性を追加で定義する必要はありません。
+全ての属性がそのままで動作します。
+この手法にはいくつかの長所と短所があることに注意してください。</p>
+<ul>
+<li>並べ替えとフィルタリングの条件をいろいろと定義する必要はありません。全てそのままで動きます。</li>
+<li>データサイズが小さく、実行される SQL クエリの数が少ない (通常なら全てのリレーションについて一つずつ必要になる追加のクエリが要らない) ため、非常に高速になり得ます。</li>
+<li>これは SQL ビューにかぶせた単純な UI に過ぎないもので、エンティティに含まれるドメインロジックを欠いています。
+従って、<code>isActive</code> や <code>isDeleted</code> などのような UI に影響するメソッドがある場合は、それらをこのクラスの中に複製する必要があります。</li>
+</ul>
+<h3>一つのページに複数のグリッドビュー <span id="yitsunopejini-fu-shunoguriddobyu"></span><a href="#yitsunopejini-fu-shunoguriddobyu" class="hashlink">&para;</a></h3><p>一つのページで二つ以上のグリッドビューを使うことが出来ますが、お互いが干渉しないように、追加の構成がいくつか必要になります。
+グリッドビューの複数のインスタンスを使う場合は、並べ替えとページネーションのリンクが違うパラメータ名を持って生成されるように構成して、それぞれのグリッドビューが独立した並べ替えとページネーションを持つことが出来るようにしなければなりません。
+そのためには、データプロバイダの <span class="broken-link">yii\data\BaseDataProvider::$sort</span> と <span class="broken-link">yii\data\BaseDataProvider::$pagination</span> インスタンスの <span class="broken-link">yii\data\Sort::sortParam</span> と <span class="broken-link">yii\data\Pagination::pageParam</span> を設定します。</p>
+<p><code>Post</code> と <code>User</code> のリストを表示するために、二つのプロバイダ、<code>$userProvider</code> と <code>$postProvider</code> を準備済みであると仮定します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">grid</span>\<span class="hljs-title">GridView</span>;
+
+<span class="hljs-variable">$userProvider</span>-&gt;pagination-&gt;pageParam = <span class="hljs-string">'user-page'</span>;
+<span class="hljs-variable">$userProvider</span>-&gt;sort-&gt;sortParam = <span class="hljs-string">'user-sort'</span>;
+
+<span class="hljs-variable">$postProvider</span>-&gt;pagination-&gt;pageParam = <span class="hljs-string">'post-page'</span>;
+<span class="hljs-variable">$postProvider</span>-&gt;sort-&gt;sortParam = <span class="hljs-string">'post-sort'</span>;
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'&lt;h1&gt;ユーザ&lt;/h1&gt;'</span>;
+<span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$userProvider</span>,
+]);
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'&lt;h1&gt;投稿&lt;/h1&gt;'</span>;
+<span class="hljs-keyword">echo</span> GridView::widget([
+    <span class="hljs-string">'dataProvider'</span> =&gt; <span class="hljs-variable">$postProvider</span>,
+]);
+</code></pre>
+<h3>GridView を Pjax とともに使う <span id="gridview-wo-pjax-totomoni-shiu"></span><a href="#gridview-wo-pjax-totomoni-shiu" class="hashlink">&para;</a></h3><p><span class="broken-link">yii\widgets\Pjax</span> ウィジェットを使うと、ページ全体をリロードせずに、ページの一部分だけを更新することが出来ます。
+これを使うと、フィルタを使うときに、<span class="broken-link">yii\grid\GridView</span> の中身だけを更新することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">widgets</span>\<span class="hljs-title">Pjax</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">grid</span>\<span class="hljs-title">GridView</span>;
+
+Pjax::begin([
+    <span class="hljs-comment">// PJax のオプション</span>
+]);
+    Gridview::widget([
+        <span class="hljs-comment">// GridView のオプション</span>
+    ]);
+Pjax::end();
+</code></pre>
+<p><span class="broken-link">yii\widgets\Pjax</span> は、<span class="broken-link">yii\widgets\Pjax::$linkSelector</span> の指定に従って、リンクに対しても動作します。
+これは <span class="broken-link">yii\grid\ActionColumn</span> を使う場合には問題となり得ます。
+この問題を防止するためには、<span class="broken-link">yii\grid\ActionColumn::$buttons</span>
+プロパティを編集して <code>data-pjax="0"</code> という HTML 属性を追加します。</p>
+<h4>Gii における Pjax を伴う GridView <span id="gii-niokeru-pjax-wo-banu-gridview"></span><a href="#gii-niokeru-pjax-wo-banu-gridview" class="hashlink">&para;</a></h4><p>バージョン 2.0.5 以降、<a href="guide-start-gii.html">Gii</a> では <code>$enablePjax</code> というオプションがウェブインターフェイスまたはコマンドラインで使用可能になっています。</p>
+<pre><code class="hljs php language-php">yii gii/crud --controllerClass=<span class="hljs-string">"backend\\controllers\PostController"</span> \
+  --modelClass=<span class="hljs-string">"common\\models\\Post"</span> \
+  --enablePjax=<span class="hljs-number">1</span>
+</code></pre>
+<p>これによって、<span class="broken-link">yii\grid\GridView</span> または <span class="broken-link">yii\widgets\ListView</span>
+を囲む <span class="broken-link">yii\widgets\Pjax</span> ウィジェットが生成されます。</p>
+<h2>さらに読むべき文書 <span id="sarani-dumubeki-wen-shu"></span><a href="#sarani-dumubeki-wen-shu" class="hashlink">&para;</a></h2><ul>
+<li>Arno Slatius による <a href="http://www.sitepoint.com/rendering-data-in-yii-2-with-gridview-and-listview/">Rendering Data in Yii 2 with GridView and ListView</a>。</li>
+</ul>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:43 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Viết lời chào đầu tiên - Bắt đầu - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w10960" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w10960-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w10960-collapse" class="collapse navbar-collapse"><ul id="w10961" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-10944" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-10944" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item active" href="#navigation-10945" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-10945" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item active" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-10946" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-10946" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-10947" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-10947" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-10948" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-10948" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-10949" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-10949" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-10950" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-10950" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-10951" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-10951" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-10952" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-10952" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-10953" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-10953" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-10954" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-10954" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-10955" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-10955" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-10956" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-10956" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-10957" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-10957" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-10958" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-10958" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-10959" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-10959" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>こんにちは、と言う <span id="konnichihato-yanu"></span><a href="#konnichihato-yanu" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#creating-action">アクションを作成する</a></li>
+<li><a href="#creating-view">ビューを作成する</a></li>
+<li><a href="#trying-it-out">試してみる</a></li>
+<li><a href="#summary">まとめ</a></li></ol></div>
+<p>この節では、アプリケーションに「こんにちは」という新しいページを作成する方法を説明します。
+この目的を達するために、<a href="guide-structure-controllers.html#creating-actions">アクション</a> と <a href="structure-views.md">ビュー</a> を作成します。</p>
+<ul>
+<li>アプリケーションは、このページへのリクエストをそのアクションに送付します。</li>
+<li>次にそのアクションが「こんにちは」という言葉をエンドユーザに示すビューを表示します。</li>
+</ul>
+<p>このチュートリアルを通じて、三つのことを学びます。</p>
+<ol>
+<li>リクエストに応える <a href="guide-structure-controllers.html#creating-actions">アクション</a> を作成する方法</li>
+<li>レスポンスのコンテントを作成する <a href="guide-structure-views.html">ビュー</a> を作成する方法</li>
+<li>アプリケーションがリクエストを <a href="guide-structure-controllers.html#creating-actions">アクション</a> に送付する仕組み</li>
+</ol>
+<h2>アクションを作成する  <span id="creating-action"></span><a href="#creating-action" class="hashlink">&para;</a></h2><p>「こんにちは」のタスクのために、リクエストから <code>message</code> パラメータを読んで、そのメッセージをユーザに表示して返す <code>say</code> <a href="guide-structure-controllers.html#creating-actions">アクション</a> を作ります。
+リクエストが <code>message</code> パラメータを提供しなかった場合は、アクションはデフォルト値として "こんにちは" というメッセージを表示するものとします。</p>
+<blockquote class="info"><p><strong>Info: </strong><a href="guide-structure-controllers.html#creating-actions">アクション</a> は、エンドユーザが直接に参照して実行できるオブジェクトです。
+  アクションは <a href="guide-structure-controllers.html">コントローラ</a> によってグループ化されます。
+  アクションの実行結果が、エンドユーザが受け取るレスポンスです。</p>
+</blockquote>
+<p>アクションは <a href="guide-structure-controllers.html">コントローラ</a> の中で宣言されなければなりません。
+話を簡単にするために、<code>say</code> アクションを既存の <code>SiteController</code> の中で宣言しましょう。
+このコントローラは <code>controllers/SiteController.php</code> というクラスファイルの中で定義されています。
+次のようにして、新しいアクションが始まります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Controller</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SiteController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-comment">// ... 既存のコード ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionSay</span><span class="hljs-params">(<span class="hljs-variable">$message</span> = <span class="hljs-string">'こんにちは'</span>)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'say'</span>, [<span class="hljs-string">'message'</span> =&gt; <span class="hljs-variable">$message</span>]);
+    }
+}
+</code></pre>
+<p>上記のコードでは、<code>SiteController</code> クラスの中で、<code>say</code> アクションが <code>actionSay</code> という名前のメソッドとして定義されています。
+Yii はコントローラクラスの中で、アクションのメソッドとアクションでないメソッドを区別するために、<code>action</code> という接頭辞を使います。
+<code>action</code> という接頭辞の後に続く名前がアクション ID にマップされます。</p>
+<p>アクションを命名するについては、Yii がアクション ID をどのように取り扱うかを知っていなければなりません。
+アクション ID は常に小文字で参照されます。
+アクション ID が複数の単語を必要とするときは、単語がダッシュ (-) で連結されます (例えば、<code>create-comment</code>)。
+アクションメソッドの名前は、アクション ID からダッシュを全て削除し、各単語の先頭の文字を大文字にした結果に <code>action</code> という接頭辞を付けたものになります。
+例えば、アクション ID <code>create-comment</code> に対応するアクションメソッド名は <code>actionCreateComment</code> となります。</p>
+<p>私たちの例では、アクションメソッドは <code>$message</code> というパラメータを取り、そのデフォルト値は <code>"こんにちは"</code> です
+(PHP で関数やメソッドの引数にデフォルト値を設定するのと全く同じ方法です)。
+アプリケーションがリクエストを受け取って、当該リクエストの処理を <code>say</code> アクションが担当すべきであると決定した場合は、リクエストの中に見つかった同じ名前のパラメータの値をこの <code>$message</code> パラメータに代入します。
+言い換えれば、もしリクエストの中に <code>"さようなら"</code> という値の <code>message</code> パラメータが入っていれば、アクションの <code>$message</code> 変数にその値が割り当てられます。</p>
+<p>アクションメソッドの中では、<span class="broken-link">yii\web\Controller::render()</span> が呼ばれて <code>say</code> と言う名前の <a href="guide-structure-views.html">ビュー</a> ファイルがレンダリングされます。
+<code>message</code> パラメータも同時にビューに渡され、そこで使用されます。
+レンダリング結果はアクションメソッドによって返されます。
+返された結果はアプリケーションによって受け取られ、ブラウザ上でエンドユーザに (完全な HTML ページの一部として) 表示されます。</p>
+<h2>ビューを作成する  <span id="creating-view"></span><a href="#creating-view" class="hashlink">&para;</a></h2><p><a href="guide-structure-views.html">ビュー</a> は、レスポンスのコンテントを生成するために書かれるスクリプトです。
+「こんにちは」のタスクのためには、アクションメソッドから受け取った <code>message</code> パラメータを出力する <code>say</code> ビューを作成します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">Html</span>;
+<span class="hljs-preprocessor">?&gt;</span>
+<span class="hljs-preprocessor">&lt;?</span>= Html::encode(<span class="hljs-variable">$message</span>) <span class="hljs-preprocessor">?&gt;</span>
+</code></pre>
+<p><code>say</code> ビューは <code>views/site/say.php</code> というファイルに保存しなければなりません。
+アクションの中で <span class="broken-link">yii\web\Controller::render()</span> メソッドが呼ばれるとき、<code>render()</code> メソッドは <code>views/ControllerID/ViewName.php</code> という名前の PHP ファイルを探します。</p>
+<p>上記のコードで <code>message</code> パラメータが出力される前に  <span class="broken-link">yii\helpers\Html::encode()</span> されていることに注意してください。
+パラメータはエンドユーザから来るものであり、悪意のある JavaScript コードを埋め込まれて <a href="http://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%82%B9%E3%82%B5%E3%82%A4%E3%83%88%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%97%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0">クロスサイトスクリプティング (XSS) 攻撃</a> に使われうるものですから、脆弱性を防止するためにこうすることが必要です。</p>
+<p>当然ながら、<code>say</code> ビューにはもっと多くのコンテントを入れても構いません。
+コンテントには、HTML タグ、平文テキスト、さらには PHP 文を含めることが出来ます。
+実際、<code>say</code> ビューは <span class="broken-link">yii\web\Controller::render()</span> メソッドによって実行される PHP スクリプトであるに過ぎません。
+ビュースクリプトによって出力されたコンテントはレスポンス結果としてアプリケーションに返されます。
+そしてアプリケーションがこの結果をエンドユーザに対して出力します。</p>
+<h2>試してみる  <span id="trying-it-out"></span><a href="#trying-it-out" class="hashlink">&para;</a></h2><p>アクションとビューを作成したら、下記の URL で新しいページにアクセスすることが出来ます。</p>
+<pre><code class="hljs less"><span class="hljs-attribute">http</span>:<span class="hljs-comment">//hostname/index.php?r=site%2Fsay&amp;message=Hello+World</span>
+</code></pre>
+<p><img src="images/start-hello-world.png" alt="Hello World" /></p>
+<p>この URL は、結果として、"Hello World" を表示するページになります。
+このページはアプリケーションの他のページと同じヘッダとフッタを共有しています。</p>
+<p>URL から <code>message</code> パラメータを省略すると、"こんにちは" を表示するページを見ることになるでしょう。
+これは、<code>message</code> が <code>actionSay()</code> メソッドにパラメータとして渡されるものであり、それが省略された場合には、デフォルト値である <code>"こんにちは"</code> が代りに使われるからです。</p>
+<blockquote class="info"><p><strong>Info: </strong>新しいページは他のページと同じヘッダとフッタを共有していますが、それは <span class="broken-link">yii\web\Controller::render()</span> メソッドが <code>say</code> ビューの結果をいわゆる <a href="guide-structure-views.html#layouts">レイアウト</a> に自動的に埋め込むからです。
+レイアウトは、この場合、<code>views/layouts/main.php</code> にあります。</p>
+</blockquote>
+<p>上記の URL の <code>r</code> パラメータについては、さらに説明が必要でしょう。
+これは <a href="guide-runtime-routing.html">ルート</a>、すなわち、アクションを指し示すアプリケーションを通じて一意な ID を表します。
+ルートの書式は <code>ControllerID/ActionID</code> です。
+アプリケーションはリクエストを受け取ると、このパラメータ <code>r</code> をチェックし、<code>ControllerID</code> の部分を使って、このリクエストを処理するためにどのコントローラクラスのインスタンスを作成すべきかを決定します。
+そして、コントローラは <code>ActionID</code> の部分を使って、実際の仕事をするためにどのアクションを呼び出すべきかを決定します。
+この例で言えば、<code>site/say</code> というルートは、<code>SiteController</code> コントローラクラスと <code>say</code> アクションとして解決されます。
+結果として、<code>SiteController::actionSay()</code> メソッドがリクエストを処理するために呼び出されます。</p>
+<blockquote class="info"><p><strong>Info: </strong>アクションと同じく、コントローラもまたアプリケーションの中で一意に定義される ID を持ちます。
+  コントローラ ID も、アクション ID と同じ命名規則を使います。
+  コントローラクラスの名前は、コントローラ ID からダッシュを削除し、各単語の最初の文字を大文字にし、結果として出来る文字列に <code>Controller</code> という接尾辞を追加したものとなります。
+  例えば、<code>post-comment</code> というコントローラ ID に対応するコントローラクラスの名前は <code>PostCommentController</code> です。</p>
+</blockquote>
+<h2>まとめ  <span id="summary"></span><a href="#summary" class="hashlink">&para;</a></h2><p>この節では、MVC アーキテクチャパターンのうちのコントローラとビューの部分に触れました。
+特定のリクエストを処理するためのアクションをコントローラの一部として作成しました。
+また、レスポンスのコンテントを作成するためのビューも作成しました。
+この単純な例においては、使用される唯一のデータが <code>message</code> パラメータであったため、モデルは関係していません。</p>
+<p>また、Yii におけるルートについても学びました。ルートはユーザのリクエストとコントローラのアクションとの橋渡しとして働くものです。</p>
+<p>次の節では、モデルを作成する方法を学びます。そして、HTML フォームを含むページを追加します。</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:42 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w12742" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w12742-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w12742-collapse" class="collapse navbar-collapse"><ul id="w12743" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-12726" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-12726" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-12727" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-12727" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-12728" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-12728" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-12729" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-12729" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-12730" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-12730" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-12731" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-12731" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-12732" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-12732" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-12733" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-12733" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-12734" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-12734" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-12735" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-12735" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-12736" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-12736" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-12737" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-12737" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-12738" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-12738" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-12739" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-12739" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-12740" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-12740" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-12741" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-12741" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Git workflow for Yii 2 contributors <span id="git-workflow-for-yii-2-contributors"></span><a href="#git-workflow-for-yii-2-contributors" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#prepare-your-development-environment">Prepare your development environment</a></li>
+<li><a href="#working-on-bugs-and-features">Working on bugs and features</a></li></ol></div>
+<p>So you want to contribute to Yii? Great! But to increase the chances of your changes being accepted quickly, please
+follow the following steps. If you are new to Git
+and GitHub, you might want to first check out <a href="http://help.github.com/">GitHub help</a>, <a href="https://try.github.com">try Git</a>
+or learn something about <a href="http://nfarina.com/post/9868516270/git-is-simpler">Git internal data model</a>.</p>
+<h2>Prepare your development environment <span id="prepare-your-development-environment"></span><a href="#prepare-your-development-environment" class="hashlink">&para;</a></h2><p>The following steps will create a development environment for Yii, which you can use to work
+on the core code of Yii framework. These steps only need to be done the first time you contribute.</p>
+<h3>1. <a href="http://help.github.com/fork-a-repo/">Fork</a> the Yii repository on GitHub and clone your fork to your development environment <span id="1-fork-the-yii-repository-on-github-and-clone-your-fork-to-your-development-environment"></span><a href="#1-fork-the-yii-repository-on-github-and-clone-your-fork-to-your-development-environment" class="hashlink">&para;</a></h3><pre><code class="hljs nginx"><span class="hljs-title">git</span> clone git<span class="hljs-variable">@github</span>.com:YOUR-GITHUB-USERNAME/yii2.git
+</code></pre>
+<p>If you have trouble setting up Git with GitHub in Linux, or are getting errors like "Permission Denied (publickey)",
+then you must <a href="http://help.github.com/linux-set-up-git/">setup your Git installation to work with GitHub</a></p>
+<blockquote class="tip"><p><strong>Tip: </strong>if you're not fluent with Git, we recommend reading excellent free <a href="https://git-scm.com/book/en/v2">Pro Git book</a>.</p>
+</blockquote>
+<h3>2. Add the main Yii repository as an additional git remote called "upstream" <span id="2-add-the-main-yii-repository-as-an-additional-git-remote-called-upstream"></span><a href="#2-add-the-main-yii-repository-as-an-additional-git-remote-called-upstream" class="hashlink">&para;</a></h3><p>Change to the directory where you cloned Yii, normally, "yii2". Then enter the following command:</p>
+<pre><code class="hljs nginx"><span class="hljs-title">git</span> remote add upstream <span class="hljs-url">git://github.com/yiisoft/yii2.git</span>
+</code></pre>
+<h3>3. Prepare the testing environment  <span id="prepare-the-test-environment"></span><a href="#prepare-the-test-environment" class="hashlink">&para;</a></h3><p>The following steps are not necessary if you want to work only on translations or documentation.</p>
+<ul>
+<li>run <code>composer install</code> to install dependencies (assuming you have <a href="https://getcomposer.org/doc/00-intro.md#globally">composer installed globally</a>).</li>
+</ul>
+<blockquote class="note"><p><strong>Note: </strong>If you see errors like <code>Problem 1 The requested package bower-asset/jquery could not be found in any version, there may be a typo in the package name.</code>, you will need to run <code>composer global require "fxp/composer-asset-plugin:^1.2.0"</code></p>
+</blockquote>
+<p>If you are going to work with JavaScript:</p>
+<ul>
+<li>run <code>npm install</code> to install JavaScript testing tools and dependencies (assuming you have [Node.js and NPM installed]
+(<a href="https://nodejs.org/en/download/package-manager/">https://nodejs.org/en/download/package-manager/</a>)).</li>
+</ul>
+<blockquote class="note"><p><strong>Note: </strong>JavaScript tests depend on <a href="https://github.com/tmpvar/jsdom">jsdom</a> library which requires Node.js 4 or newer.
+Using of Node.js 6 or 7 is more preferable.</p>
+</blockquote>
+<ul>
+<li><p>run <code>php build/build dev/app basic</code> to clone the basic app and install composer dependencies for the basic app.
+This command will install foreign composer packages as normal but will link the yii2 repo to
+the currently checked out repo, so you have one instance of all the code installed.</p>
+<p>Do the same for the advanced app if needed: <code>php build/build dev/app advanced</code>.</p>
+<p>This command will also be used to update dependencies, it runs <code>composer update</code> internally.</p>
+</li>
+</ul>
+<blockquote class="note"><p><strong>Note: </strong>The default git repository Urls clone from github via SSH, you may add the <code>--useHttp</code> flag to the <code>build</code> command
+to use HTTPs instead.</p>
+</blockquote>
+<p><strong>Now you have a working playground for hacking on Yii 2.</strong></p>
+<p>The following steps are optional.</p>
+<h3>Unit tests <span id="unit-tests"></span><a href="#unit-tests" class="hashlink">&para;</a></h3><p>You can execute unit tests by running <code>phpunit</code> in the repo root directory. If you do not have phpunit installed globally
+you can run <code>php vendor/bin/phpunit</code> instead.</p>
+<p>Some tests require additional databases to be set up and configured. You can create <code>tests/data/config.local.php</code> to override
+settings that are configured in <code>tests/data/config.php</code>.</p>
+<p>You may limit the tests to a group of tests you are working on e.g. to run only tests for the validators and redis
+<code>phpunit --group=validators,redis</code>. You get the list of available groups by running <code>phpunit --list-groups</code>.</p>
+<p>You can execute JavaScript unit tests by running <code>npm test</code> in the repo root directory.</p>
+<blockquote class="note"><p><strong>Note: </strong>If you get timeout errors like <code>Error: timeout of 2000ms exceeded. Ensure the done() callback is being called
+in this test.</code>, you can increase timeout: <code>npm test -- --timeout 30000</code> (don't miss <code>--</code>, it's needed for passing
+additional arguments).</p>
+</blockquote>
+<h3>Extensions <span id="extensions"></span><a href="#extensions" class="hashlink">&para;</a></h3><p>To work on extensions you have to clone the extension repository. We have created a command that can do this for you:</p>
+<pre><code class="hljs nginx"><span class="hljs-title">php</span> build/build dev/ext &lt;extension-name&gt;
+</code></pre>
+<p>where <code>&lt;extension-name&gt;</code> is the name of the extension, e.g. <code>redis</code>.</p>
+<p>If you want to test the extension in one of the application templates, just add it to the <code>composer.json</code> of the application as you would
+normally do e.g. add <code>"yiisoft/yii2-redis": "~2.0.0"</code> to the <code>require</code> section of the basic app.
+Running <code>php build/build dev/app basic</code> will install the extension and its dependencies and create
+a symlink to <code>extensions/redis</code> so you are not working in the composer vendor dir but in the yii2 repository directly.</p>
+<blockquote class="note"><p><strong>Note: </strong>The default git repository Urls clone from github via SSH, you may add the <code>--useHttp</code> flag to the <code>build</code> command
+to use HTTPs instead.</p>
+</blockquote>
+<h2>Working on bugs and features <span id="working-on-bugs-and-features"></span><a href="#working-on-bugs-and-features" class="hashlink">&para;</a></h2><p>Having prepared your develop environment as explained above you can now start working on the feature or bugfix.</p>
+<h3>1. Make sure there is an issue created for the thing you are working on if it requires significant effort to fix <span id="1-make-sure-there-is-an-issue-created-for-the-thing-you-are-working-on-if-it-requires-significant-effort-to-fix"></span><a href="#1-make-sure-there-is-an-issue-created-for-the-thing-you-are-working-on-if-it-requires-significant-effort-to-fix" class="hashlink">&para;</a></h3><p>All new features and bug fixes should have an associated issue to provide a single point of reference for discussion
+and documentation. Take a few minutes to look through the existing issue list for one that matches the contribution you
+intend to make. If you find one already on the issue list, then please leave a comment on that issue indicating you
+intend to work on that item. If you do not find an existing issue matching what you intend to work on, please
+<a href="guide-report-an-issue.html">open a new issue</a> or create a pull request directly if it is straightforward fix. This will allow the team to
+review your suggestion, and provide appropriate feedback along the way.</p>
+<blockquote><p>For small changes or documentation issues or straightforward fixes, you don't need to create an issue, a pull request is enough in this case.</p>
+</blockquote>
+<h3>2. Fetch the latest code from the main Yii branch <span id="2-fetch-the-latest-code-from-the-main-yii-branch"></span><a href="#2-fetch-the-latest-code-from-the-main-yii-branch" class="hashlink">&para;</a></h3><pre><code class="hljs nginx"><span class="hljs-title">git</span> fetch upstream
+</code></pre>
+<p>You should start at this point for every new contribution to make sure you are working on the latest code.</p>
+<h3>3. Create a new branch for your feature based on the current Yii master branch <span id="3-create-a-new-branch-for-your-feature-based-on-the-current-yii-master-branch"></span><a href="#3-create-a-new-branch-for-your-feature-based-on-the-current-yii-master-branch" class="hashlink">&para;</a></h3><blockquote><p>That's very important since you will not be able to submit more than one pull request from your account if you'll
+  use master.</p>
+</blockquote>
+<p>Each separate bug fix or change should go in its own branch. Branch names should be descriptive and start with
+the number of the issue that your code relates to. If you aren't fixing any particular issue, just skip number.
+For example:</p>
+<pre><code class="hljs nginx"><span class="hljs-title">git</span> checkout upstream/master
+git checkout -b <span class="hljs-number">999</span>-name-of-your-branch-goes-here
+</code></pre>
+<h3>4. Do your magic, write your code <span id="4-do-your-magic-write-your-code"></span><a href="#4-do-your-magic-write-your-code" class="hashlink">&para;</a></h3><p>Make sure it works :)</p>
+<p>Unit tests are always welcome. Tested and well covered code greatly simplifies the task of checking your contributions.
+Failing unit tests as issue description are also accepted.</p>
+<h3>5. Update the CHANGELOG <span id="5-update-the-changelog"></span><a href="#5-update-the-changelog" class="hashlink">&para;</a></h3><p>Edit the CHANGELOG file to include your change, you should insert this at the top of the file under the
+first heading (the version that is currently under development), the line in the change log should look like one of the following:</p>
+<pre><code class="hljs dockerfile">Bug <span class="hljs-comment">#999: a description of the bug fix (Your Name)</span>
+Enh <span class="hljs-comment">#999: a description of the enhancement (Your Name)</span>
+</code></pre>
+<p><code>#999</code> is the issue number that the <code>Bug</code> or <code>Enh</code> is referring to.
+The changelog should be grouped by type (<code>Bug</code>,<code>Enh</code>) and ordered by issue number.</p>
+<p>For very small fixes, e.g. typos and documentation changes, there is no need to update the CHANGELOG.</p>
+<h3>6. Commit your changes <span id="6-commit-your-changes"></span><a href="#6-commit-your-changes" class="hashlink">&para;</a></h3><p>add the files/changes you want to commit to the <a href="http://gitref.org/basic/#add">staging area</a> with</p>
+<pre><code class="hljs nginx"><span class="hljs-title">git</span> add path/to/my/file.php
+</code></pre>
+<p>You can use the <code>-p</code> option to select the changes you want to have in your commit.</p>
+<p>Commit your changes with a descriptive commit message. Make sure to mention the ticket number with <code>#XXX</code> so GitHub will
+automatically link your commit with the ticket:</p>
+<pre><code class="hljs sql">git <span class="hljs-operator"><span class="hljs-keyword">commit</span> -<span class="hljs-keyword">m</span> <span class="hljs-string">"A brief description of this change which fixes #999 goes here"</span>
+</span></code></pre>
+<h3>7. Pull the latest Yii code from upstream into your branch <span id="7-pull-the-latest-yii-code-from-upstream-into-your-branch"></span><a href="#7-pull-the-latest-yii-code-from-upstream-into-your-branch" class="hashlink">&para;</a></h3><pre><code class="hljs nginx"><span class="hljs-title">git</span> pull upstream master
+</code></pre>
+<p>This ensures you have the latest code in your branch before you open your pull request. If there are any merge conflicts,
+you should fix them now and commit the changes again. This ensures that it's easy for the Yii team to merge your changes
+with one click.</p>
+<h3>8. Having resolved any conflicts, push your code to GitHub <span id="8-having-resolved-any-conflicts-push-your-code-to-github"></span><a href="#8-having-resolved-any-conflicts-push-your-code-to-github" class="hashlink">&para;</a></h3><pre><code class="hljs nginx"><span class="hljs-title">git</span> push -u origin <span class="hljs-number">999</span>-name-of-your-branch-goes-here
+</code></pre>
+<p>The <code>-u</code> parameter ensures that your branch will now automatically push and pull from the GitHub branch. That means
+if you type <code>git push</code> the next time it will know where to push to. This is useful if you want to later add more commits
+to the pull request.</p>
+<h3>9. Open a <a href="http://help.github.com/send-pull-requests/">pull request</a> against upstream. <span id="9-open-a-pull-request-against-upstream"></span><a href="#9-open-a-pull-request-against-upstream" class="hashlink">&para;</a></h3><p>Go to your repository on GitHub and click "Pull Request", choose your branch on the right and enter some more details
+in the comment box. To link the pull request to the issue put anywhere in the pull comment <code>#999</code> where 999 is the
+issue number.</p>
+<blockquote><p>Note that each pull-request should fix a single change. For multiple, unrelated changes, please open multiple pull requests.</p>
+</blockquote>
+<h3>10. Someone will review your code <span id="10-someone-will-review-your-code"></span><a href="#10-someone-will-review-your-code" class="hashlink">&para;</a></h3><p>Someone will review your code, and you might be asked to make some changes, if so go to step #6 (you don't need to open
+another pull request if your current one is still open). If your code is accepted it will be merged into the main branch
+and become part of the next Yii release. If not, don't be disheartened, different people need different features and Yii
+can't be everything to everyone, your code will still be available on GitHub as a reference for people who need it.</p>
+<h3>11. Cleaning it up <span id="11-cleaning-it-up"></span><a href="#11-cleaning-it-up" class="hashlink">&para;</a></h3><p>After your code was either accepted or declined you can delete branches you've worked with from your local repository
+and <code>origin</code>.</p>
+<pre><code class="hljs javascript">git checkout master
+git branch -D <span class="hljs-number">999</span>-name-<span class="hljs-keyword">of</span>-your-branch-goes-here
+git push origin --<span class="hljs-keyword">delete</span> <span class="hljs-number">999</span>-name-<span class="hljs-keyword">of</span>-your-branch-goes-here
+</code></pre>
+<h3>Note: <span id="note"></span><a href="#note" class="hashlink">&para;</a></h3><p>To detect regressions early every merge to the Yii codebase on GitHub will be picked up by
+<a href="http://travis-ci.org">Travis CI</a> for an automated testrun. As core team doesn't wish to overtax this service,
+<a href="http://about.travis-ci.org/docs/user/how-to-skip-a-build/"><code>[ci skip]</code></a> will be included to the merge description if
+the pull request:</p>
+<ul>
+<li>affect javascript, css or image files only,</li>
+<li>updates the documentation,</li>
+<li>modify fixed strings only (e.g. translation updates)</li>
+</ul>
+<p>Doing so will save travis from commencing testruns on changes that are not covered by tests in the first place.</p>
+<h3>Command overview (for advanced contributors) <span id="command-overview-for-advanced-contributors"></span><a href="#command-overview-for-advanced-contributors" class="hashlink">&para;</a></h3><pre><code class="hljs nginx"><span class="hljs-title">git</span> clone git<span class="hljs-variable">@github</span>.com:YOUR-GITHUB-USERNAME/yii2.git
+git remote add upstream <span class="hljs-url">git://github.com/yiisoft/yii2.git</span>
+</code></pre>
+<pre><code class="hljs sql">git fetch upstream
+git checkout upstream/master
+git checkout -b 999-name-of-your-branch-goes-here
+
+<span class="hljs-comment">/* do your magic, update changelog if needed */</span>
+
+git add path/to/my/file.php
+git <span class="hljs-operator"><span class="hljs-keyword">commit</span> -<span class="hljs-keyword">m</span> <span class="hljs-string">"A brief description of this change which fixes #999 goes here"</span>
+git pull upstream <span class="hljs-keyword">master</span>
+git push -u origin <span class="hljs-number">999</span>-<span class="hljs-keyword">name</span>-<span class="hljs-keyword">of</span>-your-branch-goes-here
+</span></code></pre>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:44 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

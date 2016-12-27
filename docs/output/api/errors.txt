@@ -1,0 +1,220 @@
+Array
+(
+    [0] => Array
+        (
+            [line] => 24
+            [file] => controllers/AlquileresController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\AlquileresController.
+        )
+
+    [1] => Array
+        (
+            [line] => 20
+            [file] => controllers/PeliculasController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\PeliculasController.
+        )
+
+    [2] => Array
+        (
+            [line] => 17
+            [file] => controllers/SiteController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\SiteController.
+        )
+
+    [3] => Array
+        (
+            [line] => 43
+            [file] => controllers/SiteController.php
+            [message] => Method actions has no parent to inherit from in app\controllers\SiteController.
+        )
+
+    [4] => Array
+        (
+            [line] => 20
+            [file] => controllers/SociosController.php
+            [message] => Method behaviors has no parent to inherit from in app\controllers\SociosController.
+        )
+
+    [5] => Array
+        (
+            [line] => 26
+            [file] => models/Alquiler.php
+            [message] => Method tableName has no parent to inherit from in app\models\Alquiler.
+        )
+
+    [6] => Array
+        (
+            [line] => 34
+            [file] => models/Alquiler.php
+            [message] => Method rules has no parent to inherit from in app\models\Alquiler.
+        )
+
+    [7] => Array
+        (
+            [line] => 49
+            [file] => models/Alquiler.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Alquiler.
+        )
+
+    [8] => Array
+        (
+            [line] => 26
+            [file] => models/Alquiler.php
+            [message] => Method tableName has no parent to inherit from in app\models\Alquiler.
+        )
+
+    [9] => Array
+        (
+            [line] => 34
+            [file] => models/Alquiler.php
+            [message] => Method rules has no parent to inherit from in app\models\Alquiler.
+        )
+
+    [10] => Array
+        (
+            [line] => 49
+            [file] => models/Alquiler.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Alquiler.
+        )
+
+    [11] => Array
+        (
+            [line] => 30
+            [file] => models/AlquilerSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\AlquilerSearch.
+        )
+
+    [12] => Array
+        (
+            [line] => 25
+            [file] => models/Pelicula.php
+            [message] => Method tableName has no parent to inherit from in app\models\Pelicula.
+        )
+
+    [13] => Array
+        (
+            [line] => 33
+            [file] => models/Pelicula.php
+            [message] => Method rules has no parent to inherit from in app\models\Pelicula.
+        )
+
+    [14] => Array
+        (
+            [line] => 47
+            [file] => models/Pelicula.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Pelicula.
+        )
+
+    [15] => Array
+        (
+            [line] => 25
+            [file] => models/Pelicula.php
+            [message] => Method tableName has no parent to inherit from in app\models\Pelicula.
+        )
+
+    [16] => Array
+        (
+            [line] => 33
+            [file] => models/Pelicula.php
+            [message] => Method rules has no parent to inherit from in app\models\Pelicula.
+        )
+
+    [17] => Array
+        (
+            [line] => 47
+            [file] => models/Pelicula.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Pelicula.
+        )
+
+    [18] => Array
+        (
+            [line] => 31
+            [file] => models/PeliculaSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\PeliculaSearch.
+        )
+
+    [19] => Array
+        (
+            [line] => 24
+            [file] => models/Socio.php
+            [message] => Method tableName has no parent to inherit from in app\models\Socio.
+        )
+
+    [20] => Array
+        (
+            [line] => 32
+            [file] => models/Socio.php
+            [message] => Method rules has no parent to inherit from in app\models\Socio.
+        )
+
+    [21] => Array
+        (
+            [line] => 46
+            [file] => models/Socio.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Socio.
+        )
+
+    [22] => Array
+        (
+            [line] => 24
+            [file] => models/Socio.php
+            [message] => Method tableName has no parent to inherit from in app\models\Socio.
+        )
+
+    [23] => Array
+        (
+            [line] => 32
+            [file] => models/Socio.php
+            [message] => Method rules has no parent to inherit from in app\models\Socio.
+        )
+
+    [24] => Array
+        (
+            [line] => 46
+            [file] => models/Socio.php
+            [message] => Method attributeLabels has no parent to inherit from in app\models\Socio.
+        )
+
+    [25] => Array
+        (
+            [line] => 31
+            [file] => models/SocioSearch.php
+            [message] => Method scenarios has no parent to inherit from in app\models\SocioSearch.
+        )
+
+    [26] => Array
+        (
+            [line] => 34
+            [file] => models/User.php
+            [message] => Method findIdentity has no parent to inherit from in app\models\User.
+        )
+
+    [27] => Array
+        (
+            [line] => 42
+            [file] => models/User.php
+            [message] => Method findIdentityByAccessToken has no parent to inherit from in app\models\User.
+        )
+
+    [28] => Array
+        (
+            [line] => 73
+            [file] => models/User.php
+            [message] => Method getId has no parent to inherit from in app\models\User.
+        )
+
+    [29] => Array
+        (
+            [line] => 81
+            [file] => models/User.php
+            [message] => Method getAuthKey has no parent to inherit from in app\models\User.
+        )
+
+    [30] => Array
+        (
+            [line] => 89
+            [file] => models/User.php
+            [message] => Method validateAuthKey has no parent to inherit from in app\models\User.
+        )
+
+)

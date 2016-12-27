@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Models - Kiến trúc ứng dụng (Application Structure) - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w11752" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w11752-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w11752-collapse" class="collapse navbar-collapse"><ul id="w11753" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-11736" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-11736" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-11737" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-11737" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item active" href="#navigation-11738" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-11738" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item active" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-11739" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-11739" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-11740" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-11740" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-11741" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-11741" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-11742" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-11742" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-11743" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-11743" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-11744" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-11744" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-11745" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-11745" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-11746" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-11746" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-11747" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-11747" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-11748" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-11748" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-11749" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-11749" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-11750" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-11750" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-11751" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-11751" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>モデル <span id="moderu"></span><a href="#moderu" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#attributes">属性</a></li>
+<li><a href="#scenarios">シナリオ</a></li>
+<li><a href="#validation-rules">検証規則</a></li>
+<li><a href="#massive-assignment">一括代入</a></li>
+<li><a href="#data-exporting">データのエクスポート</a></li>
+<li><a href="#best-practices">ベストプラクティス</a></li></ol></div>
+<p>モデルは <a href="http://ja.wikipedia.org/wiki/Model_View_Controller">MVC</a> アーキテクチャの一部を成すものです。
+これは、ビジネスのデータ、規則、ロジックを表現するオブジェクトです。</p>
+<p>モデルクラスは、<span class="broken-link">yii\base\Model</span> またはその子クラスを拡張することによって作成することが出来ます。
+基底クラス <span class="broken-link">yii\base\Model</span> は、次のような数多くの有用な機能をサポートしています。</p>
+<ul>
+<li><a href="#attributes">属性</a>: ビジネスデータを表現します。通常のオブジェクトプロパティや配列要素のようにしてアクセスすることが出来ます。</li>
+<li><a href="#attribute-labels">属性のラベル</a>: 属性の表示ラベルを指定します。</li>
+<li><a href="#massive-assignment">一括代入</a>: 一回のステップで複数の属性にデータを投入することをサポートしています。</li>
+<li><a href="#validation-rules">検証規則</a>: 宣言された検証規則に基いて入力されたデータの有効性を保証します。</li>
+<li><a href="#data-exporting">データのエクスポート</a>: カスタマイズ可能な形式でモデルデータを配列にエクスポートすることが出来ます。</li>
+</ul>
+<p><code>Model</code> クラスは、<a href="guide-db-active-record.html">アクティブレコード</a> のような、更に高度なモデルの基底クラスでもあります。
+それらの高度なモデルについての詳細は、関連するドキュメントを参照してください。</p>
+<blockquote class="info"><p><strong>Info: </strong>あなたのモデルクラスの基底クラスとして <span class="broken-link">yii\base\Model</span> を使うことが要求されている訳ではありません。
+  しかしながら、Yii のコンポーネントの多くが <span class="broken-link">yii\base\Model</span> をサポートするように作られていますので、通常は <span class="broken-link">yii\base\Model</span> がモデルの基底クラスとして推奨されます。</p>
+</blockquote>
+<h2>属性  <span id="attributes"></span><a href="#attributes" class="hashlink">&para;</a></h2><p>モデルはビジネスデータを <em>属性</em> の形式で表現します。
+全ての属性はそれぞれパブリックにアクセス可能なモデルのプロパティと同様なものです。
+<span class="broken-link">yii\base\Model::attributes()</span> メソッドが、モデルがどのような属性を持つかを指定します。</p>
+<p>属性に対しては、通常のオブジェクトプロパティにアクセスするのと同じようにして、アクセスすることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> \app\models\ContactForm;
+
+<span class="hljs-comment">// "name" は ContactForm の属性</span>
+<span class="hljs-variable">$model</span>-&gt;name = <span class="hljs-string">'example'</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$model</span>-&gt;name;
+</code></pre>
+<p>また、配列の要素にアクセスするようして、属性にアクセスすることも出来ます。
+これは、<span class="broken-link">yii\base\Model</span> が <a href="http://php.net/manual/ja/class.arrayaccess.php">ArrayAccess インターフェイス</a> と <a href="http://jp2.php.net/manual/ja/class.arrayiterator.php">ArrayIterator クラス</a> をサポートしている恩恵です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> \app\models\ContactForm;
+
+<span class="hljs-comment">// 配列要素のように属性にアクセスする</span>
+<span class="hljs-variable">$model</span>[<span class="hljs-string">'name'</span>] = <span class="hljs-string">'example'</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$model</span>[<span class="hljs-string">'name'</span>];
+
+<span class="hljs-comment">// 属性に反復アクセスする</span>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$model</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$name</span> =&gt; <span class="hljs-variable">$value</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">"$name: $value\n"</span>;
+}
+</code></pre>
+<h3>属性を定義する  <span id="defining-attributes"></span><a href="#defining-attributes" class="hashlink">&para;</a></h3><p>あなたのモデルが <span class="broken-link">yii\base\Model</span> を直接に拡張するものである場合、デフォルトでは、全ての <em>static でない public な</em> メンバ変数は属性となります。
+例えば、次に示す <code>ContactForm</code> モデルは四つの属性、すなわち、<code>name</code>、<code>email</code>、<code>subject</code>、そして、<code>body</code> を持ちます。
+この <code>ContactForm</code> モデルは、HTML フォームから受け取る入力データを表現するために使われます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ContactForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$email</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$subject</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$body</span>;
+}
+</code></pre>
+<p><span class="broken-link">yii\base\Model::attributes()</span> をオーバーライドして、属性を異なる方法で定義することが出来ます。
+このメソッドはモデルが持つ属性の名前を返さなくてはなりません。
+例えば、<span class="broken-link">yii\db\ActiveRecord</span> は、関連付けられたデータベーステーブルのコラム名を属性の名前として返すことによって、属性を定義しています。
+ただし、これと同時に、定義された属性に対して通常のオブジェクトプロパティと同じようにアクセスすることが出来るように、<code>__get()</code> や <code>__set()</code> などのマジックメソッドをオーバーライドする必要があるかもしれないことに注意してください。</p>
+<h3>属性のラベル  <span id="attribute-labels"></span><a href="#attribute-labels" class="hashlink">&para;</a></h3><p>属性の値を表示したり、入力してもらったりするときに、属性と関連付けられたラベルを表示する必要があることがよくあります。
+例えば、<code>firstName</code> という名前の属性を考えたとき、入力フォームやエラーメッセージのような箇所でエンドユーザに表示するときは、もっとユーザフレンドリーな <code>First Name</code> というラベルを表示したいと思うでしょう。</p>
+<p><span class="broken-link">yii\base\Model::getAttributeLabel()</span> を呼ぶことによって属性のラベルを得ることが出来ます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> \app\models\ContactForm;
+
+<span class="hljs-comment">// "Name" を表示する</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$model</span>-&gt;getAttributeLabel(<span class="hljs-string">'name'</span>);
+</code></pre>
+<p>デフォルトでは、属性のラベルは属性の名前から自動的に生成されます。
+ラベルの生成は <span class="broken-link">yii\base\Model::generateAttributeLabel()</span> というメソッドによって行われます。
+このメソッドは、キャメルケースの変数名を複数の単語に分割し、各単語の最初の文字を大文字にします。
+例えば、<code>username</code> は <code>Username</code> となり、<code>firstName</code> は <code>First Name</code> となります。</p>
+<p>自動的に生成されるラベルを使用したくない場合は、<span class="broken-link">yii\base\Model::attributeLabels()</span> をオーバーライドして、属性のラベルを明示的に宣言することが出来ます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Model</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ContactForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$name</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$email</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$subject</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$body</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attributeLabels</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'Your name'</span>,
+            <span class="hljs-string">'email'</span> =&gt; <span class="hljs-string">'Your email address'</span>,
+            <span class="hljs-string">'subject'</span> =&gt; <span class="hljs-string">'Subject'</span>,
+            <span class="hljs-string">'body'</span> =&gt; <span class="hljs-string">'Content'</span>,
+        ];
+    }
+}
+</code></pre>
+<p>複数の言語をサポートするアプリケーションでは、属性のラベルを翻訳したいと思うでしょう。
+これも、以下のように、<span class="broken-link">yii\base\Model::attributeLabels()</span> の中で行うことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">attributeLabels</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'name'</span> =&gt; \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Your name'</span>),
+        <span class="hljs-string">'email'</span> =&gt; \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Your email address'</span>),
+        <span class="hljs-string">'subject'</span> =&gt; \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Subject'</span>),
+        <span class="hljs-string">'body'</span> =&gt; \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Content'</span>),
+    ];
+}
+</code></pre>
+<p>条件に従って属性のラベルを定義することも出来ます。
+例えば、モデルが使用される <a href="#scenarios">シナリオ</a> に基づいて、同じ属性に対して違うラベルを返すことことが出来ます。</p>
+<blockquote class="info"><p><strong>Info: </strong>厳密に言えば、属性のラベルは <a href="guide-structure-views.html">ビュー</a> の一部を成すものです。
+  しかし、たいていの場合、モデルの中でラベルを宣言する方が便利が良く、結果としてクリーンで再利用可能なコードになります。</p>
+</blockquote>
+<h2>シナリオ  <span id="scenarios"></span><a href="#scenarios" class="hashlink">&para;</a></h2><p>モデルはさまざまに異なる <em>シナリオ</em> で使用されます。
+例えば、<code>User</code> モデルはユーザログインの入力を収集するために使われますが、同時に、ユーザ登録の目的でも使われます。
+異なるシナリオの下では、モデルが使用するビジネスルールとロジックも異なるものになり得ます。
+例えば、<code>email</code> 属性はユーザ登録の際には必須とされるかも知れませんが、ログインの際にはそうではないでしょう。</p>
+<p>モデルは <span class="broken-link">yii\base\Model::scenario</span> プロパティを使って、自身が使われているシナリオを追跡します。
+デフォルトでは、モデルは <code>default</code> という一つのシナリオだけをサポートします。
+次のコードは、モデルのシナリオを設定する二つの方法を示すものです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// シナリオをプロパティとして設定する</span>
+<span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> User;
+<span class="hljs-variable">$model</span>-&gt;scenario = User::SCENARIO_LOGIN;
+
+<span class="hljs-comment">// シナリオを設定情報で設定する</span>
+<span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> User([<span class="hljs-string">'scenario'</span> =&gt; User::SCENARIO_LOGIN]);
+</code></pre>
+<p>デフォルトでは、モデルによってサポートされるシナリオは、モデルで宣言されている <a href="#validation-rules">検証規則</a> によって決定されます。
+しかし、次のように、<span class="broken-link">yii\base\Model::scenarios()</span> メソッドをオーバーライドして、この振る舞いをカスタマイズすることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">const</span> SCENARIO_LOGIN = <span class="hljs-string">'login'</span>;
+    <span class="hljs-keyword">const</span> SCENARIO_REGISTER = <span class="hljs-string">'register'</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scenarios</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-keyword">self</span>::SCENARIO_LOGIN =&gt; [<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>],
+            <span class="hljs-keyword">self</span>::SCENARIO_REGISTER =&gt; [<span class="hljs-string">'username'</span>, <span class="hljs-string">'email'</span>, <span class="hljs-string">'password'</span>],
+        ];
+    }
+}
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>上記の例と後続の例では、モデルクラスは <span class="broken-link">yii\db\ActiveRecord</span> を拡張するものとなっています。
+  というのは、複数のシナリオを使用することは、通常は、<a href="guide-db-active-record.html">アクティブレコード</a> クラスで発生するからです。</p>
+</blockquote>
+<p><code>seanarios()</code> メソッドは、キーがシナリオの名前であり、値が対応する <em>アクティブな属性</em> である配列を返します。
+アクティブな属性とは、<a href="#massive-assignment">一括代入</a> することが出来て、<a href="#validation-rules">検証</a> の対象になる属性です。
+上記の例では、<code>login</code> シナリオにおいては <code>username</code> と <code>password</code> の属性がアクティブであり、一方、<code>register</code> シナリオにおいては、<code>username</code> と <code>password</code> に加えて <code>email</code> もアクティブです。</p>
+<p><code>scenarios()</code> のデフォルトの実装は、検証規則の宣言メソッドである <span class="broken-link">yii\base\Model::rules()</span> に現れる全てのシナリオを返すものです。
+<code>scenarios()</code> をオーバーライドするときに、デフォルトのシナリオに加えて新しいシナリオを導入したい場合は、次のようなコードを書きます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scenarios</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-variable">$scenarios</span> = <span class="hljs-keyword">parent</span>::scenarios();
+        <span class="hljs-variable">$scenarios</span>[<span class="hljs-keyword">self</span>::SCENARIO_LOGIN] = [<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>];
+        <span class="hljs-variable">$scenarios</span>[<span class="hljs-keyword">self</span>::SCENARIO_REGISTER] = [<span class="hljs-string">'username'</span>, <span class="hljs-string">'email'</span>, <span class="hljs-string">'password'</span>];
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$scenarios</span>;
+    }
+}
+</code></pre>
+<p>シナリオの機能は、主として、<a href="#validation-rules">検証</a> と <a href="#massive-assignment">属性の一括代入</a> によって使用されます。
+しかし、他の目的に使うことも可能です。例えば、現在のシナリオに基づいて異なる <a href="#attribute-labels">属性のラベル</a> を宣言することも出来ます。</p>
+<h2>検証規則  <span id="validation-rules"></span><a href="#validation-rules" class="hashlink">&para;</a></h2><p>モデルのデータをエンドユーザから受け取ったときは、データを検証して、それが一定の規則 (<em>検証規則</em>、あるいは、いわゆる <em>ビジネスルール</em>) を満たしていることを確認しなければなりません。
+<code>ContactForm</code> モデルを例に挙げるなら、全ての属性が空ではなく、<code>email</code> 属性が有効なメールアドレスを含んでいることを確認したいでしょう。
+いずれかの属性の値が対応するビジネスルールを満たしていないときは、ユーザがエラーを訂正するのを助ける適切なエラーメッセージが表示されなければなりません。</p>
+<p>受信したデータを検証するために、<span class="broken-link">yii\base\Model::validate()</span> を呼ぶことが出来ます。
+このメソッドは、<span class="broken-link">yii\base\Model::rules()</span> で宣言された検証規則を使って、該当するすべての属性を検証します。
+エラーが見つからなければ、メソッドは <code>true</code> を返します。
+そうでなければ、<span class="broken-link">yii\base\Model::errors</span> にエラーを保存して、<code>false</code> を返します。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> \app\models\ContactForm;
+
+<span class="hljs-comment">// モデルの属性にユーザの入力を代入する</span>
+<span class="hljs-variable">$model</span>-&gt;attributes = \Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;post(<span class="hljs-string">'ContactForm'</span>);
+
+<span class="hljs-keyword">if</span> (<span class="hljs-variable">$model</span>-&gt;validate()) {
+    <span class="hljs-comment">// すべての入力値は有効である</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// 検証が失敗: $errors はエラーメッセージを含む配列</span>
+    <span class="hljs-variable">$errors</span> = <span class="hljs-variable">$model</span>-&gt;errors;
+}
+</code></pre>
+<p>モデルに関連付けられた検証規則を宣言するためには、<span class="broken-link">yii\base\Model::rules()</span> メソッドをオーバーライドして、モデルの属性が満たすべき規則を返すようにします。
+次の例は、<code>ContactForm</code> モデルのために宣言された検証規則を示します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-comment">// name、email、subject、body の属性が必須</span>
+        [[<span class="hljs-string">'name'</span>, <span class="hljs-string">'email'</span>, <span class="hljs-string">'subject'</span>, <span class="hljs-string">'body'</span>], <span class="hljs-string">'required'</span>],
+
+        <span class="hljs-comment">// email 属性は、有効なメールアドレスでなければならない</span>
+        [<span class="hljs-string">'email'</span>, <span class="hljs-string">'email'</span>],
+    ];
+}
+</code></pre>
+<p>一つの規則は、一つまたは複数の属性を検証するために使うことが出来ます。
+また、一つの属性は、一つまたは複数の規則によって検証することが出来ます。
+検証規則をどのように宣言するかについての詳細は <a href="guide-input-validation.html">入力を検証する</a> の節を参照してください。</p>
+<p>時として、特定の <a href="#scenarios">シナリオ</a> にのみ適用される規則が必要になるでしょう。
+そのためには、下記のように、規則に <code>on</code> プロパティを指定することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-comment">// "register" シナリオでは、username、email、password のすべてが必須</span>
+        [[<span class="hljs-string">'username'</span>, <span class="hljs-string">'email'</span>, <span class="hljs-string">'password'</span>], <span class="hljs-string">'required'</span>, <span class="hljs-string">'on'</span> =&gt; <span class="hljs-keyword">self</span>::SCENARIO_REGISTER],
+
+        <span class="hljs-comment">// "login" シナリオでは、username と password が必須</span>
+        [[<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>], <span class="hljs-string">'required'</span>, <span class="hljs-string">'on'</span> =&gt; <span class="hljs-keyword">self</span>::SCENARIO_LOGIN],
+    ];
+}
+</code></pre>
+<p><code>on</code> プロパティを指定しない場合は、その規則は全てのシナリオに適用されることになります。
+現在の <span class="broken-link">yii\base\Model::scenario</span> に適用可能な規則は <em>アクティブな規則</em> と呼ばれます。</p>
+<p>属性が検証されるのは、それが <code>scenarios()</code> の中でアクティブな属性であると宣言されており、かつ、その属性が <code>rules()</code> の中で宣言されている一つまたは複数のアクティブな規則と結び付けられている場合であり、また、そのような場合だけです。</p>
+<h2>一括代入  <span id="massive-assignment"></span><a href="#massive-assignment" class="hashlink">&para;</a></h2><p>一括代入は、一行のコードを書くだけで、ユーザの入力した複数のデータをモデルに投入できる便利な方法です。
+一括代入は、入力されたデータを <span class="broken-link">yii\base\Model::$attributes</span> プロパティに直接に代入することによって、モデルの属性にデータを投入します。
+次の二つのコード断片は等価であり、どちらもエンドユーザから送信されたフォームのデータを <code>ContactForm</code> モデルの属性に割り当てようとするものです。
+明らかに、一括代入を使う前者の方が、後者よりも明快で間違いも起こりにくいでしょう。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> \app\models\ContactForm;
+<span class="hljs-variable">$model</span>-&gt;attributes = \Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;post(<span class="hljs-string">'ContactForm'</span>);
+</code></pre>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> \app\models\ContactForm;
+<span class="hljs-variable">$data</span> = \Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;post(<span class="hljs-string">'ContactForm'</span>, []);
+<span class="hljs-variable">$model</span>-&gt;name = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'name'</span>]) ? <span class="hljs-variable">$data</span>[<span class="hljs-string">'name'</span>] : <span class="hljs-keyword">null</span>;
+<span class="hljs-variable">$model</span>-&gt;email = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'email'</span>]) ? <span class="hljs-variable">$data</span>[<span class="hljs-string">'email'</span>] : <span class="hljs-keyword">null</span>;
+<span class="hljs-variable">$model</span>-&gt;subject = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'subject'</span>]) ? <span class="hljs-variable">$data</span>[<span class="hljs-string">'subject'</span>] : <span class="hljs-keyword">null</span>;
+<span class="hljs-variable">$model</span>-&gt;body = <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$data</span>[<span class="hljs-string">'body'</span>]) ? <span class="hljs-variable">$data</span>[<span class="hljs-string">'body'</span>] : <span class="hljs-keyword">null</span>;
+</code></pre>
+<h3>安全な属性  <span id="safe-attributes"></span><a href="#safe-attributes" class="hashlink">&para;</a></h3><p>一括代入は、いわゆる <em>安全な属性</em>、すなわち、<span class="broken-link">yii\base\Model::scenarios()</span> においてモデルの現在の <span class="broken-link">yii\base\Model::scenario</span> のためにリストされている属性に対してのみ適用されます。
+例えば、<code>User</code> モデルが次のようなシナリオ宣言を持っている場合において、現在のシナリオが <code>login</code> であるときは、<code>username</code> と <code>password</code> のみが一括代入が可能です。
+その他の属性はいっさい触れられません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scenarios</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-keyword">self</span>::SCENARIO_LOGIN =&gt; [<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>],
+        <span class="hljs-keyword">self</span>::SCENARIO_REGISTER =&gt; [<span class="hljs-string">'username'</span>, <span class="hljs-string">'email'</span>, <span class="hljs-string">'password'</span>],
+    ];
+}
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>一括代入が安全な属性に対してのみ適用されるのは、エンドユーザの入力データがどの属性を修正することが出来るか、ということを制御する必要があるからです。
+  例えば、<code>User</code> モデルに、ユーザに割り当てられた権限を決定する <code>permission</code> という属性がある場合、この属性が修正できるのは、管理者がバックエンドのインターフェイスを通じてする時だけに制限したいでしょう。</p>
+</blockquote>
+<p><span class="broken-link">yii\base\Model::scenarios()</span> のデフォルトの実装は <span class="broken-link">yii\base\Model::rules()</span> に現われる全てのシナリオと属性を返すものです。
+従って、このメソッドをオーバーライドしない場合は、アクティブな検証規則のどれかに出現する限り、その属性は安全である、ということになります。</p>
+<p>このため、実際に検証することなく属性を安全であると宣言できるように、<code>safe</code> というエイリアスを与えられた特別なバリデータが提供されています。
+例えば、次の規則は <code>title</code> と <code>description</code> の両方が安全な属性であると宣言しています。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        [[<span class="hljs-string">'title'</span>, <span class="hljs-string">'description'</span>], <span class="hljs-string">'safe'</span>],
+    ];
+}
+</code></pre>
+<h3>安全でない属性  <span id="unsafe-attributes"></span><a href="#unsafe-attributes" class="hashlink">&para;</a></h3><p>上記で説明したように、<span class="broken-link">yii\base\Model::scenarios()</span> メソッドは二つの目的を持っています。
+すなわち、どの属性が検証されるべきかを決めることと、どの属性が安全であるかを決めることです。
+めったにない場合として、属性を検証する必要はあるが、安全であるという印は付けたくない、ということがあります。
+そういう時は、下の例の <code>secret</code> 属性のように、名前の前に感嘆符 <code>!</code> を付けて <code>scenarios()</code> の中で宣言することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">scenarios</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-keyword">self</span>::SCENARIO_LOGIN =&gt; [<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>, <span class="hljs-string">'!secret'</span>],
+    ];
+}
+</code></pre>
+<p>このモデルが <code>login</code> シナリオにある場合、三つの属性は全て検証されます。
+しかし、<code>username</code> と <code>password</code> の属性だけが一括代入が可能です。
+<code>secret</code> 属性に入力値を割り当てるためには、下記のように明示的に代入を実行する必要があります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$model</span>-&gt;secret = <span class="hljs-variable">$secret</span>;
+</code></pre>
+<p>同じ事が <code>rules()</code> メソッドの中でも出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        [[<span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>, <span class="hljs-string">'!secret'</span>], <span class="hljs-string">'required'</span>, <span class="hljs-string">'on'</span> =&gt; <span class="hljs-string">'login'</span>]
+    ];
+}
+</code></pre>
+<p>この場合、<code>username</code>、<code>password</code> そして <code>secret</code> の属性が必須項目とされますが、<code>secret</code> は明示的に代入される必要があります。</p>
+<h2>データのエクスポート  <span id="data-exporting"></span><a href="#data-exporting" class="hashlink">&para;</a></h2><p>モデルを他の形式にエクスポートする必要が生じることはよくあります。
+例えば、モデルのコレクションを JSON や Excel 形式に変換したい場合があるでしょう。
+このエクスポートのプロセスは二つの独立したステップに分割することが出来ます。</p>
+<ul>
+<li>モデルが配列に変換され、</li>
+<li>配列が目的の形式に変換される。</li>
+</ul>
+<p>あなたは最初のステップだけに注力することが出来ます。
+と言うのは、第二のステップは汎用的なデータフォーマッタ、例えば <span class="broken-link">yii\web\JsonResponseFormatter</span> によって達成できるからです。</p>
+<p>モデルを配列に変換する最も簡単な方法は、<span class="broken-link">yii\base\Model::$attributes</span> プロパティを使うことです。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$post</span> = \app\models\Post::findOne(<span class="hljs-number">100</span>);
+<span class="hljs-variable">$array</span> = <span class="hljs-variable">$post</span>-&gt;attributes;
+</code></pre>
+<p>デフォルトでは、<span class="broken-link">yii\base\Model::$attributes</span> プロパティは <span class="broken-link">yii\base\Model::attributes()</span> で宣言されている <em>全て</em> の属性の値を返します。</p>
+<p>モデルを配列に変換するためのもっと柔軟で強力な方法は、<span class="broken-link">yii\base\Model::toArray()</span> メソッドを使うことです。
+このメソッドのデフォルトの動作は <span class="broken-link">yii\base\Model::$attributes</span> のそれと同じものです。
+しかしながら、このメソッドを使うと、どのデータ項目 (<em>フィールド</em> と呼ばれます) を結果の配列に入れるか、そして、その項目にどのような書式を適用するかを選ぶことが出来ます。
+実際、<a href="guide-rest-response-formatting.html">レスポンス形式の設定</a> で説明されているように、RESTful ウェブサービスの開発においては、これがモデルをエクスポートするデフォルトの方法となっています。</p>
+<h3>フィールド  <span id="fields"></span><a href="#fields" class="hashlink">&para;</a></h3><p>フィールドとは、単に、モデルの <span class="broken-link">yii\base\Model::toArray()</span> メソッドを呼ぶことによって取得される配列に含まれる、名前付きの要素のことです。</p>
+<p>デフォルトでは、フィールドの名前は属性の名前と等しいものになります。
+しかし、このデフォルトの動作は、<span class="broken-link">yii\base\Model::fields()</span> および/または <span class="broken-link">yii\base\Model::extraFields()</span> メソッドをオーバーライドして、変更することが出来ます。
+どちらのメソッドも、フィールド定義のリストを返します。
+<code>fields()</code> によって定義されるフィールドは、デフォルトフィールドです。すなわち、<code>toArray()</code> はデフォルトでこれらのフィールドを返す、ということを意味します。
+<code>extraFields()</code> メソッドは、<code>$expand</code> パラメータによって指定する限りにおいて <code>toArray()</code> によって返される、追加のフィールドを定義するものです。
+例として、次のコードは、<code>fields()</code> で定義された全てのフィールドと、(<code>extraFields()</code> で定義されていれば) <code>prettyName</code> と <code>fullAddress</code> フィールドを返すものです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$array</span> = <span class="hljs-variable">$model</span>-&gt;toArray([], [<span class="hljs-string">'prettyName'</span>, <span class="hljs-string">'fullAddress'</span>]);
+</code></pre>
+<p><code>fields()</code> をオーバーライドして、フィールドを追加、削除、リネーム、再定義することが出来ます。
+<code>fields()</code> の返り値は配列でなければなりません。配列のキーはフィールド名であり、配列の値は対応するフィールド定義です。
+フィールドの定義には、プロパティ/属性 の名前か、または、対応するフィールドの値を返す無名関数を使うことが出来ます。
+フィールド名がそれを定義する属性名と同一であるという特殊な場合においては、配列のキーを省略することが出来ます。
+例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 明示的に全てのフィールドをリストする方法。(API の後方互換性を保つために) DB テーブルや</span>
+<span class="hljs-comment">// モデル属性の変更がフィールドの変更を引き起こさないことを保証したい場合に適している。</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fields</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-comment">// フィールド名が属性名と同じ</span>
+        <span class="hljs-string">'id'</span>,
+
+        <span class="hljs-comment">// フィールド名は "email"、対応する属性名は "email_address"</span>
+        <span class="hljs-string">'email'</span> =&gt; <span class="hljs-string">'email_address'</span>,
+
+        <span class="hljs-comment">// フィールド名は "name"、その値は PHP コールバックで定義</span>
+        <span class="hljs-string">'name'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;first_name . <span class="hljs-string">' '</span> . <span class="hljs-variable">$this</span>-&gt;last_name;
+        },
+    ];
+}
+
+<span class="hljs-comment">// いくつかのフィールドを除外する方法。親の実装を継承しつつ、公開すべきでないフィールドは</span>
+<span class="hljs-comment">// 除外したいときに適している。</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fields</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-variable">$fields</span> = <span class="hljs-keyword">parent</span>::fields();
+
+    <span class="hljs-comment">// 公開すべきでない情報を含むフィールドを削除する</span>
+    <span class="hljs-keyword">unset</span>(<span class="hljs-variable">$fields</span>[<span class="hljs-string">'auth_key'</span>], <span class="hljs-variable">$fields</span>[<span class="hljs-string">'password_hash'</span>], <span class="hljs-variable">$fields</span>[<span class="hljs-string">'password_reset_token'</span>]);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$fields</span>;
+}
+</code></pre>
+<blockquote class="warning"><p><strong>Warning: </strong>デフォルトではモデルの全ての属性がエクスポートされる配列に含まれるため、データを精査して、公開すべきでない情報が含まれていないことを確認しなければなりません。
+そういう情報がある場合は、<code>fields()</code> をオーバーライドして、除外しなければなりません。
+上記の例では、<code>auth_key</code>、<code>password_hash</code> および <code>password_reset_token</code> を除外しています。</p>
+</blockquote>
+<h2>ベストプラクティス  <span id="best-practices"></span><a href="#best-practices" class="hashlink">&para;</a></h2><p>モデルは、ビジネスのデータ、規則、ロジックを表わす中心的なオブジェクトです。
+モデルは、たいてい、さまざまな場所で再利用される必要があります。
+良く設計されたアプリケーションでは、通常、モデルは <a href="guide-structure-controllers.html">コントローラ</a> よりもはるかに太ったものになります。</p>
+<p>要約すると、モデルは、</p>
+<ul>
+<li>ビジネスデータを表現する属性を含むことが出来ます。</li>
+<li>データの有効性と整合性を保証する検証規則を含むことが出来ます。</li>
+<li>ビジネスロジックを実装するメソッドを含むことが出来ます。</li>
+<li>リクエスト、セッション、または他の環境データに直接アクセスするべきではありません。
+これらのデータは、<a href="guide-structure-controllers.html">コントローラ</a> によってモデルに注入されるべきです。</li>
+<li>HTML を埋め込むなどの表示用のコードは避けるべきです -  表示は <a href="guide-structure-views.html">ビュー</a> で行う方が良いです。</li>
+<li>あまりに多くの <a href="#scenarios">シナリオ</a> を一つのモデルで持つことは避けましょう。</li>
+</ul>
+<p>大規模で複雑なシステムを開発するときには、たいてい、上記の最後にあげた推奨事項を考慮するのが良いでしょう。
+そういうシステムでは、モデルは数多くの場所で使用され、それに従って、数多くの規則セットやビジネスロジックを含むため、非常に太ったものになり得ます。
+コードの一ヶ所に触れるだけで数ヶ所の違った場所に影響が及ぶため、ついには、モデルのコードの保守が悪夢になってしまうこともよくあります。
+モデルのコードの保守性を高めるためには、以下の戦略をとることが出来ます。</p>
+<ul>
+<li>異なる <a href="guide-structure-applications.html">アプリケーション</a> または <a href="guide-structure-modules.html">モジュール</a> によって共有される一連の基底モデルクラスを定義します。
+これらのモデルクラスは、すべてで共通に使用される最小限の規則セットとロジックのみを含むべきです。</li>
+<li>モデルを使用するそれぞれの <a href="guide-structure-applications.html">アプリケーション</a> または <a href="guide-structure-modules.html">モジュール</a> において、対応する基底モデルクラスから拡張した具体的なモデルクラスを定義します。
+この具体的なモデルクラスが、そのアプリケーションやモジュールに固有の規則やロジックを含むべきです。</li>
+</ul>
+<p>例えば、<a href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide-ja/README.md">アドバンストプロジェクトテンプレート</a> の中で、基底モデルクラス <code>common\models\Post</code> を定義することが出来ます。
+次に、フロントエンドアプリケーションにおいては、<code>common\models\Post</code> から拡張した具体的なモデルクラス <code>frontend\models\Post</code> を定義して使います。
+また、バックエンドアプリケーションにおいても、同様に、<code>backend\models\Post</code> を定義します。
+この戦略を取ると、<code>frontend\models\Post</code> の中のコードはフロントエンドアプリケーション固有のものであると保証することが出来ます。
+そして、フロントエンドのコードにどのような変更を加えても、バックエンドアプリケーションを壊すかもしれないと心配する必要がなくなります。</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:43 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

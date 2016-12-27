@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Định dạng thông điệp gửi đi (Response Formatting) - RESTful Web Services - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w11284" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w11284-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w11284-collapse" class="collapse navbar-collapse"><ul id="w11285" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-11268" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-11268" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-11269" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-11269" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-11270" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-11270" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-11271" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-11271" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-11272" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-11272" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-11273" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-11273" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-11274" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-11274" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-11275" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-11275" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-11276" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-11276" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-11277" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-11277" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item active" href="#navigation-11278" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-11278" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item active" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-11279" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-11279" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-11280" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-11280" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-11281" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-11281" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-11282" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-11282" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-11283" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-11283" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>レスポンス形式の設定 <span id="resuponsu-xing-shino-she-ding"></span><a href="#resuponsu-xing-shino-she-ding" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#content-negotiation">コンテントネゴシエーション</a></li>
+<li><a href="#data-serializing">データのシリアライズ</a></li></ol></div>
+<p>RESTful API のリクエストを処理するとき、アプリケーションは、通常、レスポンス形式の設定に関して次のステップを踏みます。</p>
+<ol>
+<li>レスポンス形式に影響するさまざまな要因、例えば、メディアタイプ、言語、バージョンなどを決定します。
+このプロセスは <a href="http://en.wikipedia.org/wiki/Content_negotiation">コンテントネゴシエーション</a> としても知られるものです。</li>
+<li>リソースオブジェクトを配列に変換します。
+<a href="guide-rest-resources.html">リソース</a> の節で説明したように、この作業は <span class="broken-link">yii\rest\Serializer</span> によって実行されます。</li>
+<li>配列をコンテントネゴシエーションのステップで決定された形式の文字列に変換します。
+この作業は、<code>response</code> <a href="guide-structure-application-components.html">アプリケーションコンポーネント</a> の <span class="broken-link">yii\web\Response::formatters</span> プロパティに登録された <span class="broken-link">yii\web\ResponseFormatterInterface</span> によって実行されます。</li>
+</ol>
+<h2>コンテントネゴシエーション  <span id="content-negotiation"></span><a href="#content-negotiation" class="hashlink">&para;</a></h2><p>Yii は <span class="broken-link">yii\filters\ContentNegotiator</span> フィルタによってコンテントネゴシエーションをサポートします。
+RESTful API の基底コントローラクラス <span class="broken-link">yii\rest\Controller</span> は <code>contentNegotiator</code> という名前でこのフィルタを持っています。
+このフィルタは、レスポンス形式のネゴシエーションと同時に言語のネゴシエーションも提供します。
+例えば、RESTful API リクエストが下記のヘッダを含んでいるとします。</p>
+<pre><code class="hljs http"><span class="hljs-attribute">Accept</span>: <span class="hljs-string">application/json; q=1.0, */*; q=0.1</span>
+</code></pre>
+<p>この場合、リクエストは JSON 形式のレスポンスを受け取ることになります。例えば、次のような具合です。</p>
+<pre><code class="hljs php">$ curl -i -H <span class="hljs-string">"Accept: application/json; q=1.0, */*; q=0.1"</span> <span class="hljs-string">"http://localhost/users"</span>
+
+HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+Date: Sun, <span class="hljs-number">02</span> Mar <span class="hljs-number">2014</span> <span class="hljs-number">05</span>:<span class="hljs-number">31</span>:<span class="hljs-number">43</span> GMT
+Server: Apache/<span class="hljs-number">2.2</span><span class="hljs-number">.26</span> (Unix) DAV/<span class="hljs-number">2</span> PHP/<span class="hljs-number">5.4</span><span class="hljs-number">.20</span> mod_ssl/<span class="hljs-number">2.2</span><span class="hljs-number">.26</span> OpenSSL/<span class="hljs-number">0.9</span><span class="hljs-number">.8</span>y
+X-Powered-By: PHP/<span class="hljs-number">5.4</span><span class="hljs-number">.20</span>
+X-Pagination-Total-Count: <span class="hljs-number">1000</span>
+X-Pagination-Page-Count: <span class="hljs-number">50</span>
+X-Pagination-Current-Page: <span class="hljs-number">1</span>
+X-Pagination-Per-Page: <span class="hljs-number">20</span>
+Link: &lt;http:<span class="hljs-comment">//localhost/users?page=1&gt;; rel=self,</span>
+      &lt;http:<span class="hljs-comment">//localhost/users?page=2&gt;; rel=next,</span>
+      &lt;http:<span class="hljs-comment">//localhost/users?page=50&gt;; rel=last</span>
+Transfer-Encoding: chunked
+Content-Type: application/json; charset=UTF-<span class="hljs-number">8</span>
+
+[
+    {
+        <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+        ...
+    },
+    {
+        <span class="hljs-string">"id"</span>: <span class="hljs-number">2</span>,
+        ...
+    },
+    ...
+]
+</code></pre>
+<p>舞台裏では、RESTful API コントローラアクションが実行される前に、<span class="broken-link">yii\filters\ContentNegotiator</span> フィルタがリクエストの <code>Accept</code> HTTP ヘッダをチェックして、<span class="broken-link">yii\web\Response::format</span> を <code>'json'</code> に設定します。
+アクションが実行されて、その結果のリソースのオブジェクトまたはコレクションが返されると、<span class="broken-link">yii\rest\Serializer</span> が結果を配列に変換します。
+そして最後に、<span class="broken-link">yii\web\JsonResponseFormatter</span> が配列を JSON 文字列に変換して、それをレスポンスボディに入れます。</p>
+<p>デフォルトでは、RESTful API は JSON と XML の両方の形式をサポートします。
+新しい形式をサポートするためには、下記のように、API コントローラクラスの中で <code>contentNegotiator</code> フィルタの <span class="broken-link">yii\filters\ContentNegotiator::formats</span> プロパティを構成しなければなりません。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Response</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-variable">$behaviors</span> = <span class="hljs-keyword">parent</span>::behaviors();
+    <span class="hljs-variable">$behaviors</span>[<span class="hljs-string">'contentNegotiator'</span>][<span class="hljs-string">'formats'</span>][<span class="hljs-string">'text/html'</span>] = Response::FORMAT_HTML;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$behaviors</span>;
+}
+</code></pre>
+<p><code>formats</code> プロパティのキーはサポートされる MIME タイプであり、値は対応するレスポンス形式名です。
+このレスポンス形式名は、<span class="broken-link">yii\web\Response::formatters</span> の中でサポートされているものでなければなりません。</p>
+<h2>データのシリアライズ  <span id="data-serializing"></span><a href="#data-serializing" class="hashlink">&para;</a></h2><p>上記で説明したように、<span class="broken-link">yii\rest\Serializer</span> が、リソースのオブジェクトやコレクションを配列に変換する際に、中心的な役割を果たします。
+<code>Serializer</code> は、<span class="broken-link">yii\base\Arrayable</span> および <span class="broken-link">yii\data\DataProviderInterface</span> のインタフェイスを実装したオブジェクトを認識します。
+前者は主としてリソースオブジェクトによって実装され、後者はリソースコレクションによって実装されています。</p>
+<p><span class="broken-link">yii\rest\Controller::serializer</span> プロパティに構成情報配列をセットしてシリアライザを構成することが出来ます。
+例えば、場合によっては、クライアントの開発作業を単純化するために、ページネーション情報をレスポンスボディに直接に含ませたいことがあるでしょう。
+そうするためには、<span class="broken-link">yii\rest\Serializer::collectionEnvelope</span> プロパティを次のように構成します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">rest</span>\<span class="hljs-title">ActiveController</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveController</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$modelClass</span> = <span class="hljs-string">'app\models\User'</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$serializer</span> = [
+        <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\rest\Serializer'</span>,
+        <span class="hljs-string">'collectionEnvelope'</span> =&gt; <span class="hljs-string">'items'</span>,
+    ];
+}
+</code></pre>
+<p>このようにすると、<code>http://localhost/users</code> というリクエストに対して、次のレスポンスを得ることが出来ます。</p>
+<pre><code class="hljs php">HTTP/<span class="hljs-number">1.1</span> <span class="hljs-number">200</span> OK
+Date: Sun, <span class="hljs-number">02</span> Mar <span class="hljs-number">2014</span> <span class="hljs-number">05</span>:<span class="hljs-number">31</span>:<span class="hljs-number">43</span> GMT
+Server: Apache/<span class="hljs-number">2.2</span><span class="hljs-number">.26</span> (Unix) DAV/<span class="hljs-number">2</span> PHP/<span class="hljs-number">5.4</span><span class="hljs-number">.20</span> mod_ssl/<span class="hljs-number">2.2</span><span class="hljs-number">.26</span> OpenSSL/<span class="hljs-number">0.9</span><span class="hljs-number">.8</span>y
+X-Powered-By: PHP/<span class="hljs-number">5.4</span><span class="hljs-number">.20</span>
+X-Pagination-Total-Count: <span class="hljs-number">1000</span>
+X-Pagination-Page-Count: <span class="hljs-number">50</span>
+X-Pagination-Current-Page: <span class="hljs-number">1</span>
+X-Pagination-Per-Page: <span class="hljs-number">20</span>
+Link: &lt;http:<span class="hljs-comment">//localhost/users?page=1&gt;; rel=self,</span>
+      &lt;http:<span class="hljs-comment">//localhost/users?page=2&gt;; rel=next,</span>
+      &lt;http:<span class="hljs-comment">//localhost/users?page=50&gt;; rel=last</span>
+Transfer-Encoding: chunked
+Content-Type: application/json; charset=UTF-<span class="hljs-number">8</span>
+
+{
+    <span class="hljs-string">"items"</span>: [
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+            ...
+        },
+        {
+            <span class="hljs-string">"id"</span>: <span class="hljs-number">2</span>,
+            ...
+        },
+        ...
+    ],
+    <span class="hljs-string">"_links"</span>: {
+        <span class="hljs-string">"self"</span>: {
+            <span class="hljs-string">"href"</span>: <span class="hljs-string">"http://localhost/users?page=1"</span>
+        },
+        <span class="hljs-string">"next"</span>: {
+            <span class="hljs-string">"href"</span>: <span class="hljs-string">"http://localhost/users?page=2"</span>
+        },
+        <span class="hljs-string">"last"</span>: {
+            <span class="hljs-string">"href"</span>: <span class="hljs-string">"http://localhost/users?page=50"</span>
+        }
+    },
+    <span class="hljs-string">"_meta"</span>: {
+        <span class="hljs-string">"totalCount"</span>: <span class="hljs-number">1000</span>,
+        <span class="hljs-string">"pageCount"</span>: <span class="hljs-number">50</span>,
+        <span class="hljs-string">"currentPage"</span>: <span class="hljs-number">1</span>,
+        <span class="hljs-string">"perPage"</span>: <span class="hljs-number">20</span>
+    }
+}
+</code></pre>
+<h3>JSON 出力を制御する <span id="json-chu-liwo-zhi-yusuru"></span><a href="#json-chu-liwo-zhi-yusuru" class="hashlink">&para;</a></h3><p>JSON 形式のレスポンスを生成する <span class="broken-link">yii\web\JsonResponseFormatter</span> クラスは <span class="broken-link">yii\helpers\Json</span> を内部的に使用します。
+このフォーマッタはさまざまなオプションによって構成することが可能です。
+例えば、<span class="broken-link">yii\web\JsonResponseFormatter::$prettyPrint</span> オプションは、より読みやすいレスポンスのためのもので、開発時に有用なオプションです。
+また、<span class="broken-link">yii\web\JsonResponseFormatter::$encodeOptions</span> によって JSON エンコーディングの出力を制御することが出来ます。</p>
+<p>フォーマッタは、以下のように、アプリケーションの <a href="guide-concept-configuration.html">構成情報</a> の中で、<code>response</code> アプリケーション・コンポーネントの <span class="broken-link">yii\web\Response::formatters</span> プロパティの中で構成することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-string">'response'</span> =&gt; [
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-string">'formatters'</span> =&gt; [
+        \yii\web\Response::FORMAT_JSON =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\web\JsonResponseFormatter'</span>,
+            <span class="hljs-string">'prettyPrint'</span> =&gt; YII_DEBUG, <span class="hljs-comment">// デバッグモードでは "きれい" な出力を使用</span>
+            <span class="hljs-string">'encodeOptions'</span> =&gt; JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
+            <span class="hljs-comment">// ...</span>
+        ],
+    ],
+],
+</code></pre>
+<p><a href="guide-db-dao.html">DAO</a> データベース・レイヤを使ってデータベースからデータを返す場合は、全てのデータが文字列として表されます。
+しかし、特に数値は JSON では数として表現されなければなりませんので、これは必ずしも期待通りの結果であるとは言えません。
+一方、ActiveRecord レイヤを使ってデータベースからデータを取得する場合は、数値カラムの値は、<span class="broken-link">yii\db\ActiveRecord::populateRecord()</span> においてデータベースからデータが取得される際に、整数に変換されます。</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:42 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

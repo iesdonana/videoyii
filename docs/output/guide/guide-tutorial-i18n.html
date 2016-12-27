@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Quốc tế hóa (Internationalization) - Chủ đề năng cao - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w11644" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w11644-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w11644-collapse" class="collapse navbar-collapse"><ul id="w11645" class="navbar-nav nav"><li><a href="./guide-README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-11628" data-toggle="collapse" data-parent="#navigation">Giới thiệu <b class="caret"></b></a><div id="navigation-11628" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-intro-yii.html">Về Yii</a>
+<a class="list-group-item" href="./guide-intro-upgrade-from-v1.html">Nâng cấp lên từ phiên bản 1.1</a></div>
+<a class="list-group-item" href="#navigation-11629" data-toggle="collapse" data-parent="#navigation">Bắt đầu <b class="caret"></b></a><div id="navigation-11629" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-start-installation.html">Cài đặt Yii</a>
+<a class="list-group-item" href="./guide-start-workflow.html">Thực hiện chạy ứng dụng</a>
+<a class="list-group-item" href="./guide-start-hello.html">Viết lời chào đầu tiên</a>
+<a class="list-group-item" href="./guide-start-forms.html">Làm việc với Forms</a>
+<a class="list-group-item" href="./guide-start-databases.html">Làm việc với Databases</a>
+<a class="list-group-item" href="./guide-start-gii.html">Sử dụng Gii để sinh code</a>
+<a class="list-group-item" href="./guide-start-looking-ahead.html">Mức cao hơn</a></div>
+<a class="list-group-item" href="#navigation-11630" data-toggle="collapse" data-parent="#navigation">Kiến trúc ứng dụng (Application Structure) <b class="caret"></b></a><div id="navigation-11630" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-structure-overview.html">Tổng quan về kiến trúc ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-entry-scripts.html">Mục Scripts</a>
+<a class="list-group-item" href="./guide-structure-applications.html">Ứng dụng (Applications)</a>
+<a class="list-group-item" href="./guide-structure-application-components.html">Thành phần ứng dụng</a>
+<a class="list-group-item" href="./guide-structure-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-structure-models.html">Models</a>
+<a class="list-group-item" href="./guide-structure-views.html">Views</a>
+<a class="list-group-item" href="./guide-structure-modules.html">Modules</a>
+<a class="list-group-item" href="./guide-structure-filters.html">Bộ lọc (Filters)</a>
+<a class="list-group-item" href="./guide-structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./guide-structure-assets.html">Assets</a>
+<a class="list-group-item" href="./guide-structure-extensions.html">Phần mở rộng (Extensions)</a></div>
+<a class="list-group-item" href="#navigation-11631" data-toggle="collapse" data-parent="#navigation">Yêu cầu xử lý (Handling Requests) <b class="caret"></b></a><div id="navigation-11631" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-runtime-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./guide-runtime-routing.html">Routing và URL Creation</a>
+<a class="list-group-item" href="./guide-runtime-requests.html">Yêu cầu (Requests)</a>
+<a class="list-group-item" href="./guide-runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./guide-runtime-sessions-cookies.html">Sessions và Cookies</a>
+<a class="list-group-item" href="./guide-runtime-handling-errors.html">Xử lý lỗi (Handling Error)</a>
+<a class="list-group-item" href="./guide-runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-11632" data-toggle="collapse" data-parent="#navigation">Các khái niệm chính <b class="caret"></b></a><div id="navigation-11632" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-concept-components.html">Thành phần (Components)</a>
+<a class="list-group-item" href="./guide-concept-properties.html">Thuộc tính (Properties)</a>
+<a class="list-group-item" href="./guide-concept-events.html">Sự kiện (Events)</a>
+<a class="list-group-item" href="./guide-concept-behaviors.html">Hành vi (Behaviors)</a>
+<a class="list-group-item" href="./guide-concept-configurations.html">Cấu hình (Configurations)</a>
+<a class="list-group-item" href="./guide-concept-aliases.html">Bí danh (Aliases)</a>
+<a class="list-group-item" href="./guide-concept-autoloading.html">Lớp tự động nạp (Autoloading)</a>
+<a class="list-group-item" href="./guide-concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./guide-concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-11633" data-toggle="collapse" data-parent="#navigation">Làm việc với Databases <b class="caret"></b></a><div id="navigation-11633" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./guide-db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./guide-db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./guide-db-migrations.html">Migrations</a>
+<a class="list-group-item" href="./guide-db-sphinx.html">Sphinx</a>
+<a class="list-group-item" href="./guide-db-redis.html">Redis</a>
+<a class="list-group-item" href="./guide-db-mongodb.html">MongoDB</a>
+<a class="list-group-item" href="./guide-db-elasticsearch.html">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-11634" data-toggle="collapse" data-parent="#navigation">Nhận dữ liệu từ user <b class="caret"></b></a><div id="navigation-11634" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-input-forms.html">Tạo mới Forms</a>
+<a class="list-group-item" href="./guide-input-validation.html">Kiểm tra dữ liệu đầu vào (Validating Input)</a>
+<a class="list-group-item" href="./guide-input-file-upload.html">File Upload</a>
+<a class="list-group-item" href="./guide-input-tabular-input.html">Thu thập dữ liệu từ danh sách đầu vào (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-input-multiple-models.html">Lấy dữ liệu cho nhiều Models (Chưa giải quyết)</a></div>
+<a class="list-group-item" href="#navigation-11635" data-toggle="collapse" data-parent="#navigation">Hiển thị dữ liệu <b class="caret"></b></a><div id="navigation-11635" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-output-formatter.html">Định dạng dữ liệu (Data Formatting)</a>
+<a class="list-group-item" href="./guide-output-pagination.html">Phân trang (Pagination)</a>
+<a class="list-group-item" href="./guide-output-sorting.html">Sắp xếp (Sorting)</a>
+<a class="list-group-item" href="./guide-output-data-providers.html">Cung cấp dữ liệu ra (Data Providers)</a>
+<a class="list-group-item" href="./guide-output-data-widgets.html">Dữ liệu Widgets</a>
+<a class="list-group-item" href="./guide-output-client-scripts.html">làm việc với Client Scripts</a>
+<a class="list-group-item" href="./guide-output-theming.html">Giao diện (Theming)</a></div>
+<a class="list-group-item" href="#navigation-11636" data-toggle="collapse" data-parent="#navigation">Bảo mật (Security) <b class="caret"></b></a><div id="navigation-11636" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-security-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-security-authorization.html">Quyền (Authorization)</a>
+<a class="list-group-item" href="./guide-security-passwords.html">Các thao tác xử lý với Passwords (Đang phát triển)</a>
+<a class="list-group-item" href="./guide-security-auth-clients.html">Auth Clients</a>
+<a class="list-group-item" href="./guide-security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-11637" data-toggle="collapse" data-parent="#navigation">Bộ nhớ Cache <b class="caret"></b></a><div id="navigation-11637" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-caching-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-caching-data.html">Cache dữ liệu</a>
+<a class="list-group-item" href="./guide-caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./guide-caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./guide-caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-11638" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-11638" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-rest-quick-start.html">Bắt đầu</a>
+<a class="list-group-item" href="./guide-rest-resources.html">Tài nguyên (Resources)</a>
+<a class="list-group-item" href="./guide-rest-controllers.html">Bộ điều khiển (Controllers)</a>
+<a class="list-group-item" href="./guide-rest-routing.html">Routing</a>
+<a class="list-group-item" href="./guide-rest-response-formatting.html">Định dạng thông điệp gửi đi (Response Formatting)</a>
+<a class="list-group-item" href="./guide-rest-authentication.html">Xác thực (Authentication)</a>
+<a class="list-group-item" href="./guide-rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./guide-rest-versioning.html">Phiên bản (Version)</a>
+<a class="list-group-item" href="./guide-rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-11639" data-toggle="collapse" data-parent="#navigation">Công cụ phát triển (Development Tools) <b class="caret"></b></a><div id="navigation-11639" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-tool-debugger.html">Thanh công cụ gỡ lỗi và sửa lỗi (Debug Toolbar và Debugger)</a>
+<a class="list-group-item" href="./guide-tool-gii.html">Sử dụng Gii để tạo code</a>
+<a class="list-group-item" href="./guide-tool-api-doc.html">Tạo tài liệu về API </a></div>
+<a class="list-group-item" href="#navigation-11640" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-11640" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-test-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-test-environment-setup.html">Thiết lập môi trường</a>
+<a class="list-group-item" href="./guide-test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./guide-test-functional.html">Kiểm tra chức năng (Functional Tests)</a>
+<a class="list-group-item" href="./guide-test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./guide-test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item active" href="#navigation-11641" data-toggle="collapse" data-parent="#navigation">Chủ đề năng cao <b class="caret"></b></a><div id="navigation-11641" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./guide-tutorial-advanced-app.html">Advanced Application Template</a>
+<a class="list-group-item" href="./guide-tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./guide-tutorial-console.html">Giao diện dòng lệnh (Console Commands)</a>
+<a class="list-group-item" href="./guide-tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item active" href="./guide-tutorial-i18n.html">Quốc tế hóa (Internationalization)</a>
+<a class="list-group-item" href="./guide-tutorial-mailing.html">Thư (Mailing)</a>
+<a class="list-group-item" href="./guide-tutorial-performance-tuning.html">Tối ưu hiệu năng ứng dụng (Performance Tuning)</a>
+<a class="list-group-item" href="./guide-tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./guide-tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./guide-tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-11642" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-11642" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-widget-bootstrap.html">Bootstrap Widgets</a>
+<a class="list-group-item" href="./guide-widget-jui.html">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-11643" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-11643" class="submenu panel-collapse collapse"><a class="list-group-item" href="./guide-helper-overview.html">Tổng quan</a>
+<a class="list-group-item" href="./guide-helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./guide-helper-html.html">Html</a>
+<a class="list-group-item" href="./guide-helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>国際化 <span id="guo-ji-hua"></span><a href="#guo-ji-hua" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#locale-language">ロケールと言語</a></li>
+<li><a href="#message-translation">メッセージ翻訳</a></li>
+<li><a href="#message-formatting">メッセージのフォーマット</a></li>
+<li><a href="#view-translation">ビューの翻訳</a></li>
+<li><a href="#date-number">数値と日付の値を書式設定する</a></li>
+<li><a href="#setup-environment">PHP 環境をセットアップする</a></li></ol></div>
+<p>国際化 (I18N) とは、工学的な変更を伴わずにさまざまな言語と地域に順応できるように、ソフトウェアアプリケーションを設計するプロセスを指します。
+潜在的なユーザが世界中にいるウェブアプリケーションにとっては、このことは特に重要な意味を持ちます。
+Yii は、全ての領域にわたる国際化機能を提供し、メッセージの翻訳、ビューの翻訳、日付と数字の書式設定をサポートします。</p>
+<h2>ロケールと言語  <span id="locale-language"></span><a href="#locale-language" class="hashlink">&para;</a></h2><p>ロケールとは、ユーザの言語、国、そして、ユーザが彼らのユーザインタフェイスにおいて目にすることを期待するすべての変異形式を定義する一連のパラメータです。
+ロケールは、通常、言語 ID と地域 ID から成るロケール ID によって定義されます。
+例えば、<code>en-US</code> は、英語とアメリカ合衆国のロケールを意味します。
+Yii アプリケーションで使用される全てのロケール ID は、一貫性のために、<code>ll-CC</code> の形式に正規化されなければなりません。
+ここで <code>ll</code> は <a href="http://www.loc.gov/standards/iso639-2/">ISO-639</a> に従った小文字二つまたは三つの言語コードであり、<code>CC</code> は <a href="http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html">ISO-3166</a> に従った二文字の国コードです。
+ロケールに関する更なる詳細は <a href="http://userguide.icu-project.org/locale#TOC-The-Locale-Concept">ICU プロジェクトのドキュメント project</a> に述べられています。</p>
+<p>Yii では、"言語" という用語でロケールに言及することがしばしばあります。</p>
+<p>Yii のアプリケーションでは二つの言語を使用します。
+すなわち、<span class="broken-link">yii\base\Application::$sourceLanguage</span> と <span class="broken-link">yii\base\Application::$language</span> です。
+前者はソースコード中のテキストメッセージが書かれている言語を意味し、後者はコンテントをエンドユーザに表示するのに使用されるべき言語を指します。
+いわゆるメッセージ翻訳サービスは、主として、テキストメッセージをソース言語からターゲット言語に翻訳するものです。</p>
+<p>アプリケーションの言語は、アプリケーションの構成情報で次のように構成することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">return</span> [
+    <span class="hljs-comment">// ターゲット言語を日本語に設定</span>
+    <span class="hljs-string">'language'</span> =&gt; <span class="hljs-string">'ja-JP'</span>,
+    
+    <span class="hljs-comment">// ソース言語を英語に設定</span>
+    <span class="hljs-string">'sourceLanguage'</span> =&gt; <span class="hljs-string">'en-US'</span>,
+    
+    ......
+];
+</code></pre>
+<p><span class="broken-link">yii\base\Application::$sourceLanguage</span> のデフォルト値は <code>en-US</code> であり、合衆国の英語を意味します。
+このデフォルト値は変えないことが推奨されます。
+なぜなら、通常は、英語から他の言語への翻訳者を見つける方が、非英語から非英語への翻訳者を見つけるより、はるかに簡単だからです。</p>
+<p><span class="broken-link">yii\base\Application::$language</span> は、エンドユーザの言語選択など、さまざまな要因に基づいて、動的に設定しなければならないことがよくあります。
+アプリケーションの構成情報で構成するかわりに、次の文を使ってターゲット言語を変更することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ターゲット言語を中国語に変更</span>
+\Yii::<span class="hljs-variable">$app</span>-&gt;language = <span class="hljs-string">'zh-CN'</span>;
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong>ソース言語がコードの部分によって異なる場合は、メッセージソースごとにソース言語をオーバーライドすることが出来ます。
+これについては、次の説で説明します。</p>
+</blockquote>
+<h2>メッセージ翻訳  <span id="message-translation"></span><a href="#message-translation" class="hashlink">&para;</a></h2><p>メッセージ翻訳サービスは、テキストメッセージをある言語 (通常は <span class="broken-link">yii\base\Application::$sourceLanguage</span>) から別の言語 (通常は <span class="broken-link">yii\base\Application::$language</span>) に翻訳するものです。
+翻訳は、元のメッセージと翻訳されたメッセージを格納するメッセージソースの中から、翻訳対象となったメッセージを探すことにより行われます。
+メッセージが見つかれば、対応する翻訳されたメッセージが返されます。
+メッセージが見つからなければ、元のメッセージが翻訳されずに返されます。</p>
+<p>メッセージ翻訳サービスを使用するためには、主として次の作業をする必要があります。</p>
+<ul>
+<li>翻訳する必要のある全てのテキストメッセージを <span class="broken-link">Yii::t()</span> メソッドの呼び出しの中に包む。</li>
+<li>メッセージ翻訳サービスが翻訳されたメッセージを探すことが出来る一つまたは複数のメッセージソースを構成する。</li>
+<li>翻訳者にメッセージを翻訳させて、それをメッセージソースに格納する。</li>
+</ul>
+<p><span class="broken-link">Yii::t()</span> メソッドは次のように使います。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'This is a string to translate!'</span>);
+</code></pre>
+<p>ここで、二番目のパラメータが翻訳されるべきテキストメッセージを示し、最初のパラメータはメッセージを分類するのに使用されるカテゴリ名を示します。</p>
+<p><span class="broken-link">Yii::t()</span> メソッドは <code>i18n</code> <a href="guide-structure-application-components.html">アプリケーションコンポーネント</a> の <code>translate</code> メソッドを呼んで実際の翻訳作業を実行します。
+このコンポーネントはアプリケーションの構成情報の中で次のようにして構成することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-string">'components'</span> =&gt; [
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-string">'i18n'</span> =&gt; [
+        <span class="hljs-string">'translations'</span> =&gt; [
+            <span class="hljs-string">'app*'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\i18n\PhpMessageSource'</span>,
+                <span class="hljs-comment">//'basePath' =&gt; '@app/messages',</span>
+                <span class="hljs-comment">//'sourceLanguage' =&gt; 'en-US',</span>
+                <span class="hljs-string">'fileMap'</span> =&gt; [
+                    <span class="hljs-string">'app'</span> =&gt; <span class="hljs-string">'app.php'</span>,
+                    <span class="hljs-string">'app/error'</span> =&gt; <span class="hljs-string">'error.php'</span>,
+                ],
+            ],
+        ],
+    ],
+],
+</code></pre>
+<p>上記のコードにおいては、<span class="broken-link">yii\i18n\PhpMessageSource</span> によってサポートされるメッセージソースが構成されています。
+<code>app*</code> は、<code>app</code> で始まる全てのメッセージカテゴリがこのメッセージソースを使って翻訳されるべきであることを示しています。
+<span class="broken-link">yii\i18n\PhpMessageSource</span> クラスは、メッセージ翻訳を格納するのに PHP ファイルを使用します。
+デフォルトでは、ファイル名はカテゴリ名と同じでなければなりません。
+ただし、<span class="broken-link">yii\i18n\PhpMessageSource::fileMap</span> を構成して、別の命名方法によってカテゴリを PHP ファイルに割り付けることも可能です。
+上記の例では、(<code>ja-JP</code> がターゲット言語であると仮定すると) <code>app/error</code> のカテゴリは <code>@app/messages/ja-JP/error.php</code> という PHP ファイルに割り付けられます。
+<code>fileMap</code> を構成しなければ、このカテゴリは <code>@app/messages/ja-JP/app/error.php</code> に割り付けられることになります。</p>
+<p>翻訳メッセージを格納するのには、PHP ファイル以外に、次のメッセージソースを使うことも可能です。</p>
+<ul>
+<li><span class="broken-link">yii\i18n\GettextMessageSource</span> - 翻訳メッセージを保持するのに GNU Gettext の MO ファイルまたは PO ファイルを使用する</li>
+<li><span class="broken-link">yii\i18n\DbMessageSource</span> - 翻訳メッセージを保存するのにデータベーステーブルを使用する</li>
+</ul>
+<h2>メッセージのフォーマット  <span id="message-formatting"></span><a href="#message-formatting" class="hashlink">&para;</a></h2><p>メッセージを翻訳するときには、プレースホルダを埋め込んで、動的なパラメータ値で実行時に置き換えさせることが出来ます。
+更には、パラメータ値をターゲット言語に応じてフォーマットさせるための特別なプレースホルダの構文を使うことも出来ます。
+この項では、メッセージをフォーマットする様々な方法を説明します。</p>
+<blockquote class="note"><p><strong>Note: </strong>以下においては、メッセージフォーマットの理解を助けるために、原文にはない日本語への翻訳例 (とその出力結果) をコードサンプルに追加しています。</p>
+</blockquote>
+<h3>メッセージパラメータ  <span id="message-parameters"></span><a href="#message-parameters" class="hashlink">&para;</a></h3><p>翻訳対象となるメッセージには、一つまたは複数のパラメータ (プレースホルダとも呼びます) を埋め込んで、与えられたパラメータ値で置き換えられるようにすることが出来ます。
+様々なパラメータ値のセットを与えることによって、翻訳されるメッセージを動的に変化させることが出来ます。
+次の例では、<code>'Hello, {username}!'</code> というメッセージの中のプレースホルダ <code>{username}</code> が <code>'Alexander'</code> と <code>'Qiang'</code> にそれぞれ置き換えられます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$username</span> = <span class="hljs-string">'Alexander'</span>;
+<span class="hljs-comment">// username が "Alexander" になった翻訳メッセージを表示</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Hello, {username}!'</span>, [
+    <span class="hljs-string">'username'</span> =&gt; <span class="hljs-variable">$username</span>,
+]);
+
+<span class="hljs-variable">$username</span> = <span class="hljs-string">'Qiang'</span>;
+<span class="hljs-comment">// username が "Qiang" になった翻訳メッセージを表示</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Hello, {username}!'</span>, [
+    <span class="hljs-string">'username'</span> =&gt; <span class="hljs-variable">$username</span>,
+]);
+</code></pre>
+<p>プレースホルダを持つメッセージを翻訳する時には、プレースホルダはそのままにしておかなければなりません。
+これは、プレースホルダは <code>Yii::t()</code> を呼んでメッセージを翻訳する時に、実際の値に置き換えられるものだからです。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 日本語翻訳: '{username} さん、こんにちは!'</span>
+</code></pre>
+<p>プレースホルダには、<em>名前付きプレースホルダ</em> と <em>序数プレースホルダ</em> のどちらかを使用する事が出来ます。
+ただし、一つのメッセージに両方を使うことは出来ません。</p>
+<p>上記の例は名前付きプレースホルダの使い方を示すものです。
+すなわち、各プレースホルダは <code>{name}</code> という形式で書かれていますが、それに対して、キーが(波括弧なしの)プレースホルダ名であり、値がそのプレースホルダを置き換える値である連想配列を渡す訳です。</p>
+<p>序数プレースホルダは、0 ベースの整数の序数をプレースホルダ名として使います。
+このプレースホルダは、<code>Yii::t()</code> の呼び出しに出現する順序に従って、パラメータ値によって置き換えられます。
+次の例では、序数プレースホルダ <code>{0}</code>、<code>{1}</code> および <code>{2}</code> は、それぞれ、<code>$price</code>、<code>$count</code> および <code>$subtotal</code> の値によって置き換えられます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$price</span> = <span class="hljs-number">100</span>;
+<span class="hljs-variable">$count</span> = <span class="hljs-number">2</span>;
+<span class="hljs-variable">$subtotal</span> = <span class="hljs-number">200</span>;
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Price: {0}, Count: {1}, Subtotal: {2}'</span>, [<span class="hljs-variable">$price</span>, <span class="hljs-variable">$count</span>, <span class="hljs-variable">$subtotal</span>]);
+</code></pre>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 日本語翻訳: '価格: {0}, 数量: {1}, 小計: {2}'</span>
+</code></pre>
+<p>序数プレースホルダが一つだけの場合は、値を配列に入れずにそのまま指定することができます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Price: {0}'</span>, <span class="hljs-variable">$price</span>);
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong>たいていの場合は名前付きプレースホルダを使うべきです。
+と言うのは、翻訳者にとっては、パラメータ名がある方が、翻訳すべきメッセージ全体をより良く理解できるからです。</p>
+</blockquote>
+<h3>パラメータのフォーマット  <span id="parameter-formatting"></span><a href="#parameter-formatting" class="hashlink">&para;</a></h3><p>メッセージのプレースホルダにフォーマットの規則を追加して指定し、パラメータ値がプレースホルダを置き換える前に適切にフォーマットされるようにすることが出来ます。
+次の例では、<code>price</code> のパラメータ値の型は数値として扱われ、通貨の形式でフォーマットされます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$price</span> = <span class="hljs-number">100</span>;
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Price: {0,number,currency}'</span>, <span class="hljs-variable">$price</span>);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>パラメータのフォーマットには、<a href="http://www.php.net/manual/ja/intro.intl.php">intl PHP 拡張</a> のインストールが必要です。</p>
+</blockquote>
+<p>プレースホルダにフォーマット規則を指定するためには、短い構文または完全な構文のどちらかを使うことが出来ます。</p>
+<pre><code class="hljs http"><span class="hljs-attribute">短い形式</span>: <span class="hljs-string">{name,type}</span>
+<span class="hljs-attribute">完全な形式</span>: <span class="hljs-string">{name,type,style}</span>
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong><code>{</code>、<code>}</code>、<code>'</code>、<code>#</code> などの特殊な文字を使用する必要がある場合は、その部分の文字列を <code>'</code> で囲んでください。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">"Example of string with ''-escaped characters'': '{' '}' '{test}' {count,plural,other{''count'' value is # '#{}'}}"</span>, [<span class="hljs-string">'count'</span> =&gt; <span class="hljs-number">3</span>]);
++```
+</code></pre>
+</blockquote>
+<p>このようなプレースホルダを指定する方法についての完全な説明は、<a href="http://icu-project.org/apiref/icu4c/classMessageFormat.html">ICU ドキュメント</a> を参照してください。</p>
+<p>以下では、よくある使用方法をいくつか示します。</p>
+<h4>数値  <span id="number"></span><a href="#number" class="hashlink">&para;</a></h4><pre><code class="hljs php language-php"><span class="hljs-variable">$sum</span> = <span class="hljs-number">12345</span>;
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Balance: {0,number}'</span>, <span class="hljs-variable">$sum</span>);
+
+<span class="hljs-comment">// 日本語翻訳: '差引残高: {0,number}'</span>
+<span class="hljs-comment">// 日本語出力: '差引残高: 12,345'</span>
+</code></pre>
+<p>オプションのパラメータとして、<code>integer</code>、<code>currency</code>、<code>percent</code> のスタイルを指定することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$sum</span> = <span class="hljs-number">12345</span>;
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Balance: {0,number,currency}'</span>, <span class="hljs-variable">$sum</span>);
+
+<span class="hljs-comment">// 日本語翻訳: '差引残高: {0,number,currency}'</span>
+<span class="hljs-comment">// 日本語出力: '差引残高: ￥12,345'</span>
+</code></pre>
+<p>または、数値をフォーマットするカスタムパターンを指定することも出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$sum</span> = <span class="hljs-number">12345</span>;
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Balance: {0,number,,000,000000}'</span>, <span class="hljs-variable">$sum</span>);
+
+<span class="hljs-comment">// 日本語翻訳: '差引残高: {0,number,,000,000000}'</span>
+<span class="hljs-comment">// 日本語出力: '差引残高: 000,012345'</span>
+</code></pre>
+<p>カスタムフォーマットで使用される文字については、<a href="http://icu-project.org/apiref/icu4c/classicu_1_1DecimalFormat.html">ICU API リファレンス</a> の "Special Pattern Characters" のセクションに記述されています。</p>
+<p>数値は常に翻訳先のロケールに従ってフォーマットされます。
+つまり、ロケールを変更せずに、小数点や桁区切りを変更することは出来ません。
+それらをカスタマイズしたい場合は <span class="broken-link">yii\i18n\Formatter::asDecimal()</span> や <span class="broken-link">yii\i18n\Formatter::asCurrency()</span> を使うことが出来ます。</p>
+<h4>日付  <span id="date"></span><a href="#date" class="hashlink">&para;</a></h4><p>パラメータ値は日付としてフォーマットされます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Today is {0,date}'</span>, time());
+
+<span class="hljs-comment">// 日本語翻訳: '今日は {0,date} です。'</span>
+<span class="hljs-comment">// 日本語出力: '今日は 2015/01/07 です。'</span>
+</code></pre>
+<p>オプションのパラメータとして、<code>short</code>、<code>medium</code>、<code>long</code>、そして <code>full</code> のスタイルを指定することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Today is {0,date,short}'</span>, time());
+
+<span class="hljs-comment">// 日本語翻訳: '今日は {0,date,short} です。'</span>
+<span class="hljs-comment">// 日本語出力: '今日は 2015/01/07 です。'</span>
+</code></pre>
+<p>日付の値をフォーマットするカスタムパターンを指定することも出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'Today is {0,date,yyyy-MM-dd}'</span>, time());
+
+<span class="hljs-comment">// 日本語翻訳: '今日は {0,date,yyyy-MM-dd} です。'</span>
+<span class="hljs-comment">// 日本語出力: '今日は 2015-01-07 です。'</span>
+</code></pre>
+<p><a href="http://icu-project.org/apiref/icu4c/classicu_1_1SimpleDateFormat.html">書式のリファレンス</a>.</p>
+<h4>時刻  <span id="time"></span><a href="#time" class="hashlink">&para;</a></h4><p>パラメータ値は時刻としてフォーマットされます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'It is {0,time}'</span>, time());
+
+<span class="hljs-comment">// 日本語翻訳: '現在 {0,time} です。'</span>
+<span class="hljs-comment">// 日本語出力: '現在 22:37:47 です。'</span>
+</code></pre>
+<p>オプションのパラメータとして、<code>short</code>、<code>medium</code>、<code>long</code>、そして <code>full</code> のスタイルを指定することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'It is {0,time,short}'</span>, time());
+
+<span class="hljs-comment">// 日本語翻訳: '現在 {0,time,short} です。'</span>
+<span class="hljs-comment">// 日本語出力: '現在 22:37 です。'</span>
+</code></pre>
+<p>時刻の値をフォーマットするカスタムパターンを指定することも出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'It is {0,date,HH:mm}'</span>, time());
+
+<span class="hljs-comment">// 日本語翻訳: '現在 {0,time,HH:mm} です。'</span>
+<span class="hljs-comment">// 日本語出力: '現在 22:37 です。'</span>
+</code></pre>
+<p><a href="http://icu-project.org/apiref/icu4c/classicu_1_1SimpleDateFormat.html">書式のリファレンス</a>.</p>
+<h4>綴り  <span id="spellout"></span><a href="#spellout" class="hashlink">&para;</a></h4><p>パラメータ値は数値として取り扱われ、綴りとしてフォーマットされます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 出力例 : "42 is spelled as forty-two"</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'{n,number} is spelled as {n,spellout}'</span>, [<span class="hljs-string">'n'</span> =&gt; <span class="hljs-number">42</span>]);
+
+<span class="hljs-comment">// 日本語翻訳: '{n,number} は、文字で綴ると {n,spellout} です。'</span>
+<span class="hljs-comment">// 日本語出力: '42 は、文字で綴ると 四十二 です。'</span>
+</code></pre>
+<p>デフォルトでは、数値は基数として綴られます。それを変更することは可能です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 出力例 : "I am forty-seventh agent"</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'I am {n,spellout,%spellout-ordinal} agent'</span>, [<span class="hljs-string">'n'</span> =&gt; <span class="hljs-number">47</span>]);
+
+<span class="hljs-comment">// 日本語翻訳: '私は{n,spellout,%spellout-ordinal}の工作員です。'</span>
+<span class="hljs-comment">// 日本語出力: '私は第四十七の工作員です。'</span>
+</code></pre>
+<p>'spellout,' と '%' の間に空白を入れてはならないことに注意してください。</p>
+<p>あなたが使用しているロケールで利用可能なオプションのリストについては、<a href="http://intl.rmcreative.ru/">http://intl.rmcreative.ru/</a> の "Numbering schemas, Spellout" を参照してください。</p>
+<h4>序数  <span id="ordinal"></span><a href="#ordinal" class="hashlink">&para;</a></h4><p>パラメータ値は数値として取り扱われ、順序を表す文字列としてフォーマットされます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 出力: "You are the 42nd visitor here!"</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'You are the {n,ordinal} visitor here!'</span>, [<span class="hljs-string">'n'</span> =&gt; <span class="hljs-number">42</span>]);
+</code></pre>
+<p>序数については、スペイン語などの言語では、さらに多くのフォーマットがサポートされています。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 出力: "471ª"</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'{n,ordinal,%digits-ordinal-feminine}'</span>, [<span class="hljs-string">'n'</span> =&gt; <span class="hljs-number">471</span>]);
+</code></pre>
+<p>'ordinal,' と '%' の間に空白を入れてはならないことに注意してください。</p>
+<p>あなたが使用しているロケールで利用可能なオプションのリストについては、<a href="http://intl.rmcreative.ru/">http://intl.rmcreative.ru/</a> の "Numbering schemas, Ordinal" を参照してください。</p>
+<blockquote class="note"><p><strong>Note: </strong>上記のソースメッセージを、プレースホルダのスタイルを守って日本語に翻訳すると、'あなたはこのサイトの{n,ordinal}の訪問者です' となります。
+しかし、その出力結果は、'あなたはこのサイトの第42の訪問者です' となり、意味は通じますが、日本語としては若干不自然なものになります。</p>
+<p>プレースホルダのスタイル自体も、翻訳の対象として、より適切なものに変更することが可能であることに注意してください。</p>
+<p>この場合も、'あなたはこのサイトの{n,plural,=1{最初} other{#番目}}の訪問者です' のように翻訳するほうが適切でしょう。</p>
+</blockquote>
+<h4>継続時間  <span id="duration"></span><a href="#duration" class="hashlink">&para;</a></h4><p>パラメータ値は秒数として取り扱われ、継続時間を表す文字列としてフォーマットされます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 出力: "You are here for 47 sec. already!"</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'You are here for {n,duration} already!'</span>, [<span class="hljs-string">'n'</span> =&gt; <span class="hljs-number">47</span>]);
+</code></pre>
+<p>継続時間については、さらに多くのフォーマットがサポートされています。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 出力: '130:53:47'</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'{n,duration,%in-numerals}'</span>, [<span class="hljs-string">'n'</span> =&gt; <span class="hljs-number">471227</span>]);
+</code></pre>
+<p>'duration,' と '%' の間に空白を入れてはならないことに注意してください。</p>
+<p>あなたが使用しているロケールで利用可能なオプションのリストについては、<a href="http://intl.rmcreative.ru/">http://intl.rmcreative.ru/</a> の "Numbering schemas, Duration" を参照してください。</p>
+<blockquote class="note"><p><strong>Note: </strong>このソースメッセージを 'あなたはこのサイトに既に{n,duration}の間滞在しています' と翻訳した場合の出力結果は、'あなたはこのサイトに既に47の間滞在しています' となります。
+これも、プレースホルダのスタイルも含めて全体を翻訳し直す方が良いでしょう。
+どうも、ICU ライブラリは、ja_JP の数値関連の書式指定においては、割と貧弱な実装にとどまっている印象です。</p>
+</blockquote>
+<h4>複数形  <span id="plural"></span><a href="#plural" class="hashlink">&para;</a></h4><p>言語によって、複数形の語形変化はさまざまに異なります。
+Yii は、さまざまな形式の複数形語形変化に対応したメッセージ翻訳のための便利な方法を提供しています。
+それは、非常に複雑な規則に対しても、十分に機能するものです。
+語形変化の規則を直接に処理する代りに、特定の状況における語形変化した言葉の翻訳を提供するだけで十分です。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// $n = 0 の場合の出力: "There are no cats!"</span>
+<span class="hljs-comment">// $n = 1 の場合の出力: "There is one cat!"</span>
+<span class="hljs-comment">// $n = 42 の場合の出: "There are 42 cats!"</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'There {n,plural,=0{are no cats} =1{is one cat} other{are # cats}}!'</span>, [<span class="hljs-string">'n'</span> =&gt; <span class="hljs-variable">$n</span>]);
+</code></pre>
+<p>上記の複数形規則の引数において、<code>=</code> はぴったりその値であることを意味します。
+従って、<code>=0</code> はぴったりゼロ、<code>=1</code> はぴったり 1 を表します。
+<code>other</code> はそれ以外の数を表します。
+<code>#</code> は ターゲット言語に従ってフォーマットされた <code>n</code> の値によって置き換えられます。</p>
+<p>複数形の規則が非常に複雑な言語もあります。
+例えば、次のロシア語の例では、<code>=1</code> が <code>n = 1</code> にぴったりと一致するのに対して、<code>one</code> が <code>21</code> や <code>101</code> などに一致します。</p>
+<pre><code class="hljs bash">Здесь {n,plural,=<span class="hljs-number">0</span>{котов нет} =<span class="hljs-number">1</span>{есть один кот} one{<span class="hljs-comment"># кот} few{# кота} many{# котов} other{# кота}}!</span>
+</code></pre>
+<p>これら <code>other</code>、<code>few</code>、<code>many</code> などの特別な引数の名前は言語によって異なります。
+特定のロケールに対してどんな引数を指定すべきかを学ぶためには、<a href="http://intl.rmcreative.ru/">http://intl.rmcreative.ru/</a> の "Plural Rules, Cardinal" を参照してください。
+あるいは、その代りに、<a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html">unicode.org の規則のリファレンス</a> を参照することも出来ます。</p>
+<blockquote class="note"><p><strong>Note: </strong>上記のロシア語のメッセージのサンプルは、主として翻訳メッセージとして使用されるものです。
+アプリケーションの <span class="broken-link">yii\base\Application::$sourceLanguage</span> を <code>ru-RU</code> にしてロシア語から他の言語に翻訳するという設定にしない限り、オリジナルのメッセージとしては使用されることはありません。</p>
+<p><code>Yii::t()</code> の呼び出しにおいて、オリジナルのメッセージに対する翻訳が見つからない場合は、<span class="broken-link">yii\base\Application::$sourceLanguage</span> の複数形規則がオリジナルのメッセージに対して適用されます。</p>
+</blockquote>
+<p>文字列が以下のようなものである場合のために <code>offset</code> というパラメータがあります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$likeCount</span> = <span class="hljs-number">2</span>;
+<span class="hljs-keyword">echo</span> Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'You {likeCount,plural,
+    offset: 1
+    =0{did not like this}
+    =1{liked this}
+    one{and one other person liked this}
+    other{and # others liked this}
+}'</span>, [
+    <span class="hljs-string">'likeCount'</span> =&gt; <span class="hljs-variable">$likeCount</span>
+]);
+
+<span class="hljs-comment">// 出力: 'You and one other person liked this'</span>
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>上記のソースメッセージの日本語翻訳は以下のようなものになります。</p>
+<p>'猫は{n, plural, =0{いません} other{#匹います}}。'</p>
+<p>日本語では単数形と複数形を区別しませんので、たいていの場合、<code>=0</code> と <code>other</code> を指定するだけで事足ります。
+横着をして、<code>{n, plural, ...}</code> を <code>{n, number}</code> に置き換えても、多分、大きな問題は生じないでしょう。</p>
+</blockquote>
+<h4>序数選択肢 <span id="ordinal-selection"> <span id="xu-shu-xuan-ze-zhi"></span><a href="#xu-shu-xuan-ze-zhi" class="hashlink">&para;</a></h4><p>パラメータのタイプとして <code>selectordinal</code> を使うと、翻訳先ロケールの言語規則に基づいて序数のための文字列を選択することが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$n</span> = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">echo</span> Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'You are the {n,selectordinal,one{#st} two{#nd} few{#rd} other{#th}} visitor'</span>, [<span class="hljs-string">'n'</span> =&gt; <span class="hljs-variable">$n</span>]);
+<span class="hljs-comment">// 英語の出力</span>
+<span class="hljs-comment">// You are the 3rd visitor</span>
+
+<span class="hljs-comment">// ロシア語の翻訳</span>
+<span class="hljs-string">'You are the {n,selectordinal,one{#st} two{#nd} few{#rd} other{#th}} visitor'</span> =&gt; <span class="hljs-string">'Вы {n, selectordinal, other{#-й}} посетитель'</span>,
+
+<span class="hljs-comment">// ロシア語の出力</span>
+<span class="hljs-comment">// Вы 3-й посетитель</span>
+</code></pre>
+<p>フォーマットは複数形で使われるものと非常に近いものです。
+特定のロケールに対してどんな引数を指定すべきかを学ぶためには、<a href="http://intl.rmcreative.ru/">http://intl.rmcreative.ru/</a> の "Plural Rules, Ordinal" を参照してください。
+あるいは、その代りに、<a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html">unicode.org の規則のリファレンス</a> を参照することも出来ます。</p>
+<h4>選択肢  <span id="selection"></span><a href="#selection" class="hashlink">&para;</a></h4><p>パラメータのタイプとして <code>select</code> を使うと、パラメータの値に基づいて表現を選択することが出来ます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// 出力: "Snoopy is a dog and it loves Yii!"</span>
+<span class="hljs-keyword">echo</span> \Yii::t(<span class="hljs-string">'app'</span>, <span class="hljs-string">'{name} is a {gender} and {gender,select,female{she} male{he} other{it}} loves Yii!'</span>, [
+    <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'Snoopy'</span>,
+    <span class="hljs-string">'gender'</span> =&gt; <span class="hljs-string">'dog'</span>,
+]);
+</code></pre>
+<p>上記の式の中で、<code>female</code> と <code>male</code> が <code>gender</code> が取り得る値であり、<code>other</code> がそれらに一致しない値を処理します。
+それぞれの取り得る値の後には、波括弧で囲んで対応する表現を指定します。</p>
+<blockquote class="note"><p><strong>Note: </strong>日本語翻訳: '{name} は {gender} であり、{gender,select,female{彼女} male{彼} other{それ}}は Yii を愛しています。'</p>
+<p>日本語出力: 'Snoopy は dog であり、それは Yii を愛しています。'</p>
+</blockquote>
+<h3>デフォルトのメッセージソースを指定する  <span id="default-message-source"></span><a href="#default-message-source" class="hashlink">&para;</a></h3><p>構成されたカテゴリのどれにもマッチしないカテゴリのためのフォールバックとして使用される、デフォルトのメッセージソースを指定することが出来ます。
+これは、ワイルドカードのカテゴリ <code>*</code> を構成することによって可能になります。
+そうするためには、アプリケーションの構成情報に次のように追加します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// i18n コンポーネントを構成する</span>
+
+<span class="hljs-string">'i18n'</span> =&gt; [
+    <span class="hljs-string">'translations'</span> =&gt; [
+        <span class="hljs-string">'*'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\i18n\PhpMessageSource'</span>
+        ],
+    ],
+],
+</code></pre>
+<p>こうすることで、個別に構成することなくカテゴリを使うことが可能になり、Yii 1.1 の振る舞いと同じになります。
+カテゴリのメッセージは、デフォルトの翻訳の <code>basePath</code> すなわち <code>@app/messages</code> の下にあるファイルから読み込まれます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> Yii::t(<span class="hljs-string">'not_specified_category'</span>, <span class="hljs-string">'message from unspecified category'</span>);
+</code></pre>
+<p>この場合、メッセージは <code>@app/messages/&lt;LanguageCode&gt;/not_specified_category.php</code> から読み込まれます。</p>
+<h3>モジュールのメッセージを翻訳する  <span id="module-translation"></span><a href="#module-translation" class="hashlink">&para;</a></h3><p>モジュール用のメッセージを翻訳したいけれども、全てのメッセージに対して一つの翻訳ファイルを使うことは避けたい、という場合には、次のようにすることが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">modules</span>\<span class="hljs-title">users</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Module</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Module</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$controllerNamespace</span> = <span class="hljs-string">'app\modules\users\controllers'</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">parent</span>::init();
+        <span class="hljs-variable">$this</span>-&gt;registerTranslations();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">registerTranslations</span><span class="hljs-params">()</span>
+    </span>{
+        Yii::<span class="hljs-variable">$app</span>-&gt;i18n-&gt;translations[<span class="hljs-string">'modules/users/*'</span>] = [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\i18n\PhpMessageSource'</span>,
+            <span class="hljs-string">'sourceLanguage'</span> =&gt; <span class="hljs-string">'en-US'</span>,
+            <span class="hljs-string">'basePath'</span> =&gt; <span class="hljs-string">'@app/modules/users/messages'</span>,
+            <span class="hljs-string">'fileMap'</span> =&gt; [
+                <span class="hljs-string">'modules/users/validation'</span> =&gt; <span class="hljs-string">'validation.php'</span>,
+                <span class="hljs-string">'modules/users/form'</span> =&gt; <span class="hljs-string">'form.php'</span>,
+                ...
+            ],
+        ];
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t</span><span class="hljs-params">(<span class="hljs-variable">$category</span>, <span class="hljs-variable">$message</span>, <span class="hljs-variable">$params</span> = [], <span class="hljs-variable">$language</span> = null)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> Yii::t(<span class="hljs-string">'modules/users/'</span> . <span class="hljs-variable">$category</span>, <span class="hljs-variable">$message</span>, <span class="hljs-variable">$params</span>, <span class="hljs-variable">$language</span>);
+    }
+
+}
+</code></pre>
+<p>上記の例では、マッチングのためにワイルドカードを使い、次に必要なファイルごとに各カテゴリをフィルタリングしています。
+<code>fileMap</code> を使わずに、カテゴリを同じ名前のファイルにマップする規約を使って済ませることも出来ます。
+以上のようにすれば、直接に <code>Module::t('validation', 'your custom validation message')</code> や <code>Module::t('form', 'some form label')</code> などを使用することが出来ます。</p>
+<h3>ウィジェットのメッセージを翻訳する  <span id="widget-translation"></span><a href="#widget-translation" class="hashlink">&para;</a></h3><p>モジュールに適用できる同じ規則をウィジェットにも適用することが出来ます。例えば、</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">widgets</span>\<span class="hljs-title">menu</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Widget</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Menu</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Widget</span>
+</span>{
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">parent</span>::init();
+        <span class="hljs-variable">$this</span>-&gt;registerTranslations();
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">registerTranslations</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-variable">$i18n</span> = Yii::<span class="hljs-variable">$app</span>-&gt;i18n;
+        <span class="hljs-variable">$i18n</span>-&gt;translations[<span class="hljs-string">'widgets/menu/*'</span>] = [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\i18n\PhpMessageSource'</span>,
+            <span class="hljs-string">'sourceLanguage'</span> =&gt; <span class="hljs-string">'en-US'</span>,
+            <span class="hljs-string">'basePath'</span> =&gt; <span class="hljs-string">'@app/widgets/menu/messages'</span>,
+            <span class="hljs-string">'fileMap'</span> =&gt; [
+                <span class="hljs-string">'widgets/menu/messages'</span> =&gt; <span class="hljs-string">'messages.php'</span>,
+            ],
+        ];
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'index'</span>);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">t</span><span class="hljs-params">(<span class="hljs-variable">$category</span>, <span class="hljs-variable">$message</span>, <span class="hljs-variable">$params</span> = [], <span class="hljs-variable">$language</span> = null)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> Yii::t(<span class="hljs-string">'widgets/menu/'</span> . <span class="hljs-variable">$category</span>, <span class="hljs-variable">$message</span>, <span class="hljs-variable">$params</span>, <span class="hljs-variable">$language</span>);
+    }
+
+}
+</code></pre>
+<p><code>fileMap</code> を使わずに、カテゴリを同じ名前のファイルにマップする規約を使って済ませることも出来ます。
+これで、直接に <code>Menu::t('messages', 'new messages {messages}', ['{messages}' =&gt; 10])</code> を使用することが出来ます。</p>
+<blockquote class="note"><p><strong>Note: </strong>ウィジェットのためには i18n ビューも使うことが出来ます。コントローラのための同じ規則がウィジェットにも適用されます。</p>
+</blockquote>
+<h3>フレームワークメッセージを翻訳する  <span id="framework-translation"></span><a href="#framework-translation" class="hashlink">&para;</a></h3><p>Yii には、検証エラーとその他いくつかの文字列に対するデフォルトの翻訳メッセージが付属しています。
+これらのメッセージは、全て 'yii' というカテゴリの中にあります。
+場合によっては、あなたのアプリケーションのために、デフォルトのフレームワークメッセージの翻訳を修正したいことがあるでしょう。
+そうするためには、<code>i18n</code> <a href="guide-structure-application-components.html">アプリケーションコンポーネント</a> を以下のように構成してください。</p>
+<pre><code class="hljs php language-php"><span class="hljs-string">'i18n'</span> =&gt; [
+    <span class="hljs-string">'translations'</span> =&gt; [
+        <span class="hljs-string">'yii'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\i18n\PhpMessageSource'</span>,
+            <span class="hljs-string">'sourceLanguage'</span> =&gt; <span class="hljs-string">'en-US'</span>,
+            <span class="hljs-string">'basePath'</span> =&gt; <span class="hljs-string">'@app/messages'</span>
+        ],
+    ],
+],
+</code></pre>
+<p>これで、あなたの修正した翻訳を <code>@app/messages/&lt;language&gt;/yii.php</code> に置くことが出来ます。</p>
+<h3>欠落している翻訳の処理  <span id="missing-translations"></span><a href="#missing-translations" class="hashlink">&para;</a></h3><p>ソースに翻訳が欠落している場合でも、Yii はリクエストされたメッセージの内容を表示します。
+この振舞いは、原文のメッセージが正当かつ詳細なテキストである場合には、非常に好都合です。
+しかし、場合によっては、それだけでは十分ではありません。
+リクエストされた翻訳がソースに欠落しているときに、何らかの特別な処理を実行する必要がある場合もあります。
+そういう処理は、<span class="broken-link">yii\i18n\MessageSource</span> の <span class="broken-link">yii\i18n\MessageSource::EVENT_MISSING_TRANSLATION</span> イベントを使うことによって達成できます。</p>
+<p>例えば、全ての欠落している翻訳に何か目立つマークを付けて、ページに表示されたときに簡単に見つけられるようにしましょう。
+最初にイベントハンドラをセットアップする必要があります。これはアプリケーションの構成によって行うことが出来ます。</p>
+<pre><code class="hljs php language-php"><span class="hljs-string">'components'</span> =&gt; [
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-string">'i18n'</span> =&gt; [
+        <span class="hljs-string">'translations'</span> =&gt; [
+            <span class="hljs-string">'app*'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\i18n\PhpMessageSource'</span>,
+                <span class="hljs-string">'fileMap'</span> =&gt; [
+                    <span class="hljs-string">'app'</span> =&gt; <span class="hljs-string">'app.php'</span>,
+                    <span class="hljs-string">'app/error'</span> =&gt; <span class="hljs-string">'error.php'</span>,
+                ],
+                <span class="hljs-string">'on missingTranslation'</span> =&gt; [<span class="hljs-string">'app\components\TranslationEventHandler'</span>, <span class="hljs-string">'handleMissingTranslation'</span>]
+            ],
+        ],
+    ],
+],
+</code></pre>
+<p>次に、私たち独自のイベントハンドラを実装する必要があります。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">i18n</span>\<span class="hljs-title">MissingTranslationEvent</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TranslationEventHandler</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handleMissingTranslation</span><span class="hljs-params">(MissingTranslationEvent <span class="hljs-variable">$event</span>)</span>
+    </span>{
+        <span class="hljs-variable">$event</span>-&gt;translatedMessage = <span class="hljs-string">"@MISSING: {$event-&gt;category}.{$event-&gt;message} FOR LANGUAGE {$event-&gt;language} @"</span>;
+    }
+}
+</code></pre>
+<p>このイベントハンドラによって <span class="broken-link">yii\i18n\MissingTranslationEvent::translatedMessage</span> がセットされた場合は、それが翻訳結果として表示されます。</p>
+<blockquote class="note"><p><strong>Note: </strong>全てのメッセージソースは、欠落した翻訳をそれぞれ独自に処理します。
+いくつかのメッセージソースを使っていて、それらが同じ方法で欠落した翻訳を取り扱うようにしたい場合は、対応するイベントハンドラを全てのメッセージソースそれぞれに割り当てなければなりません。</p>
+</blockquote>
+<h3><code>message</code> コマンドを使う <a name="message-command"></a> <span id="message-komandowo-shiu"></span><a href="#message-komandowo-shiu" class="hashlink">&para;</a></h3><p>翻訳は <span class="broken-link">yii\i18n\PhpMessageSource</span>、<span class="broken-link">yii\i18n\GettextMessageSource</span>、または <span class="broken-link">yii\i18n\DbMessageSource</span> に保存することが出来ます。
+追加のオプションについてはそれぞれのクラスを参照してください。</p>
+<p>まず最初に、構成情報ファイルを作成する必要があります。
+どこに保存したいかを決めて、次のコマンドを発行してください。</p>
+<pre><code class="hljs bash language-bash">./yii message/config-template path/to/config.php
+</code></pre>
+<p>作成されたファイルを開いて、あなたの要求に合わせてパラメータを修正します。
+特に、下記の項目に注意を払ってください。</p>
+<ul>
+<li><code>languages</code>: あなたのアプリケーションが翻訳されるべき言語を表す配列。</li>
+<li><code>messagePath</code>: メッセージファイルを保存するパス。
+これは、アプリケーションの構成情報で記述されている <code>i18n</code> の <code>basePath</code> と合致しなければなりません。</li>
+</ul>
+<p>'./yii message/config' コマンドを使って、CLI 経由で、指定したオプションを持つ設定ファイルを動的に生成することも可能です。
+例えば、<code>languages</code> と <code>messagePath</code> のパラメータは、次のようにして設定することが出来ます。</p>
+<pre><code class="hljs bash language-bash">./yii message/config --languages=de,ja --messagePath=messages path/to/config.php
+</code></pre>
+<p>利用可能なオプションのリストを取得するためには、次のコマンドを実行します。</p>
+<pre><code class="hljs bash language-bash">./yii <span class="hljs-built_in">help</span> message/config
+</code></pre>
+<p>構成情報ファイルの編集が完了すれば、ついに、下記のコマンドを使ってメッセージを抽出することが出来ます。</p>
+<pre><code class="hljs bash language-bash">./yii message path/to/config.php
+</code></pre>
+<p>これで、(あなたがファイルベースの翻訳を選択していた場合は) <code>messagePath</code> ディレクトリにファイルが出現します。</p>
+<h2>ビューの翻訳  <span id="view-translation"></span><a href="#view-translation" class="hashlink">&para;</a></h2><p>個々のテキストメッセージを翻訳する代りに、ビュースクリプト全体を翻訳したい場合があるでしょう。
+この目的を達するためには、ビューを翻訳して、ターゲット言語と同じ名前のサブディレクトリに保存するだけで大丈夫です。
+例えば、<code>views/site/index.php</code> というビューをターゲット言語 <code>ru-RU</code> に翻訳したい場合は、翻訳したビューを <code>views/site/ru-RU/index.php</code> というファイルとして保存します。
+このようにすると、<span class="broken-link">yii\base\View::renderFile()</span> メソッド、または、このメソッドを呼び出す他のメソッド (例えば <span class="broken-link">yii\base\Controller::render()</span>) を呼んで <code>views/site/index.php</code> をレンダリングするたびに、翻訳された <code>views/site/ru-RU/index.php</code> が代りにレンダリングされるようになります。</p>
+<blockquote class="note"><p><strong>Note: </strong><span class="broken-link">yii\base\Application::$language</span> が <span class="broken-link">yii\base\Application::$sourceLanguage</span> と同じ場合は、翻訳されたビューの有無にかかわらず、オリジナルのビューがレンダリングされます。</p>
+</blockquote>
+<h2>数値と日付の値を書式設定する  <span id="date-number"></span><a href="#date-number" class="hashlink">&para;</a></h2><p>詳細は <a href="guide-output-formatting.html">データフォーマッタ</a> の節を参照してください。</p>
+<h2>PHP 環境をセットアップする  <span id="setup-environment"></span><a href="#setup-environment" class="hashlink">&para;</a></h2><p>Yii は、<span class="broken-link">yii\i18n\Formatter</span> クラスの数値や日付の書式設定や、<span class="broken-link">yii\i18n\MessageFormatter</span> を使うメッセージのフォーマッティングなど、ほとんどの国際化機能を提供するために <a href="http://php.net/manual/ja/book.intl.php">PHP intl 拡張</a> を使います。
+この二つのクラスは、<code>intl</code> がインストールされていない場合に備えて基本的な機能を提供するフォールバックを実装しています。
+だだし、このフォールバックの実装は、英語がターゲット言語である場合にのみ十分に機能するものす。
+従って、国際化機能が必要とされる場合は、<code>intl</code> をインストールすることが強く推奨されます。</p>
+<p><a href="http://php.net/manual/ja/book.intl.php">PHP intl 拡張</a> は、さまざまに異なる全てのロケールについて知識と書式の規則を提供する <a href="http://site.icu-project.org/">ICU ライブラリ</a> に基礎を置いています。
+ICU のバージョンが異なると、日付や数値のフォーマットの結果も異なる場合があります。
+あなたのウェブサイトが全ての環境で同じ出力をすることを保証するためには、全ての環境において同じバージョンの PHP intl 拡張 (従って同じバージョンの ICU) をインストールすることが推奨されます。</p>
+<p>どのバージョンの ICU が PHP によって使われているかを知るために、次のスクリプトを走らせることが出来ます。
+このスクリプトは、使用されている PHP と ICU のバージョンを出力します。</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"PHP: "</span> . PHP_VERSION . <span class="hljs-string">"\n"</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"ICU: "</span> . INTL_ICU_VERSION . <span class="hljs-string">"\n"</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"ICU Data: "</span> . INTL_ICU_DATA_VERSION . <span class="hljs-string">"\n"</span>;
+</code></pre>
+<p>さらに、バージョン 49 以上の ICU を使用する事も推奨されます。
+そうすることによって、このドキュメントで説明されている全ての機能を使うことが出来るようになります。
+例えば、49 未満の ICU は、複数形規則における <code>#</code> プレースホルダをサポートしていません。
+入手できる ICU バージョン については、<a href="http://site.icu-project.org/download">http://site.icu-project.org/download</a> を参照してください。
+バージョン番号の採番方式が 4.8 リリースの後に変更されたことに注意してください
+(すなわち、ICU 4.8、ICU 49、ICU 50、等々となっています)。</p>
+<p>これに加えて、ICU ライブラリとともに出荷されるタイムゾーンデータベースの情報も古くなっている可能性があります。
+タイムゾーンデータベースの更新に関する詳細は <a href="http://userguide.icu-project.org/datetime/timezone#TOC-Updating-the-Time-Zone-Data">ICU マニュアル</a> を参照してください。
+出力の書式設定には ICU タイムゾーンデータベースが使用されますが、PHP によって使われるタイムゾーンデータベースも影響する可能性があります。
+PHP のタイムゾーンデータベースは、<a href="http://pecl.php.net/package/timezonedb"><code>timezonedb</code> pecl パッケージ</a> の最新版をインストールすることによって更新することが出来ます。</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:28:43 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
