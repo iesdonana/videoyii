@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Query Builder - Working with Databases - Videoyii</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w1060" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w1060-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Videoyii</a></div><div id="w1060-collapse" class="collapse navbar-collapse"><ul id="w1061" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-1044" data-toggle="collapse" data-parent="#navigation">Introduction <b class="caret"></b></a><div id="navigation-1044" class="submenu panel-collapse collapse"><a class="list-group-item" href="./intro-yii.html">About Yii</a>
+<a class="list-group-item" href="./intro-upgrade-from-v1.html">Upgrading from Version 1.1</a></div>
+<a class="list-group-item" href="#navigation-1045" data-toggle="collapse" data-parent="#navigation">Getting Started <b class="caret"></b></a><div id="navigation-1045" class="submenu panel-collapse collapse"><a class="list-group-item" href="./start-installation.html">Installing Yii</a>
+<a class="list-group-item" href="./start-workflow.html">Running Applications</a>
+<a class="list-group-item" href="./start-hello.html">Saying Hello</a>
+<a class="list-group-item" href="./start-forms.html">Working with Forms</a>
+<a class="list-group-item" href="./start-databases.html">Working with Databases</a>
+<a class="list-group-item" href="./start-gii.html">Generating Code with Gii</a>
+<a class="list-group-item" href="./start-looking-ahead.html">Looking Ahead</a></div>
+<a class="list-group-item" href="#navigation-1046" data-toggle="collapse" data-parent="#navigation">Application Structure <b class="caret"></b></a><div id="navigation-1046" class="submenu panel-collapse collapse"><a class="list-group-item" href="./structure-overview.html">Overview</a>
+<a class="list-group-item" href="./structure-entry-scripts.html">Entry Scripts</a>
+<a class="list-group-item" href="./structure-applications.html">Applications</a>
+<a class="list-group-item" href="./structure-application-components.html">Application Components</a>
+<a class="list-group-item" href="./structure-controllers.html">Controllers</a>
+<a class="list-group-item" href="./structure-models.html">Models</a>
+<a class="list-group-item" href="./structure-views.html">Views</a>
+<a class="list-group-item" href="./structure-modules.html">Modules</a>
+<a class="list-group-item" href="./structure-filters.html">Filters</a>
+<a class="list-group-item" href="./structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./structure-assets.html">Assets</a>
+<a class="list-group-item" href="./structure-extensions.html">Extensions</a></div>
+<a class="list-group-item" href="#navigation-1047" data-toggle="collapse" data-parent="#navigation">Handling Requests <b class="caret"></b></a><div id="navigation-1047" class="submenu panel-collapse collapse"><a class="list-group-item" href="./runtime-overview.html">Overview</a>
+<a class="list-group-item" href="./runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./runtime-routing.html">Routing and URL Creation</a>
+<a class="list-group-item" href="./runtime-requests.html">Requests</a>
+<a class="list-group-item" href="./runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./runtime-sessions-cookies.html">Sessions and Cookies</a>
+<a class="list-group-item" href="./runtime-handling-errors.html">Handling Errors</a>
+<a class="list-group-item" href="./runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-1048" data-toggle="collapse" data-parent="#navigation">Key Concepts <b class="caret"></b></a><div id="navigation-1048" class="submenu panel-collapse collapse"><a class="list-group-item" href="./concept-components.html">Components</a>
+<a class="list-group-item" href="./concept-properties.html">Properties</a>
+<a class="list-group-item" href="./concept-events.html">Events</a>
+<a class="list-group-item" href="./concept-behaviors.html">Behaviors</a>
+<a class="list-group-item" href="./concept-configurations.html">Configurations</a>
+<a class="list-group-item" href="./concept-aliases.html">Aliases</a>
+<a class="list-group-item" href="./concept-autoloading.html">Class Autoloading</a>
+<a class="list-group-item" href="./concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item active" href="#navigation-1049" data-toggle="collapse" data-parent="#navigation">Working with Databases <b class="caret"></b></a><div id="navigation-1049" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./db-dao.html">Data Access Objects</a>
+<a class="list-group-item active" href="./db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./db-migrations.html">Migrations</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-sphinx/blob/master/docs/guide/README.md">Sphinx</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-redis/blob/master/docs/guide/README.md">Redis</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-mongodb/blob/master/docs/guide/README.md">MongoDB</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-elasticsearch/blob/master/docs/guide/README.md">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-1050" data-toggle="collapse" data-parent="#navigation">Getting Data from Users <b class="caret"></b></a><div id="navigation-1050" class="submenu panel-collapse collapse"><a class="list-group-item" href="./input-forms.html">Creating Forms</a>
+<a class="list-group-item" href="./input-validation.html">Validating Input</a>
+<a class="list-group-item" href="./input-file-upload.html">Uploading Files</a>
+<a class="list-group-item" href="./input-tabular-input.html">Collecting Tabular Input</a>
+<a class="list-group-item" href="./input-multiple-models.html">Getting Data for Multiple Models</a></div>
+<a class="list-group-item" href="#navigation-1051" data-toggle="collapse" data-parent="#navigation">Displaying Data <b class="caret"></b></a><div id="navigation-1051" class="submenu panel-collapse collapse"><a class="list-group-item" href="./output-formatting.html">Data Formatting</a>
+<a class="list-group-item" href="./output-pagination.html">Pagination</a>
+<a class="list-group-item" href="./output-sorting.html">Sorting</a>
+<a class="list-group-item" href="./output-data-providers.html">Data Providers</a>
+<a class="list-group-item" href="./output-data-widgets.html">Data Widgets</a>
+<a class="list-group-item" href="./output-client-scripts.html">Working with Client Scripts</a>
+<a class="list-group-item" href="./output-theming.html">Theming</a></div>
+<a class="list-group-item" href="#navigation-1052" data-toggle="collapse" data-parent="#navigation">Security <b class="caret"></b></a><div id="navigation-1052" class="submenu panel-collapse collapse"><a class="list-group-item" href="./security-overview.html">Overview</a>
+<a class="list-group-item" href="./security-authentication.html">Authentication</a>
+<a class="list-group-item" href="./security-authorization.html">Authorization</a>
+<a class="list-group-item" href="./security-passwords.html">Working with Passwords</a>
+<a class="list-group-item" href="./security-cryptography.html">Cryptography</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/README.md">Auth Clients</a>
+<a class="list-group-item" href="./security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-1053" data-toggle="collapse" data-parent="#navigation">Caching <b class="caret"></b></a><div id="navigation-1053" class="submenu panel-collapse collapse"><a class="list-group-item" href="./caching-overview.html">Overview</a>
+<a class="list-group-item" href="./caching-data.html">Data Caching</a>
+<a class="list-group-item" href="./caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-1054" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-1054" class="submenu panel-collapse collapse"><a class="list-group-item" href="./rest-quick-start.html">Quick Start</a>
+<a class="list-group-item" href="./rest-resources.html">Resources</a>
+<a class="list-group-item" href="./rest-controllers.html">Controllers</a>
+<a class="list-group-item" href="./rest-routing.html">Routing</a>
+<a class="list-group-item" href="./rest-response-formatting.html">Response Formatting</a>
+<a class="list-group-item" href="./rest-authentication.html">Authentication</a>
+<a class="list-group-item" href="./rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./rest-versioning.html">Versioning</a>
+<a class="list-group-item" href="./rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-1055" data-toggle="collapse" data-parent="#navigation">Development Tools <b class="caret"></b></a><div id="navigation-1055" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-debug/blob/master/docs/guide/README.md">Debug Toolbar and Debugger</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-gii/blob/master/docs/guide/README.md">Generating Code using Gii</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-apidoc">Generating API Documentation</a></div>
+<a class="list-group-item" href="#navigation-1056" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-1056" class="submenu panel-collapse collapse"><a class="list-group-item" href="./test-overview.html">Overview</a>
+<a class="list-group-item" href="./test-environment-setup.html">Testing environment setup</a>
+<a class="list-group-item" href="./test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./test-functional.html">Functional Tests</a>
+<a class="list-group-item" href="./test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-1057" data-toggle="collapse" data-parent="#navigation">Special Topics <b class="caret"></b></a><div id="navigation-1057" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>
+<a class="list-group-item" href="./tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./tutorial-console.html">Console Commands</a>
+<a class="list-group-item" href="./tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./tutorial-i18n.html">Internationalization</a>
+<a class="list-group-item" href="./tutorial-mailing.html">Mailing</a>
+<a class="list-group-item" href="./tutorial-performance-tuning.html">Performance Tuning</a>
+<a class="list-group-item" href="./tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-1058" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-1058" class="submenu panel-collapse collapse"><a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-grid-gridview.html">GridView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-listview.html">ListView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-detailview.html">DetailView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/guide-input-forms.html#activerecord-based-forms-activeform">ActiveForm</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-pjax.html">Pjax</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-menu.html">Menu</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linkpager.html">LinkPager</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linksorter.html">LinkSorter</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-bootstrap/blob/master/docs/guide/README.md">Bootstrap Widgets</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-jui/blob/master/docs/guide/README.md">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-1059" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-1059" class="submenu panel-collapse collapse"><a class="list-group-item" href="./helper-overview.html">Overview</a>
+<a class="list-group-item" href="./helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./helper-html.html">Html</a>
+<a class="list-group-item" href="./helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Query Builder <span id="query-builder"></span><a href="#query-builder" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#building-queries">Building Queries</a></li>
+<li><a href="#query-methods">Query Methods</a></li></ol></div>
+<p>Built on top of <a href="db-dao.html">Database Access Objects</a>, query builder allows you to construct a SQL query
+in a programmatic and DBMS-agnostic way. Compared to writing raw SQL statements, using query builder will help you write 
+more readable SQL-related code and generate more secure SQL statements.  </p>
+<p>Using query builder usually involves two steps:</p>
+<ol>
+<li>Build a <span class="broken-link">yii\db\Query</span> object to represent different parts (e.g. <code>SELECT</code>, <code>FROM</code>) of a SELECT SQL statement.</li>
+<li>Execute a query method (e.g. <code>all()</code>) of <span class="broken-link">yii\db\Query</span> to retrieve data from the database.</li>
+</ol>
+<p>The following code shows a typical way of using query builder:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$rows</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'email'</span>])
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;where([<span class="hljs-string">'last_name'</span> =&gt; <span class="hljs-string">'Smith'</span>])
+    -&gt;limit(<span class="hljs-number">10</span>)
+    -&gt;all();
+</code></pre>
+<p>The above code generates and executes the following SQL query, where the <code>:last_name</code> parameter is bound with the
+string <code>'Smith'</code>.</p>
+<pre><code class="hljs sql language-sql"><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> <span class="hljs-string">`id`</span>, <span class="hljs-string">`email`</span> 
+<span class="hljs-keyword">FROM</span> <span class="hljs-string">`user`</span>
+<span class="hljs-keyword">WHERE</span> <span class="hljs-string">`last_name`</span> = :last_name
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">10</span>
+</span></code></pre>
+<blockquote class="info"><p><strong>Info: </strong>You usually mainly work with <span class="broken-link">yii\db\Query</span> instead of <span class="broken-link">yii\db\QueryBuilder</span>. The latter is invoked
+  by the former implicitly when you call one of the query methods. <span class="broken-link">yii\db\QueryBuilder</span> is the class responsible
+  for generating DBMS-dependent SQL statements (e.g. quoting table/column names differently) from DBMS-independent
+  <span class="broken-link">yii\db\Query</span> objects.</p>
+</blockquote>
+<h2>Building Queries  <span id="building-queries"></span><a href="#building-queries" class="hashlink">&para;</a></h2><p>To build a <span class="broken-link">yii\db\Query</span> object, you call different query building methods to specify different parts of
+a SQL query. The names of these methods resemble the SQL keywords used in the corresponding parts of the SQL
+statement. For example, to specify the <code>FROM</code> part of a SQL query, you would call the <span class="broken-link">yii\db\Query::from()</span> method.
+All the query building methods return the query object itself, which allows you to chain multiple calls together.</p>
+<p>In the following, we will describe the usage of each query building method.</p>
+<h3><span class="broken-link">yii\db\Query::select()</span>  <span id="select"></span><a href="#select" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::select()</span> method specifies the <code>SELECT</code> fragment of a SQL statement. You can specify 
+columns to be selected in either an array or a string, like the following. The column names being selected will 
+be automatically quoted when the SQL statement is being generated from a query object.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'email'</span>]);
+
+<span class="hljs-comment">// equivalent to:</span>
+
+<span class="hljs-variable">$query</span>-&gt;select(<span class="hljs-string">'id, email'</span>);
+</code></pre>
+<p>The column names being selected may include table prefixes and/or column aliases, like you do when writing raw SQL queries.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;select([<span class="hljs-string">'user.id AS user_id'</span>, <span class="hljs-string">'email'</span>]);
+
+<span class="hljs-comment">// equivalent to:</span>
+
+<span class="hljs-variable">$query</span>-&gt;select(<span class="hljs-string">'user.id AS user_id, email'</span>);
+</code></pre>
+<p>If you are using the array format to specify columns, you can also use the array keys to specify the column aliases.
+For example, the above code can be rewritten as follows,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;select([<span class="hljs-string">'user_id'</span> =&gt; <span class="hljs-string">'user.id'</span>, <span class="hljs-string">'email'</span>]);
+</code></pre>
+<p>If you do not call the <span class="broken-link">yii\db\Query::select()</span> method when building a query, <code>*</code> will be selected, which
+means selecting <em>all</em> columns.</p>
+<p>Besides column names, you can also select DB expressions. You must use the array format when selecting a DB expression
+that contains commas to avoid incorrect automatic name quoting. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;select([<span class="hljs-string">"CONCAT(first_name, ' ', last_name) AS full_name"</span>, <span class="hljs-string">'email'</span>]); 
+</code></pre>
+<p>As with all places where raw SQL is involved, you may use the <a href="db-dao.html#quoting-table-and-column-names">DBMS agnostic quoting syntax</a>
+for table and column names when writing DB expressions in select.</p>
+<p>Starting from version 2.0.1, you may also select sub-queries. You should specify each sub-query in terms of 
+a <span class="broken-link">yii\db\Query</span> object. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$subQuery</span> = (<span class="hljs-keyword">new</span> Query())-&gt;select(<span class="hljs-string">'COUNT(*)'</span>)-&gt;from(<span class="hljs-string">'user'</span>);
+
+<span class="hljs-comment">// SELECT `id`, (SELECT COUNT(*) FROM `user`) AS `count` FROM `post`</span>
+<span class="hljs-variable">$query</span> = (<span class="hljs-keyword">new</span> Query())-&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'count'</span> =&gt; <span class="hljs-variable">$subQuery</span>])-&gt;from(<span class="hljs-string">'post'</span>);
+</code></pre>
+<p>To select distinct rows, you may call <span class="broken-link">yii\db\Query::distinct()</span>, like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT DISTINCT `user_id` ...</span>
+<span class="hljs-variable">$query</span>-&gt;select(<span class="hljs-string">'user_id'</span>)-&gt;distinct();
+</code></pre>
+<p>You can call <span class="broken-link">yii\db\Query::addSelect()</span> to select additional columns. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'username'</span>])
+    -&gt;addSelect([<span class="hljs-string">'email'</span>]);
+</code></pre>
+<h3><span class="broken-link">yii\db\Query::from()</span>  <span id="from"></span><a href="#from" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::from()</span> method specifies the <code>FROM</code> fragment of a SQL statement. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `user`</span>
+<span class="hljs-variable">$query</span>-&gt;from(<span class="hljs-string">'user'</span>);
+</code></pre>
+<p>You can specify the table(s) being selected from in either a string or an array. The table names may contain
+schema prefixes and/or table aliases, like you do when writing raw SQL statements. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;from([<span class="hljs-string">'public.user u'</span>, <span class="hljs-string">'public.post p'</span>]);
+
+<span class="hljs-comment">// equivalent to:</span>
+
+<span class="hljs-variable">$query</span>-&gt;from(<span class="hljs-string">'public.user u, public.post p'</span>);
+</code></pre>
+<p>If you are using the array format, you can also use the array keys to specify the table aliases, like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;from([<span class="hljs-string">'u'</span> =&gt; <span class="hljs-string">'public.user'</span>, <span class="hljs-string">'p'</span> =&gt; <span class="hljs-string">'public.post'</span>]);
+</code></pre>
+<p>Besides table names, you can also select from sub-queries by specifying them in terms of <span class="broken-link">yii\db\Query</span> objects.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$subQuery</span> = (<span class="hljs-keyword">new</span> Query())-&gt;select(<span class="hljs-string">'id'</span>)-&gt;from(<span class="hljs-string">'user'</span>)-&gt;where(<span class="hljs-string">'status=1'</span>);
+
+<span class="hljs-comment">// SELECT * FROM (SELECT `id` FROM `user` WHERE status=1) u </span>
+<span class="hljs-variable">$query</span>-&gt;from([<span class="hljs-string">'u'</span> =&gt; <span class="hljs-variable">$subQuery</span>]);
+</code></pre>
+<h4>Prefixes <span id="prefixes"></span><a href="#prefixes" class="hashlink">&para;</a></h4><p>Also a default <span class="broken-link">yii\db\Connection::$tablePrefix</span> can be applied. Implementation instructions
+are in the <a href="guide-db-dao.html#quoting-table-and-column-names">"Quoting Tables" section of the "Database Access Objects" guide</a>.</p>
+<h3><span class="broken-link">yii\db\Query::where()</span>  <span id="where"></span><a href="#where" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::where()</span> method specifies the <code>WHERE</code> fragment of a SQL query. You can use one of
+the three formats to specify a <code>WHERE</code> condition:</p>
+<ul>
+<li>string format, e.g., <code>'status=1'</code></li>
+<li>hash format, e.g. <code>['status' =&gt; 1, 'type' =&gt; 2]</code></li>
+<li>operator format, e.g. <code>['like', 'name', 'test']</code></li>
+</ul>
+<h4>String Format  <span id="string-format"></span><a href="#string-format" class="hashlink">&para;</a></h4><p>String format is best used to specify very simple conditions or if you need to use built-in functions of the DBMS.
+It works as if you are writing a raw SQL. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;where(<span class="hljs-string">'status=1'</span>);
+
+<span class="hljs-comment">// or use parameter binding to bind dynamic parameter values</span>
+<span class="hljs-variable">$query</span>-&gt;where(<span class="hljs-string">'status=:status'</span>, [<span class="hljs-string">':status'</span> =&gt; <span class="hljs-variable">$status</span>]);
+
+<span class="hljs-comment">// raw SQL using MySQL YEAR() function on a date field</span>
+<span class="hljs-variable">$query</span>-&gt;where(<span class="hljs-string">'YEAR(somedate) = 2015'</span>);
+</code></pre>
+<p>Do NOT embed variables directly in the condition like the following, especially if the variable values come from 
+end user inputs, because this will make your application subject to SQL injection attacks.</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// Dangerous! Do NOT do this unless you are very certain $status must be an integer.</span>
+<span class="hljs-variable">$query</span>-&gt;where(<span class="hljs-string">"status=$status"</span>);
+</code></pre>
+<p>When using parameter binding, you may call <span class="broken-link">yii\db\Query::params()</span> or <span class="broken-link">yii\db\Query::addParams()</span>
+to specify parameters separately.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;where(<span class="hljs-string">'status=:status'</span>)
+    -&gt;addParams([<span class="hljs-string">':status'</span> =&gt; <span class="hljs-variable">$status</span>]);
+</code></pre>
+<p>As with all places where raw SQL is involved, you may use the <a href="db-dao.html#quoting-table-and-column-names">DBMS agnostic quoting syntax</a>
+for table and column names when writing conditions in string format. </p>
+<h4>Hash Format  <span id="hash-format"></span><a href="#hash-format" class="hashlink">&para;</a></h4><p>Hash format is best used to specify multiple <code>AND</code>-concatenated sub-conditions each being a simple equality assertion.
+It is written as an array whose keys are column names and values the corresponding values that the columns should be.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ...WHERE (`status` = 10) AND (`type` IS NULL) AND (`id` IN (4, 8, 15))</span>
+<span class="hljs-variable">$query</span>-&gt;where([
+    <span class="hljs-string">'status'</span> =&gt; <span class="hljs-number">10</span>,
+    <span class="hljs-string">'type'</span> =&gt; <span class="hljs-keyword">null</span>,
+    <span class="hljs-string">'id'</span> =&gt; [<span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">15</span>],
+]);
+</code></pre>
+<p>As you can see, the query builder is intelligent enough to properly handle values that are nulls or arrays.</p>
+<p>You can also use sub-queries with hash format like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$userQuery</span> = (<span class="hljs-keyword">new</span> Query())-&gt;select(<span class="hljs-string">'id'</span>)-&gt;from(<span class="hljs-string">'user'</span>);
+
+<span class="hljs-comment">// ...WHERE `id` IN (SELECT `id` FROM `user`)</span>
+<span class="hljs-variable">$query</span>-&gt;where([<span class="hljs-string">'id'</span> =&gt; <span class="hljs-variable">$userQuery</span>]);
+</code></pre>
+<p>Using the Hash Format, Yii internally uses parameter binding so in contrast to the <a href="#string-format">string format</a>, here
+you do not have to add parameters manually.</p>
+<h4>Operator Format  <span id="operator-format"></span><a href="#operator-format" class="hashlink">&para;</a></h4><p>Operator format allows you to specify arbitrary conditions in a programmatic way. It takes the following format:</p>
+<pre><code class="hljs php language-php">[operator, operand1, operand2, ...]
+</code></pre>
+<p>where the operands can each be specified in string format, hash format or operator format recursively, while
+the operator can be one of the following:</p>
+<ul>
+<li><p><code>and</code>: the operands should be concatenated together using <code>AND</code>. For example,
+<code>['and', 'id=1', 'id=2']</code> will generate <code>id=1 AND id=2</code>. If an operand is an array,
+it will be converted into a string using the rules described here. For example,
+<code>['and', 'type=1', ['or', 'id=1', 'id=2']]</code> will generate <code>type=1 AND (id=1 OR id=2)</code>.
+The method will NOT do any quoting or escaping.</p>
+</li>
+<li><p><code>or</code>: similar to the <code>and</code> operator except that the operands are concatenated using <code>OR</code>.</p>
+</li>
+<li><p><code>between</code>: operand 1 should be the column name, and operand 2 and 3 should be the
+ starting and ending values of the range that the column is in.
+ For example, <code>['between', 'id', 1, 10]</code> will generate <code>id BETWEEN 1 AND 10</code>.</p>
+</li>
+<li><p><code>not between</code>: similar to <code>between</code> except the <code>BETWEEN</code> is replaced with <code>NOT BETWEEN</code>
+in the generated condition.</p>
+</li>
+<li><p><code>in</code>: operand 1 should be a column or DB expression. Operand 2 can be either an array or a <code>Query</code> object.
+It will generate an <code>IN</code> condition. If Operand 2 is an array, it will represent the range of the values
+that the column or DB expression should be; If Operand 2 is a <code>Query</code> object, a sub-query will be generated
+and used as the range of the column or DB expression. For example,
+<code>['in', 'id', [1, 2, 3]]</code> will generate <code>id IN (1, 2, 3)</code>.
+The method will properly quote the column name and escape values in the range.
+The <code>in</code> operator also supports composite columns. In this case, operand 1 should be an array of the columns,
+while operand 2 should be an array of arrays or a <code>Query</code> object representing the range of the columns.</p>
+</li>
+<li><p><code>not in</code>: similar to the <code>in</code> operator except that <code>IN</code> is replaced with <code>NOT IN</code> in the generated condition.</p>
+</li>
+<li><p><code>like</code>: operand 1 should be a column or DB expression, and operand 2 be a string or an array representing
+the values that the column or DB expression should be like.
+For example, <code>['like', 'name', 'tester']</code> will generate <code>name LIKE '%tester%'</code>.
+When the value range is given as an array, multiple <code>LIKE</code> predicates will be generated and concatenated
+using <code>AND</code>. For example, <code>['like', 'name', ['test', 'sample']]</code> will generate
+<code>name LIKE '%test%' AND name LIKE '%sample%'</code>.
+You may also provide an optional third operand to specify how to escape special characters in the values.
+The operand should be an array of mappings from the special characters to their
+escaped counterparts. If this operand is not provided, a default escape mapping will be used.
+You may use <code>false</code> or an empty array to indicate the values are already escaped and no escape
+should be applied. Note that when using an escape mapping (or the third operand is not provided),
+the values will be automatically enclosed within a pair of percentage characters.</p>
+<blockquote class="note"><p><strong>Note: </strong>When using PostgreSQL you may also use <a href="http://www.postgresql.org/docs/8.3/static/functions-matching.html#FUNCTIONS-LIKE"><code>ilike</code></a>
+instead of <code>like</code> for case-insensitive matching.</p>
+</blockquote>
+</li>
+<li><p><code>or like</code>: similar to the <code>like</code> operator except that <code>OR</code> is used to concatenate the <code>LIKE</code>
+predicates when operand 2 is an array.</p>
+</li>
+<li><p><code>not like</code>: similar to the <code>like</code> operator except that <code>LIKE</code> is replaced with <code>NOT LIKE</code>
+in the generated condition.</p>
+</li>
+<li><p><code>or not like</code>: similar to the <code>not like</code> operator except that <code>OR</code> is used to concatenate
+the <code>NOT LIKE</code> predicates.</p>
+</li>
+<li><p><code>exists</code>: requires one operand which must be an instance of <span class="broken-link">yii\db\Query</span> representing the sub-query.
+It will build an <code>EXISTS (sub-query)</code> expression.</p>
+</li>
+<li><p><code>not exists</code>: similar to the <code>exists</code> operator and builds a <code>NOT EXISTS (sub-query)</code> expression.</p>
+</li>
+<li><p><code>&gt;</code>, <code>&lt;=</code>, or any other valid DB operator that takes two operands: the first operand must be a column name
+while the second operand a value. For example, <code>['&gt;', 'age', 10]</code> will generate <code>age&gt;10</code>.</p>
+</li>
+</ul>
+<p>Using the Operator Format, Yii internally uses parameter binding so in contrast to the <a href="#string-format">string format</a>, here
+you do not have to add parameters manually.</p>
+<h4>Appending Conditions  <span id="appending-conditions"></span><a href="#appending-conditions" class="hashlink">&para;</a></h4><p>You can use <span class="broken-link">yii\db\Query::andWhere()</span> or <span class="broken-link">yii\db\Query::orWhere()</span> to append
+additional conditions to an existing one. You can call them multiple times to append multiple conditions
+separately. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$status</span> = <span class="hljs-number">10</span>;
+<span class="hljs-variable">$search</span> = <span class="hljs-string">'yii'</span>;
+
+<span class="hljs-variable">$query</span>-&gt;where([<span class="hljs-string">'status'</span> =&gt; <span class="hljs-variable">$status</span>]);
+
+<span class="hljs-keyword">if</span> (!<span class="hljs-keyword">empty</span>(<span class="hljs-variable">$search</span>)) {
+    <span class="hljs-variable">$query</span>-&gt;andWhere([<span class="hljs-string">'like'</span>, <span class="hljs-string">'title'</span>, <span class="hljs-variable">$search</span>]);
+}
+</code></pre>
+<p>If <code>$search</code> is not empty, the following <code>WHERE</code> condition will be generated:</p>
+<pre><code class="hljs sql language-sql">WHERE (`status` = 10) AND (`title` LIKE '%yii%')
+</code></pre>
+<h4>Filter Conditions  <span id="filter-conditions"></span><a href="#filter-conditions" class="hashlink">&para;</a></h4><p>When building <code>WHERE</code> conditions based on input from end users, you usually want to ignore those input values, that are empty.
+For example, in a search form that allows you to search by username and email, you would like to ignore the username/email
+condition if the user does not enter anything in the username/email input field. You can achieve this goal by
+using the <span class="broken-link">yii\db\Query::filterWhere()</span> method:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// $username and $email are from user inputs</span>
+<span class="hljs-variable">$query</span>-&gt;filterWhere([
+    <span class="hljs-string">'username'</span> =&gt; <span class="hljs-variable">$username</span>,
+    <span class="hljs-string">'email'</span> =&gt; <span class="hljs-variable">$email</span>,
+]);
+</code></pre>
+<p>The only difference between <span class="broken-link">yii\db\Query::filterWhere()</span> and <span class="broken-link">yii\db\Query::where()</span> 
+is that the former will ignore empty values provided in the condition in <a href="#hash-format">hash format</a>. So if <code>$email</code>
+is empty while <code>$username</code> is not, the above code will result in the SQL condition <code>WHERE username=:username</code>.</p>
+<blockquote class="info"><p><strong>Info: </strong>A value is considered empty if it is <code>null</code>, an empty array, an empty string or a string consisting of whitespaces only.</p>
+</blockquote>
+<p>Like <span class="broken-link">yii\db\Query::andWhere()</span> and <span class="broken-link">yii\db\Query::orWhere()</span>, you can use
+<span class="broken-link">yii\db\Query::andFilterWhere()</span> and <span class="broken-link">yii\db\Query::orFilterWhere()</span>
+to append additional filter conditions to the existing one.</p>
+<p>Additionally, there is <span class="broken-link">yii\db\Query::andFilterCompare()</span> that can intelligently determine operator based on what's
+in the value:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;andFilterCompare(<span class="hljs-string">'name'</span>, <span class="hljs-string">'John Doe'</span>);
+<span class="hljs-variable">$query</span>-&gt;andFilterCompare(<span class="hljs-string">'rating'</span>, <span class="hljs-string">'&gt;9'</span>);
+<span class="hljs-variable">$query</span>-&gt;andFilterCompare(<span class="hljs-string">'value'</span>, <span class="hljs-string">'&lt;=100'</span>);
+</code></pre>
+<p>You can also specify operator explicitly:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;andFilterCompare(<span class="hljs-string">'name'</span>, <span class="hljs-string">'Doe'</span>, <span class="hljs-string">'like'</span>);
+</code></pre>
+<p>Since Yii 2.0.11 there are similar methods for <code>HAVING</code> condition:</p>
+<ul>
+<li><span class="broken-link">yii\db\Query::filterHaving()</span></li>
+<li><span class="broken-link">yii\db\Query::andFilterHaving()</span></li>
+<li><span class="broken-link">yii\db\Query::orFilterHaving()</span></li>
+</ul>
+<h3><span class="broken-link">yii\db\Query::orderBy()</span>  <span id="order-by"></span><a href="#order-by" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::orderBy()</span> method specifies the <code>ORDER BY</code> fragment of a SQL query. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ... ORDER BY `id` ASC, `name` DESC</span>
+<span class="hljs-variable">$query</span>-&gt;orderBy([
+    <span class="hljs-string">'id'</span> =&gt; SORT_ASC,
+    <span class="hljs-string">'name'</span> =&gt; SORT_DESC,
+]);
+</code></pre>
+<p>In the above code, the array keys are column names while the array values are the corresponding order by directions.
+The PHP constant <code>SORT_ASC</code> specifies ascending sort and <code>SORT_DESC</code> descending sort.</p>
+<p>If <code>ORDER BY</code> only involves simple column names, you can specify it using a string, just like you do when writing 
+raw SQL statements. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;orderBy(<span class="hljs-string">'id ASC, name DESC'</span>);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>You should use the array format if <code>ORDER BY</code> involves some DB expression. </p>
+</blockquote>
+<p>You can call <span class="broken-link">yii\db\Query::addOrderBy()</span> to add additional columns to the <code>ORDER BY</code> fragment.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;orderBy(<span class="hljs-string">'id ASC'</span>)
+    -&gt;addOrderBy(<span class="hljs-string">'name DESC'</span>);
+</code></pre>
+<h3><span class="broken-link">yii\db\Query::groupBy()</span>  <span id="group-by"></span><a href="#group-by" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::groupBy()</span> method specifies the <code>GROUP BY</code> fragment of a SQL query. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ... GROUP BY `id`, `status`</span>
+<span class="hljs-variable">$query</span>-&gt;groupBy([<span class="hljs-string">'id'</span>, <span class="hljs-string">'status'</span>]);
+</code></pre>
+<p>If <code>GROUP BY</code> only involves simple column names, you can specify it using a string, just like you do when writing 
+raw SQL statements. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;groupBy(<span class="hljs-string">'id, status'</span>);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>You should use the array format if <code>GROUP BY</code> involves some DB expression.</p>
+</blockquote>
+<p>You can call <span class="broken-link">yii\db\Query::addGroupBy()</span> to add additional columns to the <code>GROUP BY</code> fragment.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;groupBy([<span class="hljs-string">'id'</span>, <span class="hljs-string">'status'</span>])
+    -&gt;addGroupBy(<span class="hljs-string">'age'</span>);
+</code></pre>
+<h3><span class="broken-link">yii\db\Query::having()</span>  <span id="having"></span><a href="#having" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::having()</span> method specifies the <code>HAVING</code> fragment of a SQL query. It takes
+a condition which can be specified in the same way as that for <a href="#where">where()</a>. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ... HAVING `status` = 1</span>
+<span class="hljs-variable">$query</span>-&gt;having([<span class="hljs-string">'status'</span> =&gt; <span class="hljs-number">1</span>]);
+</code></pre>
+<p>Please refer to the documentation for <a href="#where">where()</a> for more details about how to specify a condition.</p>
+<p>You can call <span class="broken-link">yii\db\Query::andHaving()</span> or <span class="broken-link">yii\db\Query::orHaving()</span> to append
+additional conditions to the <code>HAVING</code> fragment. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ... HAVING (`status` = 1) AND (`age` &gt; 30)</span>
+<span class="hljs-variable">$query</span>-&gt;having([<span class="hljs-string">'status'</span> =&gt; <span class="hljs-number">1</span>])
+    -&gt;andHaving([<span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'age'</span>, <span class="hljs-number">30</span>]);
+</code></pre>
+<h3><span class="broken-link">yii\db\Query::limit()</span> and <span class="broken-link">yii\db\Query::offset()</span>  <span id="limit-offset"></span><a href="#limit-offset" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::limit()</span> and <span class="broken-link">yii\db\Query::offset()</span> methods specify the <code>LIMIT</code>
+and <code>OFFSET</code> fragments of a SQL query. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ... LIMIT 10 OFFSET 20</span>
+<span class="hljs-variable">$query</span>-&gt;limit(<span class="hljs-number">10</span>)-&gt;offset(<span class="hljs-number">20</span>);
+</code></pre>
+<p>If you specify an invalid limit or offset (e.g. a negative value), it will be ignored.</p>
+<blockquote class="info"><p><strong>Info: </strong>For DBMS that do not support <code>LIMIT</code> and <code>OFFSET</code> (e.g. MSSQL), query builder will generate a SQL
+  statement that emulates the <code>LIMIT</code>/<code>OFFSET</code> behavior.</p>
+</blockquote>
+<h3><span class="broken-link">yii\db\Query::join()</span>  <span id="join"></span><a href="#join" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::join()</span> method specifies the <code>JOIN</code> fragment of a SQL query. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ... LEFT JOIN `post` ON `post`.`user_id` = `user`.`id`</span>
+<span class="hljs-variable">$query</span>-&gt;join(<span class="hljs-string">'LEFT JOIN'</span>, <span class="hljs-string">'post'</span>, <span class="hljs-string">'post.user_id = user.id'</span>);
+</code></pre>
+<p>The <span class="broken-link">yii\db\Query::join()</span> method takes four parameters:</p>
+<ul>
+<li><code>$type</code>: join type, e.g., <code>'INNER JOIN'</code>, <code>'LEFT JOIN'</code>.</li>
+<li><code>$table</code>: the name of the table to be joined.</li>
+<li><code>$on</code>: optional, the join condition, i.e., the <code>ON</code> fragment. Please refer to <a href="#where">where()</a> for details
+ about specifying a condition. Note, that the array syntax does <strong>not</strong> work for specifying a column based
+ condition, e.g. <code>['user.id' =&gt; 'comment.userId']</code> will result in a condition where the user id must be equal
+ to the string <code>'comment.userId'</code>. You should use the string syntax instead and specify the condition as
+ <code>'user.id = comment.userId'</code>.</li>
+<li><code>$params</code>: optional, the parameters to be bound to the join condition.</li>
+</ul>
+<p>You can use the following shortcut methods to specify <code>INNER JOIN</code>, <code>LEFT JOIN</code> and <code>RIGHT JOIN</code>, respectively.</p>
+<ul>
+<li><span class="broken-link">yii\db\Query::innerJoin()</span></li>
+<li><span class="broken-link">yii\db\Query::leftJoin()</span></li>
+<li><span class="broken-link">yii\db\Query::rightJoin()</span></li>
+</ul>
+<p>For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;leftJoin(<span class="hljs-string">'post'</span>, <span class="hljs-string">'post.user_id = user.id'</span>);
+</code></pre>
+<p>To join with multiple tables, call the above join methods multiple times, once for each table.</p>
+<p>Besides joining with tables, you can also join with sub-queries. To do so, specify the sub-queries to be joined
+as <span class="broken-link">yii\db\Query</span> objects. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$subQuery</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())-&gt;from(<span class="hljs-string">'post'</span>);
+<span class="hljs-variable">$query</span>-&gt;leftJoin([<span class="hljs-string">'u'</span> =&gt; <span class="hljs-variable">$subQuery</span>], <span class="hljs-string">'u.id = author_id'</span>);
+</code></pre>
+<p>In this case, you should put the sub-query in an array and use the array key to specify the alias.</p>
+<h3><span class="broken-link">yii\db\Query::union()</span>  <span id="union"></span><a href="#union" class="hashlink">&para;</a></h3><p>The <span class="broken-link">yii\db\Query::union()</span> method specifies the <code>UNION</code> fragment of a SQL query. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query1</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;select(<span class="hljs-string">"id, category_id AS type, name"</span>)
+    -&gt;from(<span class="hljs-string">'post'</span>)
+    -&gt;limit(<span class="hljs-number">10</span>);
+
+<span class="hljs-variable">$query2</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;select(<span class="hljs-string">'id, type, name'</span>)
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;limit(<span class="hljs-number">10</span>);
+
+<span class="hljs-variable">$query1</span>-&gt;union(<span class="hljs-variable">$query2</span>);
+</code></pre>
+<p>You can call <span class="broken-link">yii\db\Query::union()</span> multiple times to append more <code>UNION</code> fragments. </p>
+<h2>Query Methods  <span id="query-methods"></span><a href="#query-methods" class="hashlink">&para;</a></h2><p><span class="broken-link">yii\db\Query</span> provides a whole set of methods for different query purposes:</p>
+<ul>
+<li><span class="broken-link">yii\db\Query::all()</span>: returns an array of rows with each row being an associative array of name-value pairs.</li>
+<li><span class="broken-link">yii\db\Query::one()</span>: returns the first row of the result.</li>
+<li><span class="broken-link">yii\db\Query::column()</span>: returns the first column of the result.</li>
+<li><span class="broken-link">yii\db\Query::scalar()</span>: returns a scalar value located at the first row and first column of the result.</li>
+<li><span class="broken-link">yii\db\Query::exists()</span>: returns a value indicating whether the query contains any result.</li>
+<li><span class="broken-link">yii\db\Query::count()</span>: returns the result of a <code>COUNT</code> query.</li>
+<li>Other aggregation query methods, including <span class="broken-link">yii\db\Query::sum()</span>, <span class="broken-link">yii\db\Query::average()</span>,
+<span class="broken-link">yii\db\Query::max()</span>, <span class="broken-link">yii\db\Query::min()</span>. The <code>$q</code> parameter is mandatory for these methods 
+and can be either a column name or a DB expression.</li>
+</ul>
+<p>For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT `id`, `email` FROM `user`</span>
+<span class="hljs-variable">$rows</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'email'</span>])
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;all();
+    
+<span class="hljs-comment">// SELECT * FROM `user` WHERE `username` LIKE `%test%`</span>
+<span class="hljs-variable">$row</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;where([<span class="hljs-string">'like'</span>, <span class="hljs-string">'username'</span>, <span class="hljs-string">'test'</span>])
+    -&gt;one();
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>The <span class="broken-link">yii\db\Query::one()</span> method only returns the first row of the query result. It does NOT
+  add <code>LIMIT 1</code> to the generated SQL statement. This is fine and preferred if you know the query will return only one 
+  or a few rows of data (e.g. if you are querying with some primary keys). However, if the query may potentially 
+  result in many rows of data, you should call <code>limit(1)</code> explicitly to improve the performance, e.g.,
+  <code>(new \yii\db\Query())-&gt;from('user')-&gt;limit(1)-&gt;one()</code>.</p>
+</blockquote>
+<p>All these query methods take an optional <code>$db</code> parameter representing the <span class="broken-link">yii\db\Connection</span> that
+should be used to perform a DB query. If you omit this parameter, the <code>db</code> <a href="structure-application-components.html">application component</a> will be used
+as the DB connection. Below is another example using the <span class="broken-link">yii\db\Query::count()</span> query method:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// executes SQL: SELECT COUNT(*) FROM `user` WHERE `last_name`=:last_name</span>
+<span class="hljs-variable">$count</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;where([<span class="hljs-string">'last_name'</span> =&gt; <span class="hljs-string">'Smith'</span>])
+    -&gt;count();
+</code></pre>
+<p>When you call a query method of <span class="broken-link">yii\db\Query</span>, it actually does the following work internally:</p>
+<ul>
+<li>Call <span class="broken-link">yii\db\QueryBuilder</span> to generate a SQL statement based on the current construct of <span class="broken-link">yii\db\Query</span>;</li>
+<li>Create a <span class="broken-link">yii\db\Command</span> object with the generated SQL statement;</li>
+<li>Call a query method (e.g.  <span class="broken-link">yii\db\Command::queryAll()</span>) of <span class="broken-link">yii\db\Command</span> to execute the SQL statement and retrieve the data.</li>
+</ul>
+<p>Sometimes, you may want to examine or use the SQL statement built from a <span class="broken-link">yii\db\Query</span> object. You can
+achieve this goal with the following code: </p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$command</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'email'</span>])
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;where([<span class="hljs-string">'last_name'</span> =&gt; <span class="hljs-string">'Smith'</span>])
+    -&gt;limit(<span class="hljs-number">10</span>)
+    -&gt;createCommand();
+    
+<span class="hljs-comment">// show the SQL statement</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$command</span>-&gt;sql;
+<span class="hljs-comment">// show the parameters to be bound</span>
+print_r(<span class="hljs-variable">$command</span>-&gt;params);
+
+<span class="hljs-comment">// returns all rows of the query result</span>
+<span class="hljs-variable">$rows</span> = <span class="hljs-variable">$command</span>-&gt;queryAll();
+</code></pre>
+<h3>Indexing Query Results  <span id="indexing-query-results"></span><a href="#indexing-query-results" class="hashlink">&para;</a></h3><p>When you call <span class="broken-link">yii\db\Query::all()</span>, it will return an array of rows which are indexed by consecutive integers.
+Sometimes you may want to index them differently, such as indexing by a particular column or expression values.
+You can achieve this goal by calling <span class="broken-link">yii\db\Query::indexBy()</span> before <span class="broken-link">yii\db\Query::all()</span>.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// returns [100 =&gt; ['id' =&gt; 100, 'username' =&gt; '...', ...], 101 =&gt; [...], 103 =&gt; [...], ...]</span>
+<span class="hljs-variable">$query</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;limit(<span class="hljs-number">10</span>)
+    -&gt;indexBy(<span class="hljs-string">'id'</span>)
+    -&gt;all();
+</code></pre>
+<p>To index by expression values, pass an anonymous function to the <span class="broken-link">yii\db\Query::indexBy()</span> method:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;indexBy(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$row</span>)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">'id'</span>] . <span class="hljs-variable">$row</span>[<span class="hljs-string">'username'</span>];
+    })-&gt;all();
+</code></pre>
+<p>The anonymous function takes a parameter <code>$row</code> which contains the current row data and should return a scalar
+value which will be used as the index value for the current row.</p>
+<blockquote class="note"><p><strong>Note: </strong>In contrast to query methods like <span class="broken-link">yii\db\Query::groupBy()</span> or <span class="broken-link">yii\db\Query::orderBy()</span>
+which are converted to SQL and are part of the query, this method works after the data has been fetched from the database.
+That means that only those column names can be used that have been part of SELECT in your query.
+Also if you selected a column with table prefix, e.g. <code>customer.id</code>, the result set will only contain <code>id</code> so you have to call
+<code>-&gt;indexBy('id')</code> without table prefix.</p>
+</blockquote>
+<h3>Batch Query  <span id="batch-query"></span><a href="#batch-query" class="hashlink">&para;</a></h3><p>When working with large amounts of data, methods such as <span class="broken-link">yii\db\Query::all()</span> are not suitable
+because they require loading all data into the memory. To keep the memory requirement low, Yii
+provides the so-called batch query support. A batch query makes use of the data cursor and fetches
+data in batches.</p>
+<p>Batch query can be used like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">Query</span>;
+
+<span class="hljs-variable">$query</span> = (<span class="hljs-keyword">new</span> Query())
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;orderBy(<span class="hljs-string">'id'</span>);
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$query</span>-&gt;batch() <span class="hljs-keyword">as</span> <span class="hljs-variable">$users</span>) {
+    <span class="hljs-comment">// $users is an array of 100 or fewer rows from the user table</span>
+}
+
+<span class="hljs-comment">// or if you want to iterate the row one by one</span>
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$query</span>-&gt;each() <span class="hljs-keyword">as</span> <span class="hljs-variable">$user</span>) {
+    <span class="hljs-comment">// $user represents one row of data from the user table</span>
+}
+</code></pre>
+<p>The method <span class="broken-link">yii\db\Query::batch()</span> and <span class="broken-link">yii\db\Query::each()</span> return an <span class="broken-link">yii\db\BatchQueryResult</span> object
+which implements the <code>Iterator</code> interface and thus can be used in the <code>foreach</code> construct.
+During the first iteration, a SQL query is made to the database. Data are then fetched in batches
+in the remaining iterations. By default, the batch size is 100, meaning 100 rows of data are being fetched in each batch.
+You can change the batch size by passing the first parameter to the <code>batch()</code> or <code>each()</code> method.</p>
+<p>Compared to the <span class="broken-link">yii\db\Query::all()</span>, the batch query only loads 100 rows of data at a time into the memory.
+If you process the data and then discard it right away, the batch query can help reduce memory usage.</p>
+<p>If you specify the query result to be indexed by some column via <span class="broken-link">yii\db\Query::indexBy()</span>, the batch query
+will still keep the proper index. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span> = (<span class="hljs-keyword">new</span> \yii\db\Query())
+    -&gt;from(<span class="hljs-string">'user'</span>)
+    -&gt;indexBy(<span class="hljs-string">'username'</span>);
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$query</span>-&gt;batch() <span class="hljs-keyword">as</span> <span class="hljs-variable">$users</span>) {
+    <span class="hljs-comment">// $users is indexed by the "username" column</span>
+}
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$query</span>-&gt;each() <span class="hljs-keyword">as</span> <span class="hljs-variable">$username</span> =&gt; <span class="hljs-variable">$user</span>) {
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:58:20 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

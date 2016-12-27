@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Dependency Injection Container - Key Concepts - Videoyii</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w1654" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w1654-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Videoyii</a></div><div id="w1654-collapse" class="collapse navbar-collapse"><ul id="w1655" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-1638" data-toggle="collapse" data-parent="#navigation">Introduction <b class="caret"></b></a><div id="navigation-1638" class="submenu panel-collapse collapse"><a class="list-group-item" href="./intro-yii.html">About Yii</a>
+<a class="list-group-item" href="./intro-upgrade-from-v1.html">Upgrading from Version 1.1</a></div>
+<a class="list-group-item" href="#navigation-1639" data-toggle="collapse" data-parent="#navigation">Getting Started <b class="caret"></b></a><div id="navigation-1639" class="submenu panel-collapse collapse"><a class="list-group-item" href="./start-installation.html">Installing Yii</a>
+<a class="list-group-item" href="./start-workflow.html">Running Applications</a>
+<a class="list-group-item" href="./start-hello.html">Saying Hello</a>
+<a class="list-group-item" href="./start-forms.html">Working with Forms</a>
+<a class="list-group-item" href="./start-databases.html">Working with Databases</a>
+<a class="list-group-item" href="./start-gii.html">Generating Code with Gii</a>
+<a class="list-group-item" href="./start-looking-ahead.html">Looking Ahead</a></div>
+<a class="list-group-item" href="#navigation-1640" data-toggle="collapse" data-parent="#navigation">Application Structure <b class="caret"></b></a><div id="navigation-1640" class="submenu panel-collapse collapse"><a class="list-group-item" href="./structure-overview.html">Overview</a>
+<a class="list-group-item" href="./structure-entry-scripts.html">Entry Scripts</a>
+<a class="list-group-item" href="./structure-applications.html">Applications</a>
+<a class="list-group-item" href="./structure-application-components.html">Application Components</a>
+<a class="list-group-item" href="./structure-controllers.html">Controllers</a>
+<a class="list-group-item" href="./structure-models.html">Models</a>
+<a class="list-group-item" href="./structure-views.html">Views</a>
+<a class="list-group-item" href="./structure-modules.html">Modules</a>
+<a class="list-group-item" href="./structure-filters.html">Filters</a>
+<a class="list-group-item" href="./structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./structure-assets.html">Assets</a>
+<a class="list-group-item" href="./structure-extensions.html">Extensions</a></div>
+<a class="list-group-item" href="#navigation-1641" data-toggle="collapse" data-parent="#navigation">Handling Requests <b class="caret"></b></a><div id="navigation-1641" class="submenu panel-collapse collapse"><a class="list-group-item" href="./runtime-overview.html">Overview</a>
+<a class="list-group-item" href="./runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./runtime-routing.html">Routing and URL Creation</a>
+<a class="list-group-item" href="./runtime-requests.html">Requests</a>
+<a class="list-group-item" href="./runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./runtime-sessions-cookies.html">Sessions and Cookies</a>
+<a class="list-group-item" href="./runtime-handling-errors.html">Handling Errors</a>
+<a class="list-group-item" href="./runtime-logging.html">Logging</a></div>
+<a class="list-group-item active" href="#navigation-1642" data-toggle="collapse" data-parent="#navigation">Key Concepts <b class="caret"></b></a><div id="navigation-1642" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./concept-components.html">Components</a>
+<a class="list-group-item" href="./concept-properties.html">Properties</a>
+<a class="list-group-item" href="./concept-events.html">Events</a>
+<a class="list-group-item" href="./concept-behaviors.html">Behaviors</a>
+<a class="list-group-item" href="./concept-configurations.html">Configurations</a>
+<a class="list-group-item" href="./concept-aliases.html">Aliases</a>
+<a class="list-group-item" href="./concept-autoloading.html">Class Autoloading</a>
+<a class="list-group-item" href="./concept-service-locator.html">Service Locator</a>
+<a class="list-group-item active" href="./concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-1643" data-toggle="collapse" data-parent="#navigation">Working with Databases <b class="caret"></b></a><div id="navigation-1643" class="submenu panel-collapse collapse"><a class="list-group-item" href="./db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./db-migrations.html">Migrations</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-sphinx/blob/master/docs/guide/README.md">Sphinx</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-redis/blob/master/docs/guide/README.md">Redis</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-mongodb/blob/master/docs/guide/README.md">MongoDB</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-elasticsearch/blob/master/docs/guide/README.md">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-1644" data-toggle="collapse" data-parent="#navigation">Getting Data from Users <b class="caret"></b></a><div id="navigation-1644" class="submenu panel-collapse collapse"><a class="list-group-item" href="./input-forms.html">Creating Forms</a>
+<a class="list-group-item" href="./input-validation.html">Validating Input</a>
+<a class="list-group-item" href="./input-file-upload.html">Uploading Files</a>
+<a class="list-group-item" href="./input-tabular-input.html">Collecting Tabular Input</a>
+<a class="list-group-item" href="./input-multiple-models.html">Getting Data for Multiple Models</a></div>
+<a class="list-group-item" href="#navigation-1645" data-toggle="collapse" data-parent="#navigation">Displaying Data <b class="caret"></b></a><div id="navigation-1645" class="submenu panel-collapse collapse"><a class="list-group-item" href="./output-formatting.html">Data Formatting</a>
+<a class="list-group-item" href="./output-pagination.html">Pagination</a>
+<a class="list-group-item" href="./output-sorting.html">Sorting</a>
+<a class="list-group-item" href="./output-data-providers.html">Data Providers</a>
+<a class="list-group-item" href="./output-data-widgets.html">Data Widgets</a>
+<a class="list-group-item" href="./output-client-scripts.html">Working with Client Scripts</a>
+<a class="list-group-item" href="./output-theming.html">Theming</a></div>
+<a class="list-group-item" href="#navigation-1646" data-toggle="collapse" data-parent="#navigation">Security <b class="caret"></b></a><div id="navigation-1646" class="submenu panel-collapse collapse"><a class="list-group-item" href="./security-overview.html">Overview</a>
+<a class="list-group-item" href="./security-authentication.html">Authentication</a>
+<a class="list-group-item" href="./security-authorization.html">Authorization</a>
+<a class="list-group-item" href="./security-passwords.html">Working with Passwords</a>
+<a class="list-group-item" href="./security-cryptography.html">Cryptography</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/README.md">Auth Clients</a>
+<a class="list-group-item" href="./security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-1647" data-toggle="collapse" data-parent="#navigation">Caching <b class="caret"></b></a><div id="navigation-1647" class="submenu panel-collapse collapse"><a class="list-group-item" href="./caching-overview.html">Overview</a>
+<a class="list-group-item" href="./caching-data.html">Data Caching</a>
+<a class="list-group-item" href="./caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-1648" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-1648" class="submenu panel-collapse collapse"><a class="list-group-item" href="./rest-quick-start.html">Quick Start</a>
+<a class="list-group-item" href="./rest-resources.html">Resources</a>
+<a class="list-group-item" href="./rest-controllers.html">Controllers</a>
+<a class="list-group-item" href="./rest-routing.html">Routing</a>
+<a class="list-group-item" href="./rest-response-formatting.html">Response Formatting</a>
+<a class="list-group-item" href="./rest-authentication.html">Authentication</a>
+<a class="list-group-item" href="./rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./rest-versioning.html">Versioning</a>
+<a class="list-group-item" href="./rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-1649" data-toggle="collapse" data-parent="#navigation">Development Tools <b class="caret"></b></a><div id="navigation-1649" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-debug/blob/master/docs/guide/README.md">Debug Toolbar and Debugger</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-gii/blob/master/docs/guide/README.md">Generating Code using Gii</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-apidoc">Generating API Documentation</a></div>
+<a class="list-group-item" href="#navigation-1650" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-1650" class="submenu panel-collapse collapse"><a class="list-group-item" href="./test-overview.html">Overview</a>
+<a class="list-group-item" href="./test-environment-setup.html">Testing environment setup</a>
+<a class="list-group-item" href="./test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./test-functional.html">Functional Tests</a>
+<a class="list-group-item" href="./test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-1651" data-toggle="collapse" data-parent="#navigation">Special Topics <b class="caret"></b></a><div id="navigation-1651" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>
+<a class="list-group-item" href="./tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./tutorial-console.html">Console Commands</a>
+<a class="list-group-item" href="./tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./tutorial-i18n.html">Internationalization</a>
+<a class="list-group-item" href="./tutorial-mailing.html">Mailing</a>
+<a class="list-group-item" href="./tutorial-performance-tuning.html">Performance Tuning</a>
+<a class="list-group-item" href="./tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-1652" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-1652" class="submenu panel-collapse collapse"><a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-grid-gridview.html">GridView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-listview.html">ListView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-detailview.html">DetailView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/guide-input-forms.html#activerecord-based-forms-activeform">ActiveForm</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-pjax.html">Pjax</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-menu.html">Menu</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linkpager.html">LinkPager</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linksorter.html">LinkSorter</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-bootstrap/blob/master/docs/guide/README.md">Bootstrap Widgets</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-jui/blob/master/docs/guide/README.md">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-1653" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-1653" class="submenu panel-collapse collapse"><a class="list-group-item" href="./helper-overview.html">Overview</a>
+<a class="list-group-item" href="./helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./helper-html.html">Html</a>
+<a class="list-group-item" href="./helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Dependency Injection Container <span id="dependency-injection-container"></span><a href="#dependency-injection-container" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#dependency-injection">Dependency Injection</a></li>
+<li><a href="#registering-dependencies">Registering Dependencies</a></li>
+<li><a href="#resolving-dependencies">Resolving Dependencies</a></li>
+<li><a href="#practical-usage">Practical Usage</a></li>
+<li><a href="#advanced-practical-usage">Advanced Practical Usage</a></li>
+<li><a href="#when-to-register-dependencies">When to Register Dependencies</a></li>
+<li><a href="#summary">Summary</a></li></ol></div>
+<p>A dependency injection (DI) container is an object that knows how to instantiate and configure objects and
+all their dependent objects. <a href="http://martinfowler.com/articles/injection.html">Martin Fowler's article</a> has well
+explained why DI container is useful. Here we will mainly explain the usage of the DI container provided by Yii.</p>
+<h2>Dependency Injection  <span id="dependency-injection"></span><a href="#dependency-injection" class="hashlink">&para;</a></h2><p>Yii provides the DI container feature through the class <span class="broken-link">yii\di\Container</span>. It supports the following kinds of
+dependency injection:</p>
+<ul>
+<li>Constructor injection;</li>
+<li>Method injection;</li>
+<li>Setter and property injection;</li>
+<li>PHP callable injection;</li>
+</ul>
+<h3>Constructor Injection  <span id="constructor-injection"></span><a href="#constructor-injection" class="hashlink">&para;</a></h3><p>The DI container supports constructor injection with the help of type hints for constructor parameters.
+The type hints tell the container which classes or interfaces are dependent when it is used to create a new object.
+The container will try to get the instances of the dependent classes or interfaces and then inject them
+into the new object through the constructor. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(Bar <span class="hljs-variable">$bar</span>)</span>
+    </span>{
+    }
+}
+
+<span class="hljs-variable">$foo</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'Foo'</span>);
+<span class="hljs-comment">// which is equivalent to the following:</span>
+<span class="hljs-variable">$bar</span> = <span class="hljs-keyword">new</span> Bar;
+<span class="hljs-variable">$foo</span> = <span class="hljs-keyword">new</span> Foo(<span class="hljs-variable">$bar</span>);
+</code></pre>
+<h3>Method Injection  <span id="method-injection"></span><a href="#method-injection" class="hashlink">&para;</a></h3><p>Usually the dependencies of a class are passed to the constructor and are available inside of the class during the whole lifecycle.
+With Method Injection it is possible to provide a dependency that is only needed by a single method of the class
+and passing it to the constructor may not be possible or may cause too much overhead in the majority of use cases.</p>
+<p>A class method can be defined like the <code>doSomething()</code> method in the following example:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Component</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(<span class="hljs-comment">/*Some lightweight dependencies here*/</span>, <span class="hljs-variable">$config</span> = [])</span>
+    </span>{
+        <span class="hljs-comment">// ...</span>
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomething</span><span class="hljs-params">(<span class="hljs-variable">$param1</span>, \my\heavy\Dependency <span class="hljs-variable">$something</span>)</span>
+    </span>{
+        <span class="hljs-comment">// do something with $something</span>
+    }
+}
+</code></pre>
+<p>You may call that method either by passing an instance of <code>\my\heavy\Dependency</code> yourself or using <span class="broken-link">yii\di\Container::invoke()</span> like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$obj</span> = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-comment">/*...*/</span>);
+Yii::<span class="hljs-variable">$container</span>-&gt;invoke([<span class="hljs-variable">$obj</span>, <span class="hljs-string">'doSomething'</span>], [<span class="hljs-string">'param1'</span> =&gt; <span class="hljs-number">42</span>]); <span class="hljs-comment">// $something will be provided by the DI container</span>
+</code></pre>
+<h3>Setter and Property Injection  <span id="setter-and-property-injection"></span><a href="#setter-and-property-injection" class="hashlink">&para;</a></h3><p>Setter and property injection is supported through <a href="concept-configurations.html">configurations</a>.
+When registering a dependency or when creating a new object, you can provide a configuration which
+will be used by the container to inject the dependencies through the corresponding setters or properties.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Object</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Object</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$bar</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$_qux</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getQux</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;_qux;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setQux</span><span class="hljs-params">(Qux <span class="hljs-variable">$qux</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;_qux = <span class="hljs-variable">$qux</span>;
+    }
+}
+
+<span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'Foo'</span>, [], [
+    <span class="hljs-string">'bar'</span> =&gt; <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'Bar'</span>),
+    <span class="hljs-string">'qux'</span> =&gt; <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'Qux'</span>),
+]);
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>The <span class="broken-link">yii\di\Container::get()</span> method takes its third parameter as a configuration array that should
+  be applied to the object being created. If the class implements the <span class="broken-link">yii\base\Configurable</span> interface (e.g.
+  <span class="broken-link">yii\base\Object</span>), the configuration array will be passed as the last parameter to the class constructor;
+  otherwise, the configuration will be applied <em>after</em> the object is created.</p>
+</blockquote>
+<h3>PHP Callable Injection  <span id="php-callable-injection"></span><a href="#php-callable-injection" class="hashlink">&para;</a></h3><p>In this case, the container will use a registered PHP callable to build new instances of a class.
+Each time when <span class="broken-link">yii\di\Container::get()</span> is called, the corresponding callable will be invoked.
+The callable is responsible to resolve the dependencies and inject them appropriately to the newly
+created objects. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'Foo'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-variable">$foo</span> = <span class="hljs-keyword">new</span> Foo(<span class="hljs-keyword">new</span> Bar);
+    <span class="hljs-comment">// ... other initializations ...</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$foo</span>;
+});
+
+<span class="hljs-variable">$foo</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'Foo'</span>);
+</code></pre>
+<p>To hide the complex logic for building a new object, you may use a static class method as callable. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FooBuilder</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">build</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-variable">$foo</span> = <span class="hljs-keyword">new</span> Foo(<span class="hljs-keyword">new</span> Bar);
+        <span class="hljs-comment">// ... other initializations ...</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$foo</span>;
+    }
+}
+
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'Foo'</span>, [<span class="hljs-string">'app\helper\FooBuilder'</span>, <span class="hljs-string">'build'</span>]);
+
+<span class="hljs-variable">$foo</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'Foo'</span>);
+</code></pre>
+<p>By doing so, the person who wants to configure the <code>Foo</code> class no longer needs to be aware of how it is built.</p>
+<h2>Registering Dependencies  <span id="registering-dependencies"></span><a href="#registering-dependencies" class="hashlink">&para;</a></h2><p>You can use <span class="broken-link">yii\di\Container::set()</span> to register dependencies. The registration requires a dependency name
+as well as a dependency definition. A dependency name can be a class name, an interface name, or an alias name;
+and a dependency definition can be a class name, a configuration array, or a PHP callable.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$container</span> = <span class="hljs-keyword">new</span> \yii\di\Container;
+
+<span class="hljs-comment">// register a class name as is. This can be skipped.</span>
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'yii\db\Connection'</span>);
+
+<span class="hljs-comment">// register an interface</span>
+<span class="hljs-comment">// When a class depends on the interface, the corresponding class</span>
+<span class="hljs-comment">// will be instantiated as the dependent object</span>
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'yii\mail\MailInterface'</span>, <span class="hljs-string">'yii\swiftmailer\Mailer'</span>);
+
+<span class="hljs-comment">// register an alias name. You can use $container-&gt;get('foo')</span>
+<span class="hljs-comment">// to create an instance of Connection</span>
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'foo'</span>, <span class="hljs-string">'yii\db\Connection'</span>);
+
+<span class="hljs-comment">// register a class with configuration. The configuration</span>
+<span class="hljs-comment">// will be applied when the class is instantiated by get()</span>
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'yii\db\Connection'</span>, [
+    <span class="hljs-string">'dsn'</span> =&gt; <span class="hljs-string">'mysql:host=127.0.0.1;dbname=demo'</span>,
+    <span class="hljs-string">'username'</span> =&gt; <span class="hljs-string">'root'</span>,
+    <span class="hljs-string">'password'</span> =&gt; <span class="hljs-string">''</span>,
+    <span class="hljs-string">'charset'</span> =&gt; <span class="hljs-string">'utf8'</span>,
+]);
+
+<span class="hljs-comment">// register an alias name with class configuration</span>
+<span class="hljs-comment">// In this case, a "class" element is required to specify the class</span>
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'db'</span>, [
+    <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\db\Connection'</span>,
+    <span class="hljs-string">'dsn'</span> =&gt; <span class="hljs-string">'mysql:host=127.0.0.1;dbname=demo'</span>,
+    <span class="hljs-string">'username'</span> =&gt; <span class="hljs-string">'root'</span>,
+    <span class="hljs-string">'password'</span> =&gt; <span class="hljs-string">''</span>,
+    <span class="hljs-string">'charset'</span> =&gt; <span class="hljs-string">'utf8'</span>,
+]);
+
+<span class="hljs-comment">// register a PHP callable</span>
+<span class="hljs-comment">// The callable will be executed each time when $container-&gt;get('db') is called</span>
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'db'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$container</span>, <span class="hljs-variable">$params</span>, <span class="hljs-variable">$config</span>)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> \yii\db\Connection(<span class="hljs-variable">$config</span>);
+});
+
+<span class="hljs-comment">// register a component instance</span>
+<span class="hljs-comment">// $container-&gt;get('pageCache') will return the same instance each time it is called</span>
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'pageCache'</span>, <span class="hljs-keyword">new</span> FileCache);
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong>If a dependency name is the same as the corresponding dependency definition, you do not
+  need to register it with the DI container.</p>
+</blockquote>
+<p>A dependency registered via <code>set()</code> will generate an instance each time the dependency is needed.
+You can use <span class="broken-link">yii\di\Container::setSingleton()</span> to register a dependency that only generates
+a single instance:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$container</span>-&gt;setSingleton(<span class="hljs-string">'yii\db\Connection'</span>, [
+    <span class="hljs-string">'dsn'</span> =&gt; <span class="hljs-string">'mysql:host=127.0.0.1;dbname=demo'</span>,
+    <span class="hljs-string">'username'</span> =&gt; <span class="hljs-string">'root'</span>,
+    <span class="hljs-string">'password'</span> =&gt; <span class="hljs-string">''</span>,
+    <span class="hljs-string">'charset'</span> =&gt; <span class="hljs-string">'utf8'</span>,
+]);
+</code></pre>
+<h2>Resolving Dependencies  <span id="resolving-dependencies"></span><a href="#resolving-dependencies" class="hashlink">&para;</a></h2><p>Once you have registered dependencies, you can use the DI container to create new objects,
+and the container will automatically resolve dependencies by instantiating them and injecting
+them into the newly created objects. The dependency resolution is recursive, meaning that
+if a dependency has other dependencies, those dependencies will also be resolved automatically.</p>
+<p>You can use <span class="broken-link">yii\di\Container::get()</span> to either create or get object instance.
+The method takes a dependency name, which can be a class name, an interface name or an alias name. 
+The dependency name may be registered via <span class="broken-link">yii\di\Container::set()</span> 
+or <span class="broken-link">yii\di\Container::setSingleton()</span>. You may optionally provide a list of class 
+constructor parameters and a <a href="concept-configurations.html">configuration</a> to configure the newly created object. </p>
+<p>For example:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// "db" is a previously registered alias name</span>
+<span class="hljs-variable">$db</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'db'</span>);
+
+<span class="hljs-comment">// equivalent to: $engine = new \app\components\SearchEngine($apiKey, $apiSecret, ['type' =&gt; 1]);</span>
+<span class="hljs-variable">$engine</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'app\components\SearchEngine'</span>, [<span class="hljs-variable">$apiKey</span>, <span class="hljs-variable">$apiSecret</span>], [<span class="hljs-string">'type'</span> =&gt; <span class="hljs-number">1</span>]);
+</code></pre>
+<p>Behind the scene, the DI container does much more work than just creating a new object.
+The container will first inspect the class constructor to find out dependent class or interface names
+and then automatically resolve those dependencies recursively.</p>
+<p>The following code shows a more sophisticated example. The <code>UserLister</code> class depends on an object implementing
+the <code>UserFinderInterface</code> interface; the <code>UserFinder</code> class implements this interface and depends on
+a <code>Connection</code> object. All these dependencies are declared through type hinting of the class constructor parameters.
+With property dependency registration, the DI container is able to resolve these dependencies automatically
+and creates a new <code>UserLister</code> instance with a simple call of <code>get('userLister')</code>.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Object</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">Connection</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">di</span>\<span class="hljs-title">Container</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">UserFinderInterface</span>
+</span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findUser</span><span class="hljs-params">()</span></span>;
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserFinder</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Object</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">UserFinderInterface</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$db</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(Connection <span class="hljs-variable">$db</span>, <span class="hljs-variable">$config</span> = [])</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;db = <span class="hljs-variable">$db</span>;
+        <span class="hljs-keyword">parent</span>::__construct(<span class="hljs-variable">$config</span>);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findUser</span><span class="hljs-params">()</span>
+    </span>{
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserLister</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Object</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$finder</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(UserFinderInterface <span class="hljs-variable">$finder</span>, <span class="hljs-variable">$config</span> = [])</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;finder = <span class="hljs-variable">$finder</span>;
+        <span class="hljs-keyword">parent</span>::__construct(<span class="hljs-variable">$config</span>);
+    }
+}
+
+<span class="hljs-variable">$container</span> = <span class="hljs-keyword">new</span> Container;
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'yii\db\Connection'</span>, [
+    <span class="hljs-string">'dsn'</span> =&gt; <span class="hljs-string">'...'</span>,
+]);
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'app\models\UserFinderInterface'</span>, [
+    <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\models\UserFinder'</span>,
+]);
+<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'userLister'</span>, <span class="hljs-string">'app\models\UserLister'</span>);
+
+<span class="hljs-variable">$lister</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'userLister'</span>);
+
+<span class="hljs-comment">// which is equivalent to:</span>
+
+<span class="hljs-variable">$db</span> = <span class="hljs-keyword">new</span> \yii\db\Connection([<span class="hljs-string">'dsn'</span> =&gt; <span class="hljs-string">'...'</span>]);
+<span class="hljs-variable">$finder</span> = <span class="hljs-keyword">new</span> UserFinder(<span class="hljs-variable">$db</span>);
+<span class="hljs-variable">$lister</span> = <span class="hljs-keyword">new</span> UserLister(<span class="hljs-variable">$finder</span>);
+</code></pre>
+<h2>Practical Usage  <span id="practical-usage"></span><a href="#practical-usage" class="hashlink">&para;</a></h2><p>Yii creates a DI container when you include the <code>Yii.php</code> file in the <a href="structure-entry-scripts.html">entry script</a>
+of your application. The DI container is accessible via <span class="broken-link">Yii::$container</span>. When you call <span class="broken-link">Yii::createObject()</span>,
+the method will actually call the container's <span class="broken-link">yii\di\Container::get()</span> method to create a new object.
+As aforementioned, the DI container will automatically resolve the dependencies (if any) and inject them
+into obtained object. Because Yii uses <span class="broken-link">Yii::createObject()</span> in most of its core code to create
+new objects, this means you can customize the objects globally by dealing with <span class="broken-link">Yii::$container</span>.</p>
+<p>For example, let's customize globally the default number of pagination buttons of <span class="broken-link">yii\widgets\LinkPager</span>. </p>
+<pre><code class="hljs php language-php">\Yii::<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'yii\widgets\LinkPager'</span>, [<span class="hljs-string">'maxButtonCount'</span> =&gt; <span class="hljs-number">5</span>]);
+</code></pre>
+<p>Now if you use the widget in a view with the following code, the <code>maxButtonCount</code> property will be initialized
+as 5 instead of the default value 10 as defined in the class.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \yii\widgets\LinkPager::widget();
+</code></pre>
+<p>You can still override the value set via DI container, though:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">echo</span> \yii\widgets\LinkPager::widget([<span class="hljs-string">'maxButtonCount'</span> =&gt; <span class="hljs-number">20</span>]);
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong>no matter which value type it is, it will be overwritten so be careful with option arrays. They won't be merged.</p>
+</blockquote>
+<p>Another example is to take advantage of the automatic constructor injection of the DI container.
+Assume your controller class depends on some other objects, such as a hotel booking service. You
+can declare the dependency through a constructor parameter and let the DI container to resolve it for you.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Controller</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>\<span class="hljs-title">BookingInterface</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HotelController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-keyword">protected</span> <span class="hljs-variable">$bookingService</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span><span class="hljs-params">(<span class="hljs-variable">$id</span>, <span class="hljs-variable">$module</span>, BookingInterface <span class="hljs-variable">$bookingService</span>, <span class="hljs-variable">$config</span> = [])</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;bookingService = <span class="hljs-variable">$bookingService</span>;
+        <span class="hljs-keyword">parent</span>::__construct(<span class="hljs-variable">$id</span>, <span class="hljs-variable">$module</span>, <span class="hljs-variable">$config</span>);
+    }
+}
+</code></pre>
+<p>If you access this controller from browser, you will see an error complaining the <code>BookingInterface</code>
+cannot be instantiated. This is because you need to tell the DI container how to deal with this dependency:</p>
+<pre><code class="hljs php language-php">\Yii::<span class="hljs-variable">$container</span>-&gt;set(<span class="hljs-string">'app\components\BookingInterface'</span>, <span class="hljs-string">'app\components\BookingService'</span>);
+</code></pre>
+<p>Now if you access the controller again, an instance of <code>app\components\BookingService</code> will be
+created and injected as the 3rd parameter to the controller's constructor.</p>
+<h2>Advanced Practical Usage  <span id="advanced-practical-usage"></span><a href="#advanced-practical-usage" class="hashlink">&para;</a></h2><p>Say we work on API application and have:</p>
+<ul>
+<li><code>app\components\Request</code> class that extends <code>yii\web\Request</code> and provides additional functionality</li>
+<li><code>app\components\Response</code> class that extends <code>yii\web\Response</code> and should have <code>format</code> property 
+set to <code>json</code> on creation</li>
+<li><p><code>app\storage\FileStorage</code> and <code>app\storage\DocumentsReader</code> classes the implement some logic on
+working with documents that are located in some file storage:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FileStorage</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__contruct</span><span class="hljs-params">(<span class="hljs-variable">$root</span>)</span> </span>{
+        <span class="hljs-comment">// whatever</span>
+    }
+}
+  
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DocumentsReader</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__contruct</span><span class="hljs-params">(FileStorage <span class="hljs-variable">$fs</span>)</span> </span>{
+        <span class="hljs-comment">// whatever</span>
+    }
+}
+</code></pre>
+</li>
+</ul>
+<p>It is possible to configure multiple definitions at once, passing configuration array to
+<span class="broken-link">yii\di\Container::setDefinitions()</span> or <span class="broken-link">yii\di\Container::setSingletons()</span> method.
+Iterating over the configuration array, the methods will call <span class="broken-link">yii\di\Container::set()</span>
+or <span class="broken-link">yii\di\Container::setSingleton()</span> respectively for each item.</p>
+<p>The configuration array format is:</p>
+<ul>
+<li><code>key</code>: class name, interface name or alias name. The key will be passed to the
+ <span class="broken-link">yii\di\Container::set()</span> method as a first argument <code>$class</code>.</li>
+<li><code>value</code>: the definition associated with <code>$class</code>. Possible values are described in <span class="broken-link">yii\di\Container::set()</span>
+ documentation for the <code>$definition</code> parameter. Will be passed to the <span class="broken-link">set()</span> method as
+ the second argument <code>$definition</code>.</li>
+</ul>
+<p>For example, let's configure our container to follow the aforementioned requirements:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$container</span>-&gt;setDefinitions([
+    <span class="hljs-string">'yii\web\Request'</span> =&gt; <span class="hljs-string">'app\components\Request'</span>,
+    <span class="hljs-string">'yii\web\Response'</span> =&gt; [
+        <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\components\Response'</span>,
+        <span class="hljs-string">'format'</span> =&gt; <span class="hljs-string">'json'</span>
+    ],
+    <span class="hljs-string">'app\storage\DocumentsReader'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-variable">$fs</span> = <span class="hljs-keyword">new</span> app\storage\FileStorage(<span class="hljs-string">'/var/tempfiles'</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> app\storage\DocumentsReader(<span class="hljs-variable">$fs</span>);
+    }
+]);
+
+<span class="hljs-variable">$reader</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'app\storage\DocumentsReader); 
+// Will create DocumentReader object with its dependencies as described in the config 
+</span></code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong>Container may be configured in declarative style using application configuration since version 2.0.11. 
+Check out the <a href="concept-service-locator.html#application-configurations">Application Configurations</a> subsection of
+the <a href="concept-configurations.html">Configurations</a> guide article.</p>
+</blockquote>
+<p>Everything works, but in case we need to create create <code>DocumentWriter</code> class, 
+we shall copy-paste the line that creates <code>FileStorage</code> object, that is not the smartest way, obviously.</p>
+<p>As described in the <a href="#resolving-dependencies">Resolving Dependencies</a> subsection, <span class="broken-link">yii\di\Container::set()</span>
+and <span class="broken-link">yii\di\Container::setSingleton()</span> can optionally take dependency's constructor parameters as
+a third argument. To set the constructor parameters, you may use the following configuration array format:</p>
+<ul>
+<li><code>key</code>: class name, interface name or alias name. The key will be passed to the
+ <span class="broken-link">yii\di\Container::set()</span> method as a first argument <code>$class</code>.</li>
+<li><code>value</code>: array of two elements. The first element will be passed the <span class="broken-link">yii\di\Container::set()</span> method as the
+ second argument <code>$definition</code>, the second one — as <code>$params</code>.</li>
+</ul>
+<p>Let's modify our example:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$container</span>-&gt;setDefinitions([
+    <span class="hljs-string">'tempFileStorage'</span> =&gt; [ <span class="hljs-comment">// we've created an alias for convenience</span>
+        [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\storage\FileStorage'</span>],
+        [<span class="hljs-string">'/var/tempfiles'</span>] <span class="hljs-comment">// could be extracted from some config files</span>
+    ],
+    <span class="hljs-string">'app\storage\DocumentsReader'</span> =&gt; [
+        [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\storage\DocumentsReader'</span>],
+        [Instance::of(<span class="hljs-string">'tempFileStorage'</span>)]
+    ],
+    <span class="hljs-string">'app\storage\DocumentsWriter'</span> =&gt; [
+        [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\storage\DocumentsWriter'</span>],
+        [Instance::of(<span class="hljs-string">'tempFileStorage'</span>)]
+    ]
+]);
+
+<span class="hljs-variable">$reader</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'app\storage\DocumentsReader); 
+// Will behave exactly the same as in the previous example.
+</span></code></pre>
+<p>You might notice <code>Instance::of('tempFileStorage')</code> notation. It means, that the <span class="broken-link">yii\di\Container</span>
+will implicitly provide dependency, registered with <code>tempFileStorage</code> name and pass it as the first argument 
+of <code>app\storage\DocumentsWriter</code> constructor.</p>
+<blockquote class="note"><p><strong>Note: </strong><span class="broken-link">yii\di\Container::setDefinitions()</span> and <span class="broken-link">yii\di\Container::setSingletons()</span>
+  methods are available since version 2.0.11.</p>
+</blockquote>
+<p>Another step on configuration optimization is to register some dependencies as singletons. 
+A dependency registered via <span class="broken-link">yii\di\Container::set()</span> will be instantiated each time it is needed.
+Some classes do not change the state during runtime, therefore they may be registered as singletons
+in order to increase the application performance. </p>
+<p>A good example could be <code>app\storage\FileStorage</code> class, that executes some operations on file system with a simple 
+API (e.g. <code>$fs-&gt;read()</code>, <code>$fs-&gt;write()</code>). These operations do not change the internal class state, so we can
+create its instance once and use it multiple times.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$container</span>-&gt;setSingletons([
+    <span class="hljs-string">'tempFileStorage'</span> =&gt; [
+        [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\storage\FileStorage'</span>],
+        [<span class="hljs-string">'/var/tempfiles'</span>]
+    ],
+]);
+
+<span class="hljs-variable">$container</span>-&gt;setDefinitions([
+    <span class="hljs-string">'app\storage\DocumentsReader'</span> =&gt; [
+        [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\storage\DocumentsReader'</span>],
+        [Instance::of(<span class="hljs-string">'tempFileStorage'</span>)]
+    ],
+    <span class="hljs-string">'app\storage\DocumentsWriter'</span> =&gt; [
+        [<span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\storage\DocumentsWriter'</span>],
+        [Instance::of(<span class="hljs-string">'tempFileStorage'</span>)]
+    ]
+]);
+
+<span class="hljs-variable">$reader</span> = <span class="hljs-variable">$container</span>-&gt;get(<span class="hljs-string">'app\storage\DocumentsReader); 
+</span></code></pre>
+<h2>When to Register Dependencies  <span id="when-to-register-dependencies"></span><a href="#when-to-register-dependencies" class="hashlink">&para;</a></h2><p>Because dependencies are needed when new objects are being created, their registration should be done
+as early as possible. The following are the recommended practices:</p>
+<ul>
+<li>If you are the developer of an application, you can register your dependencies using application configuration.
+Please, read the <a href="concept-service-locator.html#application-configurations">Application Configurations</a> subsection of 
+the <a href="concept-configurations.html">Configurations</a> guide article.</li>
+<li>If you are the developer of a redistributable <a href="structure-extensions.html">extension</a>, you can register dependencies
+in the bootstrapping class of the extension.</li>
+</ul>
+<h2>Summary  <span id="summary"></span><a href="#summary" class="hashlink">&para;</a></h2><p>Both dependency injection and <a href="concept-service-locator.html">service locator</a> are popular design patterns
+that allow building software in a loosely-coupled and more testable fashion. We highly recommend you to read
+<a href="http://martinfowler.com/articles/injection.html">Martin's article</a> to get a deeper understanding of
+dependency injection and service locator.</p>
+<p>Yii implements its <a href="concept-service-locator.html">service locator</a> on top of the dependency injection (DI) container.
+When a service locator is trying to create a new object instance, it will forward the call to the DI container.
+The latter will resolve the dependencies automatically as described above.</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:58:21 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

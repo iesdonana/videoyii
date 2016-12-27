@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Modules - Application Structure - Videoyii</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w1222" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w1222-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Videoyii</a></div><div id="w1222-collapse" class="collapse navbar-collapse"><ul id="w1223" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-1206" data-toggle="collapse" data-parent="#navigation">Introduction <b class="caret"></b></a><div id="navigation-1206" class="submenu panel-collapse collapse"><a class="list-group-item" href="./intro-yii.html">About Yii</a>
+<a class="list-group-item" href="./intro-upgrade-from-v1.html">Upgrading from Version 1.1</a></div>
+<a class="list-group-item" href="#navigation-1207" data-toggle="collapse" data-parent="#navigation">Getting Started <b class="caret"></b></a><div id="navigation-1207" class="submenu panel-collapse collapse"><a class="list-group-item" href="./start-installation.html">Installing Yii</a>
+<a class="list-group-item" href="./start-workflow.html">Running Applications</a>
+<a class="list-group-item" href="./start-hello.html">Saying Hello</a>
+<a class="list-group-item" href="./start-forms.html">Working with Forms</a>
+<a class="list-group-item" href="./start-databases.html">Working with Databases</a>
+<a class="list-group-item" href="./start-gii.html">Generating Code with Gii</a>
+<a class="list-group-item" href="./start-looking-ahead.html">Looking Ahead</a></div>
+<a class="list-group-item active" href="#navigation-1208" data-toggle="collapse" data-parent="#navigation">Application Structure <b class="caret"></b></a><div id="navigation-1208" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./structure-overview.html">Overview</a>
+<a class="list-group-item" href="./structure-entry-scripts.html">Entry Scripts</a>
+<a class="list-group-item" href="./structure-applications.html">Applications</a>
+<a class="list-group-item" href="./structure-application-components.html">Application Components</a>
+<a class="list-group-item" href="./structure-controllers.html">Controllers</a>
+<a class="list-group-item" href="./structure-models.html">Models</a>
+<a class="list-group-item" href="./structure-views.html">Views</a>
+<a class="list-group-item active" href="./structure-modules.html">Modules</a>
+<a class="list-group-item" href="./structure-filters.html">Filters</a>
+<a class="list-group-item" href="./structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./structure-assets.html">Assets</a>
+<a class="list-group-item" href="./structure-extensions.html">Extensions</a></div>
+<a class="list-group-item" href="#navigation-1209" data-toggle="collapse" data-parent="#navigation">Handling Requests <b class="caret"></b></a><div id="navigation-1209" class="submenu panel-collapse collapse"><a class="list-group-item" href="./runtime-overview.html">Overview</a>
+<a class="list-group-item" href="./runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./runtime-routing.html">Routing and URL Creation</a>
+<a class="list-group-item" href="./runtime-requests.html">Requests</a>
+<a class="list-group-item" href="./runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./runtime-sessions-cookies.html">Sessions and Cookies</a>
+<a class="list-group-item" href="./runtime-handling-errors.html">Handling Errors</a>
+<a class="list-group-item" href="./runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-1210" data-toggle="collapse" data-parent="#navigation">Key Concepts <b class="caret"></b></a><div id="navigation-1210" class="submenu panel-collapse collapse"><a class="list-group-item" href="./concept-components.html">Components</a>
+<a class="list-group-item" href="./concept-properties.html">Properties</a>
+<a class="list-group-item" href="./concept-events.html">Events</a>
+<a class="list-group-item" href="./concept-behaviors.html">Behaviors</a>
+<a class="list-group-item" href="./concept-configurations.html">Configurations</a>
+<a class="list-group-item" href="./concept-aliases.html">Aliases</a>
+<a class="list-group-item" href="./concept-autoloading.html">Class Autoloading</a>
+<a class="list-group-item" href="./concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-1211" data-toggle="collapse" data-parent="#navigation">Working with Databases <b class="caret"></b></a><div id="navigation-1211" class="submenu panel-collapse collapse"><a class="list-group-item" href="./db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./db-migrations.html">Migrations</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-sphinx/blob/master/docs/guide/README.md">Sphinx</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-redis/blob/master/docs/guide/README.md">Redis</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-mongodb/blob/master/docs/guide/README.md">MongoDB</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-elasticsearch/blob/master/docs/guide/README.md">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-1212" data-toggle="collapse" data-parent="#navigation">Getting Data from Users <b class="caret"></b></a><div id="navigation-1212" class="submenu panel-collapse collapse"><a class="list-group-item" href="./input-forms.html">Creating Forms</a>
+<a class="list-group-item" href="./input-validation.html">Validating Input</a>
+<a class="list-group-item" href="./input-file-upload.html">Uploading Files</a>
+<a class="list-group-item" href="./input-tabular-input.html">Collecting Tabular Input</a>
+<a class="list-group-item" href="./input-multiple-models.html">Getting Data for Multiple Models</a></div>
+<a class="list-group-item" href="#navigation-1213" data-toggle="collapse" data-parent="#navigation">Displaying Data <b class="caret"></b></a><div id="navigation-1213" class="submenu panel-collapse collapse"><a class="list-group-item" href="./output-formatting.html">Data Formatting</a>
+<a class="list-group-item" href="./output-pagination.html">Pagination</a>
+<a class="list-group-item" href="./output-sorting.html">Sorting</a>
+<a class="list-group-item" href="./output-data-providers.html">Data Providers</a>
+<a class="list-group-item" href="./output-data-widgets.html">Data Widgets</a>
+<a class="list-group-item" href="./output-client-scripts.html">Working with Client Scripts</a>
+<a class="list-group-item" href="./output-theming.html">Theming</a></div>
+<a class="list-group-item" href="#navigation-1214" data-toggle="collapse" data-parent="#navigation">Security <b class="caret"></b></a><div id="navigation-1214" class="submenu panel-collapse collapse"><a class="list-group-item" href="./security-overview.html">Overview</a>
+<a class="list-group-item" href="./security-authentication.html">Authentication</a>
+<a class="list-group-item" href="./security-authorization.html">Authorization</a>
+<a class="list-group-item" href="./security-passwords.html">Working with Passwords</a>
+<a class="list-group-item" href="./security-cryptography.html">Cryptography</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/README.md">Auth Clients</a>
+<a class="list-group-item" href="./security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-1215" data-toggle="collapse" data-parent="#navigation">Caching <b class="caret"></b></a><div id="navigation-1215" class="submenu panel-collapse collapse"><a class="list-group-item" href="./caching-overview.html">Overview</a>
+<a class="list-group-item" href="./caching-data.html">Data Caching</a>
+<a class="list-group-item" href="./caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-1216" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-1216" class="submenu panel-collapse collapse"><a class="list-group-item" href="./rest-quick-start.html">Quick Start</a>
+<a class="list-group-item" href="./rest-resources.html">Resources</a>
+<a class="list-group-item" href="./rest-controllers.html">Controllers</a>
+<a class="list-group-item" href="./rest-routing.html">Routing</a>
+<a class="list-group-item" href="./rest-response-formatting.html">Response Formatting</a>
+<a class="list-group-item" href="./rest-authentication.html">Authentication</a>
+<a class="list-group-item" href="./rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./rest-versioning.html">Versioning</a>
+<a class="list-group-item" href="./rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-1217" data-toggle="collapse" data-parent="#navigation">Development Tools <b class="caret"></b></a><div id="navigation-1217" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-debug/blob/master/docs/guide/README.md">Debug Toolbar and Debugger</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-gii/blob/master/docs/guide/README.md">Generating Code using Gii</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-apidoc">Generating API Documentation</a></div>
+<a class="list-group-item" href="#navigation-1218" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-1218" class="submenu panel-collapse collapse"><a class="list-group-item" href="./test-overview.html">Overview</a>
+<a class="list-group-item" href="./test-environment-setup.html">Testing environment setup</a>
+<a class="list-group-item" href="./test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./test-functional.html">Functional Tests</a>
+<a class="list-group-item" href="./test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-1219" data-toggle="collapse" data-parent="#navigation">Special Topics <b class="caret"></b></a><div id="navigation-1219" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>
+<a class="list-group-item" href="./tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./tutorial-console.html">Console Commands</a>
+<a class="list-group-item" href="./tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./tutorial-i18n.html">Internationalization</a>
+<a class="list-group-item" href="./tutorial-mailing.html">Mailing</a>
+<a class="list-group-item" href="./tutorial-performance-tuning.html">Performance Tuning</a>
+<a class="list-group-item" href="./tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-1220" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-1220" class="submenu panel-collapse collapse"><a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-grid-gridview.html">GridView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-listview.html">ListView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-detailview.html">DetailView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/guide-input-forms.html#activerecord-based-forms-activeform">ActiveForm</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-pjax.html">Pjax</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-menu.html">Menu</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linkpager.html">LinkPager</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linksorter.html">LinkSorter</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-bootstrap/blob/master/docs/guide/README.md">Bootstrap Widgets</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-jui/blob/master/docs/guide/README.md">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-1221" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-1221" class="submenu panel-collapse collapse"><a class="list-group-item" href="./helper-overview.html">Overview</a>
+<a class="list-group-item" href="./helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./helper-html.html">Html</a>
+<a class="list-group-item" href="./helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Modules <span id="modules"></span><a href="#modules" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#creating-modules">Creating Modules</a></li>
+<li><a href="#using-modules">Using Modules</a></li>
+<li><a href="#nested-modules">Nested Modules</a></li>
+<li><a href="#best-practices">Best Practices</a></li></ol></div>
+<p>Modules are self-contained software units that consist of <a href="structure-models.html">models</a>, <a href="structure-views.html">views</a>,
+<a href="structure-controllers.html">controllers</a>, and other supporting components. End users can access the controllers
+of a module when it is installed in <a href="structure-applications.html">application</a>. For these reasons, modules are
+often viewed as mini-applications. Modules differ from <a href="structure-applications.html">applications</a> in that
+modules cannot be deployed alone and must reside within applications.</p>
+<h2>Creating Modules  <span id="creating-modules"></span><a href="#creating-modules" class="hashlink">&para;</a></h2><p>A module is organized as a directory which is called the <span class="broken-link">yii\base\Module::basePath</span> of the module.
+Within the directory, there are sub-directories, such as <code>controllers</code>, <code>models</code>, <code>views</code>, which hold controllers,
+models, views, and other code, just like in an application. The following example shows the content within a module:</p>
+<pre><code class="hljs javascript">forum/
+    Module.php                   the <span class="hljs-built_in">module</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">file</span>
+    <span class="hljs-title">controllers</span>/                 <span class="hljs-title">containing</span> <span class="hljs-title">controller</span> <span class="hljs-title">class</span> <span class="hljs-title">files</span>
+        <span class="hljs-title">DefaultController</span>.<span class="hljs-title">php</span>    <span class="hljs-title">the</span> <span class="hljs-title">default</span> <span class="hljs-title">controller</span> <span class="hljs-title">class</span> <span class="hljs-title">file</span>
+    <span class="hljs-title">models</span>/                      <span class="hljs-title">containing</span> <span class="hljs-title">model</span> <span class="hljs-title">class</span> <span class="hljs-title">files</span>
+    <span class="hljs-title">views</span>/                       <span class="hljs-title">containing</span> <span class="hljs-title">controller</span> <span class="hljs-title">view</span> <span class="hljs-title">and</span> <span class="hljs-title">layout</span> <span class="hljs-title">files</span>
+        <span class="hljs-title">layouts</span>/                 <span class="hljs-title">containing</span> <span class="hljs-title">layout</span> <span class="hljs-title">view</span> <span class="hljs-title">files</span>
+        <span class="hljs-title">default</span>/                 <span class="hljs-title">containing</span> <span class="hljs-title">view</span> <span class="hljs-title">files</span> <span class="hljs-title">for</span> <span class="hljs-title">DefaultController</span>
+            <span class="hljs-title">index</span>.<span class="hljs-title">php</span>            <span class="hljs-title">the</span> <span class="hljs-title">index</span> <span class="hljs-title">view</span> <span class="hljs-title">file</span>
+</span></code></pre>
+<h3>Module Classes  <span id="module-classes"></span><a href="#module-classes" class="hashlink">&para;</a></h3><p>Each module should have a unique module class which extends from <span class="broken-link">yii\base\Module</span>. The class should be located
+directly under the module's <span class="broken-link">yii\base\Module::basePath</span> and should be <a href="concept-autoloading.html">autoloadable</a>.
+When a module is being accessed, a single instance of the corresponding module class will be created.
+Like <a href="structure-applications.html">application instances</a>, module instances are used to share data and components
+for code within modules.</p>
+<p>The following is an example how a module class may look like:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">modules</span>\<span class="hljs-title">forum</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Module</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Module</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">parent</span>::init();
+
+        <span class="hljs-variable">$this</span>-&gt;params[<span class="hljs-string">'foo'</span>] = <span class="hljs-string">'bar'</span>;
+        <span class="hljs-comment">// ...  other initialization code ...</span>
+    }
+}
+</code></pre>
+<p>If the <code>init()</code> method contains a lot of code initializing the module's properties, you may also save them in terms
+of a <a href="concept-configurations.html">configuration</a> and load it with the following code in <code>init()</code>:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">parent</span>::init();
+    <span class="hljs-comment">// initialize the module with the configuration loaded from config.php</span>
+    \Yii::configure(<span class="hljs-variable">$this</span>, <span class="hljs-keyword">require</span>(<span class="hljs-keyword">__DIR__</span> . <span class="hljs-string">'/config.php'</span>));
+}
+</code></pre>
+<p>where the configuration file <code>config.php</code> may contain the following content, similar to that in an
+<a href="structure-applications.html#application-configurations">application configuration</a>.</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">return</span> [
+    <span class="hljs-string">'components'</span> =&gt; [
+        <span class="hljs-comment">// list of component configurations</span>
+    ],
+    <span class="hljs-string">'params'</span> =&gt; [
+        <span class="hljs-comment">// list of parameters</span>
+    ],
+];
+</code></pre>
+<h3>Controllers in Modules  <span id="controllers-in-modules"></span><a href="#controllers-in-modules" class="hashlink">&para;</a></h3><p>When creating controllers in a module, a convention is to put the controller classes under the <code>controllers</code>
+sub-namespace of the namespace of the module class. This also means the controller class files should be
+put in the <code>controllers</code> directory within the module's <span class="broken-link">yii\base\Module::basePath</span>.
+For example, to create a <code>post</code> controller in the <code>forum</code> module shown in the last subsection, you should
+declare the controller class like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">modules</span>\<span class="hljs-title">forum</span>\<span class="hljs-title">controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Controller</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>You may customize the namespace of controller classes by configuring the <span class="broken-link">yii\base\Module::controllerNamespace</span>
+property. In case some of the controllers are outside of this namespace, you may make them accessible
+by configuring the <span class="broken-link">yii\base\Module::controllerMap</span> property, similar to <a href="structure-applications.html#controller-map">what you do in an application</a>.</p>
+<h3>Views in Modules  <span id="views-in-modules"></span><a href="#views-in-modules" class="hashlink">&para;</a></h3><p>Views in a module should be put in the <code>views</code> directory within the module's <span class="broken-link">yii\base\Module::basePath</span>.
+For views rendered by a controller in the module, they should be put under the directory <code>views/ControllerID</code>,
+where <code>ControllerID</code> refers to the <a href="structure-controllers.html#routes">controller ID</a>. For example, if
+the controller class is <code>PostController</code>, the directory would be <code>views/post</code> within the module's
+<span class="broken-link">yii\base\Module::basePath</span>.</p>
+<p>A module can specify a <a href="structure-views.html#layouts">layout</a> that is applied to the views rendered by the module's
+controllers. The layout should be put in the <code>views/layouts</code> directory by default, and you should configure
+the <span class="broken-link">yii\base\Module::layout</span> property to point to the layout name. If you do not configure the <code>layout</code> property,
+the application's layout will be used instead.</p>
+<h3>Console commands in Modules  <span id="console-commands-in-modules"></span><a href="#console-commands-in-modules" class="hashlink">&para;</a></h3><p>Your module may also declare commands, that will be available through the <a href="tutorial-console.html">Console</a> mode.</p>
+<p>In order for the command line utility to see your commands, you will need to change the <span class="broken-link">yii\base\Module::controllerNamespace</span>
+property, when Yii is executed in the console mode, and point it to your commands namespace.</p>
+<p>One way to achieve that is to test the instance type of the Yii application in the module's <code>init()</code> method:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">parent</span>::init();
+    <span class="hljs-keyword">if</span> (Yii::<span class="hljs-variable">$app</span> <span class="hljs-keyword">instanceof</span> \yii\console\Application) {
+        <span class="hljs-variable">$this</span>-&gt;controllerNamespace = <span class="hljs-string">'app\modules\forum\commands'</span>;
+    }
+}
+</code></pre>
+<p>Your commands will then be available from the command line using the following route:</p>
+<pre><code class="hljs twig"><span class="xml">yii <span class="hljs-tag">&lt;<span class="hljs-title">module_id</span>&gt;</span>/<span class="hljs-tag">&lt;<span class="hljs-title">command</span>&gt;</span>/<span class="hljs-tag">&lt;<span class="hljs-title">sub_command</span>&gt;</span>
+</span></code></pre>
+<h2>Using Modules  <span id="using-modules"></span><a href="#using-modules" class="hashlink">&para;</a></h2><p>To use a module in an application, simply configure the application by listing the module in
+the <span class="broken-link">yii\base\Application::modules</span> property of the application. The following code in the
+<a href="structure-applications.html#application-configurations">application configuration</a> uses the <code>forum</code> module:</p>
+<pre><code class="hljs php language-php">[
+    <span class="hljs-string">'modules'</span> =&gt; [
+        <span class="hljs-string">'forum'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\modules\forum\Module'</span>,
+            <span class="hljs-comment">// ... other configurations for the module ...</span>
+        ],
+    ],
+]
+</code></pre>
+<p>The <span class="broken-link">yii\base\Application::modules</span> property takes an array of module configurations. Each array key
+represents a <em>module ID</em> which uniquely identifies the module among all modules in the application, and the corresponding
+array value is a <a href="concept-configurations.html">configuration</a> for creating the module.</p>
+<h3>Routes  <span id="routes"></span><a href="#routes" class="hashlink">&para;</a></h3><p>Like accessing controllers in an application, <a href="structure-controllers.html#routes">routes</a> are used to address
+controllers in a module. A route for a controller within a module must begin with the module ID followed by
+the <a href="structure-controllers.html#controller-ids">controller ID</a> and <a href="structure-controllers.md#action-ids">action ID</a>.
+For example, if an application uses a module named <code>forum</code>, then the route
+<code>forum/post/index</code> would represent the <code>index</code> action of the <code>post</code> controller in the module. If the route
+only contains the module ID, then the <span class="broken-link">yii\base\Module::defaultRoute</span> property, which defaults to <code>default</code>,
+will determine which controller/action should be used. This means a route <code>forum</code> would represent the <code>default</code>
+controller in the <code>forum</code> module.</p>
+<h3>Accessing Modules  <span id="accessing-modules"></span><a href="#accessing-modules" class="hashlink">&para;</a></h3><p>Within a module, you may often need to get the instance of the <a href="#module-classes">module class</a> so that you can
+access the module ID, module parameters, module components, etc. You can do so by using the following statement:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$module</span> = MyModuleClass::getInstance();
+</code></pre>
+<p>where <code>MyModuleClass</code> refers to the name of the module class that you are interested in. The <code>getInstance()</code> method
+will return the currently requested instance of the module class. If the module is not requested, the method will
+return <code>null</code>. Note that you do not want to manually create a new instance of the module class because it will be
+different from the one created by Yii in response to a request.</p>
+<blockquote class="info"><p><strong>Info: </strong>When developing a module, you should not assume the module will use a fixed ID. This is because a module
+  can be associated with an arbitrary ID when used in an application or within another module. In order to get
+  the module ID, you should use the above approach to get the module instance first, and then get the ID via
+  <code>$module-&gt;id</code>.</p>
+</blockquote>
+<p>You may also access the instance of a module using the following approaches:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// get the child module whose ID is "forum"</span>
+<span class="hljs-variable">$module</span> = \Yii::<span class="hljs-variable">$app</span>-&gt;getModule(<span class="hljs-string">'forum'</span>);
+
+<span class="hljs-comment">// get the module to which the currently requested controller belongs</span>
+<span class="hljs-variable">$module</span> = \Yii::<span class="hljs-variable">$app</span>-&gt;controller-&gt;module;
+</code></pre>
+<p>The first approach is only useful when you know the module ID, while the second approach is best used when you
+know about the controllers being requested.</p>
+<p>Once you have the module instance, you can access parameters and components registered with the module. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$maxPostCount</span> = <span class="hljs-variable">$module</span>-&gt;params[<span class="hljs-string">'maxPostCount'</span>];
+</code></pre>
+<h3>Bootstrapping Modules  <span id="bootstrapping-modules"></span><a href="#bootstrapping-modules" class="hashlink">&para;</a></h3><p>Some modules may need to be run for every request. The <span class="broken-link">yii\debug\Module</span> module is such an example.
+To do so, list the IDs of such modules in the <span class="broken-link">yii\base\Application::bootstrap</span> property of the application.</p>
+<p>For example, the following application configuration makes sure the <code>debug</code> module is always loaded:</p>
+<pre><code class="hljs php language-php">[
+    <span class="hljs-string">'bootstrap'</span> =&gt; [
+        <span class="hljs-string">'debug'</span>,
+    ],
+
+    <span class="hljs-string">'modules'</span> =&gt; [
+        <span class="hljs-string">'debug'</span> =&gt; <span class="hljs-string">'yii\debug\Module'</span>,
+    ],
+]
+</code></pre>
+<h2>Nested Modules  <span id="nested-modules"></span><a href="#nested-modules" class="hashlink">&para;</a></h2><p>Modules can be nested in unlimited levels. That is, a module can contain another module which can contain yet
+another module. We call the former <em>parent module</em> while the latter <em>child module</em>. Child modules must be declared
+in the <span class="broken-link">yii\base\Module::modules</span> property of their parent modules. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">modules</span>\<span class="hljs-title">forum</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Module</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Module</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">parent</span>::init();
+
+        <span class="hljs-variable">$this</span>-&gt;modules = [
+            <span class="hljs-string">'admin'</span> =&gt; [
+                <span class="hljs-comment">// you should consider using a shorter namespace here!</span>
+                <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'app\modules\forum\modules\admin\Module'</span>,
+            ],
+        ];
+    }
+}
+</code></pre>
+<p>For a controller within a nested module, its route should include the IDs of all its ancestor modules.
+For example, the route <code>forum/admin/dashboard/index</code> represents the <code>index</code> action of the <code>dashboard</code> controller
+in the <code>admin</code> module which is a child module of the <code>forum</code> module.</p>
+<blockquote class="info"><p><strong>Info: </strong>The <span class="broken-link">yii\base\Module::getModule()</span> method only returns the child module directly belonging
+to its parent. The <span class="broken-link">yii\base\Application::loadedModules</span> property keeps a list of loaded modules, including both
+direct children and nested ones, indexed by their class names.</p>
+</blockquote>
+<h2>Best Practices  <span id="best-practices"></span><a href="#best-practices" class="hashlink">&para;</a></h2><p>Modules are best used in large applications whose features can be divided into several groups, each consisting of
+a set of closely related features. Each such feature group can be developed as a module which is developed and
+maintained by a specific developer or team.</p>
+<p>Modules are also a good way of reusing code at the feature group level. Some commonly used features, such as
+user management, comment management, can all be developed in terms of modules so that they can be reused easily
+in future projects.</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:58:20 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
