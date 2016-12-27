@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Active Record - Working with Databases - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w1600" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w1600-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w1600-collapse" class="collapse navbar-collapse"><ul id="w1601" class="navbar-nav nav"><li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-1584" data-toggle="collapse" data-parent="#navigation">Introduction <b class="caret"></b></a><div id="navigation-1584" class="submenu panel-collapse collapse"><a class="list-group-item" href="./intro-yii.html">About Yii</a>
+<a class="list-group-item" href="./intro-upgrade-from-v1.html">Upgrading from Version 1.1</a></div>
+<a class="list-group-item" href="#navigation-1585" data-toggle="collapse" data-parent="#navigation">Getting Started <b class="caret"></b></a><div id="navigation-1585" class="submenu panel-collapse collapse"><a class="list-group-item" href="./start-installation.html">Installing Yii</a>
+<a class="list-group-item" href="./start-workflow.html">Running Applications</a>
+<a class="list-group-item" href="./start-hello.html">Saying Hello</a>
+<a class="list-group-item" href="./start-forms.html">Working with Forms</a>
+<a class="list-group-item" href="./start-databases.html">Working with Databases</a>
+<a class="list-group-item" href="./start-gii.html">Generating Code with Gii</a>
+<a class="list-group-item" href="./start-looking-ahead.html">Looking Ahead</a></div>
+<a class="list-group-item" href="#navigation-1586" data-toggle="collapse" data-parent="#navigation">Application Structure <b class="caret"></b></a><div id="navigation-1586" class="submenu panel-collapse collapse"><a class="list-group-item" href="./structure-overview.html">Overview</a>
+<a class="list-group-item" href="./structure-entry-scripts.html">Entry Scripts</a>
+<a class="list-group-item" href="./structure-applications.html">Applications</a>
+<a class="list-group-item" href="./structure-application-components.html">Application Components</a>
+<a class="list-group-item" href="./structure-controllers.html">Controllers</a>
+<a class="list-group-item" href="./structure-models.html">Models</a>
+<a class="list-group-item" href="./structure-views.html">Views</a>
+<a class="list-group-item" href="./structure-modules.html">Modules</a>
+<a class="list-group-item" href="./structure-filters.html">Filters</a>
+<a class="list-group-item" href="./structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./structure-assets.html">Assets</a>
+<a class="list-group-item" href="./structure-extensions.html">Extensions</a></div>
+<a class="list-group-item" href="#navigation-1587" data-toggle="collapse" data-parent="#navigation">Handling Requests <b class="caret"></b></a><div id="navigation-1587" class="submenu panel-collapse collapse"><a class="list-group-item" href="./runtime-overview.html">Overview</a>
+<a class="list-group-item" href="./runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./runtime-routing.html">Routing and URL Creation</a>
+<a class="list-group-item" href="./runtime-requests.html">Requests</a>
+<a class="list-group-item" href="./runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./runtime-sessions-cookies.html">Sessions and Cookies</a>
+<a class="list-group-item" href="./runtime-handling-errors.html">Handling Errors</a>
+<a class="list-group-item" href="./runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-1588" data-toggle="collapse" data-parent="#navigation">Key Concepts <b class="caret"></b></a><div id="navigation-1588" class="submenu panel-collapse collapse"><a class="list-group-item" href="./concept-components.html">Components</a>
+<a class="list-group-item" href="./concept-properties.html">Properties</a>
+<a class="list-group-item" href="./concept-events.html">Events</a>
+<a class="list-group-item" href="./concept-behaviors.html">Behaviors</a>
+<a class="list-group-item" href="./concept-configurations.html">Configurations</a>
+<a class="list-group-item" href="./concept-aliases.html">Aliases</a>
+<a class="list-group-item" href="./concept-autoloading.html">Class Autoloading</a>
+<a class="list-group-item" href="./concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item active" href="#navigation-1589" data-toggle="collapse" data-parent="#navigation">Working with Databases <b class="caret"></b></a><div id="navigation-1589" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./db-query-builder.html">Query Builder</a>
+<a class="list-group-item active" href="./db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./db-migrations.html">Migrations</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-sphinx/blob/master/docs/guide/README.md">Sphinx</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-redis/blob/master/docs/guide/README.md">Redis</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-mongodb/blob/master/docs/guide/README.md">MongoDB</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-elasticsearch/blob/master/docs/guide/README.md">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-1590" data-toggle="collapse" data-parent="#navigation">Getting Data from Users <b class="caret"></b></a><div id="navigation-1590" class="submenu panel-collapse collapse"><a class="list-group-item" href="./input-forms.html">Creating Forms</a>
+<a class="list-group-item" href="./input-validation.html">Validating Input</a>
+<a class="list-group-item" href="./input-file-upload.html">Uploading Files</a>
+<a class="list-group-item" href="./input-tabular-input.html">Collecting Tabular Input</a>
+<a class="list-group-item" href="./input-multiple-models.html">Getting Data for Multiple Models</a></div>
+<a class="list-group-item" href="#navigation-1591" data-toggle="collapse" data-parent="#navigation">Displaying Data <b class="caret"></b></a><div id="navigation-1591" class="submenu panel-collapse collapse"><a class="list-group-item" href="./output-formatting.html">Data Formatting</a>
+<a class="list-group-item" href="./output-pagination.html">Pagination</a>
+<a class="list-group-item" href="./output-sorting.html">Sorting</a>
+<a class="list-group-item" href="./output-data-providers.html">Data Providers</a>
+<a class="list-group-item" href="./output-data-widgets.html">Data Widgets</a>
+<a class="list-group-item" href="./output-client-scripts.html">Working with Client Scripts</a>
+<a class="list-group-item" href="./output-theming.html">Theming</a></div>
+<a class="list-group-item" href="#navigation-1592" data-toggle="collapse" data-parent="#navigation">Security <b class="caret"></b></a><div id="navigation-1592" class="submenu panel-collapse collapse"><a class="list-group-item" href="./security-overview.html">Overview</a>
+<a class="list-group-item" href="./security-authentication.html">Authentication</a>
+<a class="list-group-item" href="./security-authorization.html">Authorization</a>
+<a class="list-group-item" href="./security-passwords.html">Working with Passwords</a>
+<a class="list-group-item" href="./security-cryptography.html">Cryptography</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/README.md">Auth Clients</a>
+<a class="list-group-item" href="./security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-1593" data-toggle="collapse" data-parent="#navigation">Caching <b class="caret"></b></a><div id="navigation-1593" class="submenu panel-collapse collapse"><a class="list-group-item" href="./caching-overview.html">Overview</a>
+<a class="list-group-item" href="./caching-data.html">Data Caching</a>
+<a class="list-group-item" href="./caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-1594" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-1594" class="submenu panel-collapse collapse"><a class="list-group-item" href="./rest-quick-start.html">Quick Start</a>
+<a class="list-group-item" href="./rest-resources.html">Resources</a>
+<a class="list-group-item" href="./rest-controllers.html">Controllers</a>
+<a class="list-group-item" href="./rest-routing.html">Routing</a>
+<a class="list-group-item" href="./rest-response-formatting.html">Response Formatting</a>
+<a class="list-group-item" href="./rest-authentication.html">Authentication</a>
+<a class="list-group-item" href="./rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./rest-versioning.html">Versioning</a>
+<a class="list-group-item" href="./rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-1595" data-toggle="collapse" data-parent="#navigation">Development Tools <b class="caret"></b></a><div id="navigation-1595" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-debug/blob/master/docs/guide/README.md">Debug Toolbar and Debugger</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-gii/blob/master/docs/guide/README.md">Generating Code using Gii</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-apidoc">Generating API Documentation</a></div>
+<a class="list-group-item" href="#navigation-1596" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-1596" class="submenu panel-collapse collapse"><a class="list-group-item" href="./test-overview.html">Overview</a>
+<a class="list-group-item" href="./test-environment-setup.html">Testing environment setup</a>
+<a class="list-group-item" href="./test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./test-functional.html">Functional Tests</a>
+<a class="list-group-item" href="./test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-1597" data-toggle="collapse" data-parent="#navigation">Special Topics <b class="caret"></b></a><div id="navigation-1597" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>
+<a class="list-group-item" href="./tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./tutorial-console.html">Console Commands</a>
+<a class="list-group-item" href="./tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./tutorial-i18n.html">Internationalization</a>
+<a class="list-group-item" href="./tutorial-mailing.html">Mailing</a>
+<a class="list-group-item" href="./tutorial-performance-tuning.html">Performance Tuning</a>
+<a class="list-group-item" href="./tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-1598" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-1598" class="submenu panel-collapse collapse"><a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-grid-gridview.html">GridView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-listview.html">ListView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-detailview.html">DetailView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/guide-input-forms.html#activerecord-based-forms-activeform">ActiveForm</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-pjax.html">Pjax</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-menu.html">Menu</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linkpager.html">LinkPager</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linksorter.html">LinkSorter</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-bootstrap/blob/master/docs/guide/README.md">Bootstrap Widgets</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-jui/blob/master/docs/guide/README.md">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-1599" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-1599" class="submenu panel-collapse collapse"><a class="list-group-item" href="./helper-overview.html">Overview</a>
+<a class="list-group-item" href="./helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./helper-html.html">Html</a>
+<a class="list-group-item" href="./helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Active Record <span id="active-record"></span><a href="#active-record" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#declaring-ar-classes">Declaring Active Record Classes</a></li>
+<li><a href="#db-connection">Connecting to Databases</a></li>
+<li><a href="#querying-data">Querying Data</a></li>
+<li><a href="#accessing-data">Accessing Data</a></li>
+<li><a href="#inserting-updating-data">Saving Data</a></li>
+<li><a href="#deleting-data">Deleting Data</a></li>
+<li><a href="#ar-life-cycles">Active Record Life Cycles</a></li>
+<li><a href="#transactional-operations">Working with Transactions</a></li>
+<li><a href="#optimistic-locks">Optimistic Locks</a></li>
+<li><a href="#relational-data">Working with Relational Data</a></li>
+<li><a href="#saving-relations">Saving Relations</a></li>
+<li><a href="#cross-database-relations">Cross-Database Relations</a></li>
+<li><a href="#customizing-query-classes">Customizing Query Classes</a></li>
+<li><a href="#selecting-extra-fields">Selecting extra fields</a></li></ol></div>
+<p><a href="http://en.wikipedia.org/wiki/Active_record_pattern">Active Record</a> provides an object-oriented interface
+for accessing and manipulating data stored in databases. An Active Record class is associated with a database table,
+an Active Record instance corresponds to a row of that table, and an <em>attribute</em> of an Active Record
+instance represents the value of a particular column in that row. Instead of writing raw SQL statements,
+you would access Active Record attributes and call Active Record methods to access and manipulate the data stored 
+in database tables.</p>
+<p>For example, assume <code>Customer</code> is an Active Record class which is associated with the <code>customer</code> table
+and <code>name</code> is a column of the <code>customer</code> table. You can write the following code to insert a new
+row into the <code>customer</code> table:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = <span class="hljs-keyword">new</span> Customer();
+<span class="hljs-variable">$customer</span>-&gt;name = <span class="hljs-string">'Qiang'</span>;
+<span class="hljs-variable">$customer</span>-&gt;save();
+</code></pre>
+<p>The above code is equivalent to using the following raw SQL statement for MySQL, which is less
+intuitive, more error prone, and may even have compatibility problems if you are using a different kind of database:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$db</span>-&gt;createCommand(<span class="hljs-string">'INSERT INTO `customer` (`name`) VALUES (:name)'</span>, [
+    <span class="hljs-string">':name'</span> =&gt; <span class="hljs-string">'Qiang'</span>,
+])-&gt;execute();
+</code></pre>
+<p>Yii provides the Active Record support for the following relational databases:</p>
+<ul>
+<li>MySQL 4.1 or later: via <span class="broken-link">yii\db\ActiveRecord</span></li>
+<li>PostgreSQL 7.3 or later: via <span class="broken-link">yii\db\ActiveRecord</span></li>
+<li>SQLite 2 and 3: via <span class="broken-link">yii\db\ActiveRecord</span></li>
+<li>Microsoft SQL Server 2008 or later: via <span class="broken-link">yii\db\ActiveRecord</span></li>
+<li>Oracle: via <span class="broken-link">yii\db\ActiveRecord</span></li>
+<li>CUBRID 9.3 or later: via <span class="broken-link">yii\db\ActiveRecord</span> (Note that due to a <a href="http://jira.cubrid.org/browse/APIS-658">bug</a> in
+the cubrid PDO extension, quoting of values will not work, so you need CUBRID 9.3 as the client as well as the server)</li>
+<li>Sphinx: via <span class="broken-link">yii\sphinx\ActiveRecord</span>, requires the <code>yii2-sphinx</code> extension</li>
+<li>ElasticSearch: via <span class="broken-link">yii\elasticsearch\ActiveRecord</span>, requires the <code>yii2-elasticsearch</code> extension</li>
+</ul>
+<p>Additionally, Yii also supports using Active Record with the following NoSQL databases:</p>
+<ul>
+<li>Redis 2.6.12 or later: via <span class="broken-link">yii\redis\ActiveRecord</span>, requires the <code>yii2-redis</code> extension</li>
+<li>MongoDB 1.3.0 or later: via <span class="broken-link">yii\mongodb\ActiveRecord</span>, requires the <code>yii2-mongodb</code> extension</li>
+</ul>
+<p>In this tutorial, we will mainly describe the usage of Active Record for relational databases.
+However, most content described here are also applicable to Active Record for NoSQL databases.</p>
+<h2>Declaring Active Record Classes  <span id="declaring-ar-classes"></span><a href="#declaring-ar-classes" class="hashlink">&para;</a></h2><p>To get started, declare an Active Record class by extending <span class="broken-link">yii\db\ActiveRecord</span>. </p>
+<h3>Setting a table name <span id="setting-a-table-name"></span><a href="#setting-a-table-name" class="hashlink">&para;</a></h3><p>By default each Active Record class is associated with its database table.
+The <span class="broken-link">yii\db\ActiveRecord::tableName()</span> method returns the table name by converting the class name via <span class="broken-link">yii\helpers\Inflector::camel2id()</span>.
+You may override this method if the table is not named after this convention.</p>
+<p>Also a default <span class="broken-link">yii\db\Connection::$tablePrefix</span> can be applied. For example if
+ <span class="broken-link">yii\db\Connection::$tablePrefix</span> is <code>tbl_</code>, <code>Customer</code> becomes <code>tbl_customer</code> and <code>OrderItem</code> becomes <code>tbl_order_item</code>. </p>
+<p>If a table name is given as <code>{{%TableName}}</code>, then the percentage character <code>%</code> will be replaced with the table prefix. 
+For example, <code>{{%post}}</code> becomes <code>{{tbl_post}}</code>. The brackets around the table name are used for
+<a href="db-dao.html#quoting-table-and-column-names">quoting in an SQL query</a>.</p>
+<p>In the following example, we declare an Active Record class named <code>Customer</code> for the <code>customer</code> database table.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">const</span> STATUS_INACTIVE = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">const</span> STATUS_ACTIVE = <span class="hljs-number">1</span>;
+    
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@return</span> string the name of the table associated with this ActiveRecord class.
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tableName</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'{{customer}}'</span>;
+    }
+}
+</code></pre>
+<h3>Active records are called "models" <span id="active-records-are-called-models"></span><a href="#active-records-are-called-models" class="hashlink">&para;</a></h3><p>Active Record instances are considered as <a href="structure-models.html">models</a>. For this reason, we usually put Active Record
+classes under the <code>app\models</code> namespace (or other namespaces for keeping model classes). </p>
+<p>Because <span class="broken-link">yii\db\ActiveRecord</span> extends from <span class="broken-link">yii\base\Model</span>, it inherits <em>all</em> <a href="structure-models.html">model</a> features,
+such as attributes, validation rules, data serialization, etc.</p>
+<h2>Connecting to Databases  <span id="db-connection"></span><a href="#db-connection" class="hashlink">&para;</a></h2><p>By default, Active Record uses the <code>db</code> <a href="structure-application-components.html">application component</a> 
+as the <span class="broken-link">yii\db\Connection</span> to access and manipulate the database data. As explained in 
+<a href="db-dao.html">Database Access Objects</a>, you can configure the <code>db</code> component in the application configuration like shown
+below,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">return</span> [
+    <span class="hljs-string">'components'</span> =&gt; [
+        <span class="hljs-string">'db'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\db\Connection'</span>,
+            <span class="hljs-string">'dsn'</span> =&gt; <span class="hljs-string">'mysql:host=localhost;dbname=testdb'</span>,
+            <span class="hljs-string">'username'</span> =&gt; <span class="hljs-string">'demo'</span>,
+            <span class="hljs-string">'password'</span> =&gt; <span class="hljs-string">'demo'</span>,
+        ],
+    ],
+];
+</code></pre>
+<p>If you want to use a different database connection other than the <code>db</code> component, you should override 
+the <span class="broken-link">yii\db\ActiveRecord::getDb()</span> method:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getDb</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// use the "db2" application component</span>
+        <span class="hljs-keyword">return</span> \Yii::<span class="hljs-variable">$app</span>-&gt;db2;  
+    }
+}
+</code></pre>
+<h2>Querying Data  <span id="querying-data"></span><a href="#querying-data" class="hashlink">&para;</a></h2><p>After declaring an Active Record class, you can use it to query data from the corresponding database table.
+The process usually takes the following three steps:</p>
+<ol>
+<li>Create a new query object by calling the <span class="broken-link">yii\db\ActiveRecord::find()</span> method;</li>
+<li>Build the query object by calling <a href="db-query-builder.html#building-queries">query building methods</a>;</li>
+<li>Call a <a href="db-query-builder.html#query-methods">query method</a> to retrieve data in terms of Active Record instances.</li>
+</ol>
+<p>As you can see, this is very similar to the procedure with <a href="db-query-builder.html">query builder</a>. The only difference
+is that instead of using the <code>new</code> operator to create a query object, you call <span class="broken-link">yii\db\ActiveRecord::find()</span>
+to return a new query object which is of class <span class="broken-link">yii\db\ActiveQuery</span>.</p>
+<p>Below are some examples showing how to use Active Query to query data:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// return a single customer whose ID is 123</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::find()
+    -&gt;where([<span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">123</span>])
+    -&gt;one();
+
+<span class="hljs-comment">// return all active customers and order them by their IDs</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `status` = 1 ORDER BY `id`</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;where([<span class="hljs-string">'status'</span> =&gt; Customer::STATUS_ACTIVE])
+    -&gt;orderBy(<span class="hljs-string">'id'</span>)
+    -&gt;all();
+
+<span class="hljs-comment">// return the number of active customers</span>
+<span class="hljs-comment">// SELECT COUNT(*) FROM `customer` WHERE `status` = 1</span>
+<span class="hljs-variable">$count</span> = Customer::find()
+    -&gt;where([<span class="hljs-string">'status'</span> =&gt; Customer::STATUS_ACTIVE])
+    -&gt;count();
+
+<span class="hljs-comment">// return all customers in an array indexed by customer IDs</span>
+<span class="hljs-comment">// SELECT * FROM `customer`</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;indexBy(<span class="hljs-string">'id'</span>)
+    -&gt;all();
+</code></pre>
+<p>In the above, <code>$customer</code> is a <code>Customer</code> object while <code>$customers</code> is an array of <code>Customer</code> objects. They are
+all populated with the data retrieved from the <code>customer</code> table.</p>
+<blockquote class="info"><p><strong>Info: </strong>Because <span class="broken-link">yii\db\ActiveQuery</span> extends from <span class="broken-link">yii\db\Query</span>, you can use <em>all</em> query building methods and
+  query methods as described in the Section <a href="db-query-builder.html">Query Builder</a>.</p>
+</blockquote>
+<p>Because it is a common task to query by primary key values or a set of column values, Yii provides two shortcut
+methods for this purpose:</p>
+<ul>
+<li><span class="broken-link">yii\db\ActiveRecord::findOne()</span>: returns a single Active Record instance populated with the first row of the query result.</li>
+<li><span class="broken-link">yii\db\ActiveRecord::findAll()</span>: returns an array of Active Record instances populated with <em>all</em> query result.</li>
+</ul>
+<p>Both methods can take one of the following parameter formats:</p>
+<ul>
+<li>a scalar value: the value is treated as the desired primary key value to be looked for. Yii will determine 
+automatically which column is the primary key column by reading database schema information.</li>
+<li>an array of scalar values: the array is treated as the desired primary key values to be looked for.</li>
+<li>an associative array: the keys are column names and the values are the corresponding desired column values to 
+be looked for. Please refer to <a href="db-query-builder.html#hash-format">Hash Format</a> for more details.</li>
+</ul>
+<p>The following code shows how these methods can be used:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// returns a single customer whose ID is 123</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// returns customers whose ID is 100, 101, 123 or 124</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` IN (100, 101, 123, 124)</span>
+<span class="hljs-variable">$customers</span> = Customer::findAll([<span class="hljs-number">100</span>, <span class="hljs-number">101</span>, <span class="hljs-number">123</span>, <span class="hljs-number">124</span>]);
+
+<span class="hljs-comment">// returns an active customer whose ID is 123</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123 AND `status` = 1</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne([
+    <span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">123</span>,
+    <span class="hljs-string">'status'</span> =&gt; Customer::STATUS_ACTIVE,
+]);
+
+<span class="hljs-comment">// returns all inactive customers</span>
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `status` = 0</span>
+<span class="hljs-variable">$customers</span> = Customer::findAll([
+    <span class="hljs-string">'status'</span> =&gt; Customer::STATUS_INACTIVE,
+]);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>Neither <span class="broken-link">yii\db\ActiveRecord::findOne()</span> nor <span class="broken-link">yii\db\ActiveQuery::one()</span> will add <code>LIMIT 1</code> to 
+  the generated SQL statement. If your query may return many rows of data, you should call <code>limit(1)</code> explicitly
+  to improve the performance, e.g., <code>Customer::find()-&gt;limit(1)-&gt;one()</code>.</p>
+</blockquote>
+<p>Besides using query building methods, you can also write raw SQLs to query data and populate the results into
+Active Record objects. You can do so by calling the <span class="broken-link">yii\db\ActiveRecord::findBySql()</span> method:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// returns all inactive customers</span>
+<span class="hljs-variable">$sql</span> = <span class="hljs-string">'SELECT * FROM customer WHERE status=:status'</span>;
+<span class="hljs-variable">$customers</span> = Customer::findBySql(<span class="hljs-variable">$sql</span>, [<span class="hljs-string">':status'</span> =&gt; Customer::STATUS_INACTIVE])-&gt;all();
+</code></pre>
+<p>Do not call extra query building methods after calling <span class="broken-link">yii\db\ActiveRecord::findBySql()</span> as they
+will be ignored.</p>
+<h2>Accessing Data  <span id="accessing-data"></span><a href="#accessing-data" class="hashlink">&para;</a></h2><p>As aforementioned, the data brought back from the database are populated into Active Record instances, and
+each row of the query result corresponds to a single Active Record instance. You can access the column values
+by accessing the attributes of the Active Record instances, for example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// "id" and "email" are the names of columns in the "customer" table</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$id</span> = <span class="hljs-variable">$customer</span>-&gt;id;
+<span class="hljs-variable">$email</span> = <span class="hljs-variable">$customer</span>-&gt;email;
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>The Active Record attributes are named after the associated table columns in a case-sensitive manner.
+  Yii automatically defines an attribute in Active Record for every column of the associated table.
+  You should NOT redeclare any of the attributes. </p>
+</blockquote>
+<p>Because Active Record attributes are named after table columns, you may find you are writing PHP code like
+<code>$customer-&gt;first_name</code>, which uses underscores to separate words in attribute names if your table columns are
+named in this way. If you are concerned about code style consistency, you should rename your table columns accordingly
+(to use camelCase, for example).</p>
+<h3>Data Transformation  <span id="data-transformation"></span><a href="#data-transformation" class="hashlink">&para;</a></h3><p>It often happens that the data being entered and/or displayed are in a format which is different from the one used in
+storing the data in a database. For example, in the database you are storing customers' birthdays as UNIX timestamps
+(which is not a good design, though), while in most cases you would like to manipulate birthdays as strings in
+the format of <code>'YYYY/MM/DD'</code>. To achieve this goal, you can define <em>data transformation</em> methods in the <code>Customer</code>
+Active Record class like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getBirthdayText</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> date(<span class="hljs-string">'Y/m/d'</span>, <span class="hljs-variable">$this</span>-&gt;birthday);
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setBirthdayText</span><span class="hljs-params">(<span class="hljs-variable">$value</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;birthday = strtotime(<span class="hljs-variable">$value</span>);
+    }
+}
+</code></pre>
+<p>Now in your PHP code, instead of accessing <code>$customer-&gt;birthday</code>, you would access <code>$customer-&gt;birthdayText</code>, which
+will allow you to input and display customer birthdays in the format of <code>'YYYY/MM/DD'</code>.</p>
+<blockquote class="tip"><p><strong>Tip: </strong>The above example shows a generic way of transforming data in different formats. If you are working with
+date values, you may use <a href="tutorial-core-validators.html#date">DateValidator</a> and <span class="broken-link">yii\jui\DatePicker</span>,
+which is easier to use and more powerful.</p>
+</blockquote>
+<h3>Retrieving Data in Arrays  <span id="data-in-arrays"></span><a href="#data-in-arrays" class="hashlink">&para;</a></h3><p>While retrieving data in terms of Active Record objects is convenient and flexible, it is not always desirable
+when you have to bring back a large amount of data due to the big memory footprint. In this case, you can retrieve
+data using PHP arrays by calling <span class="broken-link">yii\db\ActiveQuery::asArray()</span> before executing a query method:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// return all customers</span>
+<span class="hljs-comment">// each customer is returned as an associative array</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;asArray()
+    -&gt;all();
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>While this method saves memory and improves performance, it is closer to the lower DB abstraction layer
+  and you will lose most of the Active Record features. A very important distinction lies in the data type of
+  the column values. When you return data in Active Record instances, column values will be automatically typecast
+  according to the actual column types; on the other hand when you return data in arrays, column values will be
+  strings (since they are the result of PDO without any processing), regardless their actual column types.</p>
+</blockquote>
+<h3>Retrieving Data in Batches  <span id="data-in-batches"></span><a href="#data-in-batches" class="hashlink">&para;</a></h3><p>In <a href="db-query-builder.html">Query Builder</a>, we have explained that you may use <em>batch query</em> to minimize your memory
+usage when querying a large amount of data from the database. You may use the same technique in Active Record. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// fetch 10 customers at a time</span>
+<span class="hljs-keyword">foreach</span> (Customer::find()-&gt;batch(<span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$customers</span>) {
+    <span class="hljs-comment">// $customers is an array of 10 or fewer Customer objects</span>
+}
+
+<span class="hljs-comment">// fetch 10 customers at a time and iterate them one by one</span>
+<span class="hljs-keyword">foreach</span> (Customer::find()-&gt;each(<span class="hljs-number">10</span>) <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-comment">// $customer is a Customer object</span>
+}
+
+<span class="hljs-comment">// batch query with eager loading</span>
+<span class="hljs-keyword">foreach</span> (Customer::find()-&gt;with(<span class="hljs-string">'orders'</span>)-&gt;each() <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-comment">// $customer is a Customer object with the 'orders' relation populated</span>
+}
+</code></pre>
+<h2>Saving Data  <span id="inserting-updating-data"></span><a href="#inserting-updating-data" class="hashlink">&para;</a></h2><p>Using Active Record, you can easily save data to the database by taking the following steps:</p>
+<ol>
+<li>Prepare an Active Record instance</li>
+<li>Assign new values to Active Record attributes</li>
+<li>Call <span class="broken-link">yii\db\ActiveRecord::save()</span> to save the data into database.</li>
+</ol>
+<p>For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// insert a new row of data</span>
+<span class="hljs-variable">$customer</span> = <span class="hljs-keyword">new</span> Customer();
+<span class="hljs-variable">$customer</span>-&gt;name = <span class="hljs-string">'James'</span>;
+<span class="hljs-variable">$customer</span>-&gt;email = <span class="hljs-string">'james@example.com'</span>;
+<span class="hljs-variable">$customer</span>-&gt;save();
+
+<span class="hljs-comment">// update an existing row of data</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$customer</span>-&gt;email = <span class="hljs-string">'james@newexample.com'</span>;
+<span class="hljs-variable">$customer</span>-&gt;save();
+</code></pre>
+<p>The <span class="broken-link">yii\db\ActiveRecord::save()</span> method can either insert or update a row of data, depending on the state
+of the Active Record instance. If the instance is newly created via the <code>new</code> operator, calling 
+<span class="broken-link">yii\db\ActiveRecord::save()</span> will cause insertion of a new row; If the instance is the result of a query method,
+calling <span class="broken-link">yii\db\ActiveRecord::save()</span> will update the row associated with the instance. </p>
+<p>You can differentiate the two states of an Active Record instance by checking its 
+<span class="broken-link">yii\db\ActiveRecord::isNewRecord</span> property value. This property is also used by 
+<span class="broken-link">yii\db\ActiveRecord::save()</span> internally as follows:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">save</span><span class="hljs-params">(<span class="hljs-variable">$runValidation</span> = true, <span class="hljs-variable">$attributeNames</span> = null)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;getIsNewRecord()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;insert(<span class="hljs-variable">$runValidation</span>, <span class="hljs-variable">$attributeNames</span>);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;update(<span class="hljs-variable">$runValidation</span>, <span class="hljs-variable">$attributeNames</span>) !== <span class="hljs-keyword">false</span>;
+    }
+}
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong>You can call <span class="broken-link">yii\db\ActiveRecord::insert()</span> or <span class="broken-link">yii\db\ActiveRecord::update()</span>
+  directly to insert or update a row.</p>
+</blockquote>
+<h3>Data Validation  <span id="data-validation"></span><a href="#data-validation" class="hashlink">&para;</a></h3><p>Because <span class="broken-link">yii\db\ActiveRecord</span> extends from <span class="broken-link">yii\base\Model</span>, it shares the same <a href="input-validation.html">data validation</a> feature.
+You can declare validation rules by overriding the <span class="broken-link">yii\db\ActiveRecord::rules()</span> method and perform 
+data validation by calling the <span class="broken-link">yii\db\ActiveRecord::validate()</span> method.</p>
+<p>When you call <span class="broken-link">yii\db\ActiveRecord::save()</span>, by default it will call <span class="broken-link">yii\db\ActiveRecord::validate()</span>
+automatically. Only when the validation passes, will it actually save the data; otherwise it will simply return <code>false</code>,
+and you can check the <span class="broken-link">yii\db\ActiveRecord::errors</span> property to retrieve the validation error messages.  </p>
+<blockquote class="tip"><p><strong>Tip: </strong>If you are certain that your data do not need validation (e.g., the data comes from trustable sources),
+  you can call <code>save(false)</code> to skip the validation.</p>
+</blockquote>
+<h3>Massive Assignment  <span id="massive-assignment"></span><a href="#massive-assignment" class="hashlink">&para;</a></h3><p>Like normal <a href="structure-models.html">models</a>, Active Record instances also enjoy the <a href="structure-models.html#massive-assignment">massive assignment feature</a>.
+Using this feature, you can assign values to multiple attributes of an Active Record instance in a single PHP statement,
+like shown below. Do remember that only <a href="structure-models.html#safe-attributes">safe attributes</a> can be massively assigned, though.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$values</span> = [
+    <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">'James'</span>,
+    <span class="hljs-string">'email'</span> =&gt; <span class="hljs-string">'james@example.com'</span>,
+];
+
+<span class="hljs-variable">$customer</span> = <span class="hljs-keyword">new</span> Customer();
+
+<span class="hljs-variable">$customer</span>-&gt;attributes = <span class="hljs-variable">$values</span>;
+<span class="hljs-variable">$customer</span>-&gt;save();
+</code></pre>
+<h3>Updating Counters  <span id="updating-counters"></span><a href="#updating-counters" class="hashlink">&para;</a></h3><p>It is a common task to increment or decrement a column in a database table. We call these columns "counter columns".
+You can use <span class="broken-link">yii\db\ActiveRecord::updateCounters()</span> to update one or multiple counter columns.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$post</span> = Post::findOne(<span class="hljs-number">100</span>);
+
+<span class="hljs-comment">// UPDATE `post` SET `view_count` = `view_count` + 1 WHERE `id` = 100</span>
+<span class="hljs-variable">$post</span>-&gt;updateCounters([<span class="hljs-string">'view_count'</span> =&gt; <span class="hljs-number">1</span>]);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>If you use <span class="broken-link">yii\db\ActiveRecord::save()</span> to update a counter column, you may end up with inaccurate result,
+  because it is likely the same counter is being saved by multiple requests which read and write the same counter value.</p>
+</blockquote>
+<h3>Dirty Attributes  <span id="dirty-attributes"></span><a href="#dirty-attributes" class="hashlink">&para;</a></h3><p>When you call <span class="broken-link">yii\db\ActiveRecord::save()</span> to save an Active Record instance, only <em>dirty attributes</em>
+are being saved. An attribute is considered <em>dirty</em> if its value has been modified since it was loaded from DB or
+saved to DB most recently. Note that data validation will be performed regardless if the Active Record 
+instance has dirty attributes or not.</p>
+<p>Active Record automatically maintains the list of dirty attributes. It does so by maintaining an older version of
+the attribute values and comparing them with the latest one. You can call <span class="broken-link">yii\db\ActiveRecord::getDirtyAttributes()</span> 
+to get the attributes that are currently dirty. You can also call <span class="broken-link">yii\db\ActiveRecord::markAttributeDirty()</span> 
+to explicitly mark an attribute as dirty.</p>
+<p>If you are interested in the attribute values prior to their most recent modification, you may call 
+<span class="broken-link">yii\db\ActiveRecord::getOldAttributes()</span> or <span class="broken-link">yii\db\ActiveRecord::getOldAttribute()</span>.</p>
+<blockquote class="note"><p><strong>Note: </strong>The comparison of old and new values will be done using the <code>===</code> operator so a value will be considered dirty
+even if it has the same value but a different type. This is often the case when the model receives user input from
+HTML forms where every value is represented as a string.
+To ensure the correct type for e.g. integer values you may apply a <a href="input-validation.html#data-filtering">validation filter</a>:
+<code>['attributeName', 'filter', 'filter' =&gt; 'intval']</code>. This works with all the typecasting functions of PHP like
+<a href="http://php.net/manual/en/function.intval.php">intval()</a>, <a href="http://php.net/manual/en/function.floatval.php">floatval()</a>,
+<a href="http://php.net/manual/en/function.boolval.php">boolval</a>, etc...</p>
+</blockquote>
+<h3>Default Attribute Values  <span id="default-attribute-values"></span><a href="#default-attribute-values" class="hashlink">&para;</a></h3><p>Some of your table columns may have default values defined in the database. Sometimes, you may want to pre-populate your
+Web form for an Active Record instance with these default values. To avoid writing the same default values again,
+you can call <span class="broken-link">yii\db\ActiveRecord::loadDefaultValues()</span> to populate the DB-defined default values
+into the corresponding Active Record attributes:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = <span class="hljs-keyword">new</span> Customer();
+<span class="hljs-variable">$customer</span>-&gt;loadDefaultValues();
+<span class="hljs-comment">// $customer-&gt;xyz will be assigned the default value declared when defining the "xyz" column</span>
+</code></pre>
+<h3>Attributes Typecasting  <span id="attributes-typecasting"></span><a href="#attributes-typecasting" class="hashlink">&para;</a></h3><p>Being populated by query results <span class="broken-link">yii\db\ActiveRecord</span> performs automatic typecast for its attribute values, using
+information from <a href="db-dao.html#database-schema">database table schema</a>. This allows data retrieved from table column
+declared as integer to be populated in ActiveRecord instance with PHP integer, boolean with boolean and so on.
+However, typecasting mechanism has several limitations:</p>
+<ul>
+<li>Float values are not be converted and will be represented as strings, otherwise they may loose precision.</li>
+<li>Conversion of the integer values depends on the integer capacity of the operation system you use. In particular:
+values of column declared as 'unsigned integer' or 'big integer' will be converted to PHP integer only at 64-bit
+operation system, while on 32-bit ones - they will be represented as strings.</li>
+</ul>
+<p>Note that attribute typecast is performed only during populating ActiveRecord instance from query result. There is no
+automatic conversion for the values loaded from HTTP request or set directly via property access.
+The table schema will also be used while preparing SQL statements for the ActiveRecord data saving, ensuring
+values are bound to the query with correct type. However, ActiveRecord instance attribute values will not be
+converted during saving process.</p>
+<blockquote class="tip"><p><strong>Tip: </strong>you may use <span class="broken-link">yii\behaviors\AttributeTypecastBehavior</span> to facilitate attribute values typecasting
+  on ActiveRecord validation or saving.</p>
+</blockquote>
+<h3>Updating Multiple Rows  <span id="updating-multiple-rows"></span><a href="#updating-multiple-rows" class="hashlink">&para;</a></h3><p>The methods described above all work on individual Active Record instances, causing inserting or updating of individual
+table rows. To update multiple rows simultaneously, you should call <span class="broken-link">yii\db\ActiveRecord::updateAll()</span>, instead,
+which is a static method.</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// UPDATE `customer` SET `status` = 1 WHERE `email` LIKE `%@example.com%`</span>
+Customer::updateAll([<span class="hljs-string">'status'</span> =&gt; Customer::STATUS_ACTIVE], [<span class="hljs-string">'like'</span>, <span class="hljs-string">'email'</span>, <span class="hljs-string">'@example.com'</span>]);
+</code></pre>
+<p>Similarly, you can call <span class="broken-link">yii\db\ActiveRecord::updateAllCounters()</span> to update counter columns of
+multiple rows at the same time.</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// UPDATE `customer` SET `age` = `age` + 1</span>
+Customer::updateAllCounters([<span class="hljs-string">'age'</span> =&gt; <span class="hljs-number">1</span>]);
+</code></pre>
+<h2>Deleting Data  <span id="deleting-data"></span><a href="#deleting-data" class="hashlink">&para;</a></h2><p>To delete a single row of data, first retrieve the Active Record instance corresponding to that row and then call
+the <span class="broken-link">yii\db\ActiveRecord::delete()</span> method.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$customer</span>-&gt;delete();
+</code></pre>
+<p>You can call <span class="broken-link">yii\db\ActiveRecord::deleteAll()</span> to delete multiple or all rows of data. For example,</p>
+<pre><code class="hljs php language-php">Customer::deleteAll([<span class="hljs-string">'status'</span> =&gt; Customer::STATUS_INACTIVE]);
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>Be very careful when calling <span class="broken-link">yii\db\ActiveRecord::deleteAll()</span> because it may totally
+  erase all data from your table if you make a mistake in specifying the condition.</p>
+</blockquote>
+<h2>Active Record Life Cycles  <span id="ar-life-cycles"></span><a href="#ar-life-cycles" class="hashlink">&para;</a></h2><p>It is important to understand the life cycles of Active Record when it is used for different purposes.
+During each life cycle, a certain sequence of methods will be invoked, and you can override these methods
+to get a chance to customize the life cycle. You can also respond to certain Active Record events triggered 
+during a life cycle to inject your custom code. These events are especially useful when you are developing 
+Active Record <a href="concept-behaviors.html">behaviors</a> which need to customize Active Record life cycles.</p>
+<p>In the following, we will summarize the various Active Record life cycles and the methods/events that are involved
+in the life cycles.</p>
+<h3>New Instance Life Cycle  <span id="new-instance-life-cycle"></span><a href="#new-instance-life-cycle" class="hashlink">&para;</a></h3><p>When creating a new Active Record instance via the <code>new</code> operator, the following life cycle will happen:</p>
+<ol>
+<li>Class constructor.</li>
+<li><span class="broken-link">yii\db\ActiveRecord::init()</span>: triggers an <span class="broken-link">yii\db\ActiveRecord::EVENT_INIT</span> event.</li>
+</ol>
+<h3>Querying Data Life Cycle  <span id="querying-data-life-cycle"></span><a href="#querying-data-life-cycle" class="hashlink">&para;</a></h3><p>When querying data through one of the <a href="#querying-data">querying methods</a>, each newly populated Active Record will
+undergo the following life cycle:</p>
+<ol>
+<li>Class constructor.</li>
+<li><span class="broken-link">yii\db\ActiveRecord::init()</span>: triggers an <span class="broken-link">yii\db\ActiveRecord::EVENT_INIT</span> event.</li>
+<li><span class="broken-link">yii\db\ActiveRecord::afterFind()</span>: triggers an <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_FIND</span> event.</li>
+</ol>
+<h3>Saving Data Life Cycle  <span id="saving-data-life-cycle"></span><a href="#saving-data-life-cycle" class="hashlink">&para;</a></h3><p>When calling <span class="broken-link">yii\db\ActiveRecord::save()</span> to insert or update an Active Record instance, the following
+life cycle will happen:</p>
+<ol>
+<li><p>an <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_VALIDATE</span> event. If the method returns <code>false</code>
+or <span class="broken-link">yii\base\ModelEvent::isValid</span> is <code>false</code>, the rest of the steps will be skipped.</p>
+</li>
+<li>Performs data validation. If data validation fails, the steps after Step 3 will be skipped. </li>
+<li><p>an <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_VALIDATE</span> event.</p>
+</li>
+<li><p>an <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_INSERT</span> 
+or <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_UPDATE</span> event. If the method returns <code>false</code>
+or <span class="broken-link">yii\base\ModelEvent::isValid</span> is <code>false</code>, the rest of the steps will be skipped.</p>
+</li>
+<li>Performs the actual data insertion or updating.</li>
+<li><p>an <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_INSERT</span> 
+or <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_UPDATE</span> event.</p>
+</li>
+</ol>
+<h3>Deleting Data Life Cycle  <span id="deleting-data-life-cycle"></span><a href="#deleting-data-life-cycle" class="hashlink">&para;</a></h3><p>When calling <span class="broken-link">yii\db\ActiveRecord::delete()</span> to delete an Active Record instance, the following
+life cycle will happen:</p>
+<ol>
+<li><p>an <span class="broken-link">yii\db\ActiveRecord::EVENT_BEFORE_DELETE</span> event. If the method returns <code>false</code>
+or <span class="broken-link">yii\base\ModelEvent::isValid</span> is <code>false</code>, the rest of the steps will be skipped.</p>
+</li>
+<li>Performs the actual data deletion.</li>
+<li><p>an <span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_DELETE</span> event.</p>
+</li>
+</ol>
+<blockquote class="note"><p><strong>Note: </strong>Calling any of the following methods will NOT initiate any of the above life cycles because they work on the
+database directly and not on a record basis:</p>
+<ul>
+<li><span class="broken-link">yii\db\ActiveRecord::updateAll()</span> </li>
+<li><span class="broken-link">yii\db\ActiveRecord::deleteAll()</span></li>
+<li><span class="broken-link">yii\db\ActiveRecord::updateCounters()</span> </li>
+<li><span class="broken-link">yii\db\ActiveRecord::updateAllCounters()</span> </li>
+</ul>
+</blockquote>
+<h3>Refreshing Data Life Cycle  <span id="refreshing-data-life-cycle"></span><a href="#refreshing-data-life-cycle" class="hashlink">&para;</a></h3><p>When calling <span class="broken-link">yii\db\ActiveRecord::refresh()</span> to refresh an Active Record instance, the
+<span class="broken-link">yii\db\ActiveRecord::EVENT_AFTER_REFRESH</span> event is triggered if refresh is successful and the method returns <code>true</code>.</p>
+<h2>Working with Transactions  <span id="transactional-operations"></span><a href="#transactional-operations" class="hashlink">&para;</a></h2><p>There are two ways of using <a href="db-dao.html#performing-transactions">transactions</a> while working with Active Record. </p>
+<p>The first way is to explicitly enclose Active Record method calls in a transactional block, like shown below,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+Customer::getDb()-&gt;transaction(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$db</span>)</span> <span class="hljs-title">use</span> <span class="hljs-params">(<span class="hljs-variable">$customer</span>)</span> </span>{
+    <span class="hljs-variable">$customer</span>-&gt;id = <span class="hljs-number">200</span>;
+    <span class="hljs-variable">$customer</span>-&gt;save();
+    <span class="hljs-comment">// ...other DB operations...</span>
+});
+
+<span class="hljs-comment">// or alternatively</span>
+
+<span class="hljs-variable">$transaction</span> = Customer::getDb()-&gt;beginTransaction();
+<span class="hljs-keyword">try</span> {
+    <span class="hljs-variable">$customer</span>-&gt;id = <span class="hljs-number">200</span>;
+    <span class="hljs-variable">$customer</span>-&gt;save();
+    <span class="hljs-comment">// ...other DB operations...</span>
+    <span class="hljs-variable">$transaction</span>-&gt;commit();
+} <span class="hljs-keyword">catch</span>(\<span class="hljs-keyword">Exception</span> <span class="hljs-variable">$e</span>) {
+    <span class="hljs-variable">$transaction</span>-&gt;rollBack();
+    <span class="hljs-keyword">throw</span> <span class="hljs-variable">$e</span>;
+} <span class="hljs-keyword">catch</span>(\Throwable <span class="hljs-variable">$e</span>) {
+    <span class="hljs-variable">$transaction</span>-&gt;rollBack();
+    <span class="hljs-keyword">throw</span> <span class="hljs-variable">$e</span>;
+}
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>in the above code we have two catch-blocks for compatibility 
+with PHP 5.x and PHP 7.x. <code>\Exception</code> implements the <a href="http://php.net/manual/en/class.throwable.php"><code>\Throwable</code> interface</a>
+since PHP 7.0, so you can skip the part with <code>\Exception</code> if your app uses only PHP 7.0 and higher.</p>
+</blockquote>
+<p>The second way is to list the DB operations that require transactional support in the <span class="broken-link">yii\db\ActiveRecord::transactions()</span>
+method. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">transactions</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-string">'admin'</span> =&gt; <span class="hljs-keyword">self</span>::OP_INSERT,
+            <span class="hljs-string">'api'</span> =&gt; <span class="hljs-keyword">self</span>::OP_INSERT | <span class="hljs-keyword">self</span>::OP_UPDATE | <span class="hljs-keyword">self</span>::OP_DELETE,
+            <span class="hljs-comment">// the above is equivalent to the following:</span>
+            <span class="hljs-comment">// 'api' =&gt; self::OP_ALL,</span>
+        ];
+    }
+}
+</code></pre>
+<p>The <span class="broken-link">yii\db\ActiveRecord::transactions()</span> method should return an array whose keys are <a href="structure-models.html#scenarios">scenario</a>
+names and values are the corresponding operations that should be enclosed within transactions. You should use the following
+constants to refer to different DB operations:</p>
+<ul>
+<li><span class="broken-link">yii\db\ActiveRecord::OP_INSERT</span>: insertion operation performed by <span class="broken-link">yii\db\ActiveRecord::insert()</span>;</li>
+<li><span class="broken-link">yii\db\ActiveRecord::OP_UPDATE</span>: update operation performed by <span class="broken-link">yii\db\ActiveRecord::update()</span>;</li>
+<li><span class="broken-link">yii\db\ActiveRecord::OP_DELETE</span>: deletion operation performed by <span class="broken-link">yii\db\ActiveRecord::delete()</span>.</li>
+</ul>
+<p>Use the <code>|</code> operators to concatenate the above constants to indicate multiple operations. You may also use the shortcut
+constant <span class="broken-link">yii\db\ActiveRecord::OP_ALL</span> to refer to all three operations above.</p>
+<p>Transactions that are created using this method will be started before calling <span class="broken-link">yii\db\ActiveRecord::beforeSave()</span>
+and will be committed after <span class="broken-link">yii\db\ActiveRecord::afterSave()</span> has run.</p>
+<h2>Optimistic Locks  <span id="optimistic-locks"></span><a href="#optimistic-locks" class="hashlink">&para;</a></h2><p>Optimistic locking is a way to prevent conflicts that may occur when a single row of data is being
+updated by multiple users. For example, both user A and user B are editing the same wiki article
+at the same time. After user A saves his edits, user B clicks on the "Save" button in an attempt to
+save his edits as well. Because user B was actually working on an outdated version of the article,
+it would be desirable to have a way to prevent him from saving the article and show him some hint message.</p>
+<p>Optimistic locking solves the above problem by using a column to record the version number of each row.
+When a row is being saved with an outdated version number, a <span class="broken-link">yii\db\StaleObjectException</span> exception
+will be thrown, which prevents the row from being saved. Optimistic locking is only supported when you
+update or delete an existing row of data using <span class="broken-link">yii\db\ActiveRecord::update()</span> or <span class="broken-link">yii\db\ActiveRecord::delete()</span>,
+respectively.</p>
+<p>To use optimistic locking,</p>
+<ol>
+<li>Create a column in the DB table associated with the Active Record class to store the version number of each row.
+The column should be of big integer type (in MySQL it would be <code>BIGINT DEFAULT 0</code>).</li>
+<li>Override the <span class="broken-link">yii\db\ActiveRecord::optimisticLock()</span> method to return the name of this column.</li>
+<li>In the Web form that takes user inputs, add a hidden field to store the current version number of the row being updated.
+Be sure your version attribute has input validation rules and validates successfully.</li>
+<li>In the controller action that updates the row using Active Record, try and catch the <span class="broken-link">yii\db\StaleObjectException</span>
+exception. Implement necessary business logic (e.g. merging the changes, prompting staled data) to resolve the conflict.</li>
+</ol>
+<p>For example, assume the version column is named as <code>version</code>. You can implement optimistic locking with the code like
+the following.</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// ------ view code -------</span>
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">Html</span>;
+
+<span class="hljs-comment">// ...other input fields</span>
+<span class="hljs-keyword">echo</span> Html::activeHiddenInput(<span class="hljs-variable">$model</span>, <span class="hljs-string">'version'</span>);
+
+
+<span class="hljs-comment">// ------ controller code -------</span>
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">StaleObjectException</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionUpdate</span><span class="hljs-params">(<span class="hljs-variable">$id</span>)</span>
+</span>{
+    <span class="hljs-variable">$model</span> = <span class="hljs-variable">$this</span>-&gt;findModel(<span class="hljs-variable">$id</span>);
+
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$model</span>-&gt;load(Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;post()) &amp;&amp; <span class="hljs-variable">$model</span>-&gt;save()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;redirect([<span class="hljs-string">'view'</span>, <span class="hljs-string">'id'</span> =&gt; <span class="hljs-variable">$model</span>-&gt;id]);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'update'</span>, [
+                <span class="hljs-string">'model'</span> =&gt; <span class="hljs-variable">$model</span>,
+            ]);
+        }
+    } <span class="hljs-keyword">catch</span> (StaleObjectException <span class="hljs-variable">$e</span>) {
+        <span class="hljs-comment">// logic to resolve the conflict</span>
+    }
+}
+</code></pre>
+<h2>Working with Relational Data  <span id="relational-data"></span><a href="#relational-data" class="hashlink">&para;</a></h2><p>Besides working with individual database tables, Active Record is also capable of bringing together related data,
+making them readily accessible through the primary data. For example, the customer data is related with the order
+data because one customer may have placed one or multiple orders. With appropriate declaration of this relation,
+you'll be able to access a customer's order information using the expression <code>$customer-&gt;orders</code> which gives
+back the customer's order information in terms of an array of <code>Order</code> Active Record instances.</p>
+<h3>Declaring Relations  <span id="declaring-relations"></span><a href="#declaring-relations" class="hashlink">&para;</a></h3><p>To work with relational data using Active Record, you first need to declare relations in Active Record classes.
+The task is as simple as declaring a <em>relation method</em> for every interested relation, like the following,</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCustomer</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasOne(Customer::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'customer_id'</span>]);
+    }
+}
+</code></pre>
+<p>In the above code, we have declared an <code>orders</code> relation for the <code>Customer</code> class, and a <code>customer</code> relation
+for the <code>Order</code> class. </p>
+<p>Each relation method must be named as <code>getXyz</code>. We call <code>xyz</code> (the first letter is in lower case) the <em>relation name</em>.
+Note that relation names are <em>case sensitive</em>.</p>
+<p>While declaring a relation, you should specify the following information:</p>
+<ul>
+<li>the multiplicity of the relation: specified by calling either <span class="broken-link">yii\db\ActiveRecord::hasMany()</span>
+or <span class="broken-link">yii\db\ActiveRecord::hasOne()</span>. In the above example you may easily read in the relation 
+declarations that a customer has many orders while an order only has one customer.</li>
+<li>the name of the related Active Record class: specified as the first parameter to 
+either <span class="broken-link">yii\db\ActiveRecord::hasMany()</span> or <span class="broken-link">yii\db\ActiveRecord::hasOne()</span>.
+A recommended practice is to call <code>Xyz::className()</code> to get the class name string so that you can receive
+IDE auto-completion support as well as error detection at compiling stage. </li>
+<li><p>the link between the two types of data: specifies the column(s) through which the two types of data are related.
+The array values are the columns of the primary data (represented by the Active Record class that you are declaring
+relations), while the array keys are the columns of the related data.</p>
+<p>An easy rule to remember this is, as you see in the example above, you write the column that belongs to the related
+Active Record directly next to it. You see there that <code>customer_id</code> is a property of <code>Order</code> and <code>id</code> is a property
+of <code>Customer</code>.</p>
+</li>
+</ul>
+<h3>Accessing Relational Data  <span id="accessing-relational-data"></span><a href="#accessing-relational-data" class="hashlink">&para;</a></h3><p>After declaring relations, you can access relational data through relation names. This is just like accessing
+an object <a href="concept-properties.html">property</a> defined by the relation method. For this reason, we call it <em>relation property</em>.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123</span>
+<span class="hljs-comment">// $orders is an array of Order objects</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>When you declare a relation named <code>xyz</code> via a getter method <code>getXyz()</code>, you will be able to access
+  <code>xyz</code> like an <a href="concept-properties.html">object property</a>. Note that the name is case sensitive.</p>
+</blockquote>
+<p>If a relation is declared with <span class="broken-link">yii\db\ActiveRecord::hasMany()</span>, accessing this relation property
+will return an array of the related Active Record instances; if a relation is declared with 
+<span class="broken-link">yii\db\ActiveRecord::hasOne()</span>, accessing the relation property will return the related
+Active Record instance or <code>null</code> if no related data is found.</p>
+<p>When you access a relation property for the first time, a SQL statement will be executed, like shown in the
+above example. If the same property is accessed again, the previous result will be returned without re-executing
+the SQL statement. To force re-executing the SQL statement, you should unset the relation property
+first: <code>unset($customer-&gt;orders)</code>.</p>
+<blockquote class="note"><p><strong>Note: </strong>While this concept looks similar to the <a href="concept-properties.html">object property</a> feature, there is an
+important difference. For normal object properties the property value is of the same type as the defining getter method.
+A relation method however returns an <span class="broken-link">yii\db\ActiveQuery</span> instance, while accessing a relation property will either
+return a <span class="broken-link">yii\db\ActiveRecord</span> instance or an array of these.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span>-&gt;orders; <span class="hljs-comment">// is an array of `Order` objects</span>
+<span class="hljs-variable">$customer</span>-&gt;getOrders(); <span class="hljs-comment">// returns an ActiveQuery instance</span>
+</code></pre>
+<p>This is useful for creating customized queries, which is described in the next section.</p>
+</blockquote>
+<h3>Dynamic Relational Query  <span id="dynamic-relational-query"></span><a href="#dynamic-relational-query" class="hashlink">&para;</a></h3><p>Because a relation method returns an instance of <span class="broken-link">yii\db\ActiveQuery</span>, you can further build this query
+using query building methods before performing DB query. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123 AND `subtotal` &gt; 200 ORDER BY `id`</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;getOrders()
+    -&gt;where([<span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'subtotal'</span>, <span class="hljs-number">200</span>])
+    -&gt;orderBy(<span class="hljs-string">'id'</span>)
+    -&gt;all();
+</code></pre>
+<p>Unlike accessing a relation property, each time you perform a dynamic relational query via a relation method, 
+a SQL statement will be executed, even if the same dynamic relational query was performed before.</p>
+<p>Sometimes you may even want to parametrize a relation declaration so that you can more easily perform
+dynamic relational query. For example, you may declare a <code>bigOrders</code> relation as follows, </p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getBigOrders</span><span class="hljs-params">(<span class="hljs-variable">$threshold</span> = <span class="hljs-number">100</span>)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>])
+            -&gt;where(<span class="hljs-string">'subtotal &gt; :threshold'</span>, [<span class="hljs-string">':threshold'</span> =&gt; <span class="hljs-variable">$threshold</span>])
+            -&gt;orderBy(<span class="hljs-string">'id'</span>);
+    }
+}
+</code></pre>
+<p>Then you will be able to perform the following relational queries:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123 AND `subtotal` &gt; 200 ORDER BY `id`</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;getBigOrders(<span class="hljs-number">200</span>)-&gt;all();
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123 AND `subtotal` &gt; 100 ORDER BY `id`</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;bigOrders;
+</code></pre>
+<h3>Relations via a Junction Table  <span id="junction-table"></span><a href="#junction-table" class="hashlink">&para;</a></h3><p>In database modelling, when the multiplicity between two related tables is many-to-many, 
+a <a href="https://en.wikipedia.org/wiki/Junction_table">junction table</a> is usually introduced. For example, the <code>order</code>
+table and the <code>item</code> table may be related via a junction table named <code>order_item</code>. One order will then correspond
+to multiple order items, while one product item will also correspond to multiple order items.</p>
+<p>When declaring such relations, you would call either <span class="broken-link">yii\db\ActiveQuery::via()</span> or <span class="broken-link">yii\db\ActiveQuery::viaTable()</span>
+to specify the junction table. The difference between <span class="broken-link">yii\db\ActiveQuery::via()</span> and <span class="broken-link">yii\db\ActiveQuery::viaTable()</span>
+is that the former specifies the junction table in terms of an existing relation name while the latter directly uses
+the junction table. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getItems</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Item::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'item_id'</span>])
+            -&gt;viaTable(<span class="hljs-string">'order_item'</span>, [<span class="hljs-string">'order_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+</code></pre>
+<p>or alternatively,</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrderItems</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(OrderItem::className(), [<span class="hljs-string">'order_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getItems</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Item::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'item_id'</span>])
+            -&gt;via(<span class="hljs-string">'orderItems'</span>);
+    }
+}
+</code></pre>
+<p>The usage of relations declared with a junction table is the same as that of normal relations. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `order` WHERE `id` = 100</span>
+<span class="hljs-variable">$order</span> = Order::findOne(<span class="hljs-number">100</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order_item` WHERE `order_id` = 100</span>
+<span class="hljs-comment">// SELECT * FROM `item` WHERE `item_id` IN (...)</span>
+<span class="hljs-comment">// returns an array of Item objects</span>
+<span class="hljs-variable">$items</span> = <span class="hljs-variable">$order</span>-&gt;items;
+</code></pre>
+<h3>Lazy Loading and Eager Loading  <span id="lazy-eager-loading"></span><a href="#lazy-eager-loading" class="hashlink">&para;</a></h3><p>In <a href="#accessing-relational-data">Accessing Relational Data</a>, we explained that you can access a relation property
+of an Active Record instance like accessing a normal object property. A SQL statement will be executed only when
+you access the relation property the first time. We call such relational data accessing method <em>lazy loading</em>.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123</span>
+<span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+
+<span class="hljs-comment">// no SQL executed</span>
+<span class="hljs-variable">$orders2</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+</code></pre>
+<p>Lazy loading is very convenient to use. However, it may suffer from a performance issue when you need to access
+the same relation property of multiple Active Record instances. Consider the following code example. How many 
+SQL statements will be executed?</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` LIMIT 100</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;limit(<span class="hljs-number">100</span>)-&gt;all();
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$customers</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = ...</span>
+    <span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+}
+</code></pre>
+<p>As you can see from the code comment above, there are 101 SQL statements being executed! This is because each
+time you access the <code>orders</code> relation property of a different <code>Customer</code> object in the for-loop, a SQL statement 
+will be executed.</p>
+<p>To solve this performance problem, you can use the so-called <em>eager loading</em> approach as shown below,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` LIMIT 100;</span>
+<span class="hljs-comment">// SELECT * FROM `orders` WHERE `customer_id` IN (...)</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;with(<span class="hljs-string">'orders'</span>)
+    -&gt;limit(<span class="hljs-number">100</span>)
+    -&gt;all();
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$customers</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-comment">// no SQL executed</span>
+    <span class="hljs-variable">$orders</span> = <span class="hljs-variable">$customer</span>-&gt;orders;
+}
+</code></pre>
+<p>By calling <span class="broken-link">yii\db\ActiveQuery::with()</span>, you instruct Active Record to bring back the orders for the first 100
+customers in one single SQL statement. As a result, you reduce the number of the executed SQL statements from 101 to 2!</p>
+<p>You can eagerly load one or multiple relations. You can even eagerly load <em>nested relations</em>. A nested relation is a relation
+that is declared within a related Active Record class. For example, <code>Customer</code> is related with <code>Order</code> through the <code>orders</code>
+relation, and <code>Order</code> is related with <code>Item</code> through the <code>items</code> relation. When querying for <code>Customer</code>, you can eagerly
+load <code>items</code> using the nested relation notation <code>orders.items</code>. </p>
+<p>The following code shows different usage of <span class="broken-link">yii\db\ActiveQuery::with()</span>. We assume the <code>Customer</code> class
+has two relations <code>orders</code> and <code>country</code>, while the <code>Order</code> class has one relation <code>items</code>.</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// eager loading both "orders" and "country"</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with(<span class="hljs-string">'orders'</span>, <span class="hljs-string">'country'</span>)-&gt;all();
+<span class="hljs-comment">// equivalent to the array syntax below</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with([<span class="hljs-string">'orders'</span>, <span class="hljs-string">'country'</span>])-&gt;all();
+<span class="hljs-comment">// no SQL executed </span>
+<span class="hljs-variable">$orders</span>= <span class="hljs-variable">$customers</span>[<span class="hljs-number">0</span>]-&gt;orders;
+<span class="hljs-comment">// no SQL executed </span>
+<span class="hljs-variable">$country</span> = <span class="hljs-variable">$customers</span>[<span class="hljs-number">0</span>]-&gt;country;
+
+<span class="hljs-comment">// eager loading "orders" and the nested relation "orders.items"</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with(<span class="hljs-string">'orders.items'</span>)-&gt;all();
+<span class="hljs-comment">// access the items of the first order of the first customer</span>
+<span class="hljs-comment">// no SQL executed</span>
+<span class="hljs-variable">$items</span> = <span class="hljs-variable">$customers</span>[<span class="hljs-number">0</span>]-&gt;orders[<span class="hljs-number">0</span>]-&gt;items;
+</code></pre>
+<p>You can eagerly load deeply nested relations, such as <code>a.b.c.d</code>. All parent relations will be eagerly loaded.
+That is, when you call <span class="broken-link">yii\db\ActiveQuery::with()</span> using <code>a.b.c.d</code>, you will eagerly load
+<code>a</code>, <code>a.b</code>, <code>a.b.c</code> and <code>a.b.c.d</code>.  </p>
+<blockquote class="info"><p><strong>Info: </strong>In general, when eagerly loading <code>N</code> relations among which <code>M</code> relations are defined with a 
+  <a href="#junction-table">junction table</a>, a total number of <code>N+M+1</code> SQL statements will be executed.
+  Note that a nested relation <code>a.b.c.d</code> counts as 4 relations.</p>
+</blockquote>
+<p>When eagerly loading a relation, you can customize the corresponding relational query using an anonymous function.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// find customers and bring back together their country and active orders</span>
+<span class="hljs-comment">// SELECT * FROM `customer`</span>
+<span class="hljs-comment">// SELECT * FROM `country` WHERE `id` IN (...)</span>
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` IN (...) AND `status` = 1</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with([
+    <span class="hljs-string">'country'</span>,
+    <span class="hljs-string">'orders'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$query</span>)</span> </span>{
+        <span class="hljs-variable">$query</span>-&gt;andWhere([<span class="hljs-string">'status'</span> =&gt; Order::STATUS_ACTIVE]);
+    },
+])-&gt;all();
+</code></pre>
+<p>When customizing the relational query for a relation, you should specify the relation name as an array key
+and use an anonymous function as the corresponding array value. The anonymous function will receive a <code>$query</code> parameter
+which represents the <span class="broken-link">yii\db\ActiveQuery</span> object used to perform the relational query for the relation.
+In the code example above, we are modifying the relational query by appending an additional condition about order status.</p>
+<blockquote class="note"><p><strong>Note: </strong>If you call <span class="broken-link">yii\db\Query::select()</span> while eagerly loading relations, you have to make sure
+the columns referenced in the relation declarations are being selected. Otherwise, the related models may not 
+be loaded properly. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$orders</span> = Order::find()-&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'amount'</span>])-&gt;with(<span class="hljs-string">'customer'</span>)-&gt;all();
+<span class="hljs-comment">// $orders[0]-&gt;customer is always `null`. To fix the problem, you should do the following:</span>
+<span class="hljs-variable">$orders</span> = Order::find()-&gt;select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'amount'</span>, <span class="hljs-string">'customer_id'</span>])-&gt;with(<span class="hljs-string">'customer'</span>)-&gt;all();
+</code></pre>
+</blockquote>
+<h3>Joining with Relations  <span id="joining-with-relations"></span><a href="#joining-with-relations" class="hashlink">&para;</a></h3><blockquote class="note"><p><strong>Note: </strong>The content described in this subsection is only applicable to relational databases, such as
+  MySQL, PostgreSQL, etc.</p>
+</blockquote>
+<p>The relational queries that we have described so far only reference the primary table columns when
+querying for the primary data. In reality we often need to reference columns in the related tables. For example,
+we may want to bring back the customers who have at least one active order. To solve this problem, we can
+build a join query like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT `customer`.* FROM `customer`</span>
+<span class="hljs-comment">// LEFT JOIN `order` ON `order`.`customer_id` = `customer`.`id`</span>
+<span class="hljs-comment">// WHERE `order`.`status` = 1</span>
+<span class="hljs-comment">// </span>
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` IN (...)</span>
+<span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;select(<span class="hljs-string">'customer.*'</span>)
+    -&gt;leftJoin(<span class="hljs-string">'order'</span>, <span class="hljs-string">'`order`.`customer_id` = `customer`.`id`'</span>)
+    -&gt;where([<span class="hljs-string">'order.status'</span> =&gt; Order::STATUS_ACTIVE])
+    -&gt;with(<span class="hljs-string">'orders'</span>)
+    -&gt;all();
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>It is important to disambiguate column names when building relational queries involving JOIN SQL statements.
+  A common practice is to prefix column names with their corresponding table names.</p>
+</blockquote>
+<p>However, a better approach is to exploit the existing relation declarations by calling <span class="broken-link">yii\db\ActiveQuery::joinWith()</span>:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;joinWith(<span class="hljs-string">'orders'</span>)
+    -&gt;where([<span class="hljs-string">'order.status'</span> =&gt; Order::STATUS_ACTIVE])
+    -&gt;all();
+</code></pre>
+<p>Both approaches execute the same set of SQL statements. The latter approach is much cleaner and drier, though. </p>
+<p>By default, <span class="broken-link">yii\db\ActiveQuery::joinWith()</span> will use <code>LEFT JOIN</code> to join the primary table with the 
+related table. You can specify a different join type (e.g. <code>RIGHT JOIN</code>) via its third parameter <code>$joinType</code>. If
+the join type you want is <code>INNER JOIN</code>, you can simply call <span class="broken-link">yii\db\ActiveQuery::innerJoinWith()</span>, instead.</p>
+<p>Calling <span class="broken-link">yii\db\ActiveQuery::joinWith()</span> will <a href="#lazy-eager-loading">eagerly load</a> the related data by default.
+If you do not want to bring in the related data, you can specify its second parameter <code>$eagerLoading</code> as <code>false</code>. </p>
+<p>Like <span class="broken-link">yii\db\ActiveQuery::with()</span>, you can join with one or multiple relations; you may customize the relation
+queries on-the-fly; you may join with nested relations; and you may mix the use of <span class="broken-link">yii\db\ActiveQuery::with()</span>
+and <span class="broken-link">yii\db\ActiveQuery::joinWith()</span>. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customers</span> = Customer::find()-&gt;joinWith([
+    <span class="hljs-string">'orders'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$query</span>)</span> </span>{
+        <span class="hljs-variable">$query</span>-&gt;andWhere([<span class="hljs-string">'&gt;'</span>, <span class="hljs-string">'subtotal'</span>, <span class="hljs-number">100</span>]);
+    },
+])-&gt;with(<span class="hljs-string">'country'</span>)
+    -&gt;all();
+</code></pre>
+<p>Sometimes when joining two tables, you may need to specify some extra conditions in the <code>ON</code> part of the JOIN query.
+This can be done by calling the <span class="broken-link">yii\db\ActiveQuery::onCondition()</span> method like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT `customer`.* FROM `customer`</span>
+<span class="hljs-comment">// LEFT JOIN `order` ON `order`.`customer_id` = `customer`.`id` AND `order`.`status` = 1 </span>
+<span class="hljs-comment">// </span>
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` IN (...)</span>
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;joinWith([
+    <span class="hljs-string">'orders'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$query</span>)</span> </span>{
+        <span class="hljs-variable">$query</span>-&gt;onCondition([<span class="hljs-string">'order.status'</span> =&gt; Order::STATUS_ACTIVE]);
+    },
+])-&gt;all();
+</code></pre>
+<p>This above query brings back <em>all</em> customers, and for each customer it brings back all active orders.
+Note that this differs from our earlier example which only brings back customers who have at least one active order.</p>
+<blockquote class="info"><p><strong>Info: </strong>When <span class="broken-link">yii\db\ActiveQuery</span> is specified with a condition via <span class="broken-link">yii\db\ActiveQuery::onCondition()</span>,
+  the condition will be put in the <code>ON</code> part if the query involves a JOIN query. If the query does not involve
+  JOIN, the on-condition will be automatically appended to the <code>WHERE</code> part of the query.
+  Thus it may only contain conditions including columns of the related table.</p>
+</blockquote>
+<h4>Relation table aliases  <span id="relation-table-aliases"></span><a href="#relation-table-aliases" class="hashlink">&para;</a></h4><p>As noted before, when using JOIN in a query, we need to disambiguate column names. Therefor often an alias is
+defined for a table. Setting an alias for the relational query would be possible by customizing the relation query in the following way:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;joinWith([
+    <span class="hljs-string">'orders'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$q</span>)</span> </span>{
+        <span class="hljs-variable">$q</span>-&gt;from([<span class="hljs-string">'o'</span> =&gt; Order::tableName()]);
+    },
+])
+</code></pre>
+<p>This however looks very complicated and involves either hardcoding the related objects table name or calling <code>Order::tableName()</code>.
+Since version 2.0.7, Yii provides a shortcut for this. You may now define and use the alias for the relation table like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// join the orders relation and sort the result by orders.id</span>
+<span class="hljs-variable">$query</span>-&gt;joinWith([<span class="hljs-string">'orders o'</span>])-&gt;orderBy(<span class="hljs-string">'o.id'</span>);
+</code></pre>
+<p>The above syntax works for simple relations. If you need an alias for an intermediate table when joining over
+nested relations, e.g. <code>$query-&gt;joinWith(['orders.product'])</code>,
+you need to nest the joinWith calls like in the following example:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$query</span>-&gt;joinWith([<span class="hljs-string">'orders o'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$q</span>)</span> </span>{
+        <span class="hljs-variable">$q</span>-&gt;joinWith(<span class="hljs-string">'product p'</span>);
+    }])
+    -&gt;where(<span class="hljs-string">'o.amount &gt; 100'</span>);
+</code></pre>
+<h3>Inverse Relations  <span id="inverse-relations"></span><a href="#inverse-relations" class="hashlink">&para;</a></h3><p>Relation declarations are often reciprocal between two Active Record classes. For example, <code>Customer</code> is related 
+to <code>Order</code> via the <code>orders</code> relation, and <code>Order</code> is related back to <code>Customer</code> via the <code>customer</code> relation.</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Order</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCustomer</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasOne(Customer::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'customer_id'</span>]);
+    }
+}
+</code></pre>
+<p>Now consider the following piece of code:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123</span>
+<span class="hljs-variable">$order</span> = <span class="hljs-variable">$customer</span>-&gt;orders[<span class="hljs-number">0</span>];
+
+<span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer2</span> = <span class="hljs-variable">$order</span>-&gt;customer;
+
+<span class="hljs-comment">// displays "not the same"</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$customer2</span> === <span class="hljs-variable">$customer</span> ? <span class="hljs-string">'same'</span> : <span class="hljs-string">'not the same'</span>;
+</code></pre>
+<p>We would think <code>$customer</code> and <code>$customer2</code> are the same, but they are not! Actually they do contain the same
+customer data, but they are different objects. When accessing <code>$order-&gt;customer</code>, an extra SQL statement
+is executed to populate a new object <code>$customer2</code>.</p>
+<p>To avoid the redundant execution of the last SQL statement in the above example, we should tell Yii that
+<code>customer</code> is an <em>inverse relation</em> of <code>orders</code> by calling the <span class="broken-link">yii\db\ActiveQuery::inverseOf()</span> method
+like shown below:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>])-&gt;inverseOf(<span class="hljs-string">'customer'</span>);
+    }
+}
+</code></pre>
+<p>With this modified relation declaration, we will have:</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// SELECT * FROM `customer` WHERE `id` = 123</span>
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+
+<span class="hljs-comment">// SELECT * FROM `order` WHERE `customer_id` = 123</span>
+<span class="hljs-variable">$order</span> = <span class="hljs-variable">$customer</span>-&gt;orders[<span class="hljs-number">0</span>];
+
+<span class="hljs-comment">// No SQL will be executed</span>
+<span class="hljs-variable">$customer2</span> = <span class="hljs-variable">$order</span>-&gt;customer;
+
+<span class="hljs-comment">// displays "same"</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$customer2</span> === <span class="hljs-variable">$customer</span> ? <span class="hljs-string">'same'</span> : <span class="hljs-string">'not the same'</span>;
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>Inverse relations cannot be defined for relations involving a <a href="#junction-table">junction table</a>.
+  That is, if a relation is defined with <span class="broken-link">yii\db\ActiveQuery::via()</span> or <span class="broken-link">yii\db\ActiveQuery::viaTable()</span>,
+  you should not call <span class="broken-link">yii\db\ActiveQuery::inverseOf()</span> further.</p>
+</blockquote>
+<h2>Saving Relations  <span id="saving-relations"></span><a href="#saving-relations" class="hashlink">&para;</a></h2><p>When working with relational data, you often need to establish relationships between different data or destroy
+existing relationships. This requires setting proper values for the columns that define the relations. Using Active Record,
+you may end up writing the code like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$order</span> = <span class="hljs-keyword">new</span> Order();
+<span class="hljs-variable">$order</span>-&gt;subtotal = <span class="hljs-number">100</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// setting the attribute that defines the "customer" relation in Order</span>
+<span class="hljs-variable">$order</span>-&gt;customer_id = <span class="hljs-variable">$customer</span>-&gt;id;
+<span class="hljs-variable">$order</span>-&gt;save();
+</code></pre>
+<p>Active Record provides the <span class="broken-link">yii\db\ActiveRecord::link()</span> method that allows you to accomplish this task more nicely:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-number">123</span>);
+<span class="hljs-variable">$order</span> = <span class="hljs-keyword">new</span> Order();
+<span class="hljs-variable">$order</span>-&gt;subtotal = <span class="hljs-number">100</span>;
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-variable">$order</span>-&gt;link(<span class="hljs-string">'customer'</span>, <span class="hljs-variable">$customer</span>);
+</code></pre>
+<p>The <span class="broken-link">yii\db\ActiveRecord::link()</span> method requires you to specify the relation name and the target Active Record
+instance that the relationship should be established with. The method will modify the values of the attributes that
+link two Active Record instances and save them to the database. In the above example, it will set the <code>customer_id</code>
+attribute of the <code>Order</code> instance to be the value of the <code>id</code> attribute of the <code>Customer</code> instance and then save it
+to the database.</p>
+<blockquote class="note"><p><strong>Note: </strong>You cannot link two newly created Active Record instances.</p>
+</blockquote>
+<p>The benefit of using <span class="broken-link">yii\db\ActiveRecord::link()</span> is even more obvious when a relation is defined via
+a <a href="#junction-table">junction table</a>. For example, you may use the following code to link an <code>Order</code> instance
+with an <code>Item</code> instance:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$order</span>-&gt;link(<span class="hljs-string">'items'</span>, <span class="hljs-variable">$item</span>);
+</code></pre>
+<p>The above code will automatically insert a row in the <code>order_item</code> junction table to relate the order with the item.</p>
+<blockquote class="info"><p><strong>Info: </strong>The <span class="broken-link">yii\db\ActiveRecord::link()</span> method will NOT perform any data validation while
+  saving the affected Active Record instance. It is your responsibility to validate any input data before
+  calling this method.</p>
+</blockquote>
+<p>The opposite operation to <span class="broken-link">yii\db\ActiveRecord::link()</span> is <span class="broken-link">yii\db\ActiveRecord::unlink()</span>
+which breaks an existing relationship between two Active Record instances. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customer</span> = Customer::find()-&gt;with(<span class="hljs-string">'orders'</span>)-&gt;where([<span class="hljs-string">'id'</span> =&gt; <span class="hljs-number">123</span>])-&gt;one();
+<span class="hljs-variable">$customer</span>-&gt;unlink(<span class="hljs-string">'orders'</span>, <span class="hljs-variable">$customer</span>-&gt;orders[<span class="hljs-number">0</span>]);
+</code></pre>
+<p>By default, the <span class="broken-link">yii\db\ActiveRecord::unlink()</span> method will set the foreign key value(s) that specify
+the existing relationship to be <code>null</code>. You may, however, choose to delete the table row that contains the foreign key value
+by passing the <code>$delete</code> parameter as <code>true</code> to the method.</p>
+<p>When a junction table is involved in a relation, calling <span class="broken-link">yii\db\ActiveRecord::unlink()</span> will cause
+the foreign keys in the junction table to be cleared, or the deletion of the corresponding row in the junction table
+if <code>$delete</code> is <code>true</code>.</p>
+<h2>Cross-Database Relations  <span id="cross-database-relations"></span><a href="#cross-database-relations" class="hashlink">&para;</a></h2><p>Active Record allows you to declare relations between Active Record classes that are powered by different databases.
+The databases can be of different types (e.g. MySQL and PostgreSQL, or MS SQL and MongoDB), and they can run on 
+different servers. You can use the same syntax to perform relational queries. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// Customer is associated with the "customer" table in a relational database (e.g. MySQL)</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tableName</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'customer'</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getComments</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// a customer has many comments</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Comment::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+
+<span class="hljs-comment">// Comment is associated with the "comment" collection in a MongoDB database</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">mongodb</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">collectionName</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'comment'</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCustomer</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// a comment has one customer</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasOne(Customer::className(), [<span class="hljs-string">'id'</span> =&gt; <span class="hljs-string">'customer_id'</span>]);
+    }
+}
+
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;with(<span class="hljs-string">'comments'</span>)-&gt;all();
+</code></pre>
+<p>You can use most of the relational query features that have been described in this section. </p>
+<blockquote class="note"><p><strong>Note: </strong>Usage of <span class="broken-link">yii\db\ActiveQuery::joinWith()</span> is limited to databases that allow cross-database JOIN queries.
+  For this reason, you cannot use this method in the above example because MongoDB does not support JOIN.</p>
+</blockquote>
+<h2>Customizing Query Classes  <span id="customizing-query-classes"></span><a href="#customizing-query-classes" class="hashlink">&para;</a></h2><p>By default, all Active Record queries are supported by <span class="broken-link">yii\db\ActiveQuery</span>. To use a customized query class
+in an Active Record class, you should override the <span class="broken-link">yii\db\ActiveRecord::find()</span> method and return an instance
+of your customized query class. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// file Comment.php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Comment</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">find</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> CommentQuery(get_called_class());
+    }
+}
+</code></pre>
+<p>Now whenever you are performing a query (e.g. <code>find()</code>, <code>findOne()</code>) or defining a relation (e.g. <code>hasOne()</code>)
+with <code>Comment</code>, you will be calling an instance of <code>CommentQuery</code> instead of <code>ActiveQuery</code>.</p>
+<p>You now have to define the <code>CommentQuery</code> class, which can be customized in many creative ways to improve your query building experience. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// file CommentQuery.php</span>
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveQuery</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CommentQuery</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActiveQuery</span>
+</span>{
+    <span class="hljs-comment">// conditions appended by default (can be skipped)</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">init</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;andOnCondition([<span class="hljs-string">'deleted'</span> =&gt; <span class="hljs-keyword">false</span>]);
+        <span class="hljs-keyword">parent</span>::init();
+    }
+
+    <span class="hljs-comment">// ... add customized query methods here ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">active</span><span class="hljs-params">(<span class="hljs-variable">$state</span> = true)</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;andOnCondition([<span class="hljs-string">'active'</span> =&gt; <span class="hljs-variable">$state</span>]);
+    }
+}
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>Instead of calling <span class="broken-link">yii\db\ActiveQuery::onCondition()</span>, you usually should call
+  <span class="broken-link">yii\db\ActiveQuery::andOnCondition()</span> or <span class="broken-link">yii\db\ActiveQuery::orOnCondition()</span> to append additional conditions when defining new query building methods so that any existing conditions are not overwritten.</p>
+</blockquote>
+<p>This allows you to write query building code like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$comments</span> = Comment::find()-&gt;active()-&gt;all();
+<span class="hljs-variable">$inactiveComments</span> = Comment::find()-&gt;active(<span class="hljs-keyword">false</span>)-&gt;all();
+</code></pre>
+<blockquote class="tip"><p><strong>Tip: </strong>In big projects, it is recommended that you use customized query classes to hold most query-related code
+  so that the Active Record classes can be kept clean.</p>
+</blockquote>
+<p>You can also use the new query building methods when defining relations about <code>Comment</code> or performing relational query:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getActiveComments</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Comment::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>])-&gt;active();
+    }
+}
+
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;joinWith(<span class="hljs-string">'activeComments'</span>)-&gt;all();
+
+<span class="hljs-comment">// or alternatively</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getComments</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Comment::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+
+<span class="hljs-variable">$customers</span> = Customer::find()-&gt;joinWith([
+    <span class="hljs-string">'comments'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$q</span>)</span> </span>{
+        <span class="hljs-variable">$q</span>-&gt;active();
+    }
+])-&gt;all();
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>In Yii 1.1, there is a concept called <em>scope</em>. Scope is no longer directly supported in Yii 2.0,
+  and you should use customized query classes and query methods to achieve the same goal.</p>
+</blockquote>
+<h2>Selecting extra fields <span id="selecting-extra-fields"></span><a href="#selecting-extra-fields" class="hashlink">&para;</a></h2><p>When Active Record instance is populated from query results, its attributes are filled up by corresponding column
+values from received data set.</p>
+<p>You are able to fetch additional columns or values from query and store it inside the Active Record.
+For example, assume we have a table named <code>room</code>, which contains information about rooms available in the hotel.
+Each room stores information about its geometrical size using fields <code>length</code>, <code>width</code>, <code>height</code>.
+Imagine we need to retrieve list of all available rooms with their volume in descendant order.
+So you can not calculate volume using PHP, because we need to sort the records by its value, but you also want <code>volume</code>
+to be displayed in the list.
+To achieve the goal, you need to declare an extra field in your <code>Room</code> Active Record class, which will store <code>volume</code> value:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Room</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$volume</span>;
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Then you need to compose a query, which calculates volume of the room and performs the sort:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$rooms</span> = Room::find()
+    -&gt;select([
+        <span class="hljs-string">'{{room}}.*'</span>, <span class="hljs-comment">// select all columns</span>
+        <span class="hljs-string">'([[length]] * [[width]] * [[height]]) AS volume'</span>, <span class="hljs-comment">// calculate a volume</span>
+    ])
+    -&gt;orderBy(<span class="hljs-string">'volume DESC'</span>) <span class="hljs-comment">// apply sort</span>
+    -&gt;all();
+
+<span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$rooms</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$room</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$room</span>-&gt;volume; <span class="hljs-comment">// contains value calculated by SQL</span>
+}
+</code></pre>
+<p>Ability to select extra fields can be exceptionally useful for aggregation queries.
+Assume you need to display a list of customers with the count of orders they have made.
+First of all, you need to declare a <code>Customer</code> class with <code>orders</code> relation and extra field for count storage:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$ordersCount</span>;
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+</code></pre>
+<p>Then you can compose a query, which joins the orders and calculates their count:</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$customers</span> = Customer::find()
+    -&gt;select([
+        <span class="hljs-string">'{{customer}}.*'</span>, <span class="hljs-comment">// select all customer fields</span>
+        <span class="hljs-string">'COUNT({{order}}.id) AS ordersCount'</span> <span class="hljs-comment">// calculate orders count</span>
+    ])
+    -&gt;joinWith(<span class="hljs-string">'orders'</span>) <span class="hljs-comment">// ensure table junction</span>
+    -&gt;groupBy(<span class="hljs-string">'{{customer}}.id'</span>) <span class="hljs-comment">// group the result to ensure aggregation function works</span>
+    -&gt;all();
+</code></pre>
+<p>A disadvantage of using this method would be that, if the information isn't loaded on the SQL query - it has to be calculated
+separately. Thus, if you have found particular record via regular query without extra select statements, it
+will be unable to return actual value for the extra field. Same will happen for the newly saved record.</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$room</span> = <span class="hljs-keyword">new</span> Room();
+<span class="hljs-variable">$room</span>-&gt;length = <span class="hljs-number">100</span>;
+<span class="hljs-variable">$room</span>-&gt;width = <span class="hljs-number">50</span>;
+<span class="hljs-variable">$room</span>-&gt;height = <span class="hljs-number">2</span>;
+
+<span class="hljs-variable">$room</span>-&gt;volume; <span class="hljs-comment">// this value will be `null`, since it was not declared yet</span>
+</code></pre>
+<p>Using the <span class="broken-link">yii\db\BaseActiveRecord::__get()</span> and <span class="broken-link">yii\db\BaseActiveRecord::__set()</span> magic methods
+we can emulate the behavior of a property:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Room</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$_volume</span>;
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setVolume</span><span class="hljs-params">(<span class="hljs-variable">$volume</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;_volume = (float) <span class="hljs-variable">$volume</span>;
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getVolume</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">empty</span>(<span class="hljs-variable">$this</span>-&gt;length) || <span class="hljs-keyword">empty</span>(<span class="hljs-variable">$this</span>-&gt;width) || <span class="hljs-keyword">empty</span>(<span class="hljs-variable">$this</span>-&gt;height)) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+        
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;_volume === <span class="hljs-keyword">null</span>) {
+            <span class="hljs-variable">$this</span>-&gt;setVolume(
+                <span class="hljs-variable">$this</span>-&gt;length * <span class="hljs-variable">$this</span>-&gt;width * <span class="hljs-variable">$this</span>-&gt;height
+            );
+        }
+        
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;_volume;
+    }
+
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>When the select query doesn't provide the volume, the model will be able to calculate it automatically using
+the attributes of the model.</p>
+<p>You can calculate the aggregation fields as well using defined relations:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$_ordersCount</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setOrdersCount</span><span class="hljs-params">(<span class="hljs-variable">$count</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;_ordersCount = (int) <span class="hljs-variable">$count</span>;
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrdersCount</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;isNewRecord) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>; <span class="hljs-comment">// this avoid calling a query searching for null primary keys</span>
+        }
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;_ordersCount === <span class="hljs-keyword">null</span>) {
+            <span class="hljs-variable">$this</span>-&gt;setOrdersCount(<span class="hljs-variable">$this</span>-&gt;getOrders()-&gt;count()); <span class="hljs-comment">// calculate aggregation on demand from relation</span>
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;_ordersCount;
+    }
+
+    <span class="hljs-comment">// ...</span>
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+}
+</code></pre>
+<p>With this code, in case 'ordersCount' is present in 'select' statement - <code>Customer::ordersCount</code> will be populated
+by query results, otherwise it will be calculated on demand using <code>Customer::orders</code> relation.</p>
+<p>This approach can be as well used for creation of the shortcuts for the some relational data, especially for the aggregation.
+For example:</p>
+<pre><code class="hljs php language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> <span class="hljs-keyword">extends</span> \<span class="hljs-title">yii</span>\<span class="hljs-title">db</span>\<span class="hljs-title">ActiveRecord</span>
+</span>{
+    <span class="hljs-comment">/**
+     * Defines read-only virtual property for aggregation data.
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrdersCount</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;isNewRecord) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>; <span class="hljs-comment">// this avoid calling a query searching for null primary keys</span>
+        }
+        
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;ordersAggregation[<span class="hljs-number">0</span>][<span class="hljs-string">'counted'</span>];
+    }
+
+    <span class="hljs-comment">/**
+     * Declares normal 'orders' relation.
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrders</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;hasMany(Order::className(), [<span class="hljs-string">'customer_id'</span> =&gt; <span class="hljs-string">'id'</span>]);
+    }
+
+    <span class="hljs-comment">/**
+     * Declares new relation based on 'orders', which provides aggregation.
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getOrdersAggregation</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;getOrders()
+            -&gt;select([<span class="hljs-string">'customer_id'</span>, <span class="hljs-string">'counted'</span> =&gt; <span class="hljs-string">'count(*)'</span>])
+            -&gt;groupBy(<span class="hljs-string">'customer_id'</span>)
+            -&gt;asArray(<span class="hljs-keyword">true</span>);
+    }
+
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-keyword">foreach</span> (Customer::find()-&gt;with(<span class="hljs-string">'ordersAggregation'</span>)-&gt;all() <span class="hljs-keyword">as</span> <span class="hljs-variable">$customer</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$customer</span>-&gt;ordersCount; <span class="hljs-comment">// outputs aggregation data from relation without extra query due to eager loading</span>
+}
+
+<span class="hljs-variable">$customer</span> = Customer::findOne(<span class="hljs-variable">$pk</span>);
+<span class="hljs-variable">$customer</span>-&gt;ordersCount; <span class="hljs-comment">// output aggregation data from lazy loaded relation</span>
+</code></pre>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:41:22 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

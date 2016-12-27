@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Responses - Handling Requests - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w1546" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w1546-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w1546-collapse" class="collapse navbar-collapse"><ul id="w1547" class="navbar-nav nav"><li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-1530" data-toggle="collapse" data-parent="#navigation">Introduction <b class="caret"></b></a><div id="navigation-1530" class="submenu panel-collapse collapse"><a class="list-group-item" href="./intro-yii.html">About Yii</a>
+<a class="list-group-item" href="./intro-upgrade-from-v1.html">Upgrading from Version 1.1</a></div>
+<a class="list-group-item" href="#navigation-1531" data-toggle="collapse" data-parent="#navigation">Getting Started <b class="caret"></b></a><div id="navigation-1531" class="submenu panel-collapse collapse"><a class="list-group-item" href="./start-installation.html">Installing Yii</a>
+<a class="list-group-item" href="./start-workflow.html">Running Applications</a>
+<a class="list-group-item" href="./start-hello.html">Saying Hello</a>
+<a class="list-group-item" href="./start-forms.html">Working with Forms</a>
+<a class="list-group-item" href="./start-databases.html">Working with Databases</a>
+<a class="list-group-item" href="./start-gii.html">Generating Code with Gii</a>
+<a class="list-group-item" href="./start-looking-ahead.html">Looking Ahead</a></div>
+<a class="list-group-item" href="#navigation-1532" data-toggle="collapse" data-parent="#navigation">Application Structure <b class="caret"></b></a><div id="navigation-1532" class="submenu panel-collapse collapse"><a class="list-group-item" href="./structure-overview.html">Overview</a>
+<a class="list-group-item" href="./structure-entry-scripts.html">Entry Scripts</a>
+<a class="list-group-item" href="./structure-applications.html">Applications</a>
+<a class="list-group-item" href="./structure-application-components.html">Application Components</a>
+<a class="list-group-item" href="./structure-controllers.html">Controllers</a>
+<a class="list-group-item" href="./structure-models.html">Models</a>
+<a class="list-group-item" href="./structure-views.html">Views</a>
+<a class="list-group-item" href="./structure-modules.html">Modules</a>
+<a class="list-group-item" href="./structure-filters.html">Filters</a>
+<a class="list-group-item" href="./structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./structure-assets.html">Assets</a>
+<a class="list-group-item" href="./structure-extensions.html">Extensions</a></div>
+<a class="list-group-item active" href="#navigation-1533" data-toggle="collapse" data-parent="#navigation">Handling Requests <b class="caret"></b></a><div id="navigation-1533" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./runtime-overview.html">Overview</a>
+<a class="list-group-item" href="./runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./runtime-routing.html">Routing and URL Creation</a>
+<a class="list-group-item" href="./runtime-requests.html">Requests</a>
+<a class="list-group-item active" href="./runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./runtime-sessions-cookies.html">Sessions and Cookies</a>
+<a class="list-group-item" href="./runtime-handling-errors.html">Handling Errors</a>
+<a class="list-group-item" href="./runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-1534" data-toggle="collapse" data-parent="#navigation">Key Concepts <b class="caret"></b></a><div id="navigation-1534" class="submenu panel-collapse collapse"><a class="list-group-item" href="./concept-components.html">Components</a>
+<a class="list-group-item" href="./concept-properties.html">Properties</a>
+<a class="list-group-item" href="./concept-events.html">Events</a>
+<a class="list-group-item" href="./concept-behaviors.html">Behaviors</a>
+<a class="list-group-item" href="./concept-configurations.html">Configurations</a>
+<a class="list-group-item" href="./concept-aliases.html">Aliases</a>
+<a class="list-group-item" href="./concept-autoloading.html">Class Autoloading</a>
+<a class="list-group-item" href="./concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-1535" data-toggle="collapse" data-parent="#navigation">Working with Databases <b class="caret"></b></a><div id="navigation-1535" class="submenu panel-collapse collapse"><a class="list-group-item" href="./db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./db-migrations.html">Migrations</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-sphinx/blob/master/docs/guide/README.md">Sphinx</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-redis/blob/master/docs/guide/README.md">Redis</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-mongodb/blob/master/docs/guide/README.md">MongoDB</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-elasticsearch/blob/master/docs/guide/README.md">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-1536" data-toggle="collapse" data-parent="#navigation">Getting Data from Users <b class="caret"></b></a><div id="navigation-1536" class="submenu panel-collapse collapse"><a class="list-group-item" href="./input-forms.html">Creating Forms</a>
+<a class="list-group-item" href="./input-validation.html">Validating Input</a>
+<a class="list-group-item" href="./input-file-upload.html">Uploading Files</a>
+<a class="list-group-item" href="./input-tabular-input.html">Collecting Tabular Input</a>
+<a class="list-group-item" href="./input-multiple-models.html">Getting Data for Multiple Models</a></div>
+<a class="list-group-item" href="#navigation-1537" data-toggle="collapse" data-parent="#navigation">Displaying Data <b class="caret"></b></a><div id="navigation-1537" class="submenu panel-collapse collapse"><a class="list-group-item" href="./output-formatting.html">Data Formatting</a>
+<a class="list-group-item" href="./output-pagination.html">Pagination</a>
+<a class="list-group-item" href="./output-sorting.html">Sorting</a>
+<a class="list-group-item" href="./output-data-providers.html">Data Providers</a>
+<a class="list-group-item" href="./output-data-widgets.html">Data Widgets</a>
+<a class="list-group-item" href="./output-client-scripts.html">Working with Client Scripts</a>
+<a class="list-group-item" href="./output-theming.html">Theming</a></div>
+<a class="list-group-item" href="#navigation-1538" data-toggle="collapse" data-parent="#navigation">Security <b class="caret"></b></a><div id="navigation-1538" class="submenu panel-collapse collapse"><a class="list-group-item" href="./security-overview.html">Overview</a>
+<a class="list-group-item" href="./security-authentication.html">Authentication</a>
+<a class="list-group-item" href="./security-authorization.html">Authorization</a>
+<a class="list-group-item" href="./security-passwords.html">Working with Passwords</a>
+<a class="list-group-item" href="./security-cryptography.html">Cryptography</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/README.md">Auth Clients</a>
+<a class="list-group-item" href="./security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-1539" data-toggle="collapse" data-parent="#navigation">Caching <b class="caret"></b></a><div id="navigation-1539" class="submenu panel-collapse collapse"><a class="list-group-item" href="./caching-overview.html">Overview</a>
+<a class="list-group-item" href="./caching-data.html">Data Caching</a>
+<a class="list-group-item" href="./caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-1540" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-1540" class="submenu panel-collapse collapse"><a class="list-group-item" href="./rest-quick-start.html">Quick Start</a>
+<a class="list-group-item" href="./rest-resources.html">Resources</a>
+<a class="list-group-item" href="./rest-controllers.html">Controllers</a>
+<a class="list-group-item" href="./rest-routing.html">Routing</a>
+<a class="list-group-item" href="./rest-response-formatting.html">Response Formatting</a>
+<a class="list-group-item" href="./rest-authentication.html">Authentication</a>
+<a class="list-group-item" href="./rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./rest-versioning.html">Versioning</a>
+<a class="list-group-item" href="./rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-1541" data-toggle="collapse" data-parent="#navigation">Development Tools <b class="caret"></b></a><div id="navigation-1541" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-debug/blob/master/docs/guide/README.md">Debug Toolbar and Debugger</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-gii/blob/master/docs/guide/README.md">Generating Code using Gii</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-apidoc">Generating API Documentation</a></div>
+<a class="list-group-item" href="#navigation-1542" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-1542" class="submenu panel-collapse collapse"><a class="list-group-item" href="./test-overview.html">Overview</a>
+<a class="list-group-item" href="./test-environment-setup.html">Testing environment setup</a>
+<a class="list-group-item" href="./test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./test-functional.html">Functional Tests</a>
+<a class="list-group-item" href="./test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-1543" data-toggle="collapse" data-parent="#navigation">Special Topics <b class="caret"></b></a><div id="navigation-1543" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>
+<a class="list-group-item" href="./tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./tutorial-console.html">Console Commands</a>
+<a class="list-group-item" href="./tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./tutorial-i18n.html">Internationalization</a>
+<a class="list-group-item" href="./tutorial-mailing.html">Mailing</a>
+<a class="list-group-item" href="./tutorial-performance-tuning.html">Performance Tuning</a>
+<a class="list-group-item" href="./tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-1544" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-1544" class="submenu panel-collapse collapse"><a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-grid-gridview.html">GridView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-listview.html">ListView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-detailview.html">DetailView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/guide-input-forms.html#activerecord-based-forms-activeform">ActiveForm</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-pjax.html">Pjax</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-menu.html">Menu</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linkpager.html">LinkPager</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linksorter.html">LinkSorter</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-bootstrap/blob/master/docs/guide/README.md">Bootstrap Widgets</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-jui/blob/master/docs/guide/README.md">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-1545" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-1545" class="submenu panel-collapse collapse"><a class="list-group-item" href="./helper-overview.html">Overview</a>
+<a class="list-group-item" href="./helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./helper-html.html">Html</a>
+<a class="list-group-item" href="./helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Responses <span id="responses"></span><a href="#responses" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#status-code">Status Code</a></li>
+<li><a href="#http-headers">HTTP Headers</a></li>
+<li><a href="#response-body">Response Body</a></li>
+<li><a href="#browser-redirection">Browser Redirection</a></li>
+<li><a href="#sending-files">Sending Files</a></li>
+<li><a href="#sending-response">Sending Response</a></li></ol></div>
+<p>When an application finishes handling a <a href="runtime-requests.html">request</a>, it generates a <span class="broken-link">yii\web\Response</span> object
+and sends it to the end user. The response object contains information such as the HTTP status code, HTTP headers and body.
+The ultimate goal of Web application development is essentially to build such response objects upon various requests.</p>
+<p>In most cases you should mainly deal with the <code>response</code> <a href="structure-application-components.html">application component</a>
+which is an instance of <span class="broken-link">yii\web\Response</span>, by default. However, Yii also allows you to create your own response
+objects and send them to end users as we will explain in the following.</p>
+<p>In this section, we will describe how to compose and send responses to end users. </p>
+<h2>Status Code  <span id="status-code"></span><a href="#status-code" class="hashlink">&para;</a></h2><p>One of the first things you would do when building a response is to state whether the request is successfully handled.
+This is done by setting the <span class="broken-link">yii\web\Response::statusCode</span> property which can take one of the valid
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">HTTP status codes</a>. For example, to indicate the request
+is successfully handled, you may set the status code to be 200, like the following:</p>
+<pre><code class="hljs php language-php">Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;statusCode = <span class="hljs-number">200</span>;
+</code></pre>
+<p>However, in most cases you do not need to explicitly set the status code. This is because the default value
+of <span class="broken-link">yii\web\Response::statusCode</span> is 200. And if you want to indicate the request is unsuccessful, you may
+throw an appropriate HTTP exception like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> \yii\web\NotFoundHttpException;
+</code></pre>
+<p>When the <a href="runtime-handling-errors.html">error handler</a> catches an exception, it will extract the status code 
+from the exception and assign it to the response. For the <span class="broken-link">yii\web\NotFoundHttpException</span> above, it is
+associated with the HTTP status 404. The following HTTP exceptions are predefined in Yii:</p>
+<ul>
+<li><span class="broken-link">yii\web\BadRequestHttpException</span>: status code 400.</li>
+<li><span class="broken-link">yii\web\ConflictHttpException</span>: status code 409.</li>
+<li><span class="broken-link">yii\web\ForbiddenHttpException</span>: status code 403.</li>
+<li><span class="broken-link">yii\web\GoneHttpException</span>: status code 410.</li>
+<li><span class="broken-link">yii\web\MethodNotAllowedHttpException</span>: status code 405.</li>
+<li><span class="broken-link">yii\web\NotAcceptableHttpException</span>: status code 406. </li>
+<li><span class="broken-link">yii\web\NotFoundHttpException</span>: status code 404.</li>
+<li><span class="broken-link">yii\web\ServerErrorHttpException</span>: status code 500.</li>
+<li><span class="broken-link">yii\web\TooManyRequestsHttpException</span>: status code 429.</li>
+<li><span class="broken-link">yii\web\UnauthorizedHttpException</span>: status code 401.</li>
+<li><span class="broken-link">yii\web\UnsupportedMediaTypeHttpException</span>: status code 415.</li>
+</ul>
+<p>If the exception that you want to throw is not among the above list, you may create one by extending
+from <span class="broken-link">yii\web\HttpException</span>, or directly throw it with a status code, for example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> \yii\web\HttpException(<span class="hljs-number">402</span>);
+</code></pre>
+<h2>HTTP Headers  <span id="http-headers"></span><a href="#http-headers" class="hashlink">&para;</a></h2><p>You can send HTTP headers by manipulating the <span class="broken-link">yii\web\Response::headers</span> in the <code>response</code> component.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$headers</span> = Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;headers;
+
+<span class="hljs-comment">// add a Pragma header. Existing Pragma headers will NOT be overwritten.</span>
+<span class="hljs-variable">$headers</span>-&gt;add(<span class="hljs-string">'Pragma'</span>, <span class="hljs-string">'no-cache'</span>);
+
+<span class="hljs-comment">// set a Pragma header. Any existing Pragma headers will be discarded.</span>
+<span class="hljs-variable">$headers</span>-&gt;set(<span class="hljs-string">'Pragma'</span>, <span class="hljs-string">'no-cache'</span>);
+
+<span class="hljs-comment">// remove Pragma header(s) and return the removed Pragma header values in an array</span>
+<span class="hljs-variable">$values</span> = <span class="hljs-variable">$headers</span>-&gt;remove(<span class="hljs-string">'Pragma'</span>);
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>Header names are case insensitive. And the newly registered headers are not sent to the user until
+  the <span class="broken-link">yii\web\Response::send()</span> method is called.</p>
+</blockquote>
+<h2>Response Body  <span id="response-body"></span><a href="#response-body" class="hashlink">&para;</a></h2><p>Most responses should have a body which gives the content that you want to show to end users.</p>
+<p>If you already have a formatted body string, you may assign it to the <span class="broken-link">yii\web\Response::content</span> property
+of the response. For example,</p>
+<pre><code class="hljs php language-php">Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;content = <span class="hljs-string">'hello world!'</span>;
+</code></pre>
+<p>If your data needs to be formatted before sending it to end users, you should set both of the
+<span class="broken-link">yii\web\Response::format</span> and <span class="broken-link">yii\web\Response::data</span> properties. The <span class="broken-link">yii\web\Response::format</span>
+property specifies in which format the <span class="broken-link">yii\web\Response::data</span> should be formatted. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-variable">$response</span> = Yii::<span class="hljs-variable">$app</span>-&gt;response;
+<span class="hljs-variable">$response</span>-&gt;format = \yii\web\Response::FORMAT_JSON;
+<span class="hljs-variable">$response</span>-&gt;data = [<span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'hello world'</span>];
+</code></pre>
+<p>Yii supports the following formats out of the box, each implemented by a <span class="broken-link">yii\web\ResponseFormatterInterface</span> class.
+You can customize these formatters or add new ones by configuring the <span class="broken-link">yii\web\Response::formatters</span> property.</p>
+<ul>
+<li><span class="broken-link">yii\web\Response::FORMAT_HTML</span>: implemented by <span class="broken-link">yii\web\HtmlResponseFormatter</span>.</li>
+<li><span class="broken-link">yii\web\Response::FORMAT_XML</span>: implemented by <span class="broken-link">yii\web\XmlResponseFormatter</span>.</li>
+<li><span class="broken-link">yii\web\Response::FORMAT_JSON</span>: implemented by <span class="broken-link">yii\web\JsonResponseFormatter</span>.</li>
+<li><span class="broken-link">yii\web\Response::FORMAT_JSONP</span>: implemented by <span class="broken-link">yii\web\JsonResponseFormatter</span>.</li>
+<li><span class="broken-link">yii\web\Response::FORMAT_RAW</span>: use this format if you want to send the response directly without applying any formatting.</li>
+</ul>
+<p>While the response body can be set explicitly as shown above, in most cases you may set it implicitly by the return value
+of <a href="structure-controllers.html">action</a> methods. A common use case is like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionIndex</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'index'</span>);
+}
+</code></pre>
+<p>The <code>index</code> action above returns the rendering result of the <code>index</code> view. The return value will be taken
+by the <code>response</code> component, formatted and then sent to end users.</p>
+<p>Because by default the response format is <span class="broken-link">yii\web\Response::FORMAT_HTML</span>, you should only return a string
+in an action method. If you want to use a different response format, you should set it first before returning the data.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionInfo</span><span class="hljs-params">()</span>
+</span>{
+    \Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;format = \yii\web\Response::FORMAT_JSON;
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'hello world'</span>,
+        <span class="hljs-string">'code'</span> =&gt; <span class="hljs-number">100</span>,
+    ];
+}
+</code></pre>
+<p>As aforementioned, besides using the default <code>response</code> application component, you can also create your own
+response objects and send them to end users. You can do so by returning such object in an action method, like the following,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionInfo</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> \Yii::createObject([
+        <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\web\Response'</span>,
+        <span class="hljs-string">'format'</span> =&gt; \yii\web\Response::FORMAT_JSON,
+        <span class="hljs-string">'data'</span> =&gt; [
+            <span class="hljs-string">'message'</span> =&gt; <span class="hljs-string">'hello world'</span>,
+            <span class="hljs-string">'code'</span> =&gt; <span class="hljs-number">100</span>,
+        ],
+    ]);
+}
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>If you are creating your own response objects, you will not be able to take advantage of the configurations
+  that you set for the <code>response</code> component in the application configuration. You can, however, use 
+  <a href="concept-di-container.html">dependency injection</a> to apply a common configuration to your new response objects.</p>
+</blockquote>
+<h2>Browser Redirection  <span id="browser-redirection"></span><a href="#browser-redirection" class="hashlink">&para;</a></h2><p>Browser redirection relies on sending a <code>Location</code> HTTP header. Because this feature is commonly used, Yii provides
+some special support for it.</p>
+<p>You can redirect the user browser to a URL by calling the <span class="broken-link">yii\web\Response::redirect()</span> method. The method
+sets the appropriate <code>Location</code> header with the given URL and returns the response object itself. In an action method,
+you can call its shortcut version <span class="broken-link">yii\web\Controller::redirect()</span>. For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionOld</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;redirect(<span class="hljs-string">'http://example.com/new'</span>, <span class="hljs-number">301</span>);
+}
+</code></pre>
+<p>In the above code, the action method returns the result of the <code>redirect()</code> method. As explained before, the response
+object returned by an action method will be used as the response sending to end users.</p>
+<p>In places other than an action method, you should call <span class="broken-link">yii\web\Response::redirect()</span> directly followed by 
+a chained call to the <span class="broken-link">yii\web\Response::send()</span> method to ensure no extra content will be appended to the response.</p>
+<pre><code class="hljs php language-php">\Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;redirect(<span class="hljs-string">'http://example.com/new'</span>, <span class="hljs-number">301</span>)-&gt;send();
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>By default, the <span class="broken-link">yii\web\Response::redirect()</span> method sets the response status code to be 302 which instructs
+  the browser that the resource being requested is <em>temporarily</em> located in a different URI. You can pass in a status
+  code 301 to tell the browser that the resource has been <em>permanently</em> relocated.</p>
+</blockquote>
+<p>When the current request is an AJAX request, sending a <code>Location</code> header will not automatically cause the browser
+to redirect. To solve this problem, the <span class="broken-link">yii\web\Response::redirect()</span> method sets an <code>X-Redirect</code> header with 
+the redirection URL as its value. On the client-side, you may write JavaScript code to read this header value and
+redirect the browser accordingly.</p>
+<blockquote class="info"><p><strong>Info: </strong>Yii comes with a <code>yii.js</code> JavaScript file which provides a set of commonly used JavaScript utilities,
+  including browser redirection based on the <code>X-Redirect</code> header. Therefore, if you are using this JavaScript file
+  (by registering the <span class="broken-link">yii\web\YiiAsset</span> asset bundle), you do not need to write anything to support AJAX redirection.
+  More information about <code>yii.js</code> can be found in the <a href="output-client-scripts.html#yii.js">Client Scripts Section</a>.</p>
+</blockquote>
+<h2>Sending Files  <span id="sending-files"></span><a href="#sending-files" class="hashlink">&para;</a></h2><p>Like browser redirection, file sending is another feature that relies on specific HTTP headers. Yii provides
+a set of methods to support various file sending needs. They all have built-in support for the HTTP range header.</p>
+<ul>
+<li><span class="broken-link">yii\web\Response::sendFile()</span>: sends an existing file to a client.</li>
+<li><span class="broken-link">yii\web\Response::sendContentAsFile()</span>: sends a text string as a file to a client.</li>
+<li><span class="broken-link">yii\web\Response::sendStreamAsFile()</span>: sends an existing file stream as a file to a client. </li>
+</ul>
+<p>These methods have the same method signature with the response object as the return value. If the file
+to be sent is very big, you should consider using <span class="broken-link">yii\web\Response::sendStreamAsFile()</span> because it is more
+memory efficient. The following example shows how to send a file in a controller action:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionDownload</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> \Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;sendFile(<span class="hljs-string">'path/to/file.txt'</span>);
+}
+</code></pre>
+<p>If you are calling the file sending method in places other than an action method, you should also call
+the <span class="broken-link">yii\web\Response::send()</span> method afterwards to ensure no extra content will be appended to the response.</p>
+<pre><code class="hljs php language-php">\Yii::<span class="hljs-variable">$app</span>-&gt;response-&gt;sendFile(<span class="hljs-string">'path/to/file.txt'</span>)-&gt;send();
+</code></pre>
+<p>Some Web servers have a special file sending support called <em>X-Sendfile</em>. The idea is to redirect the
+request for a file to the Web server which will directly serve the file. As a result, the Web application
+can terminate earlier while the Web server is sending the file. To use this feature, you may call
+the <span class="broken-link">yii\web\Response::xSendFile()</span>. The following list summarizes how to enable the <code>X-Sendfile</code> feature
+for some popular Web servers:</p>
+<ul>
+<li>Apache: <a href="http://tn123.org/mod_xsendfile">X-Sendfile</a></li>
+<li>Lighttpd v1.4: <a href="http://redmine.lighttpd.net/projects/lighttpd/wiki/X-LIGHTTPD-send-file">X-LIGHTTPD-send-file</a></li>
+<li>Lighttpd v1.5: <a href="http://redmine.lighttpd.net/projects/lighttpd/wiki/X-LIGHTTPD-send-file">X-Sendfile</a></li>
+<li>Nginx: <a href="http://wiki.nginx.org/XSendfile">X-Accel-Redirect</a></li>
+<li>Cherokee: <a href="http://www.cherokee-project.com/doc/other_goodies.html#x-sendfile">X-Sendfile and X-Accel-Redirect</a></li>
+</ul>
+<h2>Sending Response  <span id="sending-response"></span><a href="#sending-response" class="hashlink">&para;</a></h2><p>The content in a response is not sent to the user until the <span class="broken-link">yii\web\Response::send()</span> method is called.
+By default, this method will be called automatically at the end of <span class="broken-link">yii\base\Application::run()</span>. You can, however,
+explicitly call this method to force sending out the response immediately.</p>
+<p>The <span class="broken-link">yii\web\Response::send()</span> method takes the following steps to send out a response:</p>
+<ol>
+<li>Trigger the <span class="broken-link">yii\web\Response::EVENT_BEFORE_SEND</span> event.</li>
+<li>Call <span class="broken-link">yii\web\Response::prepare()</span> to format <span class="broken-link">yii\web\Response::data</span> into 
+<span class="broken-link">yii\web\Response::content</span>.</li>
+<li>Trigger the <span class="broken-link">yii\web\Response::EVENT_AFTER_PREPARE</span> event.</li>
+<li>Call <span class="broken-link">yii\web\Response::sendHeaders()</span> to send out the registered HTTP headers.</li>
+<li>Call <span class="broken-link">yii\web\Response::sendContent()</span> to send out the response body content.</li>
+<li>Trigger the <span class="broken-link">yii\web\Response::EVENT_AFTER_SEND</span> event.</li>
+</ol>
+<p>After the <span class="broken-link">yii\web\Response::send()</span> method is called once, any further call to this method will be ignored.
+This means once the response is sent out, you will not be able to append more content to it.</p>
+<p>As you can see, the <span class="broken-link">yii\web\Response::send()</span> method triggers several useful events. By responding to
+these events, it is possible to adjust or decorate the response.</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:41:22 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

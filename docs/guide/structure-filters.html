@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Filters - Application Structure - The Definitive Guide to Yii 2.0</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w916" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w916-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./guide-index.html">The Definitive Guide to Yii 2.0</a></div><div id="w916-collapse" class="collapse navbar-collapse"><ul id="w917" class="navbar-nav nav"><li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-900" data-toggle="collapse" data-parent="#navigation">Introduction <b class="caret"></b></a><div id="navigation-900" class="submenu panel-collapse collapse"><a class="list-group-item" href="./intro-yii.html">About Yii</a>
+<a class="list-group-item" href="./intro-upgrade-from-v1.html">Upgrading from Version 1.1</a></div>
+<a class="list-group-item" href="#navigation-901" data-toggle="collapse" data-parent="#navigation">Getting Started <b class="caret"></b></a><div id="navigation-901" class="submenu panel-collapse collapse"><a class="list-group-item" href="./start-installation.html">Installing Yii</a>
+<a class="list-group-item" href="./start-workflow.html">Running Applications</a>
+<a class="list-group-item" href="./start-hello.html">Saying Hello</a>
+<a class="list-group-item" href="./start-forms.html">Working with Forms</a>
+<a class="list-group-item" href="./start-databases.html">Working with Databases</a>
+<a class="list-group-item" href="./start-gii.html">Generating Code with Gii</a>
+<a class="list-group-item" href="./start-looking-ahead.html">Looking Ahead</a></div>
+<a class="list-group-item active" href="#navigation-902" data-toggle="collapse" data-parent="#navigation">Application Structure <b class="caret"></b></a><div id="navigation-902" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./structure-overview.html">Overview</a>
+<a class="list-group-item" href="./structure-entry-scripts.html">Entry Scripts</a>
+<a class="list-group-item" href="./structure-applications.html">Applications</a>
+<a class="list-group-item" href="./structure-application-components.html">Application Components</a>
+<a class="list-group-item" href="./structure-controllers.html">Controllers</a>
+<a class="list-group-item" href="./structure-models.html">Models</a>
+<a class="list-group-item" href="./structure-views.html">Views</a>
+<a class="list-group-item" href="./structure-modules.html">Modules</a>
+<a class="list-group-item active" href="./structure-filters.html">Filters</a>
+<a class="list-group-item" href="./structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./structure-assets.html">Assets</a>
+<a class="list-group-item" href="./structure-extensions.html">Extensions</a></div>
+<a class="list-group-item" href="#navigation-903" data-toggle="collapse" data-parent="#navigation">Handling Requests <b class="caret"></b></a><div id="navigation-903" class="submenu panel-collapse collapse"><a class="list-group-item" href="./runtime-overview.html">Overview</a>
+<a class="list-group-item" href="./runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./runtime-routing.html">Routing and URL Creation</a>
+<a class="list-group-item" href="./runtime-requests.html">Requests</a>
+<a class="list-group-item" href="./runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./runtime-sessions-cookies.html">Sessions and Cookies</a>
+<a class="list-group-item" href="./runtime-handling-errors.html">Handling Errors</a>
+<a class="list-group-item" href="./runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-904" data-toggle="collapse" data-parent="#navigation">Key Concepts <b class="caret"></b></a><div id="navigation-904" class="submenu panel-collapse collapse"><a class="list-group-item" href="./concept-components.html">Components</a>
+<a class="list-group-item" href="./concept-properties.html">Properties</a>
+<a class="list-group-item" href="./concept-events.html">Events</a>
+<a class="list-group-item" href="./concept-behaviors.html">Behaviors</a>
+<a class="list-group-item" href="./concept-configurations.html">Configurations</a>
+<a class="list-group-item" href="./concept-aliases.html">Aliases</a>
+<a class="list-group-item" href="./concept-autoloading.html">Class Autoloading</a>
+<a class="list-group-item" href="./concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-905" data-toggle="collapse" data-parent="#navigation">Working with Databases <b class="caret"></b></a><div id="navigation-905" class="submenu panel-collapse collapse"><a class="list-group-item" href="./db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./db-migrations.html">Migrations</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-sphinx/blob/master/docs/guide/README.md">Sphinx</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-redis/blob/master/docs/guide/README.md">Redis</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-mongodb/blob/master/docs/guide/README.md">MongoDB</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-elasticsearch/blob/master/docs/guide/README.md">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-906" data-toggle="collapse" data-parent="#navigation">Getting Data from Users <b class="caret"></b></a><div id="navigation-906" class="submenu panel-collapse collapse"><a class="list-group-item" href="./input-forms.html">Creating Forms</a>
+<a class="list-group-item" href="./input-validation.html">Validating Input</a>
+<a class="list-group-item" href="./input-file-upload.html">Uploading Files</a>
+<a class="list-group-item" href="./input-tabular-input.html">Collecting Tabular Input</a>
+<a class="list-group-item" href="./input-multiple-models.html">Getting Data for Multiple Models</a></div>
+<a class="list-group-item" href="#navigation-907" data-toggle="collapse" data-parent="#navigation">Displaying Data <b class="caret"></b></a><div id="navigation-907" class="submenu panel-collapse collapse"><a class="list-group-item" href="./output-formatting.html">Data Formatting</a>
+<a class="list-group-item" href="./output-pagination.html">Pagination</a>
+<a class="list-group-item" href="./output-sorting.html">Sorting</a>
+<a class="list-group-item" href="./output-data-providers.html">Data Providers</a>
+<a class="list-group-item" href="./output-data-widgets.html">Data Widgets</a>
+<a class="list-group-item" href="./output-client-scripts.html">Working with Client Scripts</a>
+<a class="list-group-item" href="./output-theming.html">Theming</a></div>
+<a class="list-group-item" href="#navigation-908" data-toggle="collapse" data-parent="#navigation">Security <b class="caret"></b></a><div id="navigation-908" class="submenu panel-collapse collapse"><a class="list-group-item" href="./security-overview.html">Overview</a>
+<a class="list-group-item" href="./security-authentication.html">Authentication</a>
+<a class="list-group-item" href="./security-authorization.html">Authorization</a>
+<a class="list-group-item" href="./security-passwords.html">Working with Passwords</a>
+<a class="list-group-item" href="./security-cryptography.html">Cryptography</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/README.md">Auth Clients</a>
+<a class="list-group-item" href="./security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-909" data-toggle="collapse" data-parent="#navigation">Caching <b class="caret"></b></a><div id="navigation-909" class="submenu panel-collapse collapse"><a class="list-group-item" href="./caching-overview.html">Overview</a>
+<a class="list-group-item" href="./caching-data.html">Data Caching</a>
+<a class="list-group-item" href="./caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-910" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-910" class="submenu panel-collapse collapse"><a class="list-group-item" href="./rest-quick-start.html">Quick Start</a>
+<a class="list-group-item" href="./rest-resources.html">Resources</a>
+<a class="list-group-item" href="./rest-controllers.html">Controllers</a>
+<a class="list-group-item" href="./rest-routing.html">Routing</a>
+<a class="list-group-item" href="./rest-response-formatting.html">Response Formatting</a>
+<a class="list-group-item" href="./rest-authentication.html">Authentication</a>
+<a class="list-group-item" href="./rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./rest-versioning.html">Versioning</a>
+<a class="list-group-item" href="./rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-911" data-toggle="collapse" data-parent="#navigation">Development Tools <b class="caret"></b></a><div id="navigation-911" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-debug/blob/master/docs/guide/README.md">Debug Toolbar and Debugger</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-gii/blob/master/docs/guide/README.md">Generating Code using Gii</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-apidoc">Generating API Documentation</a></div>
+<a class="list-group-item" href="#navigation-912" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-912" class="submenu panel-collapse collapse"><a class="list-group-item" href="./test-overview.html">Overview</a>
+<a class="list-group-item" href="./test-environment-setup.html">Testing environment setup</a>
+<a class="list-group-item" href="./test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./test-functional.html">Functional Tests</a>
+<a class="list-group-item" href="./test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-913" data-toggle="collapse" data-parent="#navigation">Special Topics <b class="caret"></b></a><div id="navigation-913" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>
+<a class="list-group-item" href="./tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./tutorial-console.html">Console Commands</a>
+<a class="list-group-item" href="./tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./tutorial-i18n.html">Internationalization</a>
+<a class="list-group-item" href="./tutorial-mailing.html">Mailing</a>
+<a class="list-group-item" href="./tutorial-performance-tuning.html">Performance Tuning</a>
+<a class="list-group-item" href="./tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-914" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-914" class="submenu panel-collapse collapse"><a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-grid-gridview.html">GridView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-listview.html">ListView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-detailview.html">DetailView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/guide-input-forms.html#activerecord-based-forms-activeform">ActiveForm</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-pjax.html">Pjax</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-menu.html">Menu</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linkpager.html">LinkPager</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linksorter.html">LinkSorter</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-bootstrap/blob/master/docs/guide/README.md">Bootstrap Widgets</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-jui/blob/master/docs/guide/README.md">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-915" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-915" class="submenu panel-collapse collapse"><a class="list-group-item" href="./helper-overview.html">Overview</a>
+<a class="list-group-item" href="./helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./helper-html.html">Html</a>
+<a class="list-group-item" href="./helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Filters <span id="filters"></span><a href="#filters" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#using-filters">Using Filters</a></li>
+<li><a href="#creating-filters">Creating Filters</a></li>
+<li><a href="#core-filters">Core Filters</a></li></ol></div>
+<p>Filters are objects that run before and/or after <a href="structure-controllers.html#actions">controller actions</a>. For example,
+an access control filter may run before actions to ensure that they are allowed to be accessed by particular end users;
+a content compression filter may run after actions to compress the response content before sending them out to end users.</p>
+<p>A filter may consist of a pre-filter (filtering logic applied <em>before</em> actions) and/or a post-filter (logic applied
+<em>after</em> actions).</p>
+<h2>Using Filters  <span id="using-filters"></span><a href="#using-filters" class="hashlink">&para;</a></h2><p>Filters are essentially a special kind of <a href="concept-behaviors.html">behaviors</a>. Therefore, using filters is the same
+as <a href="concept-behaviors.html#attaching-behaviors">using behaviors</a>. You can declare filters in a controller class
+by overriding its <span class="broken-link">yii\base\Controller::behaviors()</span> method like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        [
+            <span class="hljs-string">'class'</span> =&gt; <span class="hljs-string">'yii\filters\HttpCache'</span>,
+            <span class="hljs-string">'only'</span> =&gt; [<span class="hljs-string">'index'</span>, <span class="hljs-string">'view'</span>],
+            <span class="hljs-string">'lastModified'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$action</span>, <span class="hljs-variable">$params</span>)</span> </span>{
+                <span class="hljs-variable">$q</span> = <span class="hljs-keyword">new</span> \yii\db\Query();
+                <span class="hljs-keyword">return</span> <span class="hljs-variable">$q</span>-&gt;from(<span class="hljs-string">'user'</span>)-&gt;max(<span class="hljs-string">'updated_at'</span>);
+            },
+        ],
+    ];
+}
+</code></pre>
+<p>By default, filters declared in a controller class will be applied to <em>all</em> actions in that controller. You can,
+however, explicitly specify which actions the filter should be applied to by configuring the
+<span class="broken-link">yii\base\ActionFilter::only</span> property. In the above example, the <code>HttpCache</code> filter only applies to the
+<code>index</code> and <code>view</code> actions. You can also configure the <span class="broken-link">yii\base\ActionFilter::except</span> property to blacklist
+some actions from being filtered.</p>
+<p>Besides controllers, you can also declare filters in a <a href="structure-modules.html">module</a> or <a href="structure-applications.html">application</a>.
+When you do so, the filters will be applied to <em>all</em> controller actions belonging to that module or application,
+unless you configure the filters' <span class="broken-link">yii\base\ActionFilter::only</span> and <span class="broken-link">yii\base\ActionFilter::except</span>
+properties like described above.</p>
+<blockquote class="note"><p><strong>Note: </strong>When declaring filters in modules or applications, you should use <a href="structure-controllers.html#routes">routes</a>
+  instead of action IDs in the <span class="broken-link">yii\base\ActionFilter::only</span> and <span class="broken-link">yii\base\ActionFilter::except</span> properties.
+  This is because action IDs alone cannot fully specify actions within the scope of a module or application.</p>
+</blockquote>
+<p>When multiple filters are configured for a single action, they are applied according to the rules described below:</p>
+<ul>
+<li>Pre-filtering<ul>
+<li>Apply filters declared in the application in the order they are listed in <code>behaviors()</code>.</li>
+<li>Apply filters declared in the module in the order they are listed in <code>behaviors()</code>.</li>
+<li>Apply filters declared in the controller in the order they are listed in <code>behaviors()</code>.</li>
+<li>If any of the filters cancel the action execution, the filters (both pre-filters and post-filters) after it will
+not be applied.</li>
+</ul>
+</li>
+<li>Running the action if it passes the pre-filtering.</li>
+<li>Post-filtering<ul>
+<li>Apply filters declared in the controller in the reverse order they are listed in <code>behaviors()</code>.</li>
+<li>Apply filters declared in the module in the reverse order they are listed in <code>behaviors()</code>.</li>
+<li>Apply filters declared in the application in the reverse order they are listed in <code>behaviors()</code>.</li>
+</ul>
+</li>
+</ul>
+<h2>Creating Filters  <span id="creating-filters"></span><a href="#creating-filters" class="hashlink">&para;</a></h2><p>To create a new action filter, extend from <span class="broken-link">yii\base\ActionFilter</span> and override the
+<span class="broken-link">yii\base\ActionFilter::beforeAction()</span> and/or <span class="broken-link">yii\base\ActionFilter::afterAction()</span>
+methods. The former will be executed before an action runs while the latter after an action runs.
+The return value of <span class="broken-link">yii\base\ActionFilter::beforeAction()</span> determines whether an action should
+be executed or not. If it is <code>false</code>, the filters after this one will be skipped and the action will not be executed.</p>
+<p>The following example shows a filter that logs the action execution time:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">components</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">ActionFilter</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ActionTimeFilter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ActionFilter</span>
+</span>{
+    <span class="hljs-keyword">private</span> <span class="hljs-variable">$_startTime</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">beforeAction</span><span class="hljs-params">(<span class="hljs-variable">$action</span>)</span>
+    </span>{
+        <span class="hljs-variable">$this</span>-&gt;_startTime = microtime(<span class="hljs-keyword">true</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">parent</span>::beforeAction(<span class="hljs-variable">$action</span>);
+    }
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">afterAction</span><span class="hljs-params">(<span class="hljs-variable">$action</span>, <span class="hljs-variable">$result</span>)</span>
+    </span>{
+        <span class="hljs-variable">$time</span> = microtime(<span class="hljs-keyword">true</span>) - <span class="hljs-variable">$this</span>-&gt;_startTime;
+        Yii::trace(<span class="hljs-string">"Action '{$action-&gt;uniqueId}' spent $time second."</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">parent</span>::afterAction(<span class="hljs-variable">$action</span>, <span class="hljs-variable">$result</span>);
+    }
+}
+</code></pre>
+<h2>Core Filters  <span id="core-filters"></span><a href="#core-filters" class="hashlink">&para;</a></h2><p>Yii provides a set of commonly used filters, found primarily under the <code>yii\filters</code> namespace. In the following,
+we will briefly introduce these filters.</p>
+<h3><span class="broken-link">yii\filters\AccessControl</span>  <span id="access-control"></span><a href="#access-control" class="hashlink">&para;</a></h3><p>AccessControl provides simple access control based on a set of <span class="broken-link">yii\filters\AccessControl::rules</span>.
+In particular, before an action is executed, AccessControl will examine the listed rules and find the first one
+that matches the current context variables (such as user IP address, user login status, etc.) The matching
+rule will dictate whether to allow or deny the execution of the requested action. If no rule matches, the access
+will be denied.</p>
+<p>The following example shows how to allow authenticated users to access the <code>create</code> and <code>update</code> actions
+while denying all other users from accessing these two actions.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">AccessControl</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'access'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; AccessControl::className(),
+            <span class="hljs-string">'only'</span> =&gt; [<span class="hljs-string">'create'</span>, <span class="hljs-string">'update'</span>],
+            <span class="hljs-string">'rules'</span> =&gt; [
+                <span class="hljs-comment">// allow authenticated users</span>
+                [
+                    <span class="hljs-string">'allow'</span> =&gt; <span class="hljs-keyword">true</span>,
+                    <span class="hljs-string">'roles'</span> =&gt; [<span class="hljs-string">'@'</span>],
+                ],
+                <span class="hljs-comment">// everything else is denied by default</span>
+            ],
+        ],
+    ];
+}
+</code></pre>
+<p>For more details about access control in general, please refer to the <a href="security-authorization.html">Authorization</a> section.</p>
+<h3>Authentication Method Filters  <span id="auth-method-filters"></span><a href="#auth-method-filters" class="hashlink">&para;</a></h3><p>Authentication method filters are used to authenticate a user using various methods, such as
+<a href="http://en.wikipedia.org/wiki/Basic_access_authentication">HTTP Basic Auth</a>, <a href="http://oauth.net/2/">OAuth 2</a>.
+These filter classes are all under the <code>yii\filters\auth</code> namespace.</p>
+<p>The following example shows how you can use <span class="broken-link">yii\filters\auth\HttpBasicAuth</span> to authenticate a user using
+an access token based on HTTP Basic Auth method. Note that in order for this to work, your
+<span class="broken-link">yii\web\User::identityClass</span> must implement the <span class="broken-link">yii\web\IdentityInterface::findIdentityByAccessToken()</span>
+method.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">auth</span>\<span class="hljs-title">HttpBasicAuth</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'basicAuth'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; HttpBasicAuth::className(),
+        ],
+    ];
+}
+</code></pre>
+<p>Authentication method filters are commonly used in implementing RESTful APIs. For more details, please refer to the
+RESTful <a href="rest-authentication.html">Authentication</a> section.</p>
+<h3><span class="broken-link">yii\filters\ContentNegotiator</span>  <span id="content-negotiator"></span><a href="#content-negotiator" class="hashlink">&para;</a></h3><p>ContentNegotiator supports response format negotiation and application language negotiation. It will try to
+determine the response format and/or language by examining <code>GET</code> parameters and <code>Accept</code> HTTP header.</p>
+<p>In the following example, ContentNegotiator is configured to support JSON and XML response formats, and
+English (United States) and German languages.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">ContentNegotiator</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Response</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        [
+            <span class="hljs-string">'class'</span> =&gt; ContentNegotiator::className(),
+            <span class="hljs-string">'formats'</span> =&gt; [
+                <span class="hljs-string">'application/json'</span> =&gt; Response::FORMAT_JSON,
+                <span class="hljs-string">'application/xml'</span> =&gt; Response::FORMAT_XML,
+            ],
+            <span class="hljs-string">'languages'</span> =&gt; [
+                <span class="hljs-string">'en-US'</span>,
+                <span class="hljs-string">'de'</span>,
+            ],
+        ],
+    ];
+}
+</code></pre>
+<p>Response formats and languages often need to be determined much earlier during
+the <a href="structure-applications.html#application-lifecycle">application lifecycle</a>. For this reason, ContentNegotiator
+is designed in a way such that it can also be used as a <a href="structure-applications.html#bootstrap">bootstrapping component</a>
+besides being used as a filter. For example, you may configure it in the <a href="structure-applications.html#application-configurations">application configuration</a>
+like the following:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">ContentNegotiator</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Response</span>;
+
+[
+    <span class="hljs-string">'bootstrap'</span> =&gt; [
+        [
+            <span class="hljs-string">'class'</span> =&gt; ContentNegotiator::className(),
+            <span class="hljs-string">'formats'</span> =&gt; [
+                <span class="hljs-string">'application/json'</span> =&gt; Response::FORMAT_JSON,
+                <span class="hljs-string">'application/xml'</span> =&gt; Response::FORMAT_XML,
+            ],
+            <span class="hljs-string">'languages'</span> =&gt; [
+                <span class="hljs-string">'en-US'</span>,
+                <span class="hljs-string">'de'</span>,
+            ],
+        ],
+    ],
+];
+</code></pre>
+<blockquote class="info"><p><strong>Info: </strong>In case the preferred content type and language cannot be determined from a request, the first format and
+  language listed in <span class="broken-link">formats</span> and <span class="broken-link">languages</span> will be used.</p>
+</blockquote>
+<h3><span class="broken-link">yii\filters\HttpCache</span>  <span id="http-cache"></span><a href="#http-cache" class="hashlink">&para;</a></h3><p>HttpCache implements client-side caching by utilizing the <code>Last-Modified</code> and <code>Etag</code> HTTP headers.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">HttpCache</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        [
+            <span class="hljs-string">'class'</span> =&gt; HttpCache::className(),
+            <span class="hljs-string">'only'</span> =&gt; [<span class="hljs-string">'index'</span>],
+            <span class="hljs-string">'lastModified'</span> =&gt; <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$action</span>, <span class="hljs-variable">$params</span>)</span> </span>{
+                <span class="hljs-variable">$q</span> = <span class="hljs-keyword">new</span> \yii\db\Query();
+                <span class="hljs-keyword">return</span> <span class="hljs-variable">$q</span>-&gt;from(<span class="hljs-string">'user'</span>)-&gt;max(<span class="hljs-string">'updated_at'</span>);
+            },
+        ],
+    ];
+}
+</code></pre>
+<p>Please refer to the <a href="caching-http.html">HTTP Caching</a> section for more details about using HttpCache.</p>
+<h3><span class="broken-link">yii\filters\PageCache</span>  <span id="page-cache"></span><a href="#page-cache" class="hashlink">&para;</a></h3><p>PageCache implements server-side caching of whole pages. In the following example, PageCache is applied
+to the <code>index</code> action to cache the whole page for maximum 60 seconds or until the count of entries in the <code>post</code>
+table changes. It also stores different versions of the page depending on the chosen application language.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">PageCache</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">caching</span>\<span class="hljs-title">DbDependency</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'pageCache'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; PageCache::className(),
+            <span class="hljs-string">'only'</span> =&gt; [<span class="hljs-string">'index'</span>],
+            <span class="hljs-string">'duration'</span> =&gt; <span class="hljs-number">60</span>,
+            <span class="hljs-string">'dependency'</span> =&gt; [
+                <span class="hljs-string">'class'</span> =&gt; DbDependency::className(),
+                <span class="hljs-string">'sql'</span> =&gt; <span class="hljs-string">'SELECT COUNT(*) FROM post'</span>,
+            ],
+            <span class="hljs-string">'variations'</span> =&gt; [
+                \Yii::<span class="hljs-variable">$app</span>-&gt;language,
+            ]
+        ],
+    ];
+}
+</code></pre>
+<p>Please refer to the <a href="caching-page.html">Page Caching</a> section for more details about using PageCache.</p>
+<h3><span class="broken-link">yii\filters\RateLimiter</span>  <span id="rate-limiter"></span><a href="#rate-limiter" class="hashlink">&para;</a></h3><p>RateLimiter implements a rate limiting algorithm based on the <a href="http://en.wikipedia.org/wiki/Leaky_bucket">leaky bucket algorithm</a>.
+It is primarily used in implementing RESTful APIs. Please refer to the <a href="rest-rate-limiting.html">Rate Limiting</a> section
+for details about using this filter.</p>
+<h3><span class="broken-link">yii\filters\VerbFilter</span>  <span id="verb-filter"></span><a href="#verb-filter" class="hashlink">&para;</a></h3><p>VerbFilter checks if the HTTP request methods are allowed by the requested actions. If not allowed, it will
+throw an HTTP 405 exception. In the following example, VerbFilter is declared to specify a typical set of allowed
+request methods for CRUD actions.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">VerbFilter</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-string">'verbs'</span> =&gt; [
+            <span class="hljs-string">'class'</span> =&gt; VerbFilter::className(),
+            <span class="hljs-string">'actions'</span> =&gt; [
+                <span class="hljs-string">'index'</span>  =&gt; [<span class="hljs-string">'get'</span>],
+                <span class="hljs-string">'view'</span>   =&gt; [<span class="hljs-string">'get'</span>],
+                <span class="hljs-string">'create'</span> =&gt; [<span class="hljs-string">'get'</span>, <span class="hljs-string">'post'</span>],
+                <span class="hljs-string">'update'</span> =&gt; [<span class="hljs-string">'get'</span>, <span class="hljs-string">'put'</span>, <span class="hljs-string">'post'</span>],
+                <span class="hljs-string">'delete'</span> =&gt; [<span class="hljs-string">'post'</span>, <span class="hljs-string">'delete'</span>],
+            ],
+        ],
+    ];
+}
+</code></pre>
+<h3><span class="broken-link">yii\filters\Cors</span>  <span id="cors"></span><a href="#cors" class="hashlink">&para;</a></h3><p>Cross-origin resource sharing <a href="https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS">CORS</a> is a mechanism that allows many resources (e.g. fonts, JavaScript, etc.)
+on a Web page to be requested from another domain outside the domain the resource originated from.
+In particular, JavaScript's AJAX calls can use the XMLHttpRequest mechanism. Such "cross-domain" requests would
+otherwise be forbidden by Web browsers, per the same origin security policy.
+CORS defines a way in which the browser and the server can interact to determine whether or not to allow the cross-origin request.</p>
+<p>The <span class="broken-link">yii\filters\Cors</span> should be defined before Authentication / Authorization filters to make sure the CORS headers
+will always be sent.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">Cors</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">ArrayHelper</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> ArrayHelper::merge([
+        [
+            <span class="hljs-string">'class'</span> =&gt; Cors::className(),
+        ],
+    ], <span class="hljs-keyword">parent</span>::behaviors());
+}
+</code></pre>
+<p>Also check the section on <a href="rest-controllers.html#cors">REST Controllers</a> if you want to add the CORS filter to an
+<span class="broken-link">yii\rest\ActiveController</span> class in your API.</p>
+<p>The Cors filtering could be tuned using the <span class="broken-link">yii\filters\Cors::$cors</span> property.</p>
+<ul>
+<li><code>cors['Origin']</code>: array used to define allowed origins. Can be <code>['*']</code> (everyone) or <code>['http://www.myserver.net', 'http://www.myotherserver.com']</code>. Default to <code>['*']</code>.</li>
+<li><code>cors['Access-Control-Request-Method']</code>: array of allowed verbs like <code>['GET', 'OPTIONS', 'HEAD']</code>.  Default to <code>['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS']</code>.</li>
+<li><code>cors['Access-Control-Request-Headers']</code>: array of allowed headers. Can be <code>['*']</code> all headers or specific ones <code>['X-Request-With']</code>. Default to <code>['*']</code>.</li>
+<li><code>cors['Access-Control-Allow-Credentials']</code>: define if current request can be made using credentials. Can be <code>true</code>, <code>false</code> or <code>null</code> (not set). Default to <code>null</code>.</li>
+<li><code>cors['Access-Control-Max-Age']</code>: define lifetime of pre-flight request. Default to <code>86400</code>.</li>
+</ul>
+<p>For example, allowing CORS for origin : <code>http://www.myserver.net</code> with method <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> :</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">Cors</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">ArrayHelper</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> ArrayHelper::merge([
+        [
+            <span class="hljs-string">'class'</span> =&gt; Cors::className(),
+            <span class="hljs-string">'cors'</span> =&gt; [
+                <span class="hljs-string">'Origin'</span> =&gt; [<span class="hljs-string">'http://www.myserver.net'</span>],
+                <span class="hljs-string">'Access-Control-Request-Method'</span> =&gt; [<span class="hljs-string">'GET'</span>, <span class="hljs-string">'HEAD'</span>, <span class="hljs-string">'OPTIONS'</span>],
+            ],
+        ],
+    ], <span class="hljs-keyword">parent</span>::behaviors());
+}
+</code></pre>
+<p>You may tune the CORS headers by overriding default parameters on a per action basis.
+For example adding the <code>Access-Control-Allow-Credentials</code> for the <code>login</code> action could be done like this :</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">filters</span>\<span class="hljs-title">Cors</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">helpers</span>\<span class="hljs-title">ArrayHelper</span>;
+
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">behaviors</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-keyword">return</span> ArrayHelper::merge([
+        [
+            <span class="hljs-string">'class'</span> =&gt; Cors::className(),
+            <span class="hljs-string">'cors'</span> =&gt; [
+                <span class="hljs-string">'Origin'</span> =&gt; [<span class="hljs-string">'http://www.myserver.net'</span>],
+                <span class="hljs-string">'Access-Control-Request-Method'</span> =&gt; [<span class="hljs-string">'GET'</span>, <span class="hljs-string">'HEAD'</span>, <span class="hljs-string">'OPTIONS'</span>],
+            ],
+            <span class="hljs-string">'actions'</span> =&gt; [
+                <span class="hljs-string">'login'</span> =&gt; [
+                    <span class="hljs-string">'Access-Control-Allow-Credentials'</span> =&gt; <span class="hljs-keyword">true</span>,
+                ]
+            ]
+        ],
+    ], <span class="hljs-keyword">parent</span>::behaviors());
+}
+</code></pre>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 22:41:21 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
