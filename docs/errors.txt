@@ -2,219 +2,539 @@ Array
 (
     [0] => Array
         (
-            [line] => 24
-            [file] => controllers/AlquileresController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\AlquileresController.
+            [line] => 58
+            [file] => commands/HelloController.php
+            [message] => Property $help conflicts with a defined getter getHelp in app\commands\HelloController.
         )
 
     [1] => Array
         (
-            [line] => 20
-            [file] => controllers/PeliculasController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\PeliculasController.
+            [file] => controllers/AlquileresController.php
+            [message] => broken link to \Behavior in app\controllers\AlquileresController
         )
 
     [2] => Array
         (
-            [line] => 17
-            [file] => controllers/SiteController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\SiteController.
+            [file] => controllers/PeliculasController.php
+            [message] => broken link to \app\controllers\Behavior in app\controllers\PeliculasController
         )
 
     [3] => Array
         (
-            [line] => 43
             [file] => controllers/SiteController.php
-            [message] => Method actions has no parent to inherit from in app\controllers\SiteController.
+            [message] => broken link to \Behavior in app\controllers\SiteController
         )
 
     [4] => Array
         (
-            [line] => 20
             [file] => controllers/SociosController.php
-            [message] => Method behaviors has no parent to inherit from in app\controllers\SociosController.
+            [message] => broken link to \app\controllers\Behavior in app\controllers\SociosController
         )
 
     [5] => Array
         (
-            [line] => 26
             [file] => models/Alquiler.php
-            [message] => Method tableName has no parent to inherit from in app\models\Alquiler.
+            [message] => broken link to \app\models\Validator in app\models\Alquiler
         )
 
     [6] => Array
         (
-            [line] => 34
             [file] => models/Alquiler.php
-            [message] => Method rules has no parent to inherit from in app\models\Alquiler.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Alquiler
         )
 
     [7] => Array
         (
-            [line] => 49
             [file] => models/Alquiler.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Alquiler.
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Alquiler
         )
 
     [8] => Array
         (
-            [line] => 26
             [file] => models/Alquiler.php
-            [message] => Method tableName has no parent to inherit from in app\models\Alquiler.
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Alquiler
         )
 
     [9] => Array
         (
-            [line] => 34
             [file] => models/Alquiler.php
-            [message] => Method rules has no parent to inherit from in app\models\Alquiler.
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Alquiler
         )
 
     [10] => Array
         (
-            [line] => 49
-            [file] => models/Alquiler.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Alquiler.
+            [file] => models/AlquilerSearch.php
+            [message] => broken link to \app\models\Validator in app\models\AlquilerSearch
         )
 
     [11] => Array
         (
-            [line] => 30
             [file] => models/AlquilerSearch.php
-            [message] => Method scenarios has no parent to inherit from in app\models\AlquilerSearch.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\AlquilerSearch
         )
 
     [12] => Array
         (
-            [line] => 25
             [file] => models/Pelicula.php
-            [message] => Method tableName has no parent to inherit from in app\models\Pelicula.
+            [message] => broken link to \app\models\Validator in app\models\Pelicula
         )
 
     [13] => Array
         (
-            [line] => 33
             [file] => models/Pelicula.php
-            [message] => Method rules has no parent to inherit from in app\models\Pelicula.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Pelicula
         )
 
     [14] => Array
         (
-            [line] => 47
             [file] => models/Pelicula.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Pelicula.
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Pelicula
         )
 
     [15] => Array
         (
-            [line] => 25
             [file] => models/Pelicula.php
-            [message] => Method tableName has no parent to inherit from in app\models\Pelicula.
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Pelicula
         )
 
     [16] => Array
         (
-            [line] => 33
             [file] => models/Pelicula.php
-            [message] => Method rules has no parent to inherit from in app\models\Pelicula.
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Pelicula
         )
 
     [17] => Array
         (
-            [line] => 47
-            [file] => models/Pelicula.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Pelicula.
+            [file] => models/PeliculaSearch.php
+            [message] => broken link to \app\models\Validator in app\models\PeliculaSearch
         )
 
     [18] => Array
         (
-            [line] => 31
             [file] => models/PeliculaSearch.php
-            [message] => Method scenarios has no parent to inherit from in app\models\PeliculaSearch.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\PeliculaSearch
         )
 
     [19] => Array
         (
-            [line] => 24
             [file] => models/Socio.php
-            [message] => Method tableName has no parent to inherit from in app\models\Socio.
+            [message] => broken link to \app\models\Validator in app\models\Socio
         )
 
     [20] => Array
         (
-            [line] => 32
             [file] => models/Socio.php
-            [message] => Method rules has no parent to inherit from in app\models\Socio.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\Socio
         )
 
     [21] => Array
         (
-            [line] => 46
             [file] => models/Socio.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Socio.
+            [message] => broken link to \app\models\Inflector::camel2id() in app\models\Socio
         )
 
     [22] => Array
         (
-            [line] => 24
             [file] => models/Socio.php
-            [message] => Method tableName has no parent to inherit from in app\models\Socio.
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Socio
         )
 
     [23] => Array
         (
-            [line] => 32
             [file] => models/Socio.php
-            [message] => Method rules has no parent to inherit from in app\models\Socio.
+            [message] => broken link to \app\models\Connection::tablePrefix in app\models\Socio
         )
 
     [24] => Array
         (
-            [line] => 46
-            [file] => models/Socio.php
-            [message] => Method attributeLabels has no parent to inherit from in app\models\Socio.
+            [file] => models/SocioSearch.php
+            [message] => broken link to \app\models\Validator in app\models\SocioSearch
         )
 
     [25] => Array
         (
-            [line] => 31
             [file] => models/SocioSearch.php
-            [message] => Method scenarios has no parent to inherit from in app\models\SocioSearch.
+            [message] => broken link to \app\models\Validator::builtInValidators in app\models\SocioSearch
         )
 
     [26] => Array
         (
-            [line] => 34
+            [line] => 7
             [file] => models/User.php
-            [message] => Method findIdentity has no parent to inherit from in app\models\User.
+            [message] => Property $id conflicts with a defined getter getId in app\models\User.
         )
 
     [27] => Array
         (
-            [line] => 42
+            [line] => 10
             [file] => models/User.php
-            [message] => Method findIdentityByAccessToken has no parent to inherit from in app\models\User.
+            [message] => Property $authKey conflicts with a defined getter getAuthKey in app\models\User.
         )
 
     [28] => Array
         (
-            [line] => 73
             [file] => models/User.php
-            [message] => Method getId has no parent to inherit from in app\models\User.
+            [message] => broken link to \User::enableAutoLogin in app\models\User
         )
 
     [29] => Array
         (
-            [line] => 81
             [file] => models/User.php
-            [message] => Method getAuthKey has no parent to inherit from in app\models\User.
+            [message] => broken link to \User::enableAutoLogin in app\models\User
         )
 
     [30] => Array
         (
-            [line] => 89
-            [file] => models/User.php
-            [message] => Method validateAuthKey has no parent to inherit from in app\models\User.
+            [file] => vendor/yiisoft/yii2/base/Component.php
+            [message] => broken link to Object in yii\base\Component
+        )
+
+    [31] => Array
+        (
+            [file] => vendor/yiisoft/yii2/base/Security.php
+            [message] => broken link to \yii\base\hash_algos() in yii\base\Security
+        )
+
+    [32] => Array
+        (
+            [file] => vendor/yiisoft/yii2/base/Security.php
+            [message] => broken link to \yii\base\hash_algos() in yii\base\Security
+        )
+
+    [33] => Array
+        (
+            [file] => vendor/yiisoft/yii2/behaviors/AttributeBehavior.php
+            [message] => broken link to \yii\behaviors\Expression in yii\behaviors\AttributeBehavior
+        )
+
+    [34] => Array
+        (
+            [file] => vendor/yiisoft/yii2/behaviors/BlameableBehavior.php
+            [message] => broken link to \yii\behaviors\Expression in yii\behaviors\BlameableBehavior
+        )
+
+    [35] => Array
+        (
+            [file] => vendor/yiisoft/yii2/behaviors/TimestampBehavior.php
+            [message] => broken link to \yii\behaviors\Expression in yii\behaviors\TimestampBehavior
+        )
+
+    [36] => Array
+        (
+            [file] => vendor/yiisoft/yii2/caching/MemCache.php
+            [message] => broken link to \MemcachePool::set() in yii\caching\MemCache
+        )
+
+    [37] => Array
+        (
+            [file] => vendor/yiisoft/yii2/caching/MemCache.php
+            [message] => broken link to \MemcachePool::set() in yii\caching\MemCache
+        )
+
+    [38] => Array
+        (
+            [file] => vendor/yiisoft/yii2/captcha/Captcha.php
+            [message] => broken link to \yii\captcha\yii\widgets\ActiveForm in yii\captcha\Captcha
+        )
+
+    [39] => Array
+        (
+            [file] => vendor/yiisoft/yii2/captcha/Captcha.php
+            [message] => broken link to \yii\captcha\yii\widgets\ActiveField::widget() in yii\captcha\Captcha
+        )
+
+    [40] => Array
+        (
+            [line] => 87
+            [file] => vendor/yiisoft/yii2/captcha/CaptchaValidator.php
+            [message] => Method param $object does not exist in parent method, @inheritdoc not possible in clientValidateAttribute in yii\captcha\CaptchaValidator.
+        )
+
+    [41] => Array
+        (
+            [file] => vendor/yiisoft/yii2/console/Controller.php
+            [message] => broken link to \yii\console\options($actionID) in yii\console\Controller
+        )
+
+    [42] => Array
+        (
+            [line] => 59
+            [file] => vendor/yiisoft/yii2/console/Markdown.php
+            [message] => Method renderParagraph has no parent to inherit from in yii\console\Markdown.
+        )
+
+    [43] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/ActiveQueryInterface.php
+            [message] => broken link to \yii\db\modelClass in yii\db\ActiveQueryInterface
+        )
+
+    [44] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/ActiveRecordInterface.php
+            [message] => broken link to \yii\db\Model::validate() in yii\db\ActiveRecordInterface
+        )
+
+    [45] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/ActiveRecordInterface.php
+            [message] => broken link to \yii\db\Model::validate() in yii\db\ActiveRecordInterface
+        )
+
+    [46] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/ActiveRecordInterface.php
+            [message] => broken link to \yii\db\Model::validate() in yii\db\ActiveRecordInterface
+        )
+
+    [47] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/Connection.php
+            [message] => broken link to \yii\db\yii\db\mssql\PDO in yii\db\Connection
+        )
+
+    [48] => Array
+        (
+            [line] => 79
+            [file] => vendor/yiisoft/yii2/db/Migration.php
+            [message] => Method getDb has no parent to inherit from in yii\db\Migration.
+        )
+
+    [49] => Array
+        (
+            [line] => 538
+            [file] => vendor/yiisoft/yii2/db/Query.php
+            [message] => Method param $params does not exist in parent method, @inheritdoc not possible in where in yii\db\Query.
+        )
+
+    [50] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::orderBy in yii\db\mssql\QueryBuilder
+        )
+
+    [51] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::limit in yii\db\mssql\QueryBuilder
+        )
+
+    [52] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::offset in yii\db\mssql\QueryBuilder
+        )
+
+    [53] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::orderBy in yii\db\mssql\QueryBuilder
+        )
+
+    [54] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::limit in yii\db\mssql\QueryBuilder
+        )
+
+    [55] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::offset in yii\db\mssql\QueryBuilder
+        )
+
+    [56] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::orderBy in yii\db\mssql\QueryBuilder
+        )
+
+    [57] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::limit in yii\db\mssql\QueryBuilder
+        )
+
+    [58] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/mssql/QueryBuilder.php
+            [message] => broken link to \yii\db\mssql\Query::offset in yii\db\mssql\QueryBuilder
+        )
+
+    [59] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/oci/QueryBuilder.php
+            [message] => broken link to \yii\db\oci\Query::orderBy in yii\db\oci\QueryBuilder
+        )
+
+    [60] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/oci/QueryBuilder.php
+            [message] => broken link to \yii\db\oci\Query::limit in yii\db\oci\QueryBuilder
+        )
+
+    [61] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/oci/QueryBuilder.php
+            [message] => broken link to \yii\db\oci\Query::offset in yii\db\oci\QueryBuilder
+        )
+
+    [62] => Array
+        (
+            [file] => vendor/yiisoft/yii2/db/pgsql/QueryBuilder.php
+            [message] => broken link to \yii\db\pgsql\Query::where() in yii\db\pgsql\QueryBuilder
+        )
+
+    [63] => Array
+        (
+            [line] => 24
+            [file] => vendor/yiisoft/yii2/di/NotInstantiableException.php
+            [message] => Method __construct has no parent to inherit from in yii\di\NotInstantiableException.
+        )
+
+    [64] => Array
+        (
+            [line] => 212
+            [file] => vendor/yiisoft/yii2/filters/Cors.php
+            [message] => Undefined parameter documented:  in addCorsHeaders().
+        )
+
+    [65] => Array
+        (
+            [file] => vendor/yiisoft/yii2/helpers/BaseHtml.php
+            [message] => broken link to \yii\helpers\activeCheckBoxList() in yii\helpers\BaseHtml
+        )
+
+    [66] => Array
+        (
+            [file] => vendor/yiisoft/yii2/helpers/BaseInflector.php
+            [message] => broken link to \yii\helpers\Transliterator in yii\helpers\BaseInflector
+        )
+
+    [67] => Array
+        (
+            [file] => vendor/yiisoft/yii2/helpers/BaseInflector.php
+            [message] => broken link to \yii\helpers\Transliterator in yii\helpers\BaseInflector
+        )
+
+    [68] => Array
+        (
+            [file] => vendor/yiisoft/yii2/i18n/Formatter.php
+            [message] => broken link to \yii\i18n\sizeFormat in yii\i18n\Formatter
+        )
+
+    [69] => Array
+        (
+            [file] => vendor/yiisoft/yii2/i18n/Formatter.php
+            [message] => broken link to \yii\i18n\sizeFormat in yii\i18n\Formatter
+        )
+
+    [70] => Array
+        (
+            [line] => 119
+            [file] => vendor/yiisoft/yii2/rbac/DbManager.php
+            [message] => Method checkAccess has no parent to inherit from in yii\rbac\DbManager.
+        )
+
+    [71] => Array
+        (
+            [line] => 96
+            [file] => vendor/yiisoft/yii2/rbac/DbManager.php
+            [message] => Property $rules conflicts with a defined getter getRules in yii\rbac\DbManager.
+        )
+
+    [72] => Array
+        (
+            [line] => 97
+            [file] => vendor/yiisoft/yii2/rbac/PhpManager.php
+            [message] => Method checkAccess has no parent to inherit from in yii\rbac\PhpManager.
+        )
+
+    [73] => Array
+        (
+            [line] => 77
+            [file] => vendor/yiisoft/yii2/rbac/PhpManager.php
+            [message] => Property $rules conflicts with a defined getter getRules in yii\rbac\PhpManager.
+        )
+
+    [74] => Array
+        (
+            [file] => vendor/yiisoft/yii2/rest/ActiveController.php
+            [message] => broken link to \yii\rest\VerbFilter::actions in yii\rest\ActiveController
+        )
+
+    [75] => Array
+        (
+            [file] => vendor/yiisoft/yii2/rest/Controller.php
+            [message] => broken link to \yii\rest\Behavior in yii\rest\Controller
+        )
+
+    [76] => Array
+        (
+            [file] => vendor/yiisoft/yii2/validators/EachValidator.php
+            [message] => broken link to \yii\validators\yii\base\Model::rules() in yii\validators\EachValidator
+        )
+
+    [77] => Array
+        (
+            [file] => vendor/yiisoft/yii2/validators/EachValidator.php
+            [message] => broken link to \yii\validators\yii\base\Model::rules() in yii\validators\EachValidator
+        )
+
+    [78] => Array
+        (
+            [line] => 225
+            [file] => vendor/yiisoft/yii2/validators/FileValidator.php
+            [message] => Method param $file does not exist in parent method, @inheritdoc not possible in validateValue in yii\validators\FileValidator.
+        )
+
+    [79] => Array
+        (
+            [line] => 316
+            [file] => vendor/yiisoft/yii2/validators/FileValidator.php
+            [message] => Method param $trim does not exist in parent method, @inheritdoc not possible in isEmpty in yii\validators\FileValidator.
+        )
+
+    [80] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/AssetManager.php
+            [message] => broken link to \yii\web\js in yii\web\AssetManager
+        )
+
+    [81] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/AssetManager.php
+            [message] => broken link to \yii\web\css in yii\web\AssetManager
+        )
+
+    [82] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/AssetManager.php
+            [message] => broken link to \yii\web\js in yii\web\AssetManager
+        )
+
+    [83] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/AssetManager.php
+            [message] => broken link to \yii\web\css in yii\web\AssetManager
+        )
+
+    [84] => Array
+        (
+            [file] => vendor/yiisoft/yii2/web/User.php
+            [message] => broken link to \yii\web\checkAcceptHeader in yii\web\User
+        )
+
+    [85] => Array
+        (
+            [file] => vendor/yiisoft/yii2/widgets/MaskedInput.php
+            [message] => broken link to \yii\widgets\yii\widgets\ActiveForm in yii\widgets\MaskedInput
+        )
+
+    [86] => Array
+        (
+            [file] => vendor/yiisoft/yii2/widgets/MaskedInput.php
+            [message] => broken link to \yii\widgets\yii\widgets\ActiveField::widget() in yii\widgets\MaskedInput
         )
 
 )
