@@ -13,6 +13,7 @@ use app\models\GestionarForm;
 use app\models\AlquilerSearch;
 use app\models\Socio;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -28,6 +29,20 @@ class AlquileresController extends \yii\web\Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['alquilar', 'gestionar', 'devolver'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['alquilar', 'gestionar', 'devolver'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->nombre === 'admin';
+                        },
+                    ],
                 ],
             ],
         ];
