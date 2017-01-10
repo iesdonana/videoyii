@@ -74,6 +74,11 @@ class Socio extends \yii\db\ActiveRecord
             ->orderBy('alquilado desc');
     }
 
+    public function getUltimas()
+    {
+        return $this->getAlquileres()->orderBy('alquilado desc')->limit(10);
+    }
+
     public function getPeliculas()
     {
         return $this->hasMany(Pelicula::className(), ['id' => 'pelicula_id'])->via('alquileres');

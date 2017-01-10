@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <tbody>
             <?php foreach ($alquileres as $alquiler) {
             ?>
-                <tr <?= $alquiler->atrasado ? 'style="color: red"' : '' ?>>
+                <tr <?= $alquiler->estaAtrasado ? 'style="color:red"' : '' ?>>
                     <td><?= Html::encode($alquiler->pelicula->codigo) ?></td>
                     <td><?= Html::encode($alquiler->pelicula->titulo) ?></td>
                     <td><?= Html::encode(Yii::$app->formatter->asDatetime($alquiler->alquilado)) ?></td>

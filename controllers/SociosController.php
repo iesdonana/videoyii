@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Socio;
 use app\models\SocioSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -51,13 +52,15 @@ class SociosController extends Controller
      */
     public function actionView($id)
     {
-        $ultimas = Socio::findOne($id)
-            ->getAlquileres()
-            ->orderBy('alquilado')
-            ->limit(10);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Socio::findOne($id)->getUltimas(),
+            'pagination' => false,
+            'sort' => false,
+        ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'ultimas' => $ultimas,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

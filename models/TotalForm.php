@@ -15,14 +15,14 @@ class TotalForm extends \yii\base\Model
     {
         return [
             [['fecha'], 'required'],
-            [['fecha'], 'date', 'format' => 'php:Y-m-d' ],
+            [['fecha'], 'date', 'format' => 'php:Y-m-d'],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'fecha' => 'Fecha de alquiler',
+            'fecha' => 'Fecha',
         ];
     }
 }

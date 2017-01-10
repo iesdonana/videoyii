@@ -5,6 +5,9 @@ use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
+use app\models\Socio;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Socio */
@@ -40,18 +43,12 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-    <?php
-    if ($ultimas->exists()) {
-        echo GridView::widget([
-            'dataProvider' => new ActiveDataProvider([
-                'query' => $ultimas,
-                'sort' => false,
-            ]),
-            'columns' => [
-                'pelicula.codigo',
-                'pelicula.titulo',
-                'alquilado:date',
-            ],
-        ]);
-    } ?>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            'pelicula.codigo',
+            'pelicula.titulo',
+            'alquilado:datetime',
+        ],
+    ]) ?>
 </div>

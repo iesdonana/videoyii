@@ -86,11 +86,16 @@ class Alquiler extends \yii\db\ActiveRecord
         }
     }
 
-    public function getAtrasado()
+    public function getEstaAtrasado()
     {
+        if ($this->devuelto !== null) {
+            $devuelto = new DateTime($this->devuelto);
+        } else {
+            $devuelto = new DateTime();
+        }
         $alquilado = new DateTime($this->alquilado);
-        $diferencia = $alquilado->diff(new DateTime());
-        return $diferencia->days > 1;
+        $dif = $alquilado->diff($devuelto);
+        return $dif->days > 1;
     }
 
     /**

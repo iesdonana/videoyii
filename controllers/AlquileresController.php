@@ -37,13 +37,16 @@ class AlquileresController extends \yii\web\Controller
     {
         $model = new TotalForm;
         $fechas = Alquiler::find()
-            ->select('(alquilado::date) as alquiladodate')
+            ->select('(alquilado)::date')
             ->orderBy('alquilado desc')
-            ->indexBy(function ($row) {
-                return $row['alquiladodate'];
+            ->distinct(true)
+            ->indexBy(function ($fila) {
+                return $fila['alquilado'];
             })
             ->column();
         $total = null;
+
+        $fechas = array_map([Yii::$app->formatter, 'asDate'], $fechas);
 
         if ($fecha !== null) {
             $model->fecha = $fecha;
