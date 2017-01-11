@@ -7,6 +7,9 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\DevolverForm */
 /* @var $form ActiveForm */
+
+$this->title = 'Alquileres';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="alquileres-gestionar">
 
@@ -29,7 +32,10 @@ use yii\grid\GridView;
             'columns' => [
                 'pelicula.codigo',
                 'pelicula.titulo',
-                'alquilado',
+                [
+                    'attribute' => 'alquilado',
+                    'format' => ['dateTime',],
+                ],
                 [
                     'class' => 'yii\grid\ActionColumn',
                     'template' => '{delete}',
