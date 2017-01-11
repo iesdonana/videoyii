@@ -12,12 +12,6 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 
-$js = <<<JS
-    $(".alert").fadeTo(2000, 500).slideUp(500, function() {
-        $(".alert").slideUp(500);
-    });
-JS;
-$this->registerJs($js);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -41,25 +35,29 @@ $this->registerJs($js);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    $items = [
+        ['label' => 'Socios', 'url' => ['socios/index']],
+        ['label' => 'Películas', 'url' => ['peliculas/index']],
+        ['label' => 'Alquileres', 'url' => ['alquileres/gestionar']],
+        Yii::$app->user->isGuest ? (
+            ['label' => 'Login', 'url' => ['/site/login']]
+        ) : (
+            '<li>'
+            . Html::beginForm(['/site/logout'], 'post')
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->nombre . ')',
+                ['class' => 'btn btn-link logout']
+            )
+            . Html::endForm()
+            . '</li>'
+        )
+    ];
+    if (Yii::$app->user->esAdmin) {
+        array_unshift($items, ['label' => 'Usuarios', 'url' => ['usuarios/index']]);
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Socios', 'url' => ['socios/index']],
-            ['label' => 'Películas', 'url' => ['peliculas/index']],
-            ['label' => 'Alquileres', 'url' => ['alquileres/gestionar']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->nombre . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
+        'items' => $items,
     ]);
     NavBar::end();
     ?>

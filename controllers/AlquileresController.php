@@ -40,7 +40,7 @@ class AlquileresController extends \yii\web\Controller
                         'actions' => ['alquilar', 'gestionar', 'devolver'],
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->nombre === 'admin';
+                            return Yii::$app->user->esAdmin;
                         },
                     ],
                 ],

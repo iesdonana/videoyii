@@ -3,17 +3,17 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Socio;
-use app\models\SocioSearch;
-use yii\data\ActiveDataProvider;
+use app\models\Usuario;
+use app\models\UsuarioSearch;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * SociosController implements the CRUD actions for Socio model.
+ * UsuariosController implements the CRUD actions for Usuario model.
  */
-class SociosController extends Controller
+class UsuariosController extends Controller
 {
     /**
      * @inheritdoc
@@ -27,16 +27,29 @@ class SociosController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->esAdmin;
+                        },
+                    ],
+                ],
+            ],
         ];
     }
 
     /**
-     * Lists all Socio models.
+     * Lists all Usuario models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SocioSearch();
+        $searchModel = new UsuarioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,34 +59,30 @@ class SociosController extends Controller
     }
 
     /**
-     * Displays a single Socio model.
-     * @param int $id
+     * Displays a single Usuario model.
+     * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Socio::findOne($id)->getUltimas(),
-            'pagination' => false,
-            'sort' => false,
-        ]);
-
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Creates a new Socio model.
+     * Creates a new Usuario model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Socio();
+        $model = new Usuario();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->password = Yii::$app->security->generatePasswordHash($model->password);
+            $model->token = Yii::$app->security->generateRandomString();
+            $model->save(false);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -83,9 +92,9 @@ class SociosController extends Controller
     }
 
     /**
-     * Updates an existing Socio model.
+     * Updates an existing Usuario model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id
+     * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -102,9 +111,9 @@ class SociosController extends Controller
     }
 
     /**
-     * Deletes an existing Socio model.
+     * Deletes an existing Usuario model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id
+     * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -115,15 +124,15 @@ class SociosController extends Controller
     }
 
     /**
-     * Finds the Socio model based on its primary key value.
+     * Finds the Usuario model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id
-     * @return Socio the loaded model
+     * @param integer $id
+     * @return Usuario the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Socio::findOne($id)) !== null) {
+        if (($model = Usuario::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
