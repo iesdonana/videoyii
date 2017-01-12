@@ -42,3 +42,7 @@ create table usuarios (
     password varchar(60) not null,
     token    varchar(32)
 );
+
+insert into usuarios (nombre, password)
+values  ('admin', crypt('admin', gen_salt('bf', 13))),
+        ('demo', crypt('demo', gen_salt('bf', 13)));
