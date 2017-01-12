@@ -1,9 +1,11 @@
 <?php
+
 namespace app\models;
 
 class DevolverForm extends \yii\base\Model
 {
     public $numero;
+
     public function rules()
     {
         return [
@@ -16,10 +18,16 @@ class DevolverForm extends \yii\base\Model
             ],
         ];
     }
+
     public function attributeLabels()
     {
         return [
             'numero' => 'Número',
         ];
+    }
+
+    public function formName()
+    {
+        return '';
     }
 }

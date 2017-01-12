@@ -1,10 +1,12 @@
 <?php
+
 namespace app\models;
 
 class AlquilerForm extends \yii\base\Model
 {
     public $numero;
     public $codigo;
+
     public function rules()
     {
         return [
@@ -22,6 +24,7 @@ class AlquilerForm extends \yii\base\Model
             ],
         ];
     }
+
     public function attributeLabels()
     {
         return [

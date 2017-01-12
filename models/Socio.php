@@ -47,10 +47,10 @@ class Socio extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'numero' => 'Número',
+            'numero' => 'Numero',
             'nombre' => 'Nombre',
-            'direccion' => 'Dirección',
-            'telefono' => 'Teléfono',
+            'direccion' => 'Direccion',
+            'telefono' => 'Telefono',
             'borrado' => 'Borrado',
         ];
     }
@@ -61,6 +61,22 @@ class Socio extends \yii\db\ActiveRecord
     public function getAlquileres()
     {
         return $this->hasMany(Alquiler::className(), ['socio_id' => 'id'])->inverseOf('socio');
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPendientes()
+    {
+        return $this->hasMany(Alquiler::className(), ['socio_id' => 'id'])
+            ->inverseOf('socio')
+            ->where(['devuelto' => null])
+            ->orderBy('alquilado desc');
+    }
+
+    public function getUltimas()
+    {
+        return $this->getAlquileres()->orderBy('alquilado desc')->limit(10);
     }
 
     public function getPeliculas()
