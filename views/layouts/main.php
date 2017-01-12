@@ -41,20 +41,29 @@ AppAsset::register($this);
         ['label' => 'Alquileres', 'url' => ['alquileres/gestionar']],
         Yii::$app->user->isGuest ? (
             ['label' => 'Login', 'url' => ['/site/login']]
-        ) : (
-            '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->nombre . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>'
-        )
+        ) : ['label' => Yii::$app->user->identity->nombre, 'url' => ['usuarios/index'], 'items' =>
+                [
+                    ['label' => 'Ver perfil', 'url' => ['usuarios/view', 'id' => Yii::$app->user->identity->id]],
+                    ['label' => 'Editar perfil', 'url' => ['usuarios/update', 'id' => Yii::$app->user->identity->id]],
+                    '<li class="divider"></li>',
+                    (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post')
+                    . Html::submitButton(
+                        'Cerrar sesión',
+                        ['class' => 'btn-sm btn-danger center-block']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                    )
+                ]
+            ],
+
     ];
     if (Yii::$app->user->esAdmin) {
         array_unshift($items, ['label' => 'Usuarios', 'url' => ['usuarios/index']]);
     }
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $items,

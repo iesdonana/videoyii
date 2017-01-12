@@ -38,6 +38,14 @@ class UsuariosController extends Controller
                             return Yii::$app->user->esAdmin;
                         },
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['view', 'update'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return  Yii::$app->user->identity->id == Yii::$app->request->get('id');
+                        },
+                    ],
                 ],
             ],
         ];
