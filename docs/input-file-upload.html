@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Uploading Files - Getting Data from Users - Videoyii guía</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w1438" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w1438-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Videoyii guía</a></div><div id="w1438-collapse" class="collapse navbar-collapse"><ul id="w1439" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-1422" data-toggle="collapse" data-parent="#navigation">Introduction <b class="caret"></b></a><div id="navigation-1422" class="submenu panel-collapse collapse"><a class="list-group-item" href="./intro-yii.html">About Yii</a>
+<a class="list-group-item" href="./intro-upgrade-from-v1.html">Upgrading from Version 1.1</a></div>
+<a class="list-group-item" href="#navigation-1423" data-toggle="collapse" data-parent="#navigation">Getting Started <b class="caret"></b></a><div id="navigation-1423" class="submenu panel-collapse collapse"><a class="list-group-item" href="./start-installation.html">Installing Yii</a>
+<a class="list-group-item" href="./start-workflow.html">Running Applications</a>
+<a class="list-group-item" href="./start-hello.html">Saying Hello</a>
+<a class="list-group-item" href="./start-forms.html">Working with Forms</a>
+<a class="list-group-item" href="./start-databases.html">Working with Databases</a>
+<a class="list-group-item" href="./start-gii.html">Generating Code with Gii</a>
+<a class="list-group-item" href="./start-looking-ahead.html">Looking Ahead</a></div>
+<a class="list-group-item" href="#navigation-1424" data-toggle="collapse" data-parent="#navigation">Application Structure <b class="caret"></b></a><div id="navigation-1424" class="submenu panel-collapse collapse"><a class="list-group-item" href="./structure-overview.html">Overview</a>
+<a class="list-group-item" href="./structure-entry-scripts.html">Entry Scripts</a>
+<a class="list-group-item" href="./structure-applications.html">Applications</a>
+<a class="list-group-item" href="./structure-application-components.html">Application Components</a>
+<a class="list-group-item" href="./structure-controllers.html">Controllers</a>
+<a class="list-group-item" href="./structure-models.html">Models</a>
+<a class="list-group-item" href="./structure-views.html">Views</a>
+<a class="list-group-item" href="./structure-modules.html">Modules</a>
+<a class="list-group-item" href="./structure-filters.html">Filters</a>
+<a class="list-group-item" href="./structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./structure-assets.html">Assets</a>
+<a class="list-group-item" href="./structure-extensions.html">Extensions</a></div>
+<a class="list-group-item" href="#navigation-1425" data-toggle="collapse" data-parent="#navigation">Handling Requests <b class="caret"></b></a><div id="navigation-1425" class="submenu panel-collapse collapse"><a class="list-group-item" href="./runtime-overview.html">Overview</a>
+<a class="list-group-item" href="./runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./runtime-routing.html">Routing and URL Creation</a>
+<a class="list-group-item" href="./runtime-requests.html">Requests</a>
+<a class="list-group-item" href="./runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./runtime-sessions-cookies.html">Sessions and Cookies</a>
+<a class="list-group-item" href="./runtime-handling-errors.html">Handling Errors</a>
+<a class="list-group-item" href="./runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-1426" data-toggle="collapse" data-parent="#navigation">Key Concepts <b class="caret"></b></a><div id="navigation-1426" class="submenu panel-collapse collapse"><a class="list-group-item" href="./concept-components.html">Components</a>
+<a class="list-group-item" href="./concept-properties.html">Properties</a>
+<a class="list-group-item" href="./concept-events.html">Events</a>
+<a class="list-group-item" href="./concept-behaviors.html">Behaviors</a>
+<a class="list-group-item" href="./concept-configurations.html">Configurations</a>
+<a class="list-group-item" href="./concept-aliases.html">Aliases</a>
+<a class="list-group-item" href="./concept-autoloading.html">Class Autoloading</a>
+<a class="list-group-item" href="./concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-1427" data-toggle="collapse" data-parent="#navigation">Working with Databases <b class="caret"></b></a><div id="navigation-1427" class="submenu panel-collapse collapse"><a class="list-group-item" href="./db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./db-migrations.html">Migrations</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-sphinx/blob/master/docs/guide/README.md">Sphinx</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-redis/blob/master/docs/guide/README.md">Redis</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-mongodb/blob/master/docs/guide/README.md">MongoDB</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-elasticsearch/blob/master/docs/guide/README.md">ElasticSearch</a></div>
+<a class="list-group-item active" href="#navigation-1428" data-toggle="collapse" data-parent="#navigation">Getting Data from Users <b class="caret"></b></a><div id="navigation-1428" class="submenu panel-collapse collapse in"><a class="list-group-item" href="./input-forms.html">Creating Forms</a>
+<a class="list-group-item" href="./input-validation.html">Validating Input</a>
+<a class="list-group-item active" href="./input-file-upload.html">Uploading Files</a>
+<a class="list-group-item" href="./input-tabular-input.html">Collecting Tabular Input</a>
+<a class="list-group-item" href="./input-multiple-models.html">Getting Data for Multiple Models</a></div>
+<a class="list-group-item" href="#navigation-1429" data-toggle="collapse" data-parent="#navigation">Displaying Data <b class="caret"></b></a><div id="navigation-1429" class="submenu panel-collapse collapse"><a class="list-group-item" href="./output-formatting.html">Data Formatting</a>
+<a class="list-group-item" href="./output-pagination.html">Pagination</a>
+<a class="list-group-item" href="./output-sorting.html">Sorting</a>
+<a class="list-group-item" href="./output-data-providers.html">Data Providers</a>
+<a class="list-group-item" href="./output-data-widgets.html">Data Widgets</a>
+<a class="list-group-item" href="./output-client-scripts.html">Working with Client Scripts</a>
+<a class="list-group-item" href="./output-theming.html">Theming</a></div>
+<a class="list-group-item" href="#navigation-1430" data-toggle="collapse" data-parent="#navigation">Security <b class="caret"></b></a><div id="navigation-1430" class="submenu panel-collapse collapse"><a class="list-group-item" href="./security-overview.html">Overview</a>
+<a class="list-group-item" href="./security-authentication.html">Authentication</a>
+<a class="list-group-item" href="./security-authorization.html">Authorization</a>
+<a class="list-group-item" href="./security-passwords.html">Working with Passwords</a>
+<a class="list-group-item" href="./security-cryptography.html">Cryptography</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/README.md">Auth Clients</a>
+<a class="list-group-item" href="./security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-1431" data-toggle="collapse" data-parent="#navigation">Caching <b class="caret"></b></a><div id="navigation-1431" class="submenu panel-collapse collapse"><a class="list-group-item" href="./caching-overview.html">Overview</a>
+<a class="list-group-item" href="./caching-data.html">Data Caching</a>
+<a class="list-group-item" href="./caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-1432" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-1432" class="submenu panel-collapse collapse"><a class="list-group-item" href="./rest-quick-start.html">Quick Start</a>
+<a class="list-group-item" href="./rest-resources.html">Resources</a>
+<a class="list-group-item" href="./rest-controllers.html">Controllers</a>
+<a class="list-group-item" href="./rest-routing.html">Routing</a>
+<a class="list-group-item" href="./rest-response-formatting.html">Response Formatting</a>
+<a class="list-group-item" href="./rest-authentication.html">Authentication</a>
+<a class="list-group-item" href="./rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./rest-versioning.html">Versioning</a>
+<a class="list-group-item" href="./rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-1433" data-toggle="collapse" data-parent="#navigation">Development Tools <b class="caret"></b></a><div id="navigation-1433" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-debug/blob/master/docs/guide/README.md">Debug Toolbar and Debugger</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-gii/blob/master/docs/guide/README.md">Generating Code using Gii</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-apidoc">Generating API Documentation</a></div>
+<a class="list-group-item" href="#navigation-1434" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-1434" class="submenu panel-collapse collapse"><a class="list-group-item" href="./test-overview.html">Overview</a>
+<a class="list-group-item" href="./test-environment-setup.html">Testing environment setup</a>
+<a class="list-group-item" href="./test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./test-functional.html">Functional Tests</a>
+<a class="list-group-item" href="./test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-1435" data-toggle="collapse" data-parent="#navigation">Special Topics <b class="caret"></b></a><div id="navigation-1435" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>
+<a class="list-group-item" href="./tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./tutorial-console.html">Console Commands</a>
+<a class="list-group-item" href="./tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./tutorial-i18n.html">Internationalization</a>
+<a class="list-group-item" href="./tutorial-mailing.html">Mailing</a>
+<a class="list-group-item" href="./tutorial-performance-tuning.html">Performance Tuning</a>
+<a class="list-group-item" href="./tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-1436" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-1436" class="submenu panel-collapse collapse"><a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-grid-gridview.html">GridView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-listview.html">ListView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-detailview.html">DetailView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/guide-input-forms.html#activerecord-based-forms-activeform">ActiveForm</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-pjax.html">Pjax</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-menu.html">Menu</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linkpager.html">LinkPager</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linksorter.html">LinkSorter</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-bootstrap/blob/master/docs/guide/README.md">Bootstrap Widgets</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-jui/blob/master/docs/guide/README.md">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-1437" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-1437" class="submenu panel-collapse collapse"><a class="list-group-item" href="./helper-overview.html">Overview</a>
+<a class="list-group-item" href="./helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./helper-html.html">Html</a>
+<a class="list-group-item" href="./helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Uploading Files <span id="uploading-files"></span><a href="#uploading-files" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#creating-models">Creating Models</a></li>
+<li><a href="#rendering-file-input">Rendering File Input</a></li>
+<li><a href="#wiring-up">Wiring Up</a></li>
+<li><a href="#uploading-multiple-files">Uploading Multiple Files</a></li></ol></div>
+<p>Uploading files in Yii is usually done with the help of <span class="broken-link">yii\web\UploadedFile</span> which encapsulates each uploaded
+file as an <code>UploadedFile</code> object. Combined with <span class="broken-link">yii\widgets\ActiveForm</span> and <a href="structure-models.html">models</a>,
+you can easily implement a secure file uploading mechanism.</p>
+<h2>Creating Models  <span id="creating-models"></span><a href="#creating-models" class="hashlink">&para;</a></h2><p>Like working with plain text inputs, to upload a single file you would create a model class and use an attribute
+of the model to keep the uploaded file instance. You should also declare a validation rule to validate the file upload.
+For example,</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Model</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">UploadedFile</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UploadForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@var</span> UploadedFile
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$imageFile</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            [[<span class="hljs-string">'imageFile'</span>], <span class="hljs-string">'file'</span>, <span class="hljs-string">'skipOnEmpty'</span> =&gt; <span class="hljs-keyword">false</span>, <span class="hljs-string">'extensions'</span> =&gt; <span class="hljs-string">'png, jpg'</span>],
+        ];
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upload</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;validate()) {
+            <span class="hljs-variable">$this</span>-&gt;imageFile-&gt;saveAs(<span class="hljs-string">'uploads/'</span> . <span class="hljs-variable">$this</span>-&gt;imageFile-&gt;baseName . <span class="hljs-string">'.'</span> . <span class="hljs-variable">$this</span>-&gt;imageFile-&gt;extension);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+    }
+}
+</code></pre>
+<p>In the code above, the <code>imageFile</code> attribute is used to keep the uploaded file instance. It is associated with
+a <code>file</code> validation rule which uses <span class="broken-link">yii\validators\FileValidator</span> to ensure a file with extension name <code>png</code> or <code>jpg</code>
+is uploaded. The <code>upload()</code> method will perform the validation and save the uploaded file on the server.</p>
+<p>The <code>file</code> validator allows you to check file extensions, size, MIME type, etc. Please refer to
+the <a href="tutorial-core-validators.html#file">Core Validators</a> section for more details.</p>
+<blockquote class="tip"><p><strong>Tip: </strong>If you are uploading an image, you may consider using the <code>image</code> validator instead. The <code>image</code> validator is
+  implemented via <span class="broken-link">yii\validators\ImageValidator</span> which verifies if an attribute has received a valid image 
+  that can be then either saved or processed using the <a href="https://github.com/yiisoft/yii2-imagine">Imagine Extension</a>.</p>
+</blockquote>
+<h2>Rendering File Input  <span id="rendering-file-input"></span><a href="#rendering-file-input" class="hashlink">&para;</a></h2><p>Next, create a file input in a view:</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">widgets</span>\<span class="hljs-title">ActiveForm</span>;
+<span class="hljs-preprocessor">?&gt;</span>
+
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-variable">$form</span> = ActiveForm::begin([<span class="hljs-string">'options'</span> =&gt; [<span class="hljs-string">'enctype'</span> =&gt; <span class="hljs-string">'multipart/form-data'</span>]]) <span class="hljs-preprocessor">?&gt;</span>
+
+    <span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$form</span>-&gt;field(<span class="hljs-variable">$model</span>, <span class="hljs-string">'imageFile'</span>)-&gt;fileInput() <span class="hljs-preprocessor">?&gt;</span>
+
+    &lt;button&gt;Submit&lt;/button&gt;
+
+<span class="hljs-preprocessor">&lt;?php</span> ActiveForm::end() <span class="hljs-preprocessor">?&gt;</span>
+</code></pre>
+<p>It is important to remember that you add the <code>enctype</code> option to the form so that the file can be properly uploaded.
+The <code>fileInput()</code> call will render a <code>&lt;input type="file"&gt;</code> tag which will allow users to select a file to upload.</p>
+<blockquote class="tip"><p><strong>Tip: </strong>since version 2.0.8, <span class="broken-link">yii\web\widgets\ActiveField::fileInput</span> adds <code>enctype</code> option to the form
+  automatically when file input field is used.</p>
+</blockquote>
+<h2>Wiring Up  <span id="wiring-up"></span><a href="#wiring-up" class="hashlink">&para;</a></h2><p>Now in a controller action, write the code to wire up the model and the view to implement file uploading:</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Controller</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">UploadForm</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">UploadedFile</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SiteController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionUpload</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> UploadForm();
+
+        <span class="hljs-keyword">if</span> (Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;isPost) {
+            <span class="hljs-variable">$model</span>-&gt;imageFile = UploadedFile::getInstance(<span class="hljs-variable">$model</span>, <span class="hljs-string">'imageFile'</span>);
+            <span class="hljs-keyword">if</span> (<span class="hljs-variable">$model</span>-&gt;upload()) {
+                <span class="hljs-comment">// file is uploaded successfully</span>
+                <span class="hljs-keyword">return</span>;
+            }
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'upload'</span>, [<span class="hljs-string">'model'</span> =&gt; <span class="hljs-variable">$model</span>]);
+    }
+}
+</code></pre>
+<p>In the above code, when the form is submitted, the <span class="broken-link">yii\web\UploadedFile::getInstance()</span> method is called
+to represent the uploaded file as an <code>UploadedFile</code> instance. We then rely on the model validation to make sure
+the uploaded file is valid and save the file on the server.</p>
+<h2>Uploading Multiple Files  <span id="uploading-multiple-files"></span><a href="#uploading-multiple-files" class="hashlink">&para;</a></h2><p>You can also upload multiple files at once, with some adjustments to the code listed in the previous subsections.</p>
+<p>First you should adjust the model class by adding the <code>maxFiles</code> option in the <code>file</code> validation rule to limit
+the maximum number of files allowed to upload. Setting <code>maxFiles</code> to <code>0</code> means there is no limit on the number of files
+that can be uploaded simultaneously. The maximum number of files allowed to be uploaded simultaneously is also limited
+with PHP directive <a href="http://php.net/manual/en/ini.core.php#ini.max-file-uploads"><code>max_file_uploads</code></a>,
+which defaults to 20. The <code>upload()</code> method should also be updated to save the uploaded files one by one.</p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">base</span>\<span class="hljs-title">Model</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">UploadedFile</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UploadForm</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Model</span>
+</span>{
+    <span class="hljs-comment">/**
+     * <span class="hljs-doctag">@var</span> UploadedFile[]
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-variable">$imageFiles</span>;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            [[<span class="hljs-string">'imageFiles'</span>], <span class="hljs-string">'file'</span>, <span class="hljs-string">'skipOnEmpty'</span> =&gt; <span class="hljs-keyword">false</span>, <span class="hljs-string">'extensions'</span> =&gt; <span class="hljs-string">'png, jpg'</span>, <span class="hljs-string">'maxFiles'</span> =&gt; <span class="hljs-number">4</span>],
+        ];
+    }
+    
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">upload</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-variable">$this</span>-&gt;validate()) { 
+            <span class="hljs-keyword">foreach</span> (<span class="hljs-variable">$this</span>-&gt;imageFiles <span class="hljs-keyword">as</span> <span class="hljs-variable">$file</span>) {
+                <span class="hljs-variable">$file</span>-&gt;saveAs(<span class="hljs-string">'uploads/'</span> . <span class="hljs-variable">$file</span>-&gt;baseName . <span class="hljs-string">'.'</span> . <span class="hljs-variable">$file</span>-&gt;extension);
+            }
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+    }
+}
+</code></pre>
+<p>In the view file, you should add the <code>multiple</code> option to the <code>fileInput()</code> call so that the file upload field
+can receive multiple files:</p>
+<pre><code class="hljs php language-php"><span class="hljs-preprocessor">&lt;?php</span>
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">widgets</span>\<span class="hljs-title">ActiveForm</span>;
+<span class="hljs-preprocessor">?&gt;</span>
+
+<span class="hljs-preprocessor">&lt;?php</span> <span class="hljs-variable">$form</span> = ActiveForm::begin([<span class="hljs-string">'options'</span> =&gt; [<span class="hljs-string">'enctype'</span> =&gt; <span class="hljs-string">'multipart/form-data'</span>]]) <span class="hljs-preprocessor">?&gt;</span>
+
+    <span class="hljs-preprocessor">&lt;?</span>= <span class="hljs-variable">$form</span>-&gt;field(<span class="hljs-variable">$model</span>, <span class="hljs-string">'imageFiles[]'</span>)-&gt;fileInput([<span class="hljs-string">'multiple'</span> =&gt; <span class="hljs-keyword">true</span>, <span class="hljs-string">'accept'</span> =&gt; <span class="hljs-string">'image/*'</span>]) <span class="hljs-preprocessor">?&gt;</span>
+
+    &lt;button&gt;Submit&lt;/button&gt;
+
+<span class="hljs-preprocessor">&lt;?php</span> ActiveForm::end() <span class="hljs-preprocessor">?&gt;</span>
+</code></pre>
+<p>And finally in the controller action, you should call <code>UploadedFile::getInstances()</code> instead of 
+<code>UploadedFile::getInstance()</code> to assign an array of <code>UploadedFile</code> instances to <code>UploadForm::imageFiles</code>. </p>
+<pre><code class="hljs php language-php"><span class="hljs-keyword">namespace</span> <span class="hljs-title">app</span>\<span class="hljs-title">controllers</span>;
+
+<span class="hljs-keyword">use</span> <span class="hljs-title">Yii</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">Controller</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">app</span>\<span class="hljs-title">models</span>\<span class="hljs-title">UploadForm</span>;
+<span class="hljs-keyword">use</span> <span class="hljs-title">yii</span>\<span class="hljs-title">web</span>\<span class="hljs-title">UploadedFile</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SiteController</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Controller</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">actionUpload</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-variable">$model</span> = <span class="hljs-keyword">new</span> UploadForm();
+
+        <span class="hljs-keyword">if</span> (Yii::<span class="hljs-variable">$app</span>-&gt;request-&gt;isPost) {
+            <span class="hljs-variable">$model</span>-&gt;imageFiles = UploadedFile::getInstances(<span class="hljs-variable">$model</span>, <span class="hljs-string">'imageFiles'</span>);
+            <span class="hljs-keyword">if</span> (<span class="hljs-variable">$model</span>-&gt;upload()) {
+                <span class="hljs-comment">// file is uploaded successfully</span>
+                <span class="hljs-keyword">return</span>;
+            }
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$this</span>-&gt;render(<span class="hljs-string">'upload'</span>, [<span class="hljs-string">'model'</span> =&gt; <span class="hljs-variable">$model</span>]);
+    }
+}
+</code></pre>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 23:19:37 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        <link href="./assets/90d046f2/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/c6368d94/solarized_light.css" rel="stylesheet">
+<link href="./assets/9f5cdd92/style.css" rel="stylesheet">
+<script src="./assets/a6e53573/jquery.js"></script>
+<script src="./assets/90d046f2/js/bootstrap.js"></script>
+<script src="./assets/218ce2e5/jssearch.js"></script>    <title>Installing Yii - Getting Started - Videoyii guía</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w574" class="navbar-inverse navbar-fixed-top navbar" role="navigation"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w574-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Videoyii guía</a></div><div id="w574-collapse" class="collapse navbar-collapse"><ul id="w575" class="navbar-nav nav"><li><a href="./index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-558" data-toggle="collapse" data-parent="#navigation">Introduction <b class="caret"></b></a><div id="navigation-558" class="submenu panel-collapse collapse"><a class="list-group-item" href="./intro-yii.html">About Yii</a>
+<a class="list-group-item" href="./intro-upgrade-from-v1.html">Upgrading from Version 1.1</a></div>
+<a class="list-group-item active" href="#navigation-559" data-toggle="collapse" data-parent="#navigation">Getting Started <b class="caret"></b></a><div id="navigation-559" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./start-installation.html">Installing Yii</a>
+<a class="list-group-item" href="./start-workflow.html">Running Applications</a>
+<a class="list-group-item" href="./start-hello.html">Saying Hello</a>
+<a class="list-group-item" href="./start-forms.html">Working with Forms</a>
+<a class="list-group-item" href="./start-databases.html">Working with Databases</a>
+<a class="list-group-item" href="./start-gii.html">Generating Code with Gii</a>
+<a class="list-group-item" href="./start-looking-ahead.html">Looking Ahead</a></div>
+<a class="list-group-item" href="#navigation-560" data-toggle="collapse" data-parent="#navigation">Application Structure <b class="caret"></b></a><div id="navigation-560" class="submenu panel-collapse collapse"><a class="list-group-item" href="./structure-overview.html">Overview</a>
+<a class="list-group-item" href="./structure-entry-scripts.html">Entry Scripts</a>
+<a class="list-group-item" href="./structure-applications.html">Applications</a>
+<a class="list-group-item" href="./structure-application-components.html">Application Components</a>
+<a class="list-group-item" href="./structure-controllers.html">Controllers</a>
+<a class="list-group-item" href="./structure-models.html">Models</a>
+<a class="list-group-item" href="./structure-views.html">Views</a>
+<a class="list-group-item" href="./structure-modules.html">Modules</a>
+<a class="list-group-item" href="./structure-filters.html">Filters</a>
+<a class="list-group-item" href="./structure-widgets.html">Widgets</a>
+<a class="list-group-item" href="./structure-assets.html">Assets</a>
+<a class="list-group-item" href="./structure-extensions.html">Extensions</a></div>
+<a class="list-group-item" href="#navigation-561" data-toggle="collapse" data-parent="#navigation">Handling Requests <b class="caret"></b></a><div id="navigation-561" class="submenu panel-collapse collapse"><a class="list-group-item" href="./runtime-overview.html">Overview</a>
+<a class="list-group-item" href="./runtime-bootstrapping.html">Bootstrapping</a>
+<a class="list-group-item" href="./runtime-routing.html">Routing and URL Creation</a>
+<a class="list-group-item" href="./runtime-requests.html">Requests</a>
+<a class="list-group-item" href="./runtime-responses.html">Responses</a>
+<a class="list-group-item" href="./runtime-sessions-cookies.html">Sessions and Cookies</a>
+<a class="list-group-item" href="./runtime-handling-errors.html">Handling Errors</a>
+<a class="list-group-item" href="./runtime-logging.html">Logging</a></div>
+<a class="list-group-item" href="#navigation-562" data-toggle="collapse" data-parent="#navigation">Key Concepts <b class="caret"></b></a><div id="navigation-562" class="submenu panel-collapse collapse"><a class="list-group-item" href="./concept-components.html">Components</a>
+<a class="list-group-item" href="./concept-properties.html">Properties</a>
+<a class="list-group-item" href="./concept-events.html">Events</a>
+<a class="list-group-item" href="./concept-behaviors.html">Behaviors</a>
+<a class="list-group-item" href="./concept-configurations.html">Configurations</a>
+<a class="list-group-item" href="./concept-aliases.html">Aliases</a>
+<a class="list-group-item" href="./concept-autoloading.html">Class Autoloading</a>
+<a class="list-group-item" href="./concept-service-locator.html">Service Locator</a>
+<a class="list-group-item" href="./concept-di-container.html">Dependency Injection Container</a></div>
+<a class="list-group-item" href="#navigation-563" data-toggle="collapse" data-parent="#navigation">Working with Databases <b class="caret"></b></a><div id="navigation-563" class="submenu panel-collapse collapse"><a class="list-group-item" href="./db-dao.html">Data Access Objects</a>
+<a class="list-group-item" href="./db-query-builder.html">Query Builder</a>
+<a class="list-group-item" href="./db-active-record.html">Active Record</a>
+<a class="list-group-item" href="./db-migrations.html">Migrations</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-sphinx/blob/master/docs/guide/README.md">Sphinx</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-redis/blob/master/docs/guide/README.md">Redis</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-mongodb/blob/master/docs/guide/README.md">MongoDB</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-elasticsearch/blob/master/docs/guide/README.md">ElasticSearch</a></div>
+<a class="list-group-item" href="#navigation-564" data-toggle="collapse" data-parent="#navigation">Getting Data from Users <b class="caret"></b></a><div id="navigation-564" class="submenu panel-collapse collapse"><a class="list-group-item" href="./input-forms.html">Creating Forms</a>
+<a class="list-group-item" href="./input-validation.html">Validating Input</a>
+<a class="list-group-item" href="./input-file-upload.html">Uploading Files</a>
+<a class="list-group-item" href="./input-tabular-input.html">Collecting Tabular Input</a>
+<a class="list-group-item" href="./input-multiple-models.html">Getting Data for Multiple Models</a></div>
+<a class="list-group-item" href="#navigation-565" data-toggle="collapse" data-parent="#navigation">Displaying Data <b class="caret"></b></a><div id="navigation-565" class="submenu panel-collapse collapse"><a class="list-group-item" href="./output-formatting.html">Data Formatting</a>
+<a class="list-group-item" href="./output-pagination.html">Pagination</a>
+<a class="list-group-item" href="./output-sorting.html">Sorting</a>
+<a class="list-group-item" href="./output-data-providers.html">Data Providers</a>
+<a class="list-group-item" href="./output-data-widgets.html">Data Widgets</a>
+<a class="list-group-item" href="./output-client-scripts.html">Working with Client Scripts</a>
+<a class="list-group-item" href="./output-theming.html">Theming</a></div>
+<a class="list-group-item" href="#navigation-566" data-toggle="collapse" data-parent="#navigation">Security <b class="caret"></b></a><div id="navigation-566" class="submenu panel-collapse collapse"><a class="list-group-item" href="./security-overview.html">Overview</a>
+<a class="list-group-item" href="./security-authentication.html">Authentication</a>
+<a class="list-group-item" href="./security-authorization.html">Authorization</a>
+<a class="list-group-item" href="./security-passwords.html">Working with Passwords</a>
+<a class="list-group-item" href="./security-cryptography.html">Cryptography</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-authclient/blob/master/docs/guide/README.md">Auth Clients</a>
+<a class="list-group-item" href="./security-best-practices.html">Best Practices</a></div>
+<a class="list-group-item" href="#navigation-567" data-toggle="collapse" data-parent="#navigation">Caching <b class="caret"></b></a><div id="navigation-567" class="submenu panel-collapse collapse"><a class="list-group-item" href="./caching-overview.html">Overview</a>
+<a class="list-group-item" href="./caching-data.html">Data Caching</a>
+<a class="list-group-item" href="./caching-fragment.html">Fragment Caching</a>
+<a class="list-group-item" href="./caching-page.html">Page Caching</a>
+<a class="list-group-item" href="./caching-http.html">HTTP Caching</a></div>
+<a class="list-group-item" href="#navigation-568" data-toggle="collapse" data-parent="#navigation">RESTful Web Services <b class="caret"></b></a><div id="navigation-568" class="submenu panel-collapse collapse"><a class="list-group-item" href="./rest-quick-start.html">Quick Start</a>
+<a class="list-group-item" href="./rest-resources.html">Resources</a>
+<a class="list-group-item" href="./rest-controllers.html">Controllers</a>
+<a class="list-group-item" href="./rest-routing.html">Routing</a>
+<a class="list-group-item" href="./rest-response-formatting.html">Response Formatting</a>
+<a class="list-group-item" href="./rest-authentication.html">Authentication</a>
+<a class="list-group-item" href="./rest-rate-limiting.html">Rate Limiting</a>
+<a class="list-group-item" href="./rest-versioning.html">Versioning</a>
+<a class="list-group-item" href="./rest-error-handling.html">Error Handling</a></div>
+<a class="list-group-item" href="#navigation-569" data-toggle="collapse" data-parent="#navigation">Development Tools <b class="caret"></b></a><div id="navigation-569" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-debug/blob/master/docs/guide/README.md">Debug Toolbar and Debugger</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-gii/blob/master/docs/guide/README.md">Generating Code using Gii</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-apidoc">Generating API Documentation</a></div>
+<a class="list-group-item" href="#navigation-570" data-toggle="collapse" data-parent="#navigation">Testing <b class="caret"></b></a><div id="navigation-570" class="submenu panel-collapse collapse"><a class="list-group-item" href="./test-overview.html">Overview</a>
+<a class="list-group-item" href="./test-environment-setup.html">Testing environment setup</a>
+<a class="list-group-item" href="./test-unit.html">Unit Tests</a>
+<a class="list-group-item" href="./test-functional.html">Functional Tests</a>
+<a class="list-group-item" href="./test-acceptance.html">Acceptance Tests</a>
+<a class="list-group-item" href="./test-fixtures.html">Fixtures</a></div>
+<a class="list-group-item" href="#navigation-571" data-toggle="collapse" data-parent="#navigation">Special Topics <b class="caret"></b></a><div id="navigation-571" class="submenu panel-collapse collapse"><a class="list-group-item" href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>
+<a class="list-group-item" href="./tutorial-start-from-scratch.html">Building Application from Scratch</a>
+<a class="list-group-item" href="./tutorial-console.html">Console Commands</a>
+<a class="list-group-item" href="./tutorial-core-validators.html">Core Validators</a>
+<a class="list-group-item" href="./tutorial-i18n.html">Internationalization</a>
+<a class="list-group-item" href="./tutorial-mailing.html">Mailing</a>
+<a class="list-group-item" href="./tutorial-performance-tuning.html">Performance Tuning</a>
+<a class="list-group-item" href="./tutorial-shared-hosting.html">Shared Hosting Environment</a>
+<a class="list-group-item" href="./tutorial-template-engines.html">Template Engines</a>
+<a class="list-group-item" href="./tutorial-yii-integration.html">Working with Third-Party Code</a></div>
+<a class="list-group-item" href="#navigation-572" data-toggle="collapse" data-parent="#navigation">Widgets <b class="caret"></b></a><div id="navigation-572" class="submenu panel-collapse collapse"><a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-grid-gridview.html">GridView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-listview.html">ListView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-detailview.html">DetailView</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/guide-input-forms.html#activerecord-based-forms-activeform">ActiveForm</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-pjax.html">Pjax</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-menu.html">Menu</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linkpager.html">LinkPager</a>
+<a class="list-group-item" href="http://www.yiiframework.com/doc-2.0/yii-widgets-linksorter.html">LinkSorter</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-bootstrap/blob/master/docs/guide/README.md">Bootstrap Widgets</a>
+<a class="list-group-item" href="https://github.com/yiisoft/yii2-jui/blob/master/docs/guide/README.md">jQuery UI Widgets</a></div>
+<a class="list-group-item" href="#navigation-573" data-toggle="collapse" data-parent="#navigation">Helpers <b class="caret"></b></a><div id="navigation-573" class="submenu panel-collapse collapse"><a class="list-group-item" href="./helper-overview.html">Overview</a>
+<a class="list-group-item" href="./helper-array.html">ArrayHelper</a>
+<a class="list-group-item" href="./helper-html.html">Html</a>
+<a class="list-group-item" href="./helper-url.html">Url</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Installing Yii <span id="installing-yii"></span><a href="#installing-yii" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#installing-via-composer">Installing via Composer</a></li>
+<li><a href="#installing-from-archive-file">Installing from an Archive File</a></li>
+<li><a href="#other-installation-options">Other Installation Options</a></li>
+<li><a href="#verifying-installation">Verifying the Installation</a></li>
+<li><a href="#configuring-web-servers">Configuring Web Servers</a></li></ol></div>
+<p>You can install Yii in two ways, using the <a href="https://getcomposer.org/">Composer</a> package manager or by downloading an archive file.
+The former is the preferred way, as it allows you to install new <a href="structure-extensions.html">extensions</a> or update Yii by simply running a single command.</p>
+<p>Standard installations of Yii result in both the framework and a project template being downloaded and installed.
+A project template is a working Yii project implementing some basic features, such as login, contact form, etc.
+Its code is organized in a recommended way. Therefore, it can serve as a good starting point for your projects.</p>
+<p>In this and the next few sections, we will describe how to install Yii with the so-called <em>Basic Project Template</em> and
+how to implement new features on top of this template. Yii also provides another template called
+the <a href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a> which is better used in a team development environment
+to develop applications with multiple tiers.</p>
+<blockquote class="info"><p><strong>Info: </strong>The Basic Project Template is suitable for developing 90 percent of Web applications. It differs
+  from the Advanced Project Template mainly in how their code is organized. If you are new to Yii, we strongly
+  recommend you stick to the Basic Project Template for its simplicity yet sufficient functionalities.</p>
+</blockquote>
+<h2>Installing via Composer  <span id="installing-via-composer"></span><a href="#installing-via-composer" class="hashlink">&para;</a></h2><h3>Installing Composer <span id="installing-composer"></span><a href="#installing-composer" class="hashlink">&para;</a></h3><p>If you do not already have Composer installed, you may do so by following the instructions at
+<a href="https://getcomposer.org/download/">getcomposer.org</a>. On Linux and Mac OS X, you'll run the following commands:</p>
+<pre><code class="hljs bash language-bash">curl <span class="hljs-operator">-s</span>S https://getcomposer.org/installer | php
+mv composer.phar /usr/<span class="hljs-built_in">local</span>/bin/composer
+</code></pre>
+<p>On Windows, you'll download and run <a href="https://getcomposer.org/Composer-Setup.exe">Composer-Setup.exe</a>.</p>
+<p>Please refer to the <a href="https://getcomposer.org/doc/articles/troubleshooting.md">Troubleshooting section of the Composer Documentation</a>
+if you encounter any problems.
+If you are new to Composer, we also recommend to read at least the <a href="https://getcomposer.org/doc/01-basic-usage.md">Basic usage section</a>
+of the Composer documentation.</p>
+<p>In this guide all composer commands assume you have installed composer <a href="https://getcomposer.org/doc/00-intro.md#globally">globally</a>
+so that it is available as the <code>composer</code> command. If you are using the <code>composer.phar</code> in the local directory instead,
+you have to adjust the example commands accordingly.</p>
+<p>If you had Composer already installed before, make sure you use an up to date version. You can update Composer
+by running <code>composer self-update</code>.</p>
+<blockquote class="note"><p><strong>Note: </strong>During the installation of Yii, Composer will need to request a lot of information from the Github API.
+The number of requests depends on the number of dependencies your application has and may be bigger than the
+<strong>Github API rate limit</strong>. If you hit this limit, Composer may ask for your Github login credentials to obtain
+a Github API access token. On fast connections you may hit this limit earlier than Composer can handle so we
+recommend to configure the access token before installing Yii.
+Please refer to the <a href="https://getcomposer.org/doc/articles/troubleshooting.md#api-rate-limit-and-oauth-tokens">Composer documentation about Github API tokens</a>
+for instructions on how to do this.</p>
+</blockquote>
+<h3>Installing Yii  <span id="installing-from-composer"></span><a href="#installing-from-composer" class="hashlink">&para;</a></h3><p>With Composer installed, you can install Yii by running the following commands under a Web-accessible folder:</p>
+<pre><code class="hljs bash language-bash">composer global require <span class="hljs-string">"fxp/composer-asset-plugin:^1.2.0"</span>
+composer create-project --prefer-dist yiisoft/yii2-app-basic basic
+</code></pre>
+<p>The first command installs the <a href="https://github.com/francoispluchino/composer-asset-plugin/">composer asset plugin</a>
+which allows managing bower and npm package dependencies through Composer. You only need to run this command
+once for all. The second command installs the latest stable version of Yii in a directory named <code>basic</code>.
+You can choose a different directory name if you want.</p>
+<blockquote class="info"><p><strong>Info: </strong>If the <code>composer create-project</code> command fails make sure you have the composer asset plugin installed correctly.
+You can do that by running <code>composer global show</code>, which should contain an entry <code>fxp/composer-asset-plugin</code>.
+You may also refer to the <a href="https://getcomposer.org/doc/articles/troubleshooting.md">Troubleshooting section of the Composer Documentation</a>
+for common errors. When you have fixed the error, you can resume the aborted installation
+by running <code>composer update</code> inside of the <code>basic</code> directory.</p>
+</blockquote>
+<blockquote class="tip"><p><strong>Tip: </strong>If you want to install the latest development version of Yii, you may use the following command instead,
+which adds a <a href="https://getcomposer.org/doc/04-schema.md#minimum-stability">stability option</a>:</p>
+<pre><code class="hljs bash language-bash">composer create-project --prefer-dist --stability=dev yiisoft/yii2-app-basic basic
+</code></pre>
+<p>Note that the development version of Yii should not be used for production as it may break your running code.</p>
+</blockquote>
+<h2>Installing from an Archive File  <span id="installing-from-archive-file"></span><a href="#installing-from-archive-file" class="hashlink">&para;</a></h2><p>Installing Yii from an archive file involves three steps:</p>
+<ol>
+<li>Download the archive file from <a href="http://www.yiiframework.com/download/">yiiframework.com</a>.</li>
+<li>Unpack the downloaded file to a Web-accessible folder.</li>
+<li><p>Modify the <code>config/web.php</code> file by entering a secret key for the <code>cookieValidationKey</code> configuration item
+(this is done automatically if you are installing Yii using Composer):</p>
+<pre><code class="hljs php language-php"><span class="hljs-comment">// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation</span>
+<span class="hljs-string">'cookieValidationKey'</span> =&gt; <span class="hljs-string">'enter your secret key here'</span>,
+</code></pre>
+</li>
+</ol>
+<h2>Other Installation Options  <span id="other-installation-options"></span><a href="#other-installation-options" class="hashlink">&para;</a></h2><p>The above installation instructions show how to install Yii, which also creates a basic Web application that works out of the box.
+This approach is a good starting point for most projects, either small or big. It is especially suitable if you just
+start learning Yii.</p>
+<p>But there are other installation options available:</p>
+<ul>
+<li>If you only want to install the core framework and would like to build an entire  application from scratch,
+you may follow the instructions as explained in <a href="tutorial-start-from-scratch.html">Building Application from Scratch</a>.</li>
+<li>If you want to start with a more sophisticated application, better suited to team development environments,
+you may consider installing the <a href="https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide/README.md">Advanced Project Template</a>.</li>
+</ul>
+<h2>Verifying the Installation  <span id="verifying-installation"></span><a href="#verifying-installation" class="hashlink">&para;</a></h2><p>After installation is done, either configure your web server (see next section) or use the
+<a href="https://secure.php.net/manual/en/features.commandline.webserver.php">built-in PHP web server</a> by running the following
+console command while in the project <code>web</code> directory:</p>
+<pre><code class="hljs bash language-bash">php yii serve
+</code></pre>
+<blockquote class="note"><p><strong>Note: </strong>By default the HTTP-server will listen to port 8080. However if that port is already in use or you wish to 
+serve multiple applications this way, you might want to specify what port to use. Just add the --port argument:</p>
+</blockquote>
+<pre><code class="hljs bash language-bash">php yii serve --port=<span class="hljs-number">8888</span>
+</code></pre>
+<p>You can use your browser to access the installed Yii application with the following URL:</p>
+<pre><code class="hljs less"><span class="hljs-attribute">http</span>:<span class="hljs-comment">//localhost:8080/</span>
+</code></pre>
+<p><img src="images/start-app-installed.png" alt="Successful Installation of Yii" /></p>
+<p>You should see the above "Congratulations!" page in your browser. If not, please check if your PHP installation satisfies
+Yii's requirements. You can check if the minimum requirements are met using one of the following approaches:</p>
+<ul>
+<li>Copy <code>/requirements.php</code> to <code>/web/requirements.php</code> and then use a browser to access it via <code>http://localhost/requirements.php</code></li>
+<li><p>Run the following commands:</p>
+<pre><code class="hljs bash language-bash"><span class="hljs-built_in">cd</span> basic
+php requirements.php
+</code></pre>
+</li>
+</ul>
+<p>You should configure your PHP installation so that it meets the minimum requirements of Yii. Most importantly, you
+should have PHP 5.4 or above. You should also install the <a href="http://www.php.net/manual/en/pdo.installation.php">PDO PHP Extension</a>
+and a corresponding database driver (such as <code>pdo_mysql</code> for MySQL databases), if your application needs a database.</p>
+<h2>Configuring Web Servers  <span id="configuring-web-servers"></span><a href="#configuring-web-servers" class="hashlink">&para;</a></h2><blockquote class="info"><p><strong>Info: </strong>You may skip this subsection for now if you are just test driving Yii with no intention
+  of deploying it to a production server.</p>
+</blockquote>
+<p>The application installed according to the above instructions should work out of box with either
+an <a href="http://httpd.apache.org/">Apache HTTP server</a> or an <a href="http://nginx.org/">Nginx HTTP server</a>, on
+Windows, Mac OS X, or Linux running PHP 5.4 or higher. Yii 2.0 is also compatible with facebook's
+<a href="http://hhvm.com/">HHVM</a>. However, there are some edge cases where HHVM behaves different than native
+PHP, so you have to take some extra care when using HHVM.</p>
+<p>On a production server, you may want to configure your Web server so that the application can be accessed
+via the URL <code>http://www.example.com/index.php</code> instead of <code>http://www.example.com/basic/web/index.php</code>. Such configuration
+requires pointing the document root of your Web server to the <code>basic/web</code> folder. You may also
+want to hide <code>index.php</code> from the URL, as described in the <a href="runtime-routing.html">Routing and URL Creation</a> section.
+In this subsection, you'll learn how to configure your Apache or Nginx server to achieve these goals.</p>
+<blockquote class="info"><p><strong>Info: </strong>By setting <code>basic/web</code> as the document root, you also prevent end users from accessing
+your private application code and sensitive data files that are stored in the sibling directories
+of <code>basic/web</code>. Denying access to those other folders is a security improvement.</p>
+</blockquote>
+<blockquote class="info"><p><strong>Info: </strong>If your application will run in a shared hosting environment where you do not have permission
+to modify its Web server configuration, you may still adjust the structure of your application for better security. Please refer to
+the <a href="tutorial-shared-hosting.html">Shared Hosting Environment</a> section for more details.</p>
+</blockquote>
+<h3>Recommended Apache Configuration  <span id="recommended-apache-configuration"></span><a href="#recommended-apache-configuration" class="hashlink">&para;</a></h3><p>Use the following configuration in Apache's <code>httpd.conf</code> file or within a virtual host configuration. Note that you
+should replace <code>path/to/basic/web</code> with the actual path for <code>basic/web</code>.</p>
+<pre><code class="hljs apache language-apache"><span class="hljs-comment"># Set document root to be "basic/web"</span>
+<span class="hljs-keyword"><span class="hljs-common">DocumentRoot</span></span> <span class="hljs-string">"path/to/basic/web"</span>
+
+<span class="hljs-tag">&lt;Directory "path/to/basic/web"&gt;</span>
+    <span class="hljs-comment"># use mod_rewrite for pretty URL support</span>
+    <span class="hljs-keyword"><span class="hljs-common">RewriteEngine</span></span> <span class="hljs-literal">on</span>
+    <span class="hljs-comment"># If a directory or a file exists, use the request directly</span>
+    <span class="hljs-keyword"><span class="hljs-common">RewriteCond</span></span> <span class="hljs-cbracket">%{REQUEST_FILENAME}</span> !-f
+    <span class="hljs-keyword"><span class="hljs-common">RewriteCond</span></span> <span class="hljs-cbracket">%{REQUEST_FILENAME}</span> !-d
+    <span class="hljs-comment"># Otherwise forward the request to index.php</span>
+    <span class="hljs-keyword"><span class="hljs-common">RewriteRule</span></span> . index.php
+
+    <span class="hljs-comment"># ...other settings...</span>
+<span class="hljs-tag">&lt;/Directory&gt;</span>
+</code></pre>
+<h3>Recommended Nginx Configuration  <span id="recommended-nginx-configuration"></span><a href="#recommended-nginx-configuration" class="hashlink">&para;</a></h3><p>To use <a href="http://wiki.nginx.org/">Nginx</a>, you should install PHP as an <a href="http://php.net/install.fpm">FPM SAPI</a>.
+You may use the following Nginx configuration, replacing <code>path/to/basic/web</code> with the actual path for 
+<code>basic/web</code> and <code>mysite.local</code> with the actual hostname to serve.</p>
+<pre><code class="hljs nginx language-nginx"><span class="hljs-title">server</span> {
+    <span class="hljs-title">charset</span> utf-<span class="hljs-number">8</span>;
+    <span class="hljs-title">client_max_body_size</span> <span class="hljs-number">128M</span>;
+
+    <span class="hljs-title">listen</span> <span class="hljs-number">80</span>; <span class="hljs-comment">## listen for ipv4</span>
+    <span class="hljs-comment">#listen [::]:80 default_server ipv6only=on; ## listen for ipv6</span>
+
+    <span class="hljs-title">server_name</span> mysite.local;
+    <span class="hljs-title">root</span>        /path/to/basic/web;
+    <span class="hljs-title">index</span>       index.php;
+
+    <span class="hljs-title">access_log</span>  /path/to/basic/log/access.log;
+    <span class="hljs-title">error_log</span>   /path/to/basic/log/error.log;
+
+    <span class="hljs-title">location</span> / {
+        <span class="hljs-comment"># Redirect everything that isn't a real file to index.php</span>
+        <span class="hljs-title">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.php<span class="hljs-variable">$is_args</span><span class="hljs-variable">$args</span>;
+    }
+
+    <span class="hljs-comment"># uncomment to avoid processing of calls to non-existing static files by Yii</span>
+    <span class="hljs-comment">#location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {</span>
+    <span class="hljs-comment">#    try_files $uri =404;</span>
+    <span class="hljs-comment">#}</span>
+    <span class="hljs-comment">#error_page 404 /404.html;</span>
+
+    <span class="hljs-comment"># deny accessing php files for the /assets directory</span>
+    <span class="hljs-title">location</span> <span class="hljs-regexp">~ ^/assets/.*\.php$</span> {
+        <span class="hljs-title">deny</span> all;
+    }
+
+    <span class="hljs-title">location</span> <span class="hljs-regexp">~ \.php$</span> {
+        <span class="hljs-title">include</span> fastcgi_params;
+        <span class="hljs-title">fastcgi_param</span> SCRIPT_FILENAME <span class="hljs-variable">$document_root</span><span class="hljs-variable">$fastcgi_script_name</span>;
+        <span class="hljs-title">fastcgi_pass</span> <span class="hljs-number">127.0.0.1:9000</span>;
+        <span class="hljs-comment">#fastcgi_pass unix:/var/run/php5-fpm.sock;</span>
+        <span class="hljs-title">try_files</span> <span class="hljs-variable">$uri</span> =<span class="hljs-number">404</span>;
+    }
+
+    <span class="hljs-title">location</span> <span class="hljs-regexp">~* /\.</span> {
+        <span class="hljs-title">deny</span> all;
+    }
+}
+</code></pre>
+<p>When using this configuration, you should also set <code>cgi.fix_pathinfo=0</code> in the <code>php.ini</code> file
+in order to avoid many unnecessary system <code>stat()</code> calls.</p>
+<p>Also note that when running an HTTPS server, you need to add <code>fastcgi_param HTTPS on;</code> so that Yii
+can properly detect if a connection is secure.</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Tue, 27 Dec 2016 23:19:36 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script type="text/javascript">jQuery(document).ready(function () {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -2,55 +2,72 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\DevolverForm */
+/* @var $model app\models\AlquilerForm */
 /* @var $form ActiveForm */
+/* @var $alquileres Alquiler[] */
 
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="alquileres-gestionar">
-
     <?php $form = ActiveForm::begin([
         'method' => 'get',
         'action' => ['alquileres/gestionar'],
     ]); ?>
-
-        <?= $form->field($devolver, 'numero') ?>
-
+        <?= $form->field($model, 'numero') ?>
         <div class="form-group">
-            <?= Html::submitButton('Buscar alquileres', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
-
-    <?php if ($dataProvider !== null) {
+</div><!-- alquileres-alquilar -->
+<?php if (!empty($alquileres)) {
         ?>
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'columns' => [
-                'pelicula.codigo',
-                'pelicula.titulo',
-                [
-                    'attribute' => 'alquilado',
-                    'format' => ['dateTime',],
-                ],
-                [
-                    'class' => 'yii\grid\ActionColumn',
-                    'template' => '{delete}',
-                ],
-            ],
-        ]) ?>
-    <?php
+    <table class="table table-striped">
+        <thead>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Alquiler</th>
+            <th>Devolver</th>
+        </thead>
+        <tbody>
+            <?php foreach ($alquileres as $alquiler) {
+            ?>
+                <tr <?= $alquiler->estaAtrasado ? 'style="color:red"' : '' ?>>
+                    <td><?= Html::encode($alquiler->pelicula->codigo) ?></td>
+                    <td><?= Html::encode($alquiler->pelicula->titulo) ?></td>
+                    <td><?= Html::encode(Yii::$app->formatter->asDatetime($alquiler->alquilado)) ?></td>
+                    <td>
+                        <?= Html::a('Devolver', [
+                            'alquileres/delete',
+                            'id' => $alquiler->id,
+                            'numero' => $model->numero,
+                        ], [
+                            'class' => 'btn btn-xs btn-danger',
+                            'data' => [
+                                'confirm' => '¿Desea devolver esta película?',
+                                'method' => 'post',
+                            ],
+                        ]) ?>
+                    </td>
+                </tr>
+            <?php
+
+        } ?>
+        </tbody>
+    </table>
+<?php
 
     } ?>
+<?php if ($model->esValido) {
+        ?>
+    <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model2, 'codigo') ?>
+        <div class="form-group">
+            <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+        </div>
+    <?php ActiveForm::end(); ?>
+<?php
 
-<?php $form = ActiveForm::begin(); ?>
-    <?= $form->field($alquilar, 'codigo') ?>
-    <div class="form-group">
-        <?= Html::submitButton('Alquilar', ['class' => 'btn btn-primary']) ?>
-    </div>
-<?php ActiveForm::end(); ?>
-
-</div><!-- alquileres-gestionar -->
+    } ?>

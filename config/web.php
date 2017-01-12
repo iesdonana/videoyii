@@ -18,7 +18,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => 'app\components\User',
+            'identityClass' => 'app\models\Usuario',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -59,6 +60,7 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'allowedIPs' => ['*'],
     ];
 
     $config['bootstrap'][] = 'gii';

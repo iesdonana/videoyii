@@ -5,6 +5,7 @@ namespace app\models;
 class GestionarForm extends \yii\base\Model
 {
     public $numero;
+    public $esValido = false;
 
     public function formName()
     {
@@ -27,7 +28,7 @@ class GestionarForm extends \yii\base\Model
     public function attributeLabels()
     {
         return [
-            'numero' => 'Número',
+            'numero' => 'Número de socio',
         ];
     }
 }

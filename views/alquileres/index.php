@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\AlquilerSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Alquileres';
+$this->title = 'Alquilers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="alquiler-index">

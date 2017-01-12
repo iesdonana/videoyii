@@ -10,7 +10,7 @@ class AlquilerForm extends \yii\base\Model
     public function rules()
     {
         return [
-            [['codigo'], 'required'],
+            [['numero', 'codigo'], 'required'],
             [['numero', 'codigo'], 'number'],
             [['numero'], 'exist',
                 'skipOnError' => true,
