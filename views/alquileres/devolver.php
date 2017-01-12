@@ -24,9 +24,8 @@ use yii\grid\GridView;
         </div>
     <?php ActiveForm::end(); ?>
 
-    <?php
-    if ($dataProvider !== null) {
-        echo GridView::widget([
+    <?php if ($dataProvider !== null): ?>
+        <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'columns' => [
                 'pelicula.codigo',
@@ -45,7 +44,7 @@ use yii\grid\GridView;
                     }
                 ],
             ],
-        ]); ?>
-    } ?>
+        ]) ?>
+    <?php endif ?>
 
 </div><!-- alquileres-devolver -->
