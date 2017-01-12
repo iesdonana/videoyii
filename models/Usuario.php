@@ -110,6 +110,11 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->token;
     }
 
+    public function regenerarToken()
+    {
+        $this->token = Yii::$app->security->generateRandomString();
+    }
+
     /**
      * @inheritDoc
      */
@@ -152,7 +157,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 $this->password = Yii::$app->security->generatePasswordHash($this->pass);
             }
             if ($insert) {
-                $this->token = Yii::$app->security->generateRandomString();
+                $this->regenerarToken();
             }
             return true;
         } else {
