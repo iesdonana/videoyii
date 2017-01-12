@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\peliculaSearch */
+/* @var $searchModel app\models\PeliculaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Peliculas';
@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="pelicula-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);?>
 
     <p>
         <?= Html::a('Create Pelicula', ['create'], ['class' => 'btn btn-success']) ?>
@@ -24,10 +24,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            'id',
             'codigo',
             'titulo',
-            'precio',
+            'precio:currency',
             'borrado:boolean',
 
             ['class' => 'yii\grid\ActionColumn'],

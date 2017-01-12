@@ -5,30 +5,30 @@ namespace app\models;
 use Yii;
 
 /**
-* This is the model class for table "socios".
-*
-* @property integer $id
-* @property string $numero
-* @property string $nombre
-* @property string $direccion
-* @property string $telefono
-* @property boolean $borrado
-*
-* @property Alquileres[] $alquileres
-*/
+ * This is the model class for table "socios".
+ *
+ * @property integer $id
+ * @property string $numero
+ * @property string $nombre
+ * @property string $direccion
+ * @property string $telefono
+ * @property boolean $borrado
+ *
+ * @property Alquileres[] $alquileres
+ */
 class Socio extends \yii\db\ActiveRecord
 {
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public static function tableName()
     {
         return 'socios';
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -41,8 +41,8 @@ class Socio extends \yii\db\ActiveRecord
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
@@ -56,19 +56,31 @@ class Socio extends \yii\db\ActiveRecord
     }
 
     /**
-    * @return \yii\db\ActiveQuery
-    */
+     * @return \yii\db\ActiveQuery
+     */
     public function getAlquileres()
     {
         return $this->hasMany(Alquiler::className(), ['socio_id' => 'id'])->inverseOf('socio');
     }
 
     /**
-    * [getPeliculas description]
-    * @return [type] [description]
-    */
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPendientes()
+    {
+        return $this->hasMany(Alquiler::className(), ['socio_id' => 'id'])
+            ->inverseOf('socio')
+            ->where(['devuelto' => null])
+            ->orderBy('alquilado desc');
+    }
+
+    public function getUltimas()
+    {
+        return $this->getAlquileres()->orderBy('alquilado desc')->limit(10);
+    }
+
     public function getPeliculas()
     {
-        return $this->hasMany(Pelicula::className(), ['id' =>'pelicula_id'])->via('alquileres');
+        return $this->hasMany(Pelicula::className(), ['id' => 'pelicula_id'])->via('alquileres');
     }
 }

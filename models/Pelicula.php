@@ -5,29 +5,31 @@ namespace app\models;
 use Yii;
 
 /**
-* This is the model class for table "peliculas".
-*
-* @property integer $id
-* @property string $codigo
-* @property string $titulo
-* @property string $precio
-* @property boolean $borrado
-*
-* @property Alquileres[] $alquileres
-*/
+ * This is the model class for table "peliculas".
+ *
+ * @property integer $id
+ * @property string $codigo
+ * @property string $titulo
+ * @property string $precio
+ * @property boolean $borrado
+ *
+ * @property Alquileres[] $alquileres
+ */
 class Pelicula extends \yii\db\ActiveRecord
 {
+    private $_estaAlquilada;
+
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public static function tableName()
     {
         return 'peliculas';
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -40,8 +42,8 @@ class Pelicula extends \yii\db\ActiveRecord
     }
 
     /**
-    * @inheritdoc
-    */
+     * @inheritdoc
+     */
     public function attributeLabels()
     {
         return [
@@ -53,18 +55,19 @@ class Pelicula extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getEstaAlquilada()
+    {
+        return $this->getAlquileres()->where(['devuelto' => null])->one() !== null;
+    }
+
     /**
-    * @return \yii\db\ActiveQuery
-    */
+     * @return \yii\db\ActiveQuery
+     */
     public function getAlquileres()
     {
         return $this->hasMany(Alquiler::className(), ['pelicula_id' => 'id'])->inverseOf('pelicula');
     }
 
-    /**
-    * [getSocios description]
-    * @return [type] [description]
-    */
     public function getSocios()
     {
         return $this->hasMany(Socio::className(), ['id' => 'socio_id'])->via('alquileres');

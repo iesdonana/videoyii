@@ -7,6 +7,9 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        'formatter' => [
+            'thousandSeparator' => ' ',
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'jMCaid1aETBL5zh4Ty0Q0hemNla8u4-V',
@@ -15,7 +18,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => 'app\components\User',
+            'identityClass' => 'app\models\Usuario',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -48,6 +52,7 @@ $config = [
         */
     ],
     'params' => $params,
+    'language' => 'es_ES',
 ];
 
 if (YII_ENV_DEV) {
@@ -55,6 +60,7 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'allowedIPs' => ['*'],
     ];
 
     $config['bootstrap'][] = 'gii';

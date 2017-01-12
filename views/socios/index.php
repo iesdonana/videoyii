@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\socioSearch */
+/* @var $searchModel app\models\SocioSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Socios';
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            //'id',
+            'id',
             'numero',
             'nombre',
             'direccion',

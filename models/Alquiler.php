@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use DateTime;
 
 /**
  * This is the model class for table "alquileres".
@@ -55,6 +56,46 @@ class Alquiler extends \yii\db\ActiveRecord
             'alquilado' => 'Alquilado',
             'devuelto' => 'Devuelto',
         ];
+    }
+
+    /**
+     * Crea un nuevo alquiler.
+     * @param  string $numero El número del socio.
+     * @param  string $codigo El código de la película.
+     * @return bool           true si se ha creado correctamente.
+     */
+    public function alquilar($numero, $codigo)
+    {
+        $this->socio_id = Socio::find()
+            ->select('id')
+            ->where(['numero' => $numero])
+            ->scalar();
+        $pelicula = Pelicula::find()
+            ->select('id, precio')
+            ->where(['codigo' => $codigo])
+            ->one();
+        $this->pelicula_id = $pelicula->id;
+        $this->precio_alq = $pelicula->precio;
+        if ($pelicula->estaAlquilada) {
+            Yii::$app->session->setFlash('fracaso', 'La película ya está alquilada.');
+            return false;
+        } else {
+            $this->save();
+            Yii::$app->session->setFlash('exito', 'Alquiler realizado correctamente.');
+            return true;
+        }
+    }
+
+    public function getEstaAtrasado()
+    {
+        if ($this->devuelto !== null) {
+            $devuelto = new DateTime($this->devuelto);
+        } else {
+            $devuelto = new DateTime();
+        }
+        $alquilado = new DateTime($this->alquilado);
+        $dif = $alquilado->diff($devuelto);
+        return $dif->days > 1;
     }
 
     /**
