@@ -77,12 +77,11 @@ class UsuariosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Usuario();
+        $model = new Usuario([
+            'scenario' => Usuario::ESCENARIO_CREATE
+        ]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $model->password = Yii::$app->security->generatePasswordHash($model->password);
-            $model->token = Yii::$app->security->generateRandomString();
-            $model->save(false);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

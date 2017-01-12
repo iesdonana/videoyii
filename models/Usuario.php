@@ -14,7 +14,23 @@ use Yii;
  */
 class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $passwordConfirm;
+    /**
+     * Escenario para cuando se crea un usuario
+     * @var string
+     */
+    const ESCENARIO_CREATE = 'create';
+
+    /**
+     * Campo de contraseña en el formulario de alta y modificación de usuarios
+     * @var string
+     */
+    public $pass;
+    /**
+     * Campo de confirmación de contraseña en el formulario de alta y
+     * modificación de usuarios
+     * @var string
+     */
+    public $passConfirm;
 
     /**
      * @inheritdoc
@@ -30,11 +46,12 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['nombre', 'password', 'passwordConfirm'], 'required'],
+            [['nombre'], 'required'],
+            [['pass', 'passConfirm'], 'required', 'on' => self::ESCENARIO_CREATE],
+            [['pass'], 'safe'],
             [['nombre'], 'string', 'max' => 15],
-            [['password'], 'string', 'max' => 60],
             [['nombre'], 'unique'],
-            [['passwordConfirm'], 'confirmarPassword'],
+            [['passConfirm'], 'confirmarPassword'],
         ];
     }
 
@@ -46,7 +63,8 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return [
             'id' => 'ID',
             'nombre' => 'Nombre',
-            'password' => 'Contraseña',
+            'pass' => 'Contraseña',
+            'passConfirm' => 'Confirmar contraseña'
         ];
     }
 
@@ -113,7 +131,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function confirmarPassword($attribute, $params)
     {
-        if ($this->password !== $this->passwordConfirm) {
+        if ($this->pass !== $this->passConfirm) {
             $this->addError($attribute, 'Las contraseñas no coinciden');
         }
     }
@@ -130,8 +148,12 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            $this->password = Yii::$app->security->generatePasswordHash($this->password);
-            $this->token = Yii::$app->security->generateRandomString();
+            if ($this->pass != '' || $insert) {
+                $this->password = Yii::$app->security->generatePasswordHash($this->pass);
+            }
+            if ($insert) {
+                $this->token = Yii::$app->security->generateRandomString();
+            }
             return true;
         } else {
             return false;
