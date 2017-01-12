@@ -18,6 +18,7 @@ use Yii;
 class Pelicula extends \yii\db\ActiveRecord
 {
     private $_estaAlquilada;
+
     /**
      * @inheritdoc
      */
@@ -58,7 +59,7 @@ class Pelicula extends \yii\db\ActiveRecord
     {
         return $this->getAlquileres()->where(['devuelto' => null])->one() !== null;
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */

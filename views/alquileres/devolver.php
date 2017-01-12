@@ -1,5 +1,7 @@
 <?php
 
+use yii\grid\ActionColumn;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
@@ -10,7 +12,10 @@ use yii\grid\GridView;
 ?>
 <div class="alquileres-devolver">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'method' => 'get',
+        'action' => ['devolver'],
+    ]); ?>
 
         <?= $form->field($model, 'numero') ?>
 
@@ -19,35 +24,28 @@ use yii\grid\GridView;
         </div>
     <?php ActiveForm::end(); ?>
 
-    <?php if ($alquileres !== null) {
-    ?>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Título</th>
-                    <th>Alquilado</th>
-                    <th>Devolver</th>
-                </tr>
-            </thead>
-            <tbody><?php foreach ($alquileres as $k) { ?>
-                    <tr>
-                        <td><?= $k->pelicula->codigo ?></td>
-                        <td><?= $k->pelicula->titulo ?></td>
-                        <td><?= Yii::$app->formatter->asDatetime($k->alquilado) ?></td>
-                        <td>
-                            <?= Html::a('Devolver', ['delete', 'id' => $k->id], [
-                                'class' => 'btn btn-danger btn-xs',
-                                'data' => [
-                                    'confirm' => '¿Desea devolver la película?',
-                                    'method' => 'post',
-                                ],
-                            ]) ?>
-                        </td>
-                    </tr>
-            <?php } ?>
-            </tbody>
-        </table>
-    <?php } ?>
+    <?php
+    if ($dataProvider !== null) {
+        echo GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                'pelicula.codigo',
+                'pelicula.titulo',
+                'alquilado:datetime',
+                [
+                    'class' => ActionColumn::className(),
+                    'template' => '{delete}',
+                    'urlCreator' => function ($action, $model, $key, $index, $column) {
+                        $params = [
+                            $action,
+                            'id' => (string) $key,
+                            'numero' => $model->socio->numero,
+                        ];
+                        return Url::toRoute($params);
+                    }
+                ],
+            ],
+        ]); ?>
+    } ?>
 
 </div><!-- alquileres-devolver -->
