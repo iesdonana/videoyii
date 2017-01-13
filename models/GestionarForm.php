@@ -6,10 +6,12 @@ class GestionarForm extends \yii\base\Model
 {
     public $numero;
     public $esValido = false;
+
     public function formName()
     {
         return '';
     }
+
     public function rules()
     {
         return [
@@ -22,6 +24,7 @@ class GestionarForm extends \yii\base\Model
             ],
         ];
     }
+
     public function attributeLabels()
     {
         return [

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Pelicula;
+use app\models\TotalForm;
 use app\models\PeliculaForm;
 use app\models\AlquilerForm;
 use app\models\DevolverForm;
@@ -12,7 +13,7 @@ use app\models\GestionarForm;
 use app\models\AlquilerSearch;
 use app\models\Socio;
 use yii\data\ActiveDataProvider;
-use yii\helpers\Url;
+use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -30,28 +31,78 @@ class AlquileresController extends \yii\web\Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['alquilar', 'gestionar', 'devolver'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['alquilar', 'gestionar', 'devolver'],
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->esAdmin;
+                        },
+                    ],
+                ],
+            ],
         ];
     }
+
+    public function actionTotal($fecha = null)
+    {
+        $model = new TotalForm;
+        $fechas = Alquiler::find()
+            ->select('(alquilado)::date')
+            ->orderBy('alquilado desc')
+            ->distinct(true)
+            ->indexBy(function ($fila) {
+                return $fila['alquilado'];
+            })
+            ->column();
+        $total = null;
+
+        $fechas = array_map([Yii::$app->formatter, 'asDate'], $fechas);
+
+        if ($fecha !== null) {
+            $model->fecha = $fecha;
+            if ($model->validate()) {
+                $total = Alquiler::find()
+                    ->where(['(alquilado)::date' => $fecha])
+                    ->sum('precio_alq');
+            }
+        }
+
+        return $this->render('total', [
+            'model' => $model,
+            'fechas' => $fechas,
+            'total' => $total,
+        ]);
+    }
+
     public function actionAlquilar()
     {
         $model = new AlquilerForm;
+
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 $alquiler = new Alquiler;
                 if ($alquiler->alquilar($model->numero, $model->codigo)) {
-                    return $this->redirect(Url::to(['alquileres/alquilar']));
+                    return $this->redirect(['alquileres/alquilar']);
                 }
             }
         }
+
         return $this->render('alquilar', [
             'model' => $model,
         ]);
     }
+
     public function actionGestionar($numero = null)
     {
         $model = new GestionarForm;
         $model2 = new PeliculaForm;
         $alquileres = [];
+
         if ($numero !== null) {
             $model->numero = $numero;
             if ($model->validate()) {
@@ -63,6 +114,7 @@ class AlquileresController extends \yii\web\Controller
                 $alquileres = Socio::findOne(['numero' => $model->numero])->pendientes;
             }
         }
+
         return $this->render('gestionar', [
             'model' => $model,
             'model2' => $model2,
@@ -70,20 +122,15 @@ class AlquileresController extends \yii\web\Controller
         ]);
     }
 
-    public function actionTotal($get)
-    {
-        $query = (new \yii\db\Query())->from('alquiler')->where(['dia' => $get]);
-        $suma = $query->sum('precio_alq');
-        return $suma;
-    }
-
-    public function actionDevolver()
+    public function actionDevolver($numero = null)
     {
         $model = new DevolverForm();
         $dataProvider = null;
-        if ($model->load(Yii::$app->request->post())) {
+
+        if ($numero !== null) {
+            $model->numero = $numero;
             if ($model->validate()) {
-                $socio = Socio::find()->where(['numero' => $model->numero])->one();
+                $socio = Socio::find()->where(['numero' => $numero])->one();
                 $alquileres = $socio->getAlquileres()->where(['devuelto' => null])->orderBy('alquilado desc');
                 $dataProvider = new ActiveDataProvider([
                     'query' => $alquileres,
@@ -91,11 +138,13 @@ class AlquileresController extends \yii\web\Controller
                 ]);
             }
         }
+
         return $this->render('devolver', [
              'model' => $model,
              'dataProvider' => $dataProvider,
         ]);
     }
+
     public function actionDelete($id, $numero = null)
     {
         $alquiler = Alquiler::findOne($id);
@@ -112,6 +161,7 @@ class AlquileresController extends \yii\web\Controller
             throw new NotFoundHttpException('Socio no encontrado.');
         }
     }
+
     /**
      * Lists all Alquiler models.
      * @return mixed

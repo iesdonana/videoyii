@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use DateTime;
 
 /**
  * This is the model class for table "alquileres".
@@ -33,7 +34,6 @@ class Alquiler extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-
             [['socio_id', 'pelicula_id', 'precio_alq'], 'required'],
             [['socio_id', 'pelicula_id'], 'integer'],
             [['precio_alq'], 'number'],
@@ -59,7 +59,6 @@ class Alquiler extends \yii\db\ActiveRecord
     }
 
     /**
-
      * Crea un nuevo alquiler.
      * @param  string $numero El número del socio.
      * @param  string $codigo El código de la película.
@@ -87,8 +86,19 @@ class Alquiler extends \yii\db\ActiveRecord
         }
     }
 
-    /**
+    public function getEstaAtrasado()
+    {
+        if ($this->devuelto !== null) {
+            $devuelto = new DateTime($this->devuelto);
+        } else {
+            $devuelto = new DateTime();
+        }
+        $alquilado = new DateTime($this->alquilado);
+        $dif = $alquilado->diff($devuelto);
+        return $dif->days > 1;
+    }
 
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getPelicula()

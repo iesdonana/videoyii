@@ -1,50 +1,50 @@
 <?php
 
+use yii\grid\ActionColumn;
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Alquiler */
+/* @var $model app\models\DevolverForm */
 /* @var $form ActiveForm */
 ?>
 <div class="alquileres-devolver">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'method' => 'get',
+        'action' => ['devolver'],
+    ]); ?>
 
-    <?= $form->field($model, 'numero') ?>
+        <?= $form->field($model, 'numero') ?>
 
         <div class="form-group">
-            <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 
-<?php if($alquileres !== null) {?>
-<table class="table table-striped">
-    <thead>
-        <th>Código</th>
-        <th>Título</th>
-        <th>Alquilado</th>
-        <th>Devolver</th>
-    </thead>
-    <tbody>
-        <?php foreach ($alquileres as $k) { ?>
-
-        <tr>
-            <td><?= Html::encode($k->pelicula->codigo) ?></td>
-            <td><?= Html::encode($k->pelicula->titulo) ?></td>
-            <td><?= Html::encode(Yii::$app->formatter->asDatetime($k->alquilado)) ?></td>
-            <td><?= Html::a('Delete', ['delete', 'id' => $k->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => '¿Quieres devolver la película?',
-                    'method' => 'post',
+    <?php if ($dataProvider !== null): ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                'pelicula.codigo',
+                'pelicula.titulo',
+                'alquilado:datetime',
+                [
+                    'class' => ActionColumn::className(),
+                    'template' => '{delete}',
+                    'urlCreator' => function ($action, $model, $key, $index, $column) {
+                        $params = [
+                            $action,
+                            'id' => (string) $key,
+                            'numero' => $model->socio->numero,
+                        ];
+                        return Url::toRoute($params);
+                    }
                 ],
-            ]) ?></td>
-        </tr><?php
-    }?>
-</tbody>
-</table>
-<?php
-}?>
-</div>
+            ],
+        ]) ?>
+    <?php endif ?>
+
+</div><!-- alquileres-devolver -->

@@ -49,9 +49,6 @@ class SocioSearch extends Socio
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-            'pageSize' => 10,// Para que se muestre solo los 10 ultimos
-            ],
         ]);
 
         $this->load($params);

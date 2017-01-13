@@ -1,9 +1,12 @@
 <?php
+
 use yii\helpers\Html;
 use yii\grid\GridView;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PeliculaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
 $this->title = 'Peliculas';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -20,11 +23,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+
             'id',
             'codigo',
             'titulo',
             'precio:currency',
             'borrado:boolean',
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

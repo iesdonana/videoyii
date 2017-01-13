@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Socio;
 use app\models\SocioSearch;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,14 +46,21 @@ class SociosController extends Controller
     }
 
     /**
-     * [actionView description]
-     * @param  [type] $id [description]
-     * @return [type]     [description]
+     * Displays a single Socio model.
+     * @param int $id
+     * @return mixed
      */
     public function actionView($id)
     {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Socio::findOne($id)->getUltimas(),
+            'pagination' => false,
+            'sort' => false,
+        ]);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -77,7 +85,7 @@ class SociosController extends Controller
     /**
      * Updates an existing Socio model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionUpdate($id)
@@ -96,7 +104,7 @@ class SociosController extends Controller
     /**
      * Deletes an existing Socio model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param int $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -109,7 +117,7 @@ class SociosController extends Controller
     /**
      * Finds the Socio model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
+     * @param int $id
      * @return Socio the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

@@ -1,6 +1,9 @@
 <?php
+
 namespace app\models;
+
 use Yii;
+
 /**
  * This is the model class for table "socios".
  *
@@ -22,6 +25,7 @@ class Socio extends \yii\db\ActiveRecord
     {
         return 'socios';
     }
+
     /**
      * @inheritdoc
      */
@@ -35,6 +39,7 @@ class Socio extends \yii\db\ActiveRecord
             [['numero'], 'unique'],
         ];
     }
+
     /**
      * @inheritdoc
      */
@@ -49,6 +54,7 @@ class Socio extends \yii\db\ActiveRecord
             'borrado' => 'Borrado',
         ];
     }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -56,6 +62,7 @@ class Socio extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Alquiler::className(), ['socio_id' => 'id'])->inverseOf('socio');
     }
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -66,6 +73,12 @@ class Socio extends \yii\db\ActiveRecord
             ->where(['devuelto' => null])
             ->orderBy('alquilado desc');
     }
+
+    public function getUltimas()
+    {
+        return $this->getAlquileres()->orderBy('alquilado desc')->limit(10);
+    }
+
     public function getPeliculas()
     {
         return $this->hasMany(Pelicula::className(), ['id' => 'pelicula_id'])->via('alquileres');

@@ -5,6 +5,7 @@ namespace app\models;
 class PeliculaForm extends \yii\base\Model
 {
     public $codigo;
+
     public function rules()
     {
         return [
@@ -23,6 +24,7 @@ class PeliculaForm extends \yii\base\Model
             }],
         ];
     }
+
     public function attributeLabels()
     {
         return [
