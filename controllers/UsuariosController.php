@@ -95,6 +95,9 @@ class UsuariosController extends Controller
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if (Yii::$app->user->isGuest) {
+                Yii::$app->session->setFlash('exito', 'Usuario registrado correctamente. Inicia sesión para acceder a tu cuenta');
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
