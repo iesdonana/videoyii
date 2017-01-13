@@ -38,6 +38,15 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
 
+        <br>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-6">
+                <label>Regístrate si aún no tienes cuenta </label>
+                <?= Html::a('Regístrate', ['usuarios/create'], ['class' => 'btn btn-primary']); ?>
+            </div>
+        </div>
+
     <?php ActiveForm::end(); ?>
 
     <!--<div class="col-lg-offset-1" style="color:#999;">

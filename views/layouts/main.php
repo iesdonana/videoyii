@@ -64,7 +64,7 @@ AppAsset::register($this);
 
     ];
     if (Yii::$app->user->esAdmin) {
-        array_unshift($items, ['label' => 'Usuarios', 'url' => ['usuarios/index']]);
+        array_unshift($items, ['label' => 'Usuarios', ['usuarios/create']]);
     }
 
     echo Nav::widget([
