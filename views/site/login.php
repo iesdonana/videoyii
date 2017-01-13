@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-6">
                 <label>Regístrate si aún no tienes cuenta </label>
-                <?= Html::a('Regístrate', ['usuarios/create'], ['class' => 'btn btn-primary']); ?>
+                <?= Html::a('Regístrate', ['usuarios/create'], ['class' => 'btn btn-info']); ?>
             </div>
         </div>
 
