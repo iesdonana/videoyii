@@ -62,7 +62,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             'id' => 'ID',
-            'nombre' => 'Nombre',
+            'nombre' => 'Nombre de usuario',
             'pass' => 'Contraseña',
             'passConfirm' => 'Confirmar contraseña'
         ];

@@ -46,6 +46,11 @@ class UsuariosController extends Controller
                             return  Yii::$app->user->identity->id == Yii::$app->request->get('id');
                         },
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['?'],
+                    ],
                 ],
             ],
         ];

@@ -39,9 +39,12 @@ AppAsset::register($this);
         ['label' => 'Socios', 'url' => ['socios/index']],
         ['label' => 'Películas', 'url' => ['peliculas/index']],
         ['label' => 'Alquileres', 'url' => ['alquileres/gestionar']],
-        Yii::$app->user->isGuest ? (
-            ['label' => 'Login', 'url' => ['/site/login']]
-        ) : ['label' => Yii::$app->user->identity->nombre, 'url' => ['usuarios/index'], 'items' =>
+        Yii::$app->user->isGuest ?
+            ['label' => 'Regístrate o inicia sesión', 'url' => ['#'], 'items' => [
+                            ['label' => 'Regístrate', 'url' => ['usuarios/create']],
+                            ['label' => 'Iniciar sesión', 'url' => ['site/login']],
+            ]]
+          : ['label' => Yii::$app->user->identity->nombre, 'url' => ['usuarios/index'], 'items' =>
                 [
                     ['label' => 'Ver perfil', 'url' => ['usuarios/view', 'id' => Yii::$app->user->identity->id]],
                     ['label' => 'Editar perfil', 'url' => ['usuarios/update', 'id' => Yii::$app->user->identity->id]],
