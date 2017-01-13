@@ -25,15 +25,14 @@ class TokenController extends Controller
      */
     public function actionIndex($id = null)
     {
+        $usuarios = Usuario::find();
         if ($id !== null) {
-            $usuario = Usuario::findOne($id);
+            $usuarios->where(['id' => $id]);
+        }
+        foreach ($usuarios->each() as $usuario) {
+            $usuario->regenerarToken();
             $usuario->token = \Yii::$app->security->generateRandomString();
             $usuario->save(false);
-        } else {
-            foreach (Usuario::find()->all() as $usuario) {
-                $usuario->token = \Yii::$app->security->generateRandomString();
-                $usuario->save(false);
-            }
         }
     }
 }
