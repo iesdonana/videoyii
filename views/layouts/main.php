@@ -39,18 +39,28 @@ AppAsset::register($this);
         ['label' => 'Socios', 'url' => ['socios/index']],
         ['label' => 'Películas', 'url' => ['peliculas/index']],
         ['label' => 'Alquileres', 'url' => ['alquileres/gestionar']],
-        Yii::$app->user->isGuest ? (
-            ['label' => 'Login', 'url' => ['/site/login']]
-        ) : (
-            '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->nombre . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>'
-        )
+            Yii::$app->user->isGuest ? (
+                ['label' => 'Usuario', 'items' => [
+                    ['label' => 'Login', 'url' => ['/site/login']],
+                    ['label' => 'Registrarse', 'url' => ['usuarios/create']],
+                ]]
+            ) : (
+                    ['label' => 'Usuario (' . Yii::$app->user->identity->nombre . ')', 'items' => [
+                        ['label' => 'Mis datos', 'url' => ['usuarios/view', 'id' => Yii::$app->user->id]],
+                        ['label' => 'Logout (' . Yii::$app->user->identity->nombre . ')',
+                         'url' => ['/site/logout'],
+                         'linkOptions' => ['data-method' => 'POST'],
+                        ],
+                        // '<li>'
+                        // . Html::beginForm(['/site/logout'], 'post')
+                        // . Html::submitButton(
+                        //     'Logout (' . Yii::$app->user->identity->nombre . ')',
+                        //     ['class' => 'btn btn-link logout']
+                        //     )
+                        //     . Html::endForm()
+                        //     . '</li>'
+                    ]]
+                )
     ];
     if (Yii::$app->user->esAdmin) {
         array_unshift($items, ['label' => 'Usuarios', 'url' => ['usuarios/index']]);

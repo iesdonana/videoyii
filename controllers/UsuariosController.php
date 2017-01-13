@@ -32,6 +32,11 @@ class UsuariosController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
                         'actions' => ['view', 'update'],
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
