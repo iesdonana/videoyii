@@ -42,14 +42,18 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'usuarios/view/<id:\d+>' => 'usuarios/view',
+                'usuarios/update/<id:\d+>' => 'usuarios/update',
+                'usuarios/<id:\d+>' => 'usuarios/view',
+                'usuario/<id:\d+>' => 'usuarios/view',
+                'usuarios/index/<sort>' => 'usuarios/index',
+                'usuarios/index/<page:\d+>/<per-page:\d+>' => 'usuarios/index',
             ],
         ],
-        */
     ],
     'params' => $params,
     'language' => 'es_ES',
