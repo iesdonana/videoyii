@@ -54,7 +54,7 @@ $config = [
                 'usuarios/index/<page:\d+>/<per-page:\d+>' => 'usuarios/index',
                 'socio/<id:\d+>' => 'socios/view',
                 'socios/update/<id:\d+>' => 'socios/update',
-                'pelicula/view/<id:\d+>' => 'peliculas/view',
+                'pelicula/<id:\d+>' => 'peliculas/view',
                 'peliculas/update/<id:\d+>' => 'peliculas/update',
             ],
         ],
