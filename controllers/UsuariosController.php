@@ -40,8 +40,8 @@ class UsuariosController extends Controller
                         'actions' => ['view', 'update'],
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->request->get('id') ==
-                                Yii::$app->user->id;
+                            $id = Yii::$app->request->get('id');
+                            return $id === null || Yii::$app->user->id;
                         },
                     ],
                     [
@@ -77,7 +77,7 @@ class UsuariosController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($id = null)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -96,6 +96,12 @@ class UsuariosController extends Controller
         ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if (Yii::$app->user->isGuest) {
+                Yii::$app->session->setFlash(
+                    'exito',
+                    'Usuario creado correctamente. Por favor, inicie sesión.'
+                );
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -110,7 +116,7 @@ class UsuariosController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id = null)
     {
         $model = $this->findModel($id);
 
@@ -145,6 +151,7 @@ class UsuariosController extends Controller
      */
     protected function findModel($id)
     {
+        $id = $id ?? Yii::$app->user->id;
         if (($model = Usuario::findOne($id)) !== null) {
             return $model;
         } else {
