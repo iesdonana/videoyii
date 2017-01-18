@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "usuarios".
@@ -54,6 +56,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['nombre'], 'string', 'max' => 15],
             [['nombre'], 'unique'],
             [['passConfirm'], 'confirmarPassword'],
+            [['imageFile'], 'file', 'extensions' => 'png'],
         ];
     }
 
@@ -168,6 +171,14 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             }
             if ($insert) {
                 $this->regenerarToken();
+            }
+            $this->imageFile = UploadedFile::getInstance($this, 'imageFile');
+            if ($this->imageFile !== null && $this->validate()) {
+                $nombre = Yii::getAlias('@uploads/')
+                    . $this->id . '.' . $this->imageFile->extension;
+                $this->imageFile->saveAs($nombre);
+                Image::thumbnail($nombre, 120, null)
+                    ->save($nombre, ['quality' => 50]);
             }
             return true;
         } else {
