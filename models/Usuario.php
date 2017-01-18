@@ -32,6 +32,8 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public $passConfirm;
 
+    public $imageFile;
+
     /**
      * @inheritdoc
      */
@@ -64,7 +66,8 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'id' => 'ID',
             'nombre' => 'Nombre',
             'pass' => 'Contraseña',
-            'passConfirm' => 'Confirmar contraseña'
+            'passConfirm' => 'Confirmar contraseña',
+            'imageFile' => 'Imagen',
         ];
     }
 
