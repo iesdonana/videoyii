@@ -1,0 +1,5 @@
+{
+    "require": {
+        "yiisoft/yii2-imagine": "^2.1"
+    }
+}
