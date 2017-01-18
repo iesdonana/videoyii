@@ -150,6 +150,13 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return $this->nombre === 'admin';
     }
 
+    public function getImageUrl()
+    {
+        $uploads = Yii::getAlias('@uploads');
+        $ruta = "$uploads/{$this->id}.png";
+        return file_exists($ruta) ? "/$ruta" : "/$uploads/default.png";
+    }
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {

@@ -25,11 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?php $url = Yii::getAlias('@uploads') . '/' . $model->id . ".png" ?>
-
-    <?php if (file_exists($url)): ?>
-        <img src="/<?= $url ?>" />
-    <?php endif ?>
+    <img src="<?= $model->imageUrl ?>" />
 
     <?= DetailView::widget([
         'model' => $model,

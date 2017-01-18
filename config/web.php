@@ -2,12 +2,13 @@
 
 $params = require(__DIR__ . '/params.php');
 
-Yii::setAlias('@uploads', 'uploads');
-
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'aliases' => [
+        '@uploads' => 'uploads',
+    ],
     'components' => [
         'formatter' => [
             'thousandSeparator' => ' ',
