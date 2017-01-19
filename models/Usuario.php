@@ -177,8 +177,8 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 $nombre = Yii::getAlias('@uploads/')
                     . $this->id . '.' . $this->imageFile->extension;
                 $this->imageFile->saveAs($nombre);
-                Image::thumbnail($nombre, 120, null)
-                    ->save($nombre, ['quality' => 50]);
+                //Image::thumbnail($nombre, 120, null)
+                    //->save($nombre, ['quality' => 50]);
             }
             return true;
         } else {

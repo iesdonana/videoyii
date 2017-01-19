@@ -61,7 +61,7 @@ class SiteController extends Controller
         $model = Usuario::findOne(1);
         Yii::$app->mailer->compose('usuarios/view', ['model' => $model])
             ->setFrom(Yii::$app->params['smtpUsername'])
-            ->setTo('ricardo@iesdonana.org')
+            ->setTo('christian.hidalgo@iesdonana.org')
             ->setSubject('Prueba')
 //            ->setTextBody('Prueba')
 //            ->setHtmlBody('<b>Prueba</b>')
