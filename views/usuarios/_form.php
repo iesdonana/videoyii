@@ -10,6 +10,10 @@ use yii\bootstrap\ActiveForm;
 
 <div class="usuario-form">
 
+    <div class="col-lg-offset-2 col-lg-10">
+        <img src="<?= $model->imageUrl ?>" class="img-thumbnail" style="height:100px;width:100px;margin-bottom:20px;"/>
+    </div>
+
     <?php $form = ActiveForm::begin([
         'layout' => 'horizontal',
         'fieldConfig' => [
@@ -17,6 +21,8 @@ use yii\bootstrap\ActiveForm;
             'labelOptions' => ['class' => 'col-lg-2 control-label'],
         ],
     ]); ?>
+
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 

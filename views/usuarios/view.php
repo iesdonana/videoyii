@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <img src="<?= $model->imageUrl ?>" />
+    <img src="<?= $model->imageUrl ?>" class="img-thumbnail" style="height:200px;width:200px;"/>
 
     <?= DetailView::widget([
         'model' => $model,
