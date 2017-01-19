@@ -21,6 +21,13 @@ class UsuariosController extends Controller
     public function behaviors()
     {
         return [
+            // [
+            //     'class' => 'yii\filters\HttpCache',
+            //     'only' => ['update'],
+            //     'lastModified' => function ($action, $params) {
+            //         return time();
+            //     },
+            // ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

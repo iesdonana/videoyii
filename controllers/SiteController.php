@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Usuario;
 use app\models\UploadForm;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -53,6 +54,18 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionCorreo()
+    {
+        $model = Usuario::findOne(1);
+        Yii::$app->mailer->compose('usuarios/view', ['model' => $model])
+            ->setFrom(Yii::$app->params['smtpUsername'])
+            ->setTo('ricardo@iesdonana.org')
+            ->setSubject('Prueba')
+//            ->setTextBody('Prueba')
+//            ->setHtmlBody('<b>Prueba</b>')
+            ->send();
     }
 
     public function actionUpload()
