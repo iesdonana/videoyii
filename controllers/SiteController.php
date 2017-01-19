@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\models\Usuario;
 use app\models\UploadForm;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -53,6 +54,17 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionCorreo()
+    {
+        Yii::$app->mailer->compose()
+            ->setFrom(Yii::$app->params['smtpUsername'])
+            ->setTo('celu1294@gmail.com')
+            ->setSubject('Prueba')
+            ->setTextBody('Prueba')
+            ->setHtmlBody('<b>Prueba</b>')
+            ->send();
     }
 
     public function actionUpload()
