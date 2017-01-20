@@ -10,19 +10,23 @@ use yii\bootstrap\ActiveForm;
 
 <div class="usuario-form">
 
+    <?php if ($model->scenario != "create") { ?>
+
     <div class="col-lg-offset-2 col-lg-10">
         <img src="<?= $model->imageUrl ?>" class="img-thumbnail" style="height:100px;width:100px;margin-bottom:20px;"/>
-    </div>
+    </div> <?php
 
-    <?php $form = ActiveForm::begin([
+    } $form = ActiveForm::begin([
         'layout' => 'horizontal',
         'fieldConfig' => [
             'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-6\">{error}</div>",
             'labelOptions' => ['class' => 'col-lg-2 control-label'],
         ],
-    ]); ?>
+    ]); if ($model->scenario != "create") { ?>
 
     <?= $form->field($model, 'imageFile')->fileInput() ?>
+
+    <?php } ?>
 
     <?= $form->field($model, 'nombre')->textInput(['maxlength' => true]) ?>
 
