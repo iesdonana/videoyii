@@ -8,7 +8,7 @@ $dbParams = require(__DIR__ . '/test_db.php');
 return [
     'id' => 'basic-tests',
     'basePath' => dirname(__DIR__),    
-    'language' => 'en-US',
+    'language' => 'es_ES',
     'components' => [
         'db' => $dbParams,
         'mailer' => [
@@ -18,7 +18,8 @@ return [
             'showScriptName' => true,
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => 'app\components\User',
+            'identityClass' => 'app\models\Usuario',
         ],        
         'request' => [
             'cookieValidationKey' => 'test',
