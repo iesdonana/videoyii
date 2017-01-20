@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'adminEmail' => 'admin@example.com',
+    'adminEmail' => 'joseluis.delgado@iesdonana.org',
     'smtpUsername' => 'joseluis.delgado@iesdonana.org',
 ];
