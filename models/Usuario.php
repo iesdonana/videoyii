@@ -50,7 +50,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['nombre'], 'required'],
+            [['nombre', 'email'], 'required'],
             [['pass', 'passConfirm'], 'required', 'on' => self::ESCENARIO_CREATE],
             [['pass'], 'safe'],
             [['nombre'], 'string', 'max' => 15],
@@ -71,6 +71,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'pass' => 'Contraseña',
             'passConfirm' => 'Confirmar contraseña',
             'imageFile' => 'Imagen',
+            'email' => 'Email',
         ];
     }
 
@@ -161,6 +162,11 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         $uploads = Yii::getAlias('@uploads');
         $ruta = "$uploads/{$this->id}.png";
         return file_exists($ruta) ? "/$ruta" : "/$uploads/default.png";
+    }
+
+    public function getActivado()
+    {
+        return $this->activacion === null;
     }
 
     public function beforeSave($insert)
