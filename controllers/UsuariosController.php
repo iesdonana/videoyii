@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 
 /**
  * UsuariosController implements the CRUD actions for Usuario model.
@@ -48,7 +49,7 @@ class UsuariosController extends Controller
                     ],
                     [
                         'allow' => true,
-                        'actions' => ['create'],
+                        'actions' => ['create', 'activar'],
                         'roles' => ['?'],
                     ],
                 ],
@@ -94,9 +95,21 @@ class UsuariosController extends Controller
             'scenario' => Usuario::ESCENARIO_CREATE
         ]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->activacion = Yii::$app->security->generateRandomString();
+            $model->save(false);
             if (Yii::$app->user->isGuest) {
-                Yii::$app->session->setFlash('exito', 'Usuario registrado correctamente. Inicia sesión para acceder a tu cuenta');
+                $url = Url::to(['usuarios/activar', 'token' => $model->activacion], true);
+                Yii::$app->mailer->compose()
+                    ->setFrom(Yii::$app->params['smtpUsername'])
+                    ->setTo($model->email)
+                    ->setSubject('Activación de cuenta en Videoyii')
+                    //->setTextBody('Prueba')
+                    ->setHtmlBody("<p>Por favor, pulse el siguiente enlace
+                                    para activar su cuenta:<br/>
+                                    <a href=\"$url\">Haga click aquí</p>")
+                    ->send();
+                Yii::$app->session->setFlash('exito', 'Usuario registrado correctamente. Revisa tu correo para activar y acceder a tu cuenta');
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
