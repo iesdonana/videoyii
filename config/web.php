@@ -63,6 +63,7 @@ $config = [
                 'usuario/<id:\d+>' => 'usuarios/view',
                 'usuarios/index/<sort>' => 'usuarios/index',
                 'usuarios/index/<page:\d+>/<per-page:\d+>' => 'usuarios/index',
+                'usuarios/activar/<token>' => 'usuarios/activar',
             ],
         ],
     ],

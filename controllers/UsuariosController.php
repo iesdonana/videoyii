@@ -6,6 +6,7 @@ use Yii;
 use app\models\Usuario;
 use app\models\UsuarioSearch;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -39,7 +40,7 @@ class UsuariosController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['create'],
+                        'actions' => ['create', 'activar'],
                         'roles' => ['?'],
                     ],
                     [
@@ -91,6 +92,23 @@ class UsuariosController extends Controller
         ]);
     }
 
+    public function actionActivar($token)
+    {
+        $usuario = Usuario::findOne(['activacion' => $token]);
+
+        if ($usuario === null) {
+            throw new NotFoundHttpException('El usuario indicado no existe.');
+        }
+
+        $usuario->activacion = null;
+        $usuario->save(false);
+        Yii::$app->session->setFlash(
+            'exito',
+            'Usuario validado correctamente.'
+        );
+        return $this->redirect(['site/login']);
+    }
+
     /**
      * Creates a new Usuario model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -102,11 +120,23 @@ class UsuariosController extends Controller
             'scenario' => Usuario::ESCENARIO_CREATE
         ]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->activacion = Yii::$app->security->generateRandomString();
+            $model->save(false);
             if (Yii::$app->user->isGuest) {
+                $url = Url::to(['usuarios/activar', 'token' => $model->activacion], true);
+                Yii::$app->mailer->compose()
+                    ->setFrom(Yii::$app->params['smtpUsername'])
+                    ->setTo($model->email)
+                    ->setSubject('Activación de cuenta')
+        //            ->setTextBody('Prueba')
+                    ->setHtmlBody("Por favor, pulse en el siguiente enlace
+                                   para activar su cuenta:<br/>
+                                   <a href=\"$url\">Pinche aquí</a>")
+                    ->send();
                 Yii::$app->session->setFlash(
                     'exito',
-                    'Usuario creado correctamente. Por favor, inicie sesión.'
+                    'Usuario creado correctamente. Por favor, revise su correo.'
                 );
             }
             return $this->redirect(['view', 'id' => $model->id]);
