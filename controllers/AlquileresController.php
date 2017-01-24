@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\helpers\Mensaje;
 use app\models\Pelicula;
 use app\models\TotalForm;
 use app\models\PeliculaForm;
@@ -151,7 +152,7 @@ class AlquileresController extends \yii\web\Controller
         if ($alquiler !== null) {
             $alquiler->devuelto = new \yii\db\Expression('current_timestamp');
             $alquiler->save();
-            Yii::$app->session->setFlash('exito', 'Película devuelta correctamente.');
+            Mensaje::exito('Película devuelta correctamente.');
             $url = ['alquileres/gestionar'];
             if ($numero !== null) {
                 $url['numero'] = $numero;

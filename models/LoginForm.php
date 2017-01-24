@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\helpers\Mensaje;
 use yii\base\Model;
 use app\models\Usuario;
 
@@ -76,10 +77,7 @@ class LoginForm extends Model
         if ($this->validate()) {
             $usuario = $this->getUser();
             if (!$usuario->activado) {
-                Yii::$app->session->setFlash(
-                    'fracaso',
-                    'Usuario aún no validado.'
-                );
+                Mensaje::fracaso('Usuario aún no validado.');
                 return false;
             }
             return Yii::$app->user->login($usuario, $this->rememberMe ? 3600*24*30 : 0);

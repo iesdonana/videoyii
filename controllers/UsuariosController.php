@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use Yii;
+use app\helpers\Mensaje;
 use app\models\Usuario;
 use app\models\UsuarioSearch;
 use yii\filters\AccessControl;
@@ -102,10 +103,7 @@ class UsuariosController extends Controller
 
         $usuario->activacion = null;
         $usuario->save(false);
-        Yii::$app->session->setFlash(
-            'exito',
-            'Usuario validado correctamente.'
-        );
+        Mensaje::exito('Usuario validado correctamente.');
         return $this->redirect(['site/login']);
     }
 
@@ -134,10 +132,7 @@ class UsuariosController extends Controller
                                    para activar su cuenta:<br/>
                                    <a href=\"$url\">Pinche aquí</a>")
                     ->send();
-                Yii::$app->session->setFlash(
-                    'exito',
-                    'Usuario creado correctamente. Por favor, revise su correo.'
-                );
+                Mensaje::exito('Usuario creado correctamente. Por favor, revise su correo.');
             }
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
