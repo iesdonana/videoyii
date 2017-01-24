@@ -84,6 +84,21 @@ class UsuariosController extends Controller
         ]);
     }
 
+    public function actionActivar($token)
+    {
+        $usuario = Usuario::findOne(['activacion' => $token]);
+        if ($usuario === null) {
+            throw new NotFoundHttpException('El usuario indicado no existe.');
+        }
+        $usuario->activacion = null;
+        $usuario->save(false);
+        Yii::$app->session->setFlash(
+            'exito',
+            'Usuario validado correctamente.'
+        );
+        return $this->redirect(['site/login']);
+    }
+
     /**
      * Creates a new Usuario model.
      * If creation is successful, the browser will be redirected to the 'view' page.
