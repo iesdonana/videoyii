@@ -42,7 +42,9 @@ create table usuarios (
     password   varchar(60)  not null,
     email      varchar(255) not null,
     token      varchar(32),
-    activacion varchar(32)
+    activacion varchar(32),
+    created_at timestamptz  default current_timestamp
 );
 
 create index idx_usuarios_activacion on usuarios (activacion);
+create index idx_usuarios_created_at on usuarios (created_at);
