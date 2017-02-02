@@ -37,7 +37,7 @@ AppAsset::register($this);
         ],
     ]);
     $items = [
-        ['label' => 'Socios', 'url' => ['socios/index']],
+        ['label' => '<img src="pp" />', 'url' => ['socios/index'], 'encode' => false],
         ['label' => 'Películas', 'url' => ['peliculas/index']],
         ['label' => 'Alquileres', 'url' => ['alquileres/gestionar']],
         Yii::$app->user->isGuest ?
