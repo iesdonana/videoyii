@@ -16,6 +16,7 @@ use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\grid\GridView;
 
 class AlquileresController extends \yii\web\Controller
 {
@@ -29,6 +30,7 @@ class AlquileresController extends \yii\web\Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'ajax' => ['GET']
                 ],
             ],
             'access' => [
@@ -173,6 +175,26 @@ class AlquileresController extends \yii\web\Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionAjax($nombre)
+    {
+        return GridView::widget([
+            'dataProvider' => new ActiveDataProvider([
+                'query' => Socio::find()->where(['ilike', 'nombre', $nombre]),
+                'pagination' => false,
+                'sort' => false,
+            ]),
+            'columns' => [
+                'numero',
+                'nombre',
+                'direccion',
+                'telefono',
+            ],
+            'tableOptions' => [
+                'class' => 'table table-bordered table-hover',
+            ],
         ]);
     }
 }
