@@ -1,7 +1,9 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
@@ -10,6 +12,38 @@ use yii\widgets\ActiveForm;
 
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
+$url = Url::to(['alquileres/socios']);
+$urlActual = Url::to('');
+$js = <<<EOT
+    $('#numero').keyup(function() {
+        var q = $('#numero').val();
+        if (q == '') {
+            $('#socios').html('');
+        }
+        if (!isNaN(q)) {
+            return;
+        }
+        $.ajax({
+            method: 'GET',
+            url: '$url',
+            data: {
+                q: q
+            },
+            success: function (data, status, event) {
+                $('#socios').html(data);
+                $('#socios tr').click(function (event) {
+                    var target = event.currentTarget;
+                    if ($(target).children().length > 1) {
+                        var obj = $(target).children().first();
+                        numero = $(obj[0]).text();
+                        window.location.assign('$urlActual' + '?numero=' + numero);
+                    }
+                });
+            }
+        });
+    });
+EOT;
+$this->registerJs($js);
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
@@ -22,6 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     <?php ActiveForm::end(); ?>
 </div><!-- alquileres-alquilar -->
+<div id="socios">
+</div>
 <?php if (!empty($alquileres)) {
         ?>
     <table class="table table-striped">
