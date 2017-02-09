@@ -67,6 +67,7 @@ $config = [
                 'socios/update/<id:\d+>' => 'socios/update',
                 'pelicula/<id:\d+>' => 'peliculas/view',
                 'peliculas/update/<id:\d+>' => 'peliculas/update',
+                'usuarios/activar/<token>' => 'usuarios/activar',
             ],
         ],
     ],

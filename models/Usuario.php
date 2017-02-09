@@ -56,6 +56,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['nombre'], 'string', 'max' => 15],
             [['nombre'], 'unique'],
             [['passConfirm'], 'confirmarPassword'],
+            [['email'], 'email'],
             [['imageFile'], 'file', 'extensions' => 'png'],
         ];
     }
@@ -164,6 +165,11 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return file_exists($ruta) ? "/$ruta" : "/$uploads/default.png";
     }
 
+    /**
+     * Indica si un usuario está activado. Un usuario está activado
+     * su columna `activacion` contiene un valor nulo.
+     * @return bool Si el usuario está activado o no
+     */
     public function getActivado()
     {
         return $this->activacion === null;

@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use app\helpers\Mensaje;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -80,20 +81,20 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?php if (Yii::$app->session->hasFlash('exito')) {
+        <?php if (Mensaje::hayExito()) {
             echo Alert::widget([
                 'options' => [
                     'class' => 'alert-success',
                 ],
-                'body' => Yii::$app->session->getFlash('exito'),
+                'body' => Mensaje::exito(),
             ]);
         } ?>
-        <?php if (Yii::$app->session->hasFlash('fracaso')) {
+        <?php if (Mensaje::hayFracaso()) {
             echo Alert::widget([
                 'options' => [
                     'class' => 'alert-danger',
                 ],
-                'body' => Yii::$app->session->getFlash('fracaso'),
+                'body' => Mensaje::fracaso(),
             ]);
         } ?>
         <?= $content ?>

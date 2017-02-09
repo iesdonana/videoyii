@@ -18,6 +18,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'passConfirm')->passwordInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'email')->input('email') ?>
+
     <?= $form->field($model, 'imageFile')->fileInput() ?>
 
     <div class="form-group">
