@@ -16,7 +16,7 @@ class GestionarForm extends \yii\base\Model
     {
         return [
             [['numero'], 'required'],
-            [['numero'], 'number'],
+            // [['numero'], 'number'],
             [['numero'], 'exist',
                 'skipOnError' => true,
                 'targetClass' => Socio::className(),

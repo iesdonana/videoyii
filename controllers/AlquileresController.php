@@ -15,6 +15,7 @@ use app\models\AlquilerSearch;
 use app\models\Socio;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
+use yii\grid\GridView;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -120,6 +121,26 @@ class AlquileresController extends \yii\web\Controller
             'model' => $model,
             'model2' => $model2,
             'alquileres' => $alquileres,
+        ]);
+    }
+
+    public function actionSocios($q)
+    {
+        return GridView::widget([
+            'dataProvider' => new ActiveDataProvider([
+                'query' => Socio::find()->where(['ilike', 'nombre', $q]),
+                'pagination' => false,
+                'sort' => false,
+            ]),
+            'columns' => [
+                'numero',
+                'nombre',
+                'direccion',
+                'telefono',
+            ],
+            'tableOptions' => [
+                'class' => 'table table-bordered table-hover',
+            ],
         ]);
     }
 
