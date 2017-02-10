@@ -3,7 +3,6 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
@@ -13,7 +12,7 @@ use yii\web\View;
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
 $url = Url::to(['alquileres/socios']);
-$urlActual = Url::to('');
+$urlActual = Url::to(['alquileres/gestionar']);
 $js = <<<EOT
     $('#numero').keyup(function() {
         var q = $('#numero').val();
