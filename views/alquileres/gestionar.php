@@ -30,14 +30,6 @@ $js = <<<EOT
             },
             success: function (data, status, event) {
                 $('#socios').html(data);
-                $('#socios tr').click(function (event) {
-                    var target = event.currentTarget;
-                    if ($(target).children().length > 1) {
-                        var obj = $(target).children().first();
-                        numero = $(obj[0]).text();
-                        window.location.assign('$urlActual' + '?numero=' + numero);
-                    }
-                });
             }
         });
     });

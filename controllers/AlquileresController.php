@@ -54,7 +54,9 @@ class AlquileresController extends \yii\web\Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Socio::find()->where(['ilike', 'nombre', $q]),
-            'pagination' => false,
+            'pagination' => [
+                'pageSize' => 1,
+            ],
             'sort' => false,
         ]);
         return $this->renderAjax('_socios', [
