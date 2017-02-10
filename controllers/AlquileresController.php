@@ -180,21 +180,15 @@ class AlquileresController extends \yii\web\Controller
 
     public function actionAjax($nombre)
     {
-        return GridView::widget([
-            'dataProvider' => new ActiveDataProvider([
-                'query' => Socio::find()->where(['ilike', 'nombre', $nombre]),
-                'pagination' => false,
-                'sort' => false,
-            ]),
-            'columns' => [
-                'numero',
-                'nombre',
-                'direccion',
-                'telefono',
+        $dataProvider = new ActiveDataProvider([
+            'query' => Socio::find()->where(['ilike', 'nombre', $nombre]),
+            'pagination' => [
+                'pageSize' => 5,
             ],
-            'tableOptions' => [
-                'class' => 'table table-bordered table-hover',
-            ],
+            'sort' => false,
+        ]);
+        return $this->renderAjax('_ajax', [
+            'dataProvider' => $dataProvider,
         ]);
     }
 }

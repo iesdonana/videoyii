@@ -13,12 +13,13 @@ $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
 
 $url = Url::to(['ajax']);
-$urlActual = Url::to(['']);
+$urlActual = Url::to(['alquileres/gestionar']);
 $js = <<<EOT
     $('#numero').keyup(function() {
         var q = $('#numero').val();
         if (q == '') {
             $('#socios').html('');
+            $('.oculto').html('');
         }
         if (!isNaN(q)) {
             return;
@@ -31,14 +32,6 @@ $js = <<<EOT
             },
             success: function (data, status, event) {
                 $('#socios').html(data);
-                $('#socios tr').click(function (event) {
-                    var target = event.currentTarget;
-                    if ($(target).children().length > 1) {
-                        var obj = $(target).children().first();
-                        numero = $(obj[0]).text();
-                        window.location.assign('$urlActual' + '?numero=' + numero);
-                    }
-                });
             }
         });
     });
@@ -65,7 +58,7 @@ $this->registerJs($js);
 
 <?php if (!empty($alquileres)) {
         ?>
-    <table class="table table-striped">
+    <table class="table table-striped oculto">
         <thead>
             <th>Código</th>
             <th>Título</th>
@@ -103,7 +96,7 @@ $this->registerJs($js);
     } ?>
 <?php if ($model->esValido) {
         ?>
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['class' => 'oculto']]); ?>
         <?= $form->field($model2, 'codigo') ?>
         <div class="form-group">
             <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
