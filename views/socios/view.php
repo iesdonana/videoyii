@@ -1,13 +1,8 @@
 <?php
 
-use app\models\Socio;
-use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-use yii\grid\GridView;
-use yii\data\ActiveDataProvider;
-use app\models\Socio;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Socio */
