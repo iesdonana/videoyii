@@ -178,17 +178,18 @@ class AlquileresController extends \yii\web\Controller
         ]);
     }
 
-    public function actionAjax($nombre)
+    public function actionAjax($q = null, $id = null)
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Socio::find()->where(['ilike', 'nombre', $nombre]),
-            'pagination' => [
-                'pageSize' => 5,
-            ],
-            'sort' => false,
-        ]);
-        return $this->renderAjax('_ajax', [
-            'dataProvider' => $dataProvider,
-        ]);
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+        if (!is_null($q)) {
+            $data = Socio::find()->select('numero as id, nombre as text')
+                    ->where(['ilike', 'nombre', $q])
+                    ->limit(20)->asArray()->all();
+            $out['results'] = $data;
+        } elseif ($id > 0) {
+            $out['results'] = ['id' => $id, 'text' => Socio::findOne(['numero' => $id])->nombre];
+        }
+        return $out;
     }
 }

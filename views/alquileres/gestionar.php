@@ -3,6 +3,9 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
+use yii\web\JsExpression;
+use app\models\Socio;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
@@ -37,13 +40,33 @@ $js = <<<EOT
     });
 EOT;
 $this->registerJs($js);
+
+$nombre = empty($model->numero) ? '' : Socio::findOne(['numero' => $model->numero])->nombre;
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
         'method' => 'get',
         'action' => ['alquileres/gestionar'],
     ]); ?>
-        <?= $form->field($model, 'numero') ?>
+        <?= $form->field($model, 'numero')->widget(Select2::classname(), [
+            'initValueText' => $nombre, // set the initial display text
+            'options' => ['placeholder' => 'Selecciona un usuario ...'],
+            'pluginOptions' => [
+                'allowClear' => true,
+                'minimumInputLength' => 2,
+                'language' => [
+                    'errorLoading' => new JsExpression("function () { return 'Waiting for results...'; }"),
+                ],
+                'ajax' => [
+                    'url' => $url,
+                    'dataType' => 'json',
+                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                ],
+                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                'templateResult' => new JsExpression('function(socio) { return socio.text; }'),
+                'templateSelection' => new JsExpression('function (socio) { return socio.text; }'),
+            ],
+        ]); ?>
         <div class="form-group">
             <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>

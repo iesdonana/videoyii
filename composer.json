@@ -21,7 +21,8 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "fxp/composer-asset-plugin": "^1.2.0",
-	"yiisoft/yii2-imagine": "^2.1"
+	"yiisoft/yii2-imagine": "^2.1",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "require-dev": {
         "codeception/base": "^2.2.3",
