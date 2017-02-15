@@ -60,10 +60,6 @@ $nombre = empty($model->numero) ? '' :
             'initValueText' => $nombre,
             'language' => 'es',
             'options' => ['placeholder' => 'Buscar socio...'],
-            // 'data' => Socio::find()
-            //     ->select('numero as id, nombre as text')
-            //     ->asArray()
-            //     ->all(),
             'pluginOptions' => [
                 'allowClear' => true,
                 // 'minimumInputLength' => 2,
