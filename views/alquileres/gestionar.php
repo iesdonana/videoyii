@@ -1,8 +1,11 @@
 <?php
 
+use app\models\Socio;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
@@ -44,13 +47,39 @@ $js = <<<EOT
     });
 EOT;
 $this->registerJs($js);
+
+$nombre = empty($model->numero) ? '' :
+          Socio::findOne(['numero' => $model->numero])->nombre;
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
         'method' => 'get',
         'action' => ['alquileres/gestionar'],
     ]); ?>
-        <?= $form->field($model, 'numero') ?>
+        <?= $form->field($model, 'numero')->widget(Select2::classname(), [
+            'initValueText' => $nombre,
+            'language' => 'es',
+            'options' => ['placeholder' => 'Buscar socio...'],
+            // 'data' => Socio::find()
+            //     ->select('numero as id, nombre as text')
+            //     ->asArray()
+            //     ->all(),
+            'pluginOptions' => [
+                'allowClear' => true,
+                // 'minimumInputLength' => 2,
+                'language' => [
+                    'errorLoading' => new JsExpression("function () { return 'Esperando resultados...'; }"),
+                ],
+                'ajax' => [
+                    'url' => $url,
+                    'dataType' => 'json',
+                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                ],
+                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                'templateResult' => new JsExpression('function(socio) { return socio.text; }'),
+                'templateSelection' => new JsExpression('function (socio) { return socio.text; }'),
+            ],
+        ]); ?>
         <div class="form-group">
             <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>
