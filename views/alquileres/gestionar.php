@@ -14,24 +14,33 @@ $this->params['breadcrumbs'][] = $this->title;
 $url = Url::to(['alquileres/socios']);
 $urlActual = Url::to(['alquileres/gestionar']);
 $js = <<<EOT
+    var delay = (function() {
+        var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
     $('#numero').keyup(function() {
-        var q = $('#numero').val();
-        if (q == '') {
-            $('#socios').html('');
-        }
-        if (!isNaN(q)) {
-            return;
-        }
-        $.ajax({
-            method: 'GET',
-            url: '$url',
-            data: {
-                q: q
-            },
-            success: function (data, status, event) {
-                $('#socios').html(data);
+        delay(function() {
+            var q = $('#numero').val();
+            if (q == '') {
+                $('#socios').html('');
             }
-        });
+            if (!isNaN(q)) {
+                return;
+            }
+            $.ajax({
+                method: 'GET',
+                url: '$url',
+                data: {
+                    q: q
+                },
+                success: function (data, status, event) {
+                    $('#socios').html(data);
+                }
+            });
+        }, 500);
     });
 EOT;
 $this->registerJs($js);
