@@ -148,26 +148,6 @@ class AlquileresController extends \yii\web\Controller
         ]);
     }
 
-    public function actionSocios($q)
-    {
-        return GridView::widget([
-            'dataProvider' => new ActiveDataProvider([
-                'query' => Socio::find()->where(['ilike', 'nombre', $q]),
-                'pagination' => false,
-                'sort' => false,
-            ]),
-            'columns' => [
-                'numero',
-                'nombre',
-                'direccion',
-                'telefono',
-            ],
-            'tableOptions' => [
-                'class' => 'table table-bordered table-hover',
-            ],
-        ]);
-    }
-
     public function actionDevolver($numero = null)
     {
         $model = new DevolverForm();
