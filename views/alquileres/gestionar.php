@@ -15,61 +15,37 @@ use kartik\select2\Select2;
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
 $url = Url::to(['alquileres/socios']);
-$urlActual = Url::to(['alquileres/gestionar']);
-$js = <<<EOT
-    var delay = (function() {
-        var timer = 0;
-        return function(callback, ms){
-            clearTimeout (timer);
-            timer = setTimeout(callback, ms);
+$resultsJs = <<<JS
+    function (data, params) {
+        params.page = params.page || 1;
+        return {
+            results: data.items,
+            pagination: {
+                more: (params.page * 10) < data.total_count
+            }
         };
-    })();
-    $('#numero').keyup(function() {
-        delay(function() {
-            var q = $('#numero').val();
-            if (q == '') {
-                $('#socios').html('');
-            }
-            if (!isNaN(q)) {
-                return;
-            }
-            $.ajax({
-                method: 'GET',
-                url: '$url',
-                data: {
-                    q: q
-                },
-                success: function (data, status, event) {
-                    $('#socios').html(data);
-                }
-            });
-        }, 500);
-    });
-EOT;
-$this->registerJs($js);
-
+    }
+JS;
 $nombre = empty($model->numero) ? '' :
           Socio::findOne(['numero' => $model->numero])->nombre;
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
-        'method' => 'get',
-        'action' => ['alquileres/gestionar'],
-    ]); ?>
+            'method' => 'get',
+            'action' => ['alquileres/gestionar'],
+        ]); ?>
         <?= $form->field($model, 'numero')->widget(Select2::classname(), [
             'initValueText' => $nombre,
             'language' => 'es',
             'options' => ['placeholder' => 'Buscar socio...'],
             'pluginOptions' => [
                 'allowClear' => true,
-                // 'minimumInputLength' => 2,
-                'language' => [
-                    'errorLoading' => new JsExpression("function () { return 'Esperando resultados...'; }"),
-                ],
                 'ajax' => [
                     'url' => $url,
                     'dataType' => 'json',
-                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                    'data' => new JsExpression('function(params) { return {q: params.term, page: params.page}; }'),
+                    'processResults' => new JsExpression($resultsJs),
+                    'cache' => true,
                 ],
                 'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
                 'templateResult' => new JsExpression('function(socio) { return socio.text; }'),
