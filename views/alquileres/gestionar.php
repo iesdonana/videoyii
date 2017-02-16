@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Pelicula;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -15,7 +16,7 @@ use app\models\Socio;
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
 
-$url = Url::to(['ajax']);
+$url = Url::to(['socios']);
 $urlActual = Url::to(['alquileres/gestionar']);
 $js = <<<EOT
     $('#numero').keyup(function() {
@@ -118,13 +119,32 @@ $nombre = empty($model->numero) ? '' : Socio::findOne(['numero' => $model->numer
 
     } ?>
 <?php if ($model->esValido) {
-        ?>
+    $titulo = empty($model2->codigo) ? '' : Pelicula::findOne(['codigo' => $model2->codigo])->titulo;
+    $url2 = Url::to(['peliculas']);
+?>
     <?php $form = ActiveForm::begin(['options' => ['class' => 'oculto']]); ?>
-        <?= $form->field($model2, 'codigo') ?>
+        <?= $form->field($model2, 'codigo')->widget(Select2::classname(), [
+            'initValueText' => $titulo, // set the initial display text
+            'options' => ['placeholder' => 'Selecciona una película ...'],
+            'pluginOptions' => [
+                'allowClear' => true,
+                'minimumInputLength' => 2,
+                'language' => [
+                    'errorLoading' => new JsExpression("function () { return 'Waiting for results...'; }"),
+                ],
+                'ajax' => [
+                    'url' => $url2,
+                    'dataType' => 'json',
+                    'data' => new JsExpression('function(params) { return {q:params.term}; }'),
+                ],
+                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                'templateResult' => new JsExpression('function(pelicula) { return pelicula.text; }'),
+                'templateSelection' => new JsExpression('function (pelicula) { return pelicula.text; }'),
+            ],
+        ]); ?>
         <div class="form-group">
             <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 <?php
-
     } ?>

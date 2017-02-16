@@ -178,7 +178,7 @@ class AlquileresController extends \yii\web\Controller
         ]);
     }
 
-    public function actionAjax($q = null, $id = null)
+    public function actionSocios($q = null, $id = null)
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $out = ['results' => ['id' => '', 'text' => '']];
@@ -189,6 +189,23 @@ class AlquileresController extends \yii\web\Controller
             $out['results'] = $data;
         } elseif ($id > 0) {
             $out['results'] = ['id' => $id, 'text' => Socio::findOne(['numero' => $id])->nombre];
+        }
+        return $out;
+    }
+
+    public function actionPeliculas($q = null, $id = null)
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+        if (!is_null($q)) {
+            $data = Pelicula::find()->select('codigo as id, titulo as text')
+                    ->joinWith('alquileres')
+                    ->where(['ilike', 'titulo', $q])
+                    ->andWhere('alquileres.alquilado is null or alquileres.devuelto is not null')
+                    ->limit(20)->asArray()->all();
+            $out['results'] = $data;
+        } elseif ($id > 0) {
+            $out['results'] = ['id' => $id, 'text' => Pelicula::findOne(['codigo' => $id])->titulo];
         }
         return $out;
     }
