@@ -50,6 +50,30 @@ class AlquileresController extends \yii\web\Controller
         ];
     }
 
+    public function actionSocios($q = null, $id = null)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+
+        if (!is_null($q)) {
+            $data = Socio::find()
+                ->select('numero as id, nombre as text')
+                ->where(['ilike', 'nombre', $q])
+                ->asArray()
+                ->all();
+            $out['results'] = array_values($data);
+        } elseif ($id > 0) {
+            $out['results'] = [
+                'id' => $id,
+                'text' => Socio::findOne(['numero' => $id])->nombre,
+            ];
+        }
+        return $out;
+        // return $this->renderAjax('_socios', [
+        //     'dataProvider' => $dataProvider,
+        // ]);
+    }
+
     public function actionTotal($fecha = null)
     {
         $model = new TotalForm;

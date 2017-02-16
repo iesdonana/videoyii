@@ -1,8 +1,11 @@
 <?php
 
+use app\models\Socio;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
@@ -12,44 +15,68 @@ use yii\widgets\ActiveForm;
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
 $url = Url::to(['alquileres/socios']);
-$urlActual = Url::to('');
+
+$urlActual = Url::to(['alquileres/gestionar']);
 $js = <<<EOT
+    var delay = (function() {
+        var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
     $('#numero').keyup(function() {
-        var q = $('#numero').val();
-        if (q == '') {
-            $('#socios').html('');
-        }
-        if (!isNaN(q)) {
-            return;
-        }
-        $.ajax({
-            method: 'GET',
-            url: '$url',
-            data: {
-                q: q
-            },
-            success: function (data, status, event) {
-                $('#socios').html(data);
-                $('#socios tr').click(function (event) {
-                    var target = event.currentTarget;
-                    if ($(target).children().length > 1) {
-                        var obj = $(target).children().first();
-                        numero = $(obj[0]).text();
-                        window.location.assign('$urlActual' + '?numero=' + numero);
-                    }
-                });
+        delay(function() {
+            var q = $('#numero').val();
+            if (q == '') {
+                $('#socios').html('');
             }
-        });
+            if (!isNaN(q)) {
+                return;
+            }
+            $.ajax({
+                method: 'GET',
+                url: '$url',
+                data: {
+                    q: q
+                },
+                success: function (data, status, event) {
+                    $('#socios').html(data);
+                }
+            });
+        }, 500);
     });
 EOT;
 $this->registerJs($js);
+
+$nombre = empty($model->numero) ? '' :
+          Socio::findOne(['numero' => $model->numero])->nombre;
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
         'method' => 'get',
         'action' => ['alquileres/gestionar'],
     ]); ?>
-        <?= $form->field($model, 'numero') ?>
+        <?= $form->field($model, 'numero')->widget(Select2::classname(), [
+            'initValueText' => $nombre,
+            'language' => 'es',
+            'options' => ['placeholder' => 'Buscar socio...'],
+            'pluginOptions' => [
+                'allowClear' => true,
+                // 'minimumInputLength' => 2,
+                'language' => [
+                    'errorLoading' => new JsExpression("function () { return 'Esperando resultados...'; }"),
+                ],
+                'ajax' => [
+                    'url' => $url,
+                    'dataType' => 'json',
+                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                ],
+                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                'templateResult' => new JsExpression('function(socio) { return socio.text; }'),
+                'templateSelection' => new JsExpression('function (socio) { return socio.text; }'),
+            ],
+        ]); ?>
         <div class="form-group">
             <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>

@@ -1,7 +1,5 @@
 <?php
 
-use app\models\Socio;
-use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
