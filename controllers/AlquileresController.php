@@ -55,6 +55,12 @@ class AlquileresController extends \yii\web\Controller
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $out = ['results' => ['id' => '', 'text' => '']];
 
+        $socios = Socio::find()
+            ->select('numero as id, nombre as text')
+            ->asArray()
+            ->all();
+        $out['results'] = array_values($socios);
+
         if (!is_null($q)) {
             $data = Socio::find()
                 ->select('numero as id, nombre as text')

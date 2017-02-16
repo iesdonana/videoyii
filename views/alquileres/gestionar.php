@@ -49,6 +49,18 @@ $js = <<<EOT
 EOT;
 $this->registerJs($js);
 
+$resultsJs = <<< JS
+function (data, params) {
+    params.page = params.page || 1;
+    return {
+        results: data.items,
+        pagination: {
+            more: (params.page * 5) < data.total_count
+        }
+    };
+}
+JS;
+
 $nombre = empty($model->numero) ? '' :
           Socio::findOne(['numero' => $model->numero])->nombre;
 ?>
@@ -70,7 +82,9 @@ $nombre = empty($model->numero) ? '' :
                 'ajax' => [
                     'url' => $url,
                     'dataType' => 'json',
-                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                    'data' => new JsExpression('function(params) { return {q:params.term, page: params.page}; }'),
+                    // 'processResults' => new JsExpression($resultsJs),
+                    'cache' => true,
                 ],
                 'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
                 'templateResult' => new JsExpression('function(socio) { return socio.text; }'),
