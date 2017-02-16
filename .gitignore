@@ -30,3 +30,4 @@ tests/_output/*
 tests/_support/_generated
 
 .tags
+.php_cs.cache
