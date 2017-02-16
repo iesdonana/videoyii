@@ -25,40 +25,40 @@ $js = <<<EOT
             timer = setTimeout(callback, ms);
         };
     })();
-    $('#numero').keyup(function() {
-        delay(function() {
-            var q = $('#numero').val();
-            if (q == '') {
-                $('#socios').html('');
-            }
-            if (!isNaN(q)) {
-                return;
-            }
-            $.ajax({
-                method: 'GET',
-                url: '$url',
-                data: {
-                    q: q
-                },
-                success: function (data, status, event) {
-                    $('#socios').html(data);
-                }
-            });
-        }, 500);
-    });
+    // $('#numero').keyup(function() {
+    //     delay(function() {
+    //         var q = $('#numero').val();
+    //         if (q == '') {
+    //             $('#socios').html('');
+    //         }
+    //         if (!isNaN(q)) {
+    //             return;
+    //         }
+    //         $.ajax({
+    //             method: 'GET',
+    //             url: '$url',
+    //             data: {
+    //                 q: q
+    //             },
+    //             success: function (data, status, event) {
+    //                 $('#socios').html(data);
+    //             }
+    //         });
+    //     }, 500);
+    // });
 EOT;
 $this->registerJs($js);
 
-$resultsJs = <<< JS
-function (data, params) {
-    params.page = params.page || 1;
-    return {
-        results: data.items,
-        pagination: {
-            more: (params.page * 5) < data.total_count
-        }
-    };
-}
+$resultsJs = <<<JS
+    function (data, params) {
+        params.page = params.page || 1;
+        return {
+            results: data.items,
+            pagination: {
+                more: (params.page * 6) < data.total_count
+            }
+        };
+    }
 JS;
 
 $nombre = empty($model->numero) ? '' :
@@ -66,24 +66,20 @@ $nombre = empty($model->numero) ? '' :
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
-        'method' => 'get',
-        'action' => ['alquileres/gestionar'],
-    ]); ?>
+            'method' => 'get',
+            'action' => ['alquileres/gestionar'],
+        ]); ?>
         <?= $form->field($model, 'numero')->widget(Select2::classname(), [
             'initValueText' => $nombre,
             'language' => 'es',
             'options' => ['placeholder' => 'Buscar socio...'],
             'pluginOptions' => [
                 'allowClear' => true,
-                // 'minimumInputLength' => 2,
-                'language' => [
-                    'errorLoading' => new JsExpression("function () { return 'Esperando resultados...'; }"),
-                ],
                 'ajax' => [
                     'url' => $url,
                     'dataType' => 'json',
-                    'data' => new JsExpression('function(params) { return {q:params.term, page: params.page}; }'),
-                    // 'processResults' => new JsExpression($resultsJs),
+                    'data' => new JsExpression('function(params) { return {q: params.term, page: params.page}; }'),
+                    'processResults' => new JsExpression($resultsJs),
                     'cache' => true,
                 ],
                 'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),

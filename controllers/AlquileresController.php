@@ -13,6 +13,7 @@ use app\models\Alquiler;
 use app\models\GestionarForm;
 use app\models\AlquilerSearch;
 use app\models\Socio;
+use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\grid\GridView;
@@ -53,7 +54,13 @@ class AlquileresController extends \yii\web\Controller
     public function actionSocios($q = null, $id = null)
     {
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $out = ['results' => ['id' => '', 'text' => '']];
+        $out = [
+            'items' => [
+                'id' => '',
+                'text' => '',
+            ],
+            'total_count' => 0,
+        ];
 
         $socios = Socio::find()
             ->select('numero as id, nombre as text')
@@ -62,22 +69,31 @@ class AlquileresController extends \yii\web\Controller
         $out['results'] = array_values($socios);
 
         if (!is_null($q)) {
-            $data = Socio::find()
-                ->select('numero as id, nombre as text')
-                ->where(['ilike', 'nombre', $q])
+            $query = Socio::find()->where(['ilike', 'nombre', $q]);
+            $countQuery = clone $query;
+            $totalCount = $countQuery->count();
+            $pages = new Pagination([
+                'totalCount' => $totalCount,
+                'pageSize' => 6,
+            ]);
+            $data = $query
+                ->select("numero as id, ('[' || numero || '] ' || nombre) as text")
+                ->orderBy('numero')
+                ->limit($pages->limit)
+                ->offset($pages->offset)
                 ->asArray()
                 ->all();
-            $out['results'] = array_values($data);
+            $out['items'] = array_values($data);
+            $out['total_count'] = $totalCount;
         } elseif ($id > 0) {
-            $out['results'] = [
+            $socio = Socio::findOne(['numero' => $id]);
+            $out['items'] = [
                 'id' => $id,
-                'text' => Socio::findOne(['numero' => $id])->nombre,
+                'text' => "[{$socio->numero}] {$socio->nombre}",
             ];
+            $out['total_count'] = 1;
         }
         return $out;
-        // return $this->renderAjax('_socios', [
-        //     'dataProvider' => $dataProvider,
-        // ]);
     }
 
     public function actionTotal($fecha = null)
