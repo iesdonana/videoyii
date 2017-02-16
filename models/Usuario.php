@@ -1,8 +1,9 @@
 <?php
-
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "usuarios".
@@ -12,6 +13,7 @@ use Yii;
  * @property string $password
  * @property string $token
  */
+
 class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
@@ -19,7 +21,6 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      * @var string
      */
     const ESCENARIO_CREATE = 'create';
-
     /**
      * Campo de contraseña en el formulario de alta y modificación de usuarios
      * @var string
@@ -31,7 +32,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      * @var string
      */
     public $passConfirm;
-
+    public $imageFile;
     /**
      * @inheritdoc
      */
@@ -39,22 +40,22 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return 'usuarios';
     }
-
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['nombre'], 'required'],
+            [['nombre', 'email'], 'required'],
             [['pass', 'passConfirm'], 'required', 'on' => self::ESCENARIO_CREATE],
             [['pass'], 'safe'],
             [['nombre'], 'string', 'max' => 15],
             [['nombre'], 'unique'],
             [['passConfirm'], 'confirmarPassword'],
+            [['email'], 'email'],
+            [['imageFile'], 'file', 'extensions' => 'png'],
         ];
     }
-
     /**
      * @inheritdoc
      */
@@ -64,10 +65,10 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'id' => 'ID',
             'nombre' => 'Nombre',
             'pass' => 'Contraseña',
-            'passConfirm' => 'Confirmar contraseña'
+            'passConfirm' => 'Confirmar contraseña',
+            'imageFile' => 'Imagen',
         ];
     }
-
     /**
      * @inheritDoc
      */
@@ -75,14 +76,12 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return static::findOne($id);
     }
-
     /**
      * @inheritDoc
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
     }
-
     /**
      * Busca un usuario por su nombre.
      *
@@ -93,7 +92,6 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return static::findOne(['nombre' => $nombre]);
     }
-
     /**
      * @inheritdoc
      */
@@ -101,7 +99,6 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->id;
     }
-
     /**
      * @inheritdoc
      */
@@ -109,12 +106,10 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->token;
     }
-
     public function regenerarToken()
     {
         $this->token = Yii::$app->security->generateRandomString();
     }
-
     /**
      * @inheritDoc
      */
@@ -122,7 +117,6 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->token === $authKey;
     }
-
     /**
      * Validar contraseña.
      *
@@ -140,7 +134,6 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             $this->addError($attribute, 'Las contraseñas no coinciden');
         }
     }
-
     /**
      * Comprueba si el usuario es administrador.
      * @return bool si el usuario es administrador
@@ -149,7 +142,22 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->nombre === 'admin';
     }
+    public function getImageUrl()
+    {
+        $uploads = Yii::getAlias('@uploads');
+        $ruta = "$uploads/{$this->id}.png";
+        return file_exists($ruta) ? "/$ruta" : "/$uploads/default.png";
+    }
+    /**
+     * Indica si un usuario está activado. Un usuario está activado
+     * su columna `activacion` contiene un valor nulo.
+     * @return bool Si el usuario está activado o no
+     */
 
+    public function getActivado()
+    {
+        return $this->activacion === null;
+    }
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -158,6 +166,14 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             }
             if ($insert) {
                 $this->regenerarToken();
+            }
+            $this->imageFile = UploadedFile::getInstance($this, 'imageFile');
+            if ($this->imageFile !== null && $this->validate()) {
+                $nombre = Yii::getAlias('@uploads/')
+                    . $this->id . '.' . $this->imageFile->extension;
+                $this->imageFile->saveAs($nombre);
+                Image::thumbnail($nombre, 120, null)
+                    ->save($nombre, ['quality' => 50]);
             }
             return true;
         } else {

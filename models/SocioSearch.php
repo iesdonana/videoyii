@@ -49,6 +49,9 @@ class SocioSearch extends Socio
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 1,
+            ],
         ]);
 
         $this->load($params);

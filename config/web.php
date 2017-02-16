@@ -6,6 +6,9 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'aliases' => [
+        '@uploads' => 'uploads',
+    ],
     'components' => [
         'formatter' => [
             'thousandSeparator' => ' ',
@@ -30,7 +33,15 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',
+                'username' => $params['smtpUsername'],
+                'password' => getenv('SMTP_PASS'),
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -42,14 +53,19 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'usuarios/view/<id:\d+>' => 'usuarios/view',
+                'usuarios/update/<id:\d+>' => 'usuarios/update',
+                'usuarios/<id:\d+>' => 'usuarios/view',
+                'usuario/<id:\d+>' => 'usuarios/view',
+                'usuarios/index/<sort>' => 'usuarios/index',
+                'usuarios/index/<page:\d+>/<per-page:\d+>' => 'usuarios/index',
+                'usuarios/activar/<token>' => 'usuarios/activar',
             ],
         ],
-        */
     ],
     'params' => $params,
     'language' => 'es_ES',

@@ -1,27 +1,93 @@
 <?php
-
+use app\models\Socio;
+use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
-
+use kartik\select2\Select2;
 /* @var $this yii\web\View */
 /* @var $model app\models\AlquilerForm */
 /* @var $form ActiveForm */
 /* @var $alquileres Alquiler[] */
-
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
+$url = Url::to(['alquileres/socios']);
+$urlActual = Url::to(['alquileres/gestionar']);
+$js = <<<EOT
+    var delay = (function() {
+        var timer = 0;
+        return function(callback, ms){
+            clearTimeout (timer);
+            timer = setTimeout(callback, ms);
+        };
+    })();
+    $('#numero').keyup(function() {
+        delay(function() {
+            var q = $('#numero').val();
+            if (q == '') {
+                $('#socios').html('');
+            }
+            if (!isNaN(q)) {
+                return;
+            }
+            $.ajax({
+                method: 'GET',
+                url: '$url',
+                data: {
+                    q: q
+                },
+                success: function (data, status, event) {
+                    $('#socios').html(data);
+                }
+            });
+        }, 500);
+    });
+EOT;
+$this->registerJs($js);
+$resultsJs = <<<JS
+    function (data, params) {
+        params.page = params.page || 1;
+        return {
+            results: data.items,
+            pagination: {
+                more: (params.page * 10) < data.total_count
+            }
+        };
+    }
+JS;
+$nombre = empty($model->numero) ? '' :
+          Socio::findOne(['numero' => $model->numero])->nombre;
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
-        'method' => 'get',
-        'action' => ['alquileres/gestionar'],
-    ]); ?>
-        <?= $form->field($model, 'numero') ?>
+            'method' => 'get',
+            'action' => ['alquileres/gestionar'],
+        ]); ?>
+        <?= $form->field($model, 'numero')->widget(Select2::classname(), [
+            'initValueText' => $nombre,
+            'language' => 'es',
+            'options' => ['placeholder' => 'Buscar socio...'],
+            'pluginOptions' => [
+                'allowClear' => true,
+                'ajax' => [
+                    'url' => $url,
+                    'dataType' => 'json',
+                    'data' => new JsExpression('function(params) { return {q: params.term, page: params.page}; }'),
+                    'processResults' => new JsExpression($resultsJs),
+                    'cache' => true,
+                ],
+                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                'templateResult' => new JsExpression('function(socio) { return socio.text; }'),
+                'templateSelection' => new JsExpression('function (socio) { return socio.text; }'),
+            ],
+        ]); ?>
         <div class="form-group">
             <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 </div><!-- alquileres-alquilar -->
+<div id="socios">
+</div>
 <?php if (!empty($alquileres)) {
         ?>
     <table class="table table-striped">
@@ -53,12 +119,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     </td>
                 </tr>
             <?php
-
         } ?>
         </tbody>
     </table>
 <?php
-
     } ?>
 <?php if ($model->esValido) {
         ?>
@@ -69,5 +133,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     <?php ActiveForm::end(); ?>
 <?php
-
     } ?>

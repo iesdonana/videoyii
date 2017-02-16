@@ -1,17 +1,14 @@
 <?php
-
 /* @var $this \yii\web\View */
 /* @var $content string */
-
+use app\helpers\Mensaje;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\bootstrap\Alert;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-
 AppAsset::register($this);
-
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -39,21 +36,34 @@ AppAsset::register($this);
         ['label' => 'Socios', 'url' => ['socios/index']],
         ['label' => 'Películas', 'url' => ['peliculas/index']],
         ['label' => 'Alquileres', 'url' => ['alquileres/gestionar']],
-        Yii::$app->user->isGuest ? (
-            ['label' => 'Login', 'url' => ['/site/login']]
-        ) : (
-            '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->nombre . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>'
-        )
+        Yii::$app->user->isGuest ?
+        [
+            'label' => 'Usuarios',
+            'items' => [
+                ['label' => 'Login', 'url' => ['/site/login']],
+                '<li class="divider"></li>',
+                ['label' => 'Registrarse', 'url' => ['usuarios/create']],
+            ]
+        ] :
+        [
+            'label' => 'Usuarios (' . Yii::$app->user->identity->nombre . ')',
+            'items' => [
+                [
+                    'label' => 'Logout',
+                    'url' => ['site/logout'],
+                    'linkOptions' => ['data-method' => 'POST']
+                ],
+                '<li class="divider"></li>',
+                ['label' => 'Ver datos', 'url' => ['usuarios/view']],
+            ]
+        ]
     ];
     if (Yii::$app->user->esAdmin) {
-        array_unshift($items, ['label' => 'Usuarios', 'url' => ['usuarios/index']]);
+        end($items);
+        $items[key($items)]['items'][] = [
+            'label' => 'Gestión de usuarios',
+            'url' => ['usuarios/index']
+        ];
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -66,20 +76,20 @@ AppAsset::register($this);
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <?php if (Yii::$app->session->hasFlash('exito')) {
+        <?php if (Mensaje::hayExito()) {
             echo Alert::widget([
                 'options' => [
                     'class' => 'alert-success',
                 ],
-                'body' => Yii::$app->session->getFlash('exito'),
+                'body' => Mensaje::exito(),
             ]);
         } ?>
-        <?php if (Yii::$app->session->hasFlash('fracaso')) {
+        <?php if (Mensaje::hayFracaso()) {
             echo Alert::widget([
                 'options' => [
                     'class' => 'alert-danger',
                 ],
-                'body' => Yii::$app->session->getFlash('fracaso'),
+                'body' => Mensaje::fracaso(),
             ]);
         } ?>
         <?= $content ?>

@@ -1,8 +1,8 @@
 <?php
-
 namespace app\controllers;
 
 use Yii;
+use app\helpers\Mensaje;
 use app\models\Pelicula;
 use app\models\TotalForm;
 use app\models\PeliculaForm;
@@ -12,8 +12,10 @@ use app\models\Alquiler;
 use app\models\GestionarForm;
 use app\models\AlquilerSearch;
 use app\models\Socio;
+use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
+use yii\grid\GridView;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -47,7 +49,43 @@ class AlquileresController extends \yii\web\Controller
             ],
         ];
     }
-
+    public function actionSocios($q = null, $id = null)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [
+            'items' => [
+                'id' => '',
+                'text' => '',
+            ],
+            'total_count' => 0,
+        ];
+        if (!is_null($q)) {
+            $query = Socio::find()->where(['ilike', 'nombre', $q]);
+            $countQuery = clone $query;
+            $totalCount = $countQuery->count();
+            $pages = new Pagination([
+                'totalCount' => $totalCount,
+                'pageSize' => 10,
+            ]);
+            $data = $query
+                ->select("numero as id, ('[' || numero || '] ' || nombre) as text")
+                ->orderBy('numero')
+                ->limit($pages->limit)
+                ->offset($pages->offset)
+                ->asArray()
+                ->all();
+            $out['items'] = array_values($data);
+            $out['total_count'] = $totalCount;
+        } elseif ($id > 0) {
+            $socio = Socio::findOne(['numero' => $id]);
+            $out['items'] = [
+                'id' => $id,
+                'text' => "[{$socio->numero}] {$socio->nombre}",
+            ];
+            $out['total_count'] = 1;
+        }
+        return $out;
+    }
     public function actionTotal($fecha = null)
     {
         $model = new TotalForm;
@@ -60,9 +98,7 @@ class AlquileresController extends \yii\web\Controller
             })
             ->column();
         $total = null;
-
         $fechas = array_map([Yii::$app->formatter, 'asDate'], $fechas);
-
         if ($fecha !== null) {
             $model->fecha = $fecha;
             if ($model->validate()) {
@@ -71,18 +107,15 @@ class AlquileresController extends \yii\web\Controller
                     ->sum('precio_alq');
             }
         }
-
         return $this->render('total', [
             'model' => $model,
             'fechas' => $fechas,
             'total' => $total,
         ]);
     }
-
     public function actionAlquilar()
     {
         $model = new AlquilerForm;
-
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 $alquiler = new Alquiler;
@@ -91,18 +124,15 @@ class AlquileresController extends \yii\web\Controller
                 }
             }
         }
-
         return $this->render('alquilar', [
             'model' => $model,
         ]);
     }
-
     public function actionGestionar($numero = null)
     {
         $model = new GestionarForm;
         $model2 = new PeliculaForm;
         $alquileres = [];
-
         if ($numero !== null) {
             $model->numero = $numero;
             if ($model->validate()) {
@@ -114,19 +144,16 @@ class AlquileresController extends \yii\web\Controller
                 $alquileres = Socio::findOne(['numero' => $model->numero])->pendientes;
             }
         }
-
         return $this->render('gestionar', [
             'model' => $model,
             'model2' => $model2,
             'alquileres' => $alquileres,
         ]);
     }
-
     public function actionDevolver($numero = null)
     {
         $model = new DevolverForm();
         $dataProvider = null;
-
         if ($numero !== null) {
             $model->numero = $numero;
             if ($model->validate()) {
@@ -138,20 +165,18 @@ class AlquileresController extends \yii\web\Controller
                 ]);
             }
         }
-
         return $this->render('devolver', [
              'model' => $model,
              'dataProvider' => $dataProvider,
         ]);
     }
-
     public function actionDelete($id, $numero = null)
     {
         $alquiler = Alquiler::findOne($id);
         if ($alquiler !== null) {
             $alquiler->devuelto = new \yii\db\Expression('current_timestamp');
             $alquiler->save();
-            Yii::$app->session->setFlash('exito', 'Película devuelta correctamente.');
+            Mensaje::exito('Película devuelta correctamente.');
             $url = ['alquileres/gestionar'];
             if ($numero !== null) {
                 $url['numero'] = $numero;
@@ -161,7 +186,6 @@ class AlquileresController extends \yii\web\Controller
             throw new NotFoundHttpException('Socio no encontrado.');
         }
     }
-
     /**
      * Lists all Alquiler models.
      * @return mixed

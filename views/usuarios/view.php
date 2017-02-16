@@ -1,13 +1,10 @@
 <?php
-
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuario */
-
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
+$this->params['breadcrumbs'][] = (Yii::$app->user->esAdmin) ? ['label' => 'Usuarios', 'url' => ['index']] : 'Usuarios';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="usuario-view">
@@ -25,12 +22,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <img src="<?= $model->imageUrl ?>" />
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'nombre',
-            'password',
             'token',
         ],
     ]) ?>
