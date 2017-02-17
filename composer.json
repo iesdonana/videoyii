@@ -25,6 +25,7 @@
         "kartik-v/yii2-widget-select2": "@dev"
     },
     "require-dev": {
+        "yiisoft/yii2-apidoc": "~2.1.0",
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3",
