@@ -56,8 +56,10 @@ class AlquileresController extends \yii\web\Controller
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $out = [
             'items' => [
-                'id' => '',
-                'text' => '',
+                [
+                    'id' => '',
+                    'text' => '',
+                ],
             ],
             'total_count' => 0,
         ];
@@ -84,6 +86,48 @@ class AlquileresController extends \yii\web\Controller
             $out['items'] = [
                 'id' => $id,
                 'text' => "[{$socio->numero}] {$socio->nombre}",
+            ];
+            $out['total_count'] = 1;
+        }
+        return $out;
+    }
+
+    public function actionPeliculas($q = null, $id = null)
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [
+            'items' => [
+                [
+                    'id' => '',
+                    'text' => '',
+                ],
+            ],
+            'total_count' => 0,
+        ];
+
+        if (!is_null($q)) {
+            $query = Pelicula::findDisponibles()
+                ->andWhere(['ilike', 'titulo', $q]);
+            $countQuery = clone $query;
+            $totalCount = $countQuery->count();
+            $pages = new Pagination([
+                'totalCount' => $totalCount,
+                'pageSize' => 10,
+            ]);
+            $data = $query
+                ->select("codigo as id, ('[' || codigo || '] ' || titulo) as text")
+                ->orderBy('codigo')
+                ->limit($pages->limit)
+                ->offset($pages->offset)
+                ->asArray()
+                ->all();
+            $out['items'] = array_values($data);
+            $out['total_count'] = $totalCount;
+        } elseif ($id > 0) {
+            $pelicula = Pelicula::findOne(['codigo' => $id]);
+            $out['items'] = [
+                'id' => $id,
+                'text' => "[{$pelicula->codigo}] {$pelicula->titulo}",
             ];
             $out['total_count'] = 1;
         }

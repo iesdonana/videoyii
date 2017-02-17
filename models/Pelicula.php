@@ -55,6 +55,14 @@ class Pelicula extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function findDisponibles()
+    {
+        $sub = Alquiler::find()
+            ->select('pelicula_id')
+            ->where(['devuelto' => null]);
+        return self::find()->where(['not in', 'id', $sub]);
+    }
+
     public function getEstaAlquilada()
     {
         return $this->getAlquileres()->where(['devuelto' => null])->one() !== null;

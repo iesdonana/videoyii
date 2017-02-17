@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Socio;
+use app\models\Pelicula;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\web\JsExpression;
@@ -14,7 +15,8 @@ use kartik\select2\Select2;
 
 $this->title = 'Alquileres';
 $this->params['breadcrumbs'][] = $this->title;
-$url = Url::to(['alquileres/socios']);
+$urlSocios = Url::to(['alquileres/socios']);
+$urlPeliculas = Url::to(['alquileres/peliculas']);
 $resultsJs = <<<JS
     function (data, params) {
         params.page = params.page || 1;
@@ -28,6 +30,8 @@ $resultsJs = <<<JS
 JS;
 $nombre = empty($model->numero) ? '' :
           Socio::findOne(['numero' => $model->numero])->nombre;
+$titulo = empty($model2->numero) ? '' :
+          Pelicula::findOne(['codigo' => $model2->codigo])->titulo;
 ?>
 <div class="alquileres-gestionar">
     <?php $form = ActiveForm::begin([
@@ -41,7 +45,7 @@ $nombre = empty($model->numero) ? '' :
             'pluginOptions' => [
                 'allowClear' => true,
                 'ajax' => [
-                    'url' => $url,
+                    'url' => $urlSocios,
                     'dataType' => 'json',
                     'data' => new JsExpression('function(params) { return {q: params.term, page: params.page}; }'),
                     'processResults' => new JsExpression($resultsJs),
@@ -59,8 +63,7 @@ $nombre = empty($model->numero) ? '' :
 </div><!-- alquileres-alquilar -->
 <div id="socios">
 </div>
-<?php if (!empty($alquileres)) {
-        ?>
+<?php if (!empty($alquileres)): ?>
     <table class="table table-striped">
         <thead>
             <th>Código</th>
@@ -69,8 +72,7 @@ $nombre = empty($model->numero) ? '' :
             <th>Devolver</th>
         </thead>
         <tbody>
-            <?php foreach ($alquileres as $alquiler) {
-            ?>
+            <?php foreach ($alquileres as $alquiler): ?>
                 <tr <?= $alquiler->estaAtrasado ? 'style="color:red"' : '' ?>>
                     <td><?= Html::encode($alquiler->pelicula->codigo) ?></td>
                     <td><?= Html::encode($alquiler->pelicula->titulo) ?></td>
@@ -89,22 +91,32 @@ $nombre = empty($model->numero) ? '' :
                         ]) ?>
                     </td>
                 </tr>
-            <?php
-
-        } ?>
+            <?php endforeach ?>
         </tbody>
     </table>
-<?php
-
-    } ?>
-<?php if ($model->esValido) {
-        ?>
+<?php endif ?>
+<?php if ($model->esValido): ?>
     <?php $form = ActiveForm::begin(); ?>
-        <?= $form->field($model2, 'codigo') ?>
+        <?= $form->field($model2, 'codigo')->widget(Select2::classname(), [
+            'initValueText' => $titulo,
+            'language' => 'es',
+            'options' => ['placeholder' => 'Buscar película...'],
+            'pluginOptions' => [
+                'allowClear' => true,
+                'ajax' => [
+                    'url' => $urlPeliculas,
+                    'dataType' => 'json',
+                    'data' => new JsExpression('function(params) { return {q: params.term, page: params.page}; }'),
+                    'processResults' => new JsExpression($resultsJs),
+                    'cache' => true,
+                ],
+                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                'templateResult' => new JsExpression('function(socio) { return socio.text; }'),
+                'templateSelection' => new JsExpression('function (socio) { return socio.text; }'),
+            ],
+        ]); ?>
         <div class="form-group">
             <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
-<?php
-
-    } ?>
+<?php endif ?>
