@@ -198,10 +198,10 @@ class AlquileresController extends \yii\web\Controller
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $out = ['results' => ['id' => '', 'text' => '']];
         if (!is_null($q)) {
+            $subQuery = Alquiler::find()->select('pelicula_id')->where(['devuelto' => null]);
             $data = Pelicula::find()->select('codigo as id, titulo as text')
-                    ->joinWith('alquileres')
                     ->where(['ilike', 'titulo', $q])
-                    ->andWhere('alquileres.alquilado is null or alquileres.devuelto is not null')
+                    ->andWhere(['not in', 'id', $subQuery])
                     ->limit(20)->asArray()->all();
             $out['results'] = $data;
         } elseif ($id > 0) {

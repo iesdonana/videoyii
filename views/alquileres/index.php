@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'pelicula_id',
             'precio_alq',
             'alquilado',
-            // 'devuelto',
+            'devuelto',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
